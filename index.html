@@ -3870,7 +3870,7 @@ function doImport(input){
 
 /* ==================== Supabase 账号云后端 ==================== */
 const SB_URL="https://mmfthjlpqduanbvgjah.supabase.co";
-const SB_KEY="sb_publishable_XHi2MkCJbB3SvM0c4Z271Q_Ime4n6E0";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tdHRpamhxb3VkYXhueGJnamFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5MDkxOTksImV4cCI6MjEwMTQ4NTE5OX0.ieEcUwigw_borj8K3PrIyy2Kq3UoLbaCzeX-z3l_aUQ";
 let sbClient=null,sbUser=null,cloudMode=false,authMode="login";
 try{if(window.supabase)sbClient=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true}});}catch(e){console.warn("Supabase 初始化失败",e);}
 
