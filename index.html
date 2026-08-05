@@ -677,12 +677,57 @@
   .ng-pane li{margin:3px 0}
   .ng-pane b{color:var(--gold)}
   .ng-note{margin-top:9px;font-size:11.5px;color:var(--muted);background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px}
-  /* 设置弹窗 */
-  .settings-sections{display:flex;flex-direction:column;gap:14px;margin:4px 0 12px}
-  .sett-sect{background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--glass-border)}
-  .sett-sect h4{margin:0 0 8px;font-size:13px;color:var(--ink)}
-  .sett-row{display:flex;align-items:center;gap:10px;margin:6px 0}
-  .sett-row .sett-hint{font-size:11px;color:var(--muted);flex:1}
+  /* ===== 设置弹窗 v5.32 重设计 ===== */
+  .settings-sections{display:flex;flex-direction:column;gap:16px;margin:4px 0 16px}
+  .sett-sect{background:var(--bg3);border-radius:14px;padding:16px 18px;border:1px solid var(--glass-border);transition:border-color .2s}
+  .sett-sect:hover{border-color:rgba(255,255,255,.1)}
+  .sett-sect h4{margin:0 0 12px;font-size:14px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px;letter-spacing:.3px}
+  .sett-sect h4 .sect-icon{font-size:18px}
+  /* 数据操作按钮组 — 横向2x2网格 */
+  .sett-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .sett-action{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;border-radius:10px;border:1px solid var(--glass-border);background:rgba(255,255,255,.02);cursor:pointer;transition:all .15s;text-align:center}
+  .sett-action:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-1px)}
+  .sett-action.danger:hover{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.25)}
+  .sett-action.warn:hover{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.25)}
+  .sett-action .sa-icon{font-size:22px;line-height:1}
+  .sett-action .sa-label{font-size:12px;font-weight:700;color:var(--ink2)}
+  .sett-action .sa-desc{font-size:10.5px;color:var(--muted);line-height:1.4}
+  /* 账号区 */
+  .acct-status-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--glass-border);margin-bottom:12px}
+  .acct-status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .acct-status-dot.online{background:var(--brand);box-shadow:0 0 8px rgba(34,197,94,.5)}
+  .acct-status-dot.offline{background:var(--muted2)}
+  .acct-status-text{font-size:13px;font-weight:600;color:var(--ink2);flex:1}
+  .acct-status-email{font-size:11px;color:var(--muted)}
+  .acct-btns{display:flex;gap:8px;margin-bottom:14px}
+  .acct-btns .btn.sm{padding:7px 16px;font-size:12.5px}
+  /* 令牌卡片 */
+  .token-card{background:rgba(255,255,255,.025);border-radius:10px;border:1px solid var(--glass-border);padding:14px;margin-bottom:14px}
+  .token-card .tc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .token-card .tc-title{font-size:12.5px;font-weight:700;color:var(--ink2);display:flex;align-items:center;gap:6px}
+  .token-card .tc-status{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px}
+  .token-card .tc-status.ok{background:rgba(34,197,94,.12);color:var(--brand)}
+  .token-card .tc-status.no{background:rgba(248,113,113,.1);color:var(--coral)}
+  .token-card .tc-body{display:flex;gap:8px;align-items:center}
+  .token-card .tc-body input{flex:1;padding:9px 12px;font-size:12.5px;border-radius:8px;border:1px solid var(--glass-border);background:var(--bg);color:var(--ink);outline:none;font-family:inherit}
+  .token-card .tc-body input:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-glow)}
+  .token-card .tc-body button{padding:9px 14px;font-size:12px;white-space:nowrap;border-radius:8px}
+  .token-card .tc-note{margin-top:8px;font-size:10.5px;color:var(--muted2);line-height:1.5}
+  /* 快捷操作行 */
+  .sett-quick{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px dashed var(--glass-border);background:transparent;cursor:pointer;transition:all .15s}
+  .sett-quick:hover{border-color:var(--purple);background:rgba(167,139,250,.04)}
+  .sett-quick .sq-icon{font-size:20px}
+  .sett-quick .sq-text{flex:1}
+  .sett-quick .sq-label{font-size:12.5px;font-weight:700;color:var(--ink2)}
+  .sett-quick .sq-desc{font-size:10.5px;color:var(--muted);margin-top:2px}
+  .sett-quick .sq-arrow{color:var(--muted2);font-size:14px;transition:transform .15s}
+  .sett-quick:hover .sq-arrow{transform:translateX(3px);color:var(--purple)}
+  /* 关于区 */
+  .about-info{display:flex;flex-direction:column;gap:8px}
+  .about-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
+  .about-row .alabel{color:var(--muted)}
+  .about-row .avalue{color:var(--ink2);font-weight:600}
+  .about-footer{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted2);text-align:center;line-height:1.6}
 
   /* 弹窗 */
   .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:99;padding:16px}
@@ -1842,38 +1887,96 @@
         </div>
       </div>
 
-      <!-- ⚙ 设置弹窗 -->
+      <!-- ⚙ 设置弹窗 v5.32 -->
       <div class="modal" id="settings-modal" style="display:none">
-        <div class="modal-box" style="max-width:460px">
+        <div class="modal-box" style="max-width:560px">
           <h3>⚙ 设置</h3>
           <div class="settings-sections">
+
+            <!-- 📦 数据与安全 -->
             <div class="sett-sect">
-              <h4>📦 数据管理</h4>
-              <div class="sett-row"><button class="btn ghost sm" onclick="exportJSON()">⬇ 备份数据</button><span class="sett-hint">导出 JSON 保存到本地</span></div>
-              <div class="sett-row"><button class="btn ghost sm" onclick="document.getElementById('import-file').click()">⬆ 恢复数据</button><span class="sett-hint">从 JSON 导入数据（导入前会自动留存当前快照）</span></div>
-              <div class="sett-row"><button class="btn ghost sm" style="color:var(--coral);background:rgba(248,113,113,.06)" onclick="if(confirm('确定清空所有数据？此操作不可撤销！')){localStorage.removeItem(KEY);location.reload()}">🗑 清空所有数据</button><span class="sett-hint">删除本地存储，回到初始状态</span></div>
-              <div class="sett-row"><button class="btn ghost sm" style="color:var(--amber)" onclick="if(confirm('确定重置为示例数据？当前数据将被覆盖！')){localStorage.removeItem(KEY);location.reload()}">🔄 重置示例数据</button><span class="sett-hint">恢复内置的示例内容</span></div>
+              <h4><span class="sect-icon">📦</span> 数据与安全</h4>
+              <div class="sett-grid">
+                <div class="sett-action" onclick="exportJSON()">
+                  <span class="sa-icon">⬇️</span>
+                  <span class="sa-label">备份数据</span>
+                  <span class="sa-desc">导出 JSON 到本地</span>
+                </div>
+                <div class="sett-action" onclick="document.getElementById('import-file').click()">
+                  <span class="sa-icon">⬆️</span>
+                  <span class="sa-label">恢复数据</span>
+                  <span class="sa-desc">从 JSON 导入（自动留存快照）</span>
+                </div>
+                <div class="sett-action danger" onclick="if(confirm('确定清空所有数据？此操作不可撤销！')){localStorage.removeItem(KEY);location.reload()}">
+                  <span class="sa-icon">🗑️</span>
+                  <span class="sa-label">清空数据</span>
+                  <span class="sa-desc">删除本地存储，回到初始状态</span>
+                </div>
+                <div class="sett-action warn" onclick="if(confirm('确定重置为示例数据？当前数据将被覆盖！')){localStorage.removeItem(KEY);location.reload()}">
+                  <span class="sa-icon">🔄</span>
+                  <span class="sa-label">示例数据</span>
+                  <span class="sa-desc">恢复内置的示例内容</span>
+                </div>
+              </div>
             </div>
+
+            <!-- ☁ 云端账号 -->
             <div class="sett-sect">
-              <h4>👤 账号</h4>
-              <div class="sett-row"><span class="sett-hint" id="account-status-hint">状态：未登录（本地模式）</span></div>
-              <div class="sett-row"><button class="btn ghost sm" onclick="showAuthGate()">🔑 登录 / 注册</button><button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()">🚪 退出登录</button></div>
-              <div class="sett-row"><label style="font-size:12px;color:var(--muted2);display:block;margin-bottom:4px">GitHub 令牌（云端同步必填，仅存本机）</label><input type="password" id="gh-token-input" placeholder="ghp_..." style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--ink);font-size:12px;box-sizing:border-box"/><button class="btn ghost sm" onclick="saveGhToken()">💾 保存令牌</button><span class="sett-hint" id="gh-token-status">❌ 未设置</span></div>
-              <div class="sett-row"><button class="btn ghost sm" onclick="openScanSync()">📱 扫码同步到手机</button><span class="sett-hint">生成二维码，手机扫码登录即同步</span></div>
+              <h4><span class="sect-icon">☁️</span> 云端账号</h4>
+
+              <!-- 状态栏 -->
+              <div class="acct-status-bar">
+                <span class="acct-status-dot offline" id="acct-dot"></span>
+                <div class="acct-status-text">
+                  <div id="acct-status-main">本地模式 · 数据仅存本机浏览器</div>
+                  <div class="acct-status-email" id="acct-email-row"></div>
+                </div>
+              </div>
+
+              <!-- 登录/注册按钮 -->
+              <div class="acct-btns">
+                <button class="btn sm" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e" onclick="showAuthGate()">🔑 登录 / 注册</button>
+                <button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()">🚪 退出登录</button>
+              </div>
+
+              <!-- GitHub 令牌 -->
+              <div class="token-card">
+                <div class="tc-head">
+                  <span class="tc-title">🔐 GitHub 令牌</span>
+                  <span class="tc-status no" id="gh-token-status">未设置</span>
+                </div>
+                <div class="tc-body">
+                  <input type="password" id="gh-token-input" placeholder="ghp_... 粘贴令牌后点击保存"/>
+                  <button class="btn sm" onclick="saveGhToken()">保存</button>
+                </div>
+                <div class="tc-note">云端同步必填，令牌仅存本机浏览器，不会上传到其他服务器。</div>
+              </div>
+
+              <!-- 扫码同步 -->
+              <div class="sett-quick" onclick="openScanSync()">
+                <span class="sq-icon">📱</span>
+                <div class="sq-text">
+                  <div class="sq-label">扫码同步到手机</div>
+                  <div class="sq-desc">生成二维码，手机扫码登录即同步数据</div>
+                </div>
+                <span class="sq-arrow">›</span>
+              </div>
             </div>
+
+            <!-- ℹ 关于 -->
             <div class="sett-sect">
-              <h4>☁ 同步</h4>
-              <div class="sett-row"><button class="btn sm" onclick="closeSettings();openSyncSetup()" style="background:linear-gradient(135deg,var(--blue),#3b82f6)">☁ 云同步设置</button><span class="sett-hint">配置 Gitee / JSONBin 自动同步</span></div>
+              <h4><span class="sect-icon">ℹ️</span> 关于</h4>
+              <div class="about-info">
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue">🐟 v5.32</span></div>
+                <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
+                <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
+                <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
+              </div>
+              <div class="about-footer">
+                小鱼三岁就很酷 © 2026 · 数据安全第一
+              </div>
             </div>
-            <div class="sett-sect">
-              <h4>ℹ 关于</h4>
-              <p style="font-size:12px;color:var(--muted2);line-height:1.7;margin:0">
-                🐟 小鱼工作台 v5.31<br/>
-                百江富淮城运营 + 摄影师个人工作台<br/>
-                GitHub 云端同步 · 端到端加密 · 多设备共享<br/>
-                未登录时数据存于本机浏览器（离线可用）
-              </p>
-            </div>
+
           </div>
           <div class="modal-actions">
             <button class="btn" onclick="closeSettings()">关闭</button>
@@ -3991,8 +4094,14 @@ function accountChipClick(){if(ghUser){if(confirm("\u9000\u51FA\u5F53\u524D\u8D2
 function updateAccountUI(){
   const ind=document.getElementById("account-indicator");if(ind)ind.textContent=ghUser?(ghUser.email||"\u5DF2\u767B\u5F55"):"\u672A\u767B\u5F55";
   const lb=document.getElementById("auth-logout-btn");if(lb)lb.style.display=ghUser?"inline-block":"none";
-  const hint=document.getElementById("account-status-hint");if(hint)hint.textContent="\u72B6\u6001："+(ghUser?("\u5DF2\u767B\u5F55 "+ghUser.email):"\u672A\u767B\u5F55\uFF08\u672C\u5730\u6A21\u5F0F\uFF09");
-  const tkHint=document.getElementById("gh-token-status");if(tkHint)tkHint.textContent=ghToken?"✅ \u5DF2\u8BBE\u7F6E":"❌ \u672A\u8BBE\u7F6E";}
+  /* 状态栏 */
+  const dot=document.getElementById("acct-dot");if(dot){dot.className="acct-status-dot "+(ghUser?"online":"offline");}
+  const main=document.getElementById("acct-status-main");if(main)main.textContent=ghUser?"\u4e91\u7aef\u5df2\u8fde\u63a5 \u00b7 \u6570\u636e\u81ea\u52a8\u540c\u6b65":"\u672c\u5730\u6a21\u5f0f \u00b7 \u6570\u636e\u4ec5\u5b58\u672c\u673a\u6d4f\u89c8\u5668";
+  const emailRow=document.getElementById("acct-email-row");if(emailRow)emailRow.textContent=ghUser?(ghUser.email||""):"";
+  /* 令牌状态 */
+  const tkHint=document.getElementById("gh-token-status");
+  if(tkHint){tkHint.textContent=ghToken?"\u5df2\u8bbe\u7f6e":"\u672a\u8bbe\u7f6e";tkHint.className="tc-status "+(ghToken?"ok":"no");}
+}
 function startCloudTimer(){
   if(!window.__cloudTimer)window.__cloudTimer=setInterval(async()=>{if(cloudMode&&ghUser&&ghToken)await cloudPull();},60000);}
 
@@ -4002,11 +4111,13 @@ function saveGhToken(){
   if(!val){alert("\u8BF7\u8F93\u5165 GitHub \u4EE4\u724C");return;}
   if(!val.startsWith("ghp_")&&!val.startsWith("github_pat_")){alert("\u4EE4\u724C\u683C\u5F0F\u4E0D\u5BF9\uFF0C\u5E94\u4EE5 ghp_ \u6216 github_pat_ \u5F00\u5934");return;}
   ghToken=val;localStorage.setItem(CLOUD_KEY_PREFIX+"token",val);
-  const hint=document.getElementById("gh-token-status");if(hint)hint.textContent="✅ \u5DF2\u8BBE\u7F6E";
-  input.value="";alert("GitHub \u4EE4\u724C\u5DF2\u4FDD\u5B58\uFF01\u73B0\u5728\u53EF\u4EE5\u767B\u5F55/\u6CE8\u518C\u8D26\u53F7\u4E86");}
+  const hint=document.getElementById("gh-token-status");
+  if(hint){hint.textContent="\u5df2\u8bbe\u7f6e";hint.className="tc-status ok";}
+  input.value="";alert("GitHub \u4ee4\u724c\u5df2\u4fdd\u5b58\uff01\u73b0\u5728\u53ef\u4ee5\u767b\u5f55/\u6ce8\u518c\u8d26\u53f7\u4e86");}
 function loadGhTokenUI(){
   ghToken=localStorage.getItem(CLOUD_KEY_PREFIX+"token")||"";
-  const hint=document.getElementById("gh-token-status");if(hint)hint.textContent=ghToken?"✅ \u5DF2\u8BBE\u7F6E":"❌ \u672A\u8BBE\u7F6E";}
+  const hint=document.getElementById("gh-token-status");
+  if(hint){hint.textContent=ghToken?"\u5df2\u8bbe\u7f6e":"\u672a\u8bbe\u7f6e";hint.className="tc-status "+(ghToken?"ok":"no");}
 
 /* ---- 扫码同步（基于 URL 配对码）---- */
 async function openScanSync(){
