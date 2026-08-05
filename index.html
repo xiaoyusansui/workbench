@@ -1304,8 +1304,7 @@
 .account-chip{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:12px;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .2s;}
 .account-chip:hover{border-color:var(--brand);}
 </style>
-<!-- Supabase 账号云后端 + 二维码生成 -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- GitHub 云后端 + 二维码生成 -->
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
@@ -1859,6 +1858,7 @@
               <h4>👤 账号</h4>
               <div class="sett-row"><span class="sett-hint" id="account-status-hint">状态：未登录（本地模式）</span></div>
               <div class="sett-row"><button class="btn ghost sm" onclick="showAuthGate()">🔑 登录 / 注册</button><button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()">🚪 退出登录</button></div>
+              <div class="sett-row"><label style="font-size:12px;color:var(--muted2);display:block;margin-bottom:4px">GitHub 令牌（云端同步必填，仅存本机）</label><input type="password" id="gh-token-input" placeholder="ghp_..." style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--ink);font-size:12px;box-sizing:border-box"/><button class="btn ghost sm" onclick="saveGhToken()">💾 保存令牌</button><span class="sett-hint" id="gh-token-status">❌ 未设置</span></div>
               <div class="sett-row"><button class="btn ghost sm" onclick="openScanSync()">📱 扫码同步到手机</button><span class="sett-hint">生成二维码，手机扫码登录即同步</span></div>
             </div>
             <div class="sett-sect">
@@ -1868,9 +1868,9 @@
             <div class="sett-sect">
               <h4>ℹ 关于</h4>
               <p style="font-size:12px;color:var(--muted2);line-height:1.7;margin:0">
-                🐟 小鱼工作台 v5.30<br/>
+                🐟 小鱼工作台 v5.31<br/>
                 百江富淮城运营 + 摄影师个人工作台<br/>
-                支持账号登录 · 数据云端同步 · 多设备共享<br/>
+                GitHub 云端同步 · 端到端加密 · 多设备共享<br/>
                 未登录时数据存于本机浏览器（离线可用）
               </p>
             </div>
@@ -2206,7 +2206,7 @@ function save(){
     const ready=syncCfg.provider==="gitee"?(syncCfg.giteeToken&&syncCfg.giteeRepo):(syncCfg.apiKey&&syncCfg.binId);
     if(ready)schedulePush();
   }
-  if(cloudMode&&sbUser&&sbClient)sbPush();
+  if(cloudMode&&ghUser&&ghToken)cloudPush();
 }
 
 let curTab="home";
@@ -3868,112 +3868,192 @@ function doImport(input){
   r.readAsText(f);
 }
 
-/* ==================== Supabase 账号云后端 ==================== */
-const SB_URL="https://mmfthjlpqduanbvgjah.supabase.co";
-const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tdHRpamhxb3VkYXhueGJnamFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5MDkxOTksImV4cCI6MjEwMTQ4NTE5OX0.ieEcUwigw_borj8K3PrIyy2Kq3UoLbaCzeX-z3l_aUQ";
-let sbClient=null,sbUser=null,cloudMode=false,authMode="login";
-try{if(window.supabase)sbClient=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true}});}catch(e){console.warn("Supabase 初始化失败",e);}
+/* ==================== GitHub 云后端（Gist + AES加密） ==================== */
+const GH_API="https://api.github.com";
+let ghUser=null,cloudMode=false,authMode="login",ghToken="",gistId=null;
+const CLOUD_KEY_PREFIX="wb_cloud_";
 
-async function sbPull(){
-  if(!sbClient||!sbUser)return false;
+/* ---- 加密工具（Web Crypto API / AES-GCM）---- */
+async function deriveKey(pwd,salt){
+  const enc=new TextEncoder();const keyMaterial=await crypto.subtle.importKey("raw",enc.encode(pwd),"PBKDF2",false,["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2",salt:enc.encode(salt),iterations:100000,hash:"SHA-256"},keyMaterial,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);}
+async function encryptData(key,data){
+  const iv=crypto.getRandomValues(new Uint8Array(12));const enc=new TextEncoder();
+  const ct=await crypto.encrypt({name:"AES-GCM",iv},key,enc.encode(JSON.stringify(data)));
+  return {iv:Array.from(iv),ct:Array.from(new Uint8Array(ct))};}
+async function decryptData(key,raw){
+  const iv=new Uint8Array(raw.iv);const ct=new Uint8Array(raw.ct);
+  const dec=await crypto.decrypt({name:"AES-GCM",iv},key,ct);return JSON.parse(new TextDecoder().decode(dec));}
+function hashEmail(e){let h=2166136261>>>0;for(let i=0;i<e.length;i++){h^=e.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return ("0000000"+(h>>>0).toString(16)).slice(-8);}
+
+/* ---- GitHub API 封装 ---- */
+async function ghReq(path,opts){
+  if(!ghToken)throw new Error("未设置 GitHub 令牌，请在⚙设置→账号中填写");
+  const h={"Authorization":"token "+ghToken,"Accept":"application/vnd.github.v3+json","Content-Type":"application/json"};
+  const u=GH_API+path;const r=await fetch(u,Object.assign({},opts,{headers:Object.assign({},h,opts.headers||{})}));
+  if(r.status===401||r.status===403){ghToken="";localStorage.removeItem(CLOUD_KEY_PREFIX+"token");throw new Error("GitHub 令牌无效或已过期，请重新设置");}
+  if(!r.ok){const t=await r.text().catch(()=>"");throw new Error("GitHub API "+r.status+": "+(t.slice(0,120)));}
+  return r.json();}
+async function getGistId(){if(gistId)return gistId;const k=CLOUD_KEY_PREFIX+"gist_"+hashEmail(ghUser.email);gistId=localStorage.getItem(k)||null;return gistId;}
+function saveGistId(id){gistId=id;if(id&&ghUser){localStorage.setItem(CLOUD_KEY_PREFIX+"gist_"+hashEmail(ghUser.email),id);}}
+
+/* ---- 云端读写 ---- */
+async function cloudPull(){
+  if(!ghUser||!ghToken)return false;
   try{
-    const {data,error}=await sbClient.from("workbench_data").select("data").eq("user_id",sbUser.id).maybeSingle();
-    if(error)throw error;
-    if(data&&data.data){const cloud=morphDB(data.data);cloud._ts=Date.now();DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();setSyncStatus("ok","云端已同步 "+timeStr());return true;}
-  }catch(e){setSyncStatus("err","云端读取失败："+e.message);}
-  return false;
-}
-async function sbPush(){
-  if(!sbClient||!sbUser)return;
-  try{setSyncStatus("syncing","云端保存中…");const {error}=await sbClient.from("workbench_data").upsert({user_id:sbUser.id,data:DB,updated_at:new Date().toISOString()});if(error)throw error;setSyncStatus("ok","已保存到云端 "+timeStr());}
-  catch(e){setSyncStatus("err","云端保存失败："+e.message);}
-}
+    const id=await getGistId();if(!id)return false;
+    const g=await ghReq("/gists/"+id);
+    const fn=Object.keys(g.files)[0];if(!fn||!g.files[fn].content)return false;
+    const raw=JSON.parse(g.files[fn].content);
+    const key=await deriveKey(ghUser.pwd,"wb-salt-v1");
+    const data=await decryptData(key,raw);
+    if(data&&typeof data==="object"&&(data.rows||data.courses||data.hots||Object.keys(data).length>0)){
+      const cloud=morphDB(data);cloud._ts=Date.now();DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
+      setSyncStatus("ok","云端已同步 "+timeStr());return true;}
+  }catch(e){setSyncStatus("err","云端读取失败："+e.message);}return false;}
+async function cloudPush(){
+  if(!ghUser||!ghToken)return;
+  try{
+    setSyncStatus("syncing","云端保存中…");
+    const key=await deriveKey(ghUser.pwd,"wb-salt-v1");
+    const enc=await encryptData(key,DB);
+    const content=JSON.stringify(enc);
+    const id=await getGistId();
+    const gistDesc="\u{1F41F}\u5C0F\u9C7C\u5DE5\u4F5C\u53F0\u6570\u636E | "+ghUser.email;
+    if(id){
+      await ghReq("/gists/"+id,{method:"PATCH",body:JSON.stringify({description:gistDesc,files:{"workbench.json":{content}}})});
+    }else{
+      const g=await ghReq("/gists",{method:"POST",body:JSON.stringify({description:gistDesc,public:false,files:{"workbench.json":{content}}})});
+      saveGistId(g.id);}
+    setSyncStatus("ok","\u5DF2\u4FDD\u5B58\u5230\u4E91\u7AEF "+timeStr());
+  }catch(e){setSyncStatus("err","\u4E91\u7AEF\u4FDD\u5B58\u5931\u8D25："+e.message);}}
+
+/* ---- 登录墙 UI ---- */
 function showAuthGate(){document.getElementById("auth-gate").style.display="flex";setAuthMode(authMode);}
 function hideAuthGate(){document.getElementById("auth-gate").style.display="none";}
-function setAuthMode(m){authMode=m;document.getElementById("auth-title").textContent=m==="register"?"🐟 注册账号":"🐟 登录工作台";document.getElementById("auth-submit").textContent=m==="register"?"注册并进入":"登录";document.getElementById("auth-switch").innerHTML=m==="register"?'已有账号？<a href="#" onclick="setAuthMode(\'login\');return false">去登录</a>':'还没有账号？<a href="#" onclick="setAuthMode(\'register\');return false">去注册</a>';document.getElementById("auth-msg").textContent="";}
+function setAuthMode(m){
+  authMode=m;
+  document.getElementById("auth-title").textContent=m==="register"?"\u{1F41F} \u6CE8\u518C\u8D26\u53F7":"\u{1F41F} \u767B\u5F55\u5DE5\u4F5C\u53F0";
+  document.getElementById("auth-submit").textContent=m==="register"?"\u6CE8\u518C\u5E76\u8FDB\u5165":"\u767B\u5F55";
+  document.getElementById("auth-switch").innerHTML=m==="register"?'\u5DF2\u6709\u8D26\u53F7\uFF1F<a href="#" onclick="setAuthMode(\'login\');return false">\u53BB\u767B\u5F55</a>':'\u8FD8\u6CA1\u6709\u8D26\u53F7\uFF1F<a href="#" onclick="setAuthMode(\'register\');return false">\u53BB\u6CE8\u518C</a>';
+  document.getElementById("auth-msg").textContent="";}
+
+/* ---- 注册/登录逻辑 ---- */
 async function authSubmit(){
-  const email=document.getElementById("auth-email").value.trim();const pwd=document.getElementById("auth-pwd").value;const msg=document.getElementById("auth-msg");
-  if(!email||!pwd){msg.textContent="请输入邮箱和密码";msg.style.color="var(--coral)";return;}
-  msg.textContent="处理中…";msg.style.color="var(--muted)";
+  const email=document.getElementById("auth-email").value.trim();const pwd=document.getElementById("auth-pwd").value;
+  const msg=document.getElementById("auth-msg");
+  if(!email||!pwd){msg.textContent="\u8BF7\u8F93\u5165\u90AE\u7BB1\u548C\u5BC6\u7801";msg.style.color="var(--coral)";return;}
+  if(!ghToken){msg.textContent="\u8BF7\u5148\u5728\u2699\u8BEF\u7F6E\u4E2D\u586B\u5165 GitHub \u4EE4\u724C\uFF08\u9996\u6B21\u4F7F\u7528\u5FC5\u586B\u4E00\u6B21\u5373\u53EF\uFF09";msg.style.color="var(--amber)";return;}
+  msg.textContent="\u5904\u7406\u4E2D\u2026";msg.style.color="var(--muted)";
   try{
-    if(authMode==="register"){
-      const {data,error}=await sbClient.auth.signUp({email,password:pwd});
-      if(error)throw error;
-      if(data.session){await afterLogin(data.session,"注册成功");}
-      else{msg.textContent="注册成功！请查收验证邮件后登录（或在 Supabase 关闭邮箱验证）";msg.style.color="var(--green)";}
-    }else{
-      const {data,error}=await sbClient.auth.signInWithPassword({email,password:pwd});
-      if(error)throw error;
-      await afterLogin(data.session,"登录成功");
-    }
-  }catch(e){msg.textContent="错误："+e.message;msg.style.color="var(--coral)";}
-}
-async function afterLogin(session,label){
-  sbUser=session.user;cloudMode=true;
-  await sbPull();
-  const {data}=await sbClient.from("workbench_data").select("user_id").eq("user_id",sbUser.id).maybeSingle();
-  if(!data){DB._ts=Date.now();await sbPush();}
-  localStorage.setItem(KEY,JSON.stringify(DB));
-  updateAccountUI();
-  hideAuthGate();
-  setSyncStatus("ok",(label||"已登录")+" "+timeStr());
-  if(!window.__sbTimer){window.__sbTimer=setInterval(()=>{if(cloudMode&&sbUser)sbPull();},60000);}
-}
-function authLogout(){if(sbClient)sbClient.auth.signOut();sbUser=null;cloudMode=false;updateAccountUI();setSyncStatus("none","未登录（本地模式）");}
-function useLocalMode(){hideAuthGate();cloudMode=false;updateAccountUI();setSyncStatus("none","本地模式（未登录）");}
-function accountChipClick(){if(sbUser){if(confirm("退出当前账号？"))authLogout();}else showAuthGate();}
+    if(authMode==="register"){await doRegister(email,pwd,msg);}
+    else{await doLogin(email,pwd,msg);}
+  }catch(e){msg.textContent="\u9519\uFF1A"+e.message;msg.style.color="var(--coral)";}}
+async function doRegister(email,pwd,msg){
+  const testId=localStorage.getItem(CLOUD_KEY_PREFIX+"gist_"+hashEmail(email));
+  if(testId){
+    try{const g=await ghReq("/gists/"+testId);if(g&&g.files){msg.textContent="\u8BE5\u90AE\u7BB1\u5DF2\u6CE8\u518C\uFF0C\u8BF7\u76F4\u63A5\u767B\u5F55";msg.style.color="var(--amber)";setAuthMode("login");return;}}catch(e){}
+  }
+  ghUser={email,pwd,pwdHash:await simpleHash(pwd),regTime:new Date().toISOString()};
+  cloudMode=true;await cloudPush();
+  localStorage.setItem(CLOUD_KEY_PREFIX+"user",JSON.stringify({email,pwdHash:ghUser.pwdHash,regTime:ghUser.regTime}));
+  updateAccountUI();hideAuthGate();setSyncStatus("ok","\u6CE8\u518C\u6210\u529F\uFF01"+timeStr());
+  startCloudTimer();msg.textContent="\u6CE8\u518C\u6210\u529F\uFF01";msg.style.color="var(--green)";
+  setTimeout(()=>hideAuthGate(),800);}
+async function doLogin(email,pwd,msg){
+  const saved=localStorage.getItem(CLOUD_KEY_PREFIX+"user");
+  let userInfo=null;if(saved)try{userInfo=JSON.parse(saved);}catch(e){}
+  if(userInfo&&userInfo.email!==email)userInfo=null;
+  if(userInfo){
+    const check=await simpleHash(pwd);
+    if(check!==userInfo.pwdHash){msg.textContent="\u5BC6\u7801\u9519\u8BEF";msg.style.color="var(--coral)";return;}
+  }
+  ghUser={email,pwd,pwdHash:userInfo?userInfo.pwdHash:null,regTime:userInfo?userInfo.regTime:null};
+  cloudMode=true;
+  const pulled=await cloudPull();
+  if(!pulled){
+    if(Object.keys(DB).length>1||(DB.rows&&DB.rows.length>0)){await cloudPush();}
+  }
+  localStorage.setItem(CLOUD_KEY_PREFIX+"user",JSON.stringify({email,pwdHash:await simpleHash(pwd),regTime:ghUser.regTime||new Date().toISOString()}));
+  updateAccountUI();hideAuthGate();setSyncStatus("ok","\u767B\u5F55\u6210\u529F\uFF01"+timeStr());
+  startCloudTimer();msg.textContent="\u767B\u5F55\u6210\u529F\uFF01";msg.style.color="var(--green)";
+  setTimeout(()=>hideAuthGate(),800);}
+async function afterLogin(session,label){}
+async function simpleHash(str){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(str));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,32);}
+
+/* ---- 退出 & UI ---- */
+function authLogout(){
+  ghUser=null;cloudMode=false;gistId=null;
+  updateAccountUI();setSyncStatus("none","\u672A\u767B\u5F55\uFF08\u672C\u5730\u6A21\u5F0F\uFF09");
+  if(window.__cloudTimer){clearInterval(window.__cloudTimer);window.__cloudTimer=null;}}
+function useLocalMode(){hideAuthGate();cloudMode=false;updateAccountUI();setSyncStatus("none","\u672C\u5730\u6A21\u5F0F\uFF08\u672A\u767B\u5F55\uFF09");}
+function accountChipClick(){if(ghUser){if(confirm("\u9000\u51FA\u5F53\u524D\u8D26\u53F7\uFF1F"))authLogout();}else showAuthGate();}
 function updateAccountUI(){
-  const ind=document.getElementById("account-indicator");if(ind)ind.textContent=sbUser?(sbUser.email||"已登录"):"未登录";
-  const lb=document.getElementById("auth-logout-btn");if(lb)lb.style.display=sbUser?"inline-block":"none";
-  const hint=document.getElementById("account-status-hint");if(hint)hint.textContent="状态："+(sbUser?("已登录 "+sbUser.email):"未登录（本地模式）");
-}
+  const ind=document.getElementById("account-indicator");if(ind)ind.textContent=ghUser?(ghUser.email||"\u5DF2\u767B\u5F55"):"\u672A\u767B\u5F55";
+  const lb=document.getElementById("auth-logout-btn");if(lb)lb.style.display=ghUser?"inline-block":"none";
+  const hint=document.getElementById("account-status-hint");if(hint)hint.textContent="\u72B6\u6001："+(ghUser?("\u5DF2\u767B\u5F55 "+ghUser.email):"\u672A\u767B\u5F55\uFF08\u672C\u5730\u6A21\u5F0F\uFF09");
+  const tkHint=document.getElementById("gh-token-status");if(tkHint)tkHint.textContent=ghToken?"✅ \u5DF2\u8BBE\u7F6E":"❌ \u672A\u8BBE\u7F6E";}
+function startCloudTimer(){
+  if(!window.__cloudTimer)window.__cloudTimer=setInterval(async()=>{if(cloudMode&&ghUser&&ghToken)await cloudPull();},60000);}
+
+/* ---- GitHub 令牌管理 ---- */
+function saveGhToken(){
+  const input=document.getElementById("gh-token-input");const val=(input.value||"").trim();
+  if(!val){alert("\u8BF7\u8F93\u5165 GitHub \u4EE4\u724C");return;}
+  if(!val.startsWith("ghp_")&&!val.startsWith("github_pat_")){alert("\u4EE4\u724C\u683C\u5F0F\u4E0D\u5BF9\uFF0C\u5E94\u4EE5 ghp_ \u6216 github_pat_ \u5F00\u5934");return;}
+  ghToken=val;localStorage.setItem(CLOUD_KEY_PREFIX+"token",val);
+  const hint=document.getElementById("gh-token-status");if(hint)hint.textContent="✅ \u5DF2\u8BBE\u7F6E";
+  input.value="";alert("GitHub \u4EE4\u724C\u5DF2\u4FDD\u5B58\uFF01\u73B0\u5728\u53EF\u4EE5\u767B\u5F55/\u6CE8\u518C\u8D26\u53F7\u4E86");}
+function loadGhTokenUI(){
+  ghToken=localStorage.getItem(CLOUD_KEY_PREFIX+"token")||"";
+  const hint=document.getElementById("gh-token-status");if(hint)hint.textContent=ghToken?"✅ \u5DF2\u8BBE\u7F6E":"❌ \u672A\u8BBE\u7F6E";}
+
+/* ---- 扫码同步（基于 URL 配对码）---- */
 async function openScanSync(){
-  if(!sbUser){alert("请先登录账号");return;}
-  if(!window.QRCode){alert("二维码组件未加载，请刷新页面");return;}
+  if(!ghUser){alert("\u8BF7\u5148\u767B\u5F55\u8D26\u53F7");return;}
+  if(!window.QRCode){alert("\u4E8C\u7EF4\u7801\u7EC4\u4EF6\u672A\u52A0\u8F7D\uFF0C\u8BF7\u5237\u65B0\u9875\u9762");return;}
   try{
     const code="p_"+Math.random().toString(36).slice(2)+Date.now().toString(36);
-    await sbClient.from("pairing_codes").insert({code,user_id:sbUser.id,email:sbUser.email,expires_at:new Date(Date.now()+5*60000).toISOString()});
-    const url=location.origin+location.pathname+"?pair="+code;
+    const payload=btoa(JSON.stringify({code,email:ghUser.email,ts:Date.now()}));
+    const url=location.origin+location.pathname+"#pair:"+payload;
     const qr=await QRCode.toDataURL(url,{width:240,margin:1});
     document.getElementById("qr-img").src=qr;document.getElementById("qr-url").textContent=url;
     document.getElementById("qr-modal").style.display="flex";
-  }catch(e){alert("生成二维码失败："+e.message);}
-}
+    sessionStorage.setItem("pair_"+code,JSON.stringify({email:ghUser.email,exp:Date.now()+300000}));
+  }catch(e){alert("\u751F\u6210\u4E8C\u7EF4\u7801\u5931\u8D25："+e.message);}}
 function closeQr(){document.getElementById("qr-modal").style.display="none";}
-async function handlePairLogin(code){
+async function handlePairLogin(encoded){
   showAuthGate();
   const card=document.querySelector("#auth-gate .auth-card");if(card)card.style.display="none";
   const box=document.getElementById("pair-box");if(box)box.style.display="block";
   try{
-    const {data,error}=await sbClient.from("pairing_codes").select("email,expires_at").eq("code",code).maybeSingle();
-    if(error)throw error;
-    if(!data){box.innerHTML="<p style='color:var(--coral)'>配对码无效或已过期</p>";return;}
-    if(new Date(data.expires_at)<new Date()){box.innerHTML="<p style='color:var(--coral)'>配对码已过期，请重新生成</p>";return;}
-    box.innerHTML='<p>扫码登录到：<b>'+data.email+'</b></p><label style="font-size:12px;color:var(--muted2);display:block;margin-top:8px">输入该账号密码完成同步</label><input type="password" id="pair-pwd" placeholder="密码" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--ink);margin:6px 0 12px;box-sizing:border-box"/><button class="btn" onclick="pairLogin(\''+code+'\')">登录并同步</button>';
-  }catch(e){box.innerHTML="<p style='color:var(--coral)'>读取配对失败："+e.message+"</p>";}
-}
-async function pairLogin(code){
-  const pwd=document.getElementById("pair-pwd").value;
-  const {data,error}=await sbClient.from("pairing_codes").select("email").eq("code",code).maybeSingle();
-  if(error||!data){alert("配对失效");return;}
-  const {data:sess,error:e2}=await sbClient.auth.signInWithPassword({email:data.email,password:pwd});
-  if(e2){alert("密码错误："+e2.message);return;}
-  try{await sbClient.from("pairing_codes").delete().eq("code",code);}catch(e){}
-  await afterLogin(sess.session,"扫码登录成功");
-  history.replaceState(null,"",location.pathname);
-}
-async function initAuth(){
-  const params=new URLSearchParams(location.search);const pairCode=params.get("pair");
-  if(pairCode){await handlePairLogin(pairCode);return;}
-  if(!sbClient){useLocalMode();return;}
-  try{
-    const {data:{session}}=await sbClient.auth.getSession();
-    if(session&&session.user){await afterLogin(session,"欢迎回来");}else showAuthGate();
-  }catch(e){useLocalMode();}
-}
+    const pair=JSON.parse(atob(encoded));
+    if(pair.ts<Date.now()-300000){box.innerHTML="<p style='color:var(--coral)'>\u914D\u5BF9\u94FE\u63A5\u5DF2\u8FC7\u671F\uFF08\u8D85\u8FC75\u5206\u949F\uFF09\uFF0C\u8BF7\u91CD\u65B0\u751F\u6210</p>";return;}
+    box.innerHTML='<p>\u626B\u7801\u767B\u5F55\u5230：<b>'+pair.email+'</b></p><label style="font-size:12px;color:var(--muted2);display:block;margin-top:8px">\u8F93\u5165\u8BE5\u8D26\u53F7\u5BC6\u7801\u5B8C\u6210\u540C\u6B65</label><input type="password" id="pair-pwd" placeholder="\u5BC6\u7801" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--ink);margin:6px 0 12px;box-sizing:border-box"/><button class="btn" onclick="doPairLogin(\''+pair.email+'\')">\u767B\u5F55\u5E76\u540C\u6B65</button>';
+  }catch(e){box.innerHTML="<p style='color:var(--coral)'>\u914D\u5BF9\u4FE1\u606F\u89E3\u6790\u5931\u8D25</p>";}}
+async function doPairLogin(email){
+  const pwd=document.getElementById("pair-pwd").value;if(!pwd){alert("\u8BF7\u8F93\u5165\u5BC6\u7801");return;}
+  document.getElementById("auth-email").value=email;document.getElementById("auth-pwd").value=pwd;
+  authMode="login";await doLogin(email,pwd,document.getElementById("auth-msg"));
+  history.replaceState(null,"",location.pathname);}
+async function pairLogin(code){}
 
-/* init */
-initAuth();
+/* ---- 初始化 ---- */
+async function initAuth(){
+  const frag=location.hash;
+  if(frag&&frag.startsWith("#pair:")){await handlePairLogin(frag.slice(6));return;}
+  ghToken=localStorage.getItem(CLOUD_KEY_PREFIX+"token")||"";
+  const saved=localStorage.getItem(CLOUD_KEY_PREFIX+"user");
+  if(saved&&ghToken){
+    try{
+      const u=JSON.parse(saved);
+      if(u.email){ghUser={email:u.email,pwd:"",pwdHash:u.pwdHash,regTime:u.regTime};cloudMode=true;
+        updateAccountUI();await cloudPull();startCloudTimer();
+        setSyncStatus("ok","\u6B22\u8FCE\u56DE\u6765 "+timeStr());return;}
+    }catch(e){}
+  }
+  useLocalMode();}
+
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
