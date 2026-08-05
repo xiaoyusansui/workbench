@@ -1287,7 +1287,26 @@
   .ia-btn-del:hover{background:rgba(248,113,113,.15)}
   .add-idea{background:var(--surface);border:2px dashed rgba(168,85,247,.2);border-radius:var(--radius);padding:32px;text-align:center;color:#a855f7;font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
   .add-idea:hover{background:rgba(168,85,247,.04);border-color:#a855f7}
+/* ===== 账号登录墙 + 扫码同步 ===== */
+.auth-gate{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 28%,#10203f,#070b14 70%);}
+.auth-card{width:344px;max-width:92vw;background:var(--surface);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-border);border-radius:22px;padding:30px 26px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.55);}
+.auth-logo{font-size:48px;line-height:1;}
+.auth-card h2{margin:10px 0 4px;font-size:20px;font-weight:700;}
+.auth-sub{font-size:12px;color:var(--muted2);margin:0 0 18px;line-height:1.6;}
+.auth-card input{width:100%;padding:12px 14px;margin-bottom:10px;border-radius:11px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--ink);font-size:14px;box-sizing:border-box;transition:border-color .2s;}
+.auth-card input:focus{outline:none;border-color:var(--brand);}
+.auth-submit{width:100%;padding:12px;font-size:15px;margin-top:4px;}
+.auth-switch{font-size:12px;color:var(--muted2);margin-top:12px;}
+.auth-switch a{color:var(--brand);text-decoration:none;}
+.auth-msg{font-size:12px;margin-top:8px;min-height:16px;}
+.auth-local{margin-top:14px;font-size:12px;}
+.auth-local a{color:var(--muted);text-decoration:none;border-bottom:1px dashed var(--muted2);}
+.account-chip{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:12px;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .2s;}
+.account-chip:hover{border-color:var(--brand);}
 </style>
+<!-- Supabase 账号云后端 + 二维码生成 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
 <div class="app-layout">
@@ -1378,6 +1397,7 @@
           <div class="weather-card" title="天气 · 点击刷新" onclick="fetchWeather()">
             <span class="w-icon" id="w-icon">🌤</span>
           </div>
+          <div class="account-chip" id="account-chip" onclick="accountChipClick()" title="账号">👤 <span id="account-indicator">未登录</span></div>
         </div>
         <!-- 紧凑统计条 -->
         <div class="dash-stats" id="dash-stats" style="margin-top:10px"></div>
@@ -1836,22 +1856,54 @@
               <div class="sett-row"><button class="btn ghost sm" style="color:var(--amber)" onclick="if(confirm('确定重置为示例数据？当前数据将被覆盖！')){localStorage.removeItem(KEY);location.reload()}">🔄 重置示例数据</button><span class="sett-hint">恢复内置的示例内容</span></div>
             </div>
             <div class="sett-sect">
+              <h4>👤 账号</h4>
+              <div class="sett-row"><span class="sett-hint" id="account-status-hint">状态：未登录（本地模式）</span></div>
+              <div class="sett-row"><button class="btn ghost sm" onclick="showAuthGate()">🔑 登录 / 注册</button><button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()">🚪 退出登录</button></div>
+              <div class="sett-row"><button class="btn ghost sm" onclick="openScanSync()">📱 扫码同步到手机</button><span class="sett-hint">生成二维码，手机扫码登录即同步</span></div>
+            </div>
+            <div class="sett-sect">
               <h4>☁ 同步</h4>
               <div class="sett-row"><button class="btn sm" onclick="closeSettings();openSyncSetup()" style="background:linear-gradient(135deg,var(--blue),#3b82f6)">☁ 云同步设置</button><span class="sett-hint">配置 Gitee / JSONBin 自动同步</span></div>
             </div>
             <div class="sett-sect">
               <h4>ℹ 关于</h4>
               <p style="font-size:12px;color:var(--muted2);line-height:1.7;margin:0">
-                🐟 小鱼工作台 v5.26<br/>
+                🐟 小鱼工作台 v5.30<br/>
                 百江富淮城运营 + 摄影师个人工作台<br/>
-                单文件 HTML · 数据存于浏览器本地 · 离线可用<br/>
-                多设备同步：百度网盘 / WPS 云文档（详见首页指南卡）
+                支持账号登录 · 数据云端同步 · 多设备共享<br/>
+                未登录时数据存于本机浏览器（离线可用）
               </p>
             </div>
           </div>
           <div class="modal-actions">
             <button class="btn" onclick="closeSettings()">关闭</button>
           </div>
+        </div>
+      </div>
+
+      <!-- 账号登录墙 -->
+      <div id="auth-gate" class="auth-gate" style="display:none">
+        <div class="auth-card">
+          <div class="auth-logo">🐟</div>
+          <h2 id="auth-title">🐟 登录工作台</h2>
+          <p class="auth-sub">小鱼工作台 · 登录后数据云端同步、多设备共享</p>
+          <input type="email" id="auth-email" placeholder="邮箱" autocomplete="username"/>
+          <input type="password" id="auth-pwd" placeholder="密码" autocomplete="current-password"/>
+          <button class="btn auth-submit" id="auth-submit" onclick="authSubmit()">登录</button>
+          <div class="auth-switch" id="auth-switch"></div>
+          <div class="auth-msg" id="auth-msg"></div>
+          <div class="auth-local"><a href="#" onclick="useLocalMode();return false">本地模式（不登录，仅本机使用）</a></div>
+          <div id="pair-box" style="display:none"></div>
+        </div>
+      </div>
+      <!-- 扫码同步二维码弹窗 -->
+      <div class="modal" id="qr-modal" style="display:none">
+        <div class="modal-box" style="max-width:340px;text-align:center">
+          <h3>📱 扫码同步到手机</h3>
+          <p class="modal-tip">用手机相机扫这个二维码，打开后输入本账号密码即可登录并同步数据。</p>
+          <img id="qr-img" style="width:240px;height:240px;margin:10px auto;display:block;background:#fff;border-radius:12px"/>
+          <p style="font-size:11px;color:var(--muted2);word-break:break-all" id="qr-url"></p>
+          <div class="modal-actions"><button class="btn" onclick="closeQr()">关闭</button></div>
         </div>
       </div>
 
@@ -2154,6 +2206,7 @@ function save(){
     const ready=syncCfg.provider==="gitee"?(syncCfg.giteeToken&&syncCfg.giteeRepo):(syncCfg.apiKey&&syncCfg.binId);
     if(ready)schedulePush();
   }
+  if(cloudMode&&sbUser&&sbClient)sbPush();
 }
 
 let curTab="home";
@@ -3815,7 +3868,112 @@ function doImport(input){
   r.readAsText(f);
 }
 
+/* ==================== Supabase 账号云后端 ==================== */
+const SB_URL="https://mmfthjlpqduanbvgjah.supabase.co";
+const SB_KEY="sb_publishable_XHi2MkCJbB3SvM0c4Z271Q_Ime4n6E0";
+let sbClient=null,sbUser=null,cloudMode=false,authMode="login";
+try{if(window.supabase)sbClient=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true}});}catch(e){console.warn("Supabase 初始化失败",e);}
+
+async function sbPull(){
+  if(!sbClient||!sbUser)return false;
+  try{
+    const {data,error}=await sbClient.from("workbench_data").select("data").eq("user_id",sbUser.id).maybeSingle();
+    if(error)throw error;
+    if(data&&data.data){const cloud=morphDB(data.data);cloud._ts=Date.now();DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();setSyncStatus("ok","云端已同步 "+timeStr());return true;}
+  }catch(e){setSyncStatus("err","云端读取失败："+e.message);}
+  return false;
+}
+async function sbPush(){
+  if(!sbClient||!sbUser)return;
+  try{setSyncStatus("syncing","云端保存中…");const {error}=await sbClient.from("workbench_data").upsert({user_id:sbUser.id,data:DB,updated_at:new Date().toISOString()});if(error)throw error;setSyncStatus("ok","已保存到云端 "+timeStr());}
+  catch(e){setSyncStatus("err","云端保存失败："+e.message);}
+}
+function showAuthGate(){document.getElementById("auth-gate").style.display="flex";setAuthMode(authMode);}
+function hideAuthGate(){document.getElementById("auth-gate").style.display="none";}
+function setAuthMode(m){authMode=m;document.getElementById("auth-title").textContent=m==="register"?"🐟 注册账号":"🐟 登录工作台";document.getElementById("auth-submit").textContent=m==="register"?"注册并进入":"登录";document.getElementById("auth-switch").innerHTML=m==="register"?'已有账号？<a href="#" onclick="setAuthMode(\'login\');return false">去登录</a>':'还没有账号？<a href="#" onclick="setAuthMode(\'register\');return false">去注册</a>';document.getElementById("auth-msg").textContent="";}
+async function authSubmit(){
+  const email=document.getElementById("auth-email").value.trim();const pwd=document.getElementById("auth-pwd").value;const msg=document.getElementById("auth-msg");
+  if(!email||!pwd){msg.textContent="请输入邮箱和密码";msg.style.color="var(--coral)";return;}
+  msg.textContent="处理中…";msg.style.color="var(--muted)";
+  try{
+    if(authMode==="register"){
+      const {data,error}=await sbClient.auth.signUp({email,password:pwd});
+      if(error)throw error;
+      if(data.session){await afterLogin(data.session,"注册成功");}
+      else{msg.textContent="注册成功！请查收验证邮件后登录（或在 Supabase 关闭邮箱验证）";msg.style.color="var(--green)";}
+    }else{
+      const {data,error}=await sbClient.auth.signInWithPassword({email,password:pwd});
+      if(error)throw error;
+      await afterLogin(data.session,"登录成功");
+    }
+  }catch(e){msg.textContent="错误："+e.message;msg.style.color="var(--coral)";}
+}
+async function afterLogin(session,label){
+  sbUser=session.user;cloudMode=true;
+  await sbPull();
+  const {data}=await sbClient.from("workbench_data").select("user_id").eq("user_id",sbUser.id).maybeSingle();
+  if(!data){DB._ts=Date.now();await sbPush();}
+  localStorage.setItem(KEY,JSON.stringify(DB));
+  updateAccountUI();
+  hideAuthGate();
+  setSyncStatus("ok",(label||"已登录")+" "+timeStr());
+  if(!window.__sbTimer){window.__sbTimer=setInterval(()=>{if(cloudMode&&sbUser)sbPull();},60000);}
+}
+function authLogout(){if(sbClient)sbClient.auth.signOut();sbUser=null;cloudMode=false;updateAccountUI();setSyncStatus("none","未登录（本地模式）");}
+function useLocalMode(){hideAuthGate();cloudMode=false;updateAccountUI();setSyncStatus("none","本地模式（未登录）");}
+function accountChipClick(){if(sbUser){if(confirm("退出当前账号？"))authLogout();}else showAuthGate();}
+function updateAccountUI(){
+  const ind=document.getElementById("account-indicator");if(ind)ind.textContent=sbUser?(sbUser.email||"已登录"):"未登录";
+  const lb=document.getElementById("auth-logout-btn");if(lb)lb.style.display=sbUser?"inline-block":"none";
+  const hint=document.getElementById("account-status-hint");if(hint)hint.textContent="状态："+(sbUser?("已登录 "+sbUser.email):"未登录（本地模式）");
+}
+async function openScanSync(){
+  if(!sbUser){alert("请先登录账号");return;}
+  if(!window.QRCode){alert("二维码组件未加载，请刷新页面");return;}
+  try{
+    const code="p_"+Math.random().toString(36).slice(2)+Date.now().toString(36);
+    await sbClient.from("pairing_codes").insert({code,user_id:sbUser.id,email:sbUser.email,expires_at:new Date(Date.now()+5*60000).toISOString()});
+    const url=location.origin+location.pathname+"?pair="+code;
+    const qr=await QRCode.toDataURL(url,{width:240,margin:1});
+    document.getElementById("qr-img").src=qr;document.getElementById("qr-url").textContent=url;
+    document.getElementById("qr-modal").style.display="flex";
+  }catch(e){alert("生成二维码失败："+e.message);}
+}
+function closeQr(){document.getElementById("qr-modal").style.display="none";}
+async function handlePairLogin(code){
+  showAuthGate();
+  const card=document.querySelector("#auth-gate .auth-card");if(card)card.style.display="none";
+  const box=document.getElementById("pair-box");if(box)box.style.display="block";
+  try{
+    const {data,error}=await sbClient.from("pairing_codes").select("email,expires_at").eq("code",code).maybeSingle();
+    if(error)throw error;
+    if(!data){box.innerHTML="<p style='color:var(--coral)'>配对码无效或已过期</p>";return;}
+    if(new Date(data.expires_at)<new Date()){box.innerHTML="<p style='color:var(--coral)'>配对码已过期，请重新生成</p>";return;}
+    box.innerHTML='<p>扫码登录到：<b>'+data.email+'</b></p><label style="font-size:12px;color:var(--muted2);display:block;margin-top:8px">输入该账号密码完成同步</label><input type="password" id="pair-pwd" placeholder="密码" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--ink);margin:6px 0 12px;box-sizing:border-box"/><button class="btn" onclick="pairLogin(\''+code+'\')">登录并同步</button>';
+  }catch(e){box.innerHTML="<p style='color:var(--coral)'>读取配对失败："+e.message+"</p>";}
+}
+async function pairLogin(code){
+  const pwd=document.getElementById("pair-pwd").value;
+  const {data,error}=await sbClient.from("pairing_codes").select("email").eq("code",code).maybeSingle();
+  if(error||!data){alert("配对失效");return;}
+  const {data:sess,error:e2}=await sbClient.auth.signInWithPassword({email:data.email,password:pwd});
+  if(e2){alert("密码错误："+e2.message);return;}
+  try{await sbClient.from("pairing_codes").delete().eq("code",code);}catch(e){}
+  await afterLogin(sess.session,"扫码登录成功");
+  history.replaceState(null,"",location.pathname);
+}
+async function initAuth(){
+  const params=new URLSearchParams(location.search);const pairCode=params.get("pair");
+  if(pairCode){await handlePairLogin(pairCode);return;}
+  if(!sbClient){useLocalMode();return;}
+  try{
+    const {data:{session}}=await sbClient.auth.getSession();
+    if(session&&session.user){await afterLogin(session,"欢迎回来");}else showAuthGate();
+  }catch(e){useLocalMode();}
+}
+
 /* init */
+initAuth();
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
