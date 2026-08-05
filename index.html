@@ -4121,6 +4121,7 @@ function loadGhTokenUI(){
   ghToken=localStorage.getItem(CLOUD_KEY_PREFIX+"token")||"";
   const hint=document.getElementById("gh-token-status");
   if(hint){hint.textContent=ghToken?"\u5df2\u8bbe\u7f6e":"\u672a\u8bbe\u7f6e";hint.className="tc-status "+(ghToken?"ok":"no");}
+}
 
 /* ---- 扫码同步（基于 URL 配对码）---- */
 async function openScanSync(){
