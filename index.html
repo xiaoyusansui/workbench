@@ -1368,6 +1368,27 @@
 .auth-local a{color:var(--muted);text-decoration:none;border-bottom:1px dashed var(--muted2);}
 .account-chip{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:12px;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .2s;}
 .account-chip:hover{border-color:var(--brand);}
+/* ===== 我的作品 / 客片 ===== */
+.works-hint{color:var(--muted);font-size:13px;line-height:1.7;margin:6px 0 16px;background:var(--surface);border:1px solid var(--glass-border);border-radius:10px;padding:10px 14px;}
+.works-hint code{background:var(--bg3);padding:1px 6px;border-radius:5px;color:var(--gold);font-size:12px;}
+.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.work-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;}
+.work-img{width:100%;height:170px;object-fit:cover;border-radius:8px;background:var(--bg3);}
+.work-cap{background:var(--bg3);border:1px solid var(--glass-border);border-radius:8px;padding:8px 10px;color:var(--ink);font-size:13px;}
+.work-row{display:flex;gap:8px;}
+.work-btn{flex:1;font-size:13px;padding:8px 0;border-radius:8px;background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);cursor:pointer;}
+.work-btn.on{background:rgba(20,184,166,.15);color:#14b8a6;border-color:#14b8a6;}
+.work-btn.del{color:#ff9a9a;}
+/* ===== 客户预约 ===== */
+.bk-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:12px;padding:14px;margin-bottom:12px;}
+.bk-top{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700;color:var(--ink);}
+.bk-badge{font-size:12px;padding:2px 9px;border-radius:10px;}
+.bk-badge.new{background:rgba(239,68,68,.15);color:#ff9a9a;}
+.bk-badge.done{background:rgba(20,184,166,.15);color:#14b8a6;}
+.bk-line{color:var(--ink2);font-size:14px;margin-top:6px;}
+.bk-line a{color:var(--blue);}
+.bk-note{color:var(--muted);}
+.bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 </style>
 <!-- GitHub 云后端 + 二维码生成 -->
 <script>
@@ -3721,6 +3742,14 @@ window.QRCode = {
         <span class="nav-icon" style="background:rgba(20,184,166,.12);color:#14b8a6">📝</span>
         <span>复盘周记</span>
       </li>
+      <li class="nav-item" data-nav="works" onclick="switchTab('works')">
+        <span class="nav-icon" style="background:rgba(239,68,68,.12);color:#ef4444">📷</span>
+        <span>我的作品</span>
+      </li>
+      <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')">
+        <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff">📩</span>
+        <span>客户预约</span>
+      </li>
     </ul>
 
     <div class="sidebar-footer">
@@ -3842,6 +3871,7 @@ window.QRCode = {
           <button class="btn ghost" onclick="sortByTime()">⏱ 排序</button>
           <div class="spacer"></div>
           <button class="btn ghost" onclick="exportCSV('plan')">⬇ 导出</button>
+          <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步">💾 保存</button>
           <button class="btn" onclick="addRowPlan()">＋ 新增</button>
         </div>
 
@@ -4129,6 +4159,31 @@ window.QRCode = {
         </div>
       </section>
 
+      <!-- ==================== 我的作品 ==================== -->
+      <section id="panel-works" style="display:none">
+        <div class="sec-head">
+          <h2>📷 我的作品</h2>
+          <div class="sec-actions">
+            <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="document.getElementById('works-file').click()">＋ 上传作品</button>
+            <input type="file" id="works-file" accept="image/*" style="display:none" onchange="uploadWorksImage(this)"/>
+          </div>
+        </div>
+        <div class="works-hint">上传拍摄作品。标记为「客片」后，才会出现在给客户看的客片画廊（<code>client.html</code> / 小程序客户端）。图片存于公开仓库，仅标记者可见。</div>
+        <div class="works-grid" id="works-grid"></div>
+      </section>
+
+      <!-- ==================== 客户预约 ==================== -->
+      <section id="panel-bookings" style="display:none">
+        <div class="sec-head">
+          <h2>📩 客户预约</h2>
+          <div class="sec-actions">
+            <button class="btn sm" onclick="loadBookingsWeb()">刷新</button>
+          </div>
+        </div>
+        <div class="works-hint">客户在客户端提交「预约跟拍」后会显示在这里，可标记是否已联系。</div>
+        <div id="bookings-list"></div>
+      </section>
+
       <!-- ==================== 同步托盘 ==================== -->
       <div class="synctray">
         <div class="sync-status" id="sync-status" title="点击设置云同步" onclick="openSyncSetup()">
@@ -4287,7 +4342,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.39</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.41</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4589,7 +4644,8 @@ const SEED={
     {title:"小红书房产号 第15篇软文",date:"2026-08-06",time:"09:00",tag:"plan",done:false,desc:"项目价值点专题"},
     {title:"摄影课程 Phase1 作业：盲调练习",date:"2026-08-07",time:"20:00",tag:"study",done:false,desc:"闭眼回忆三要素数值"},
     {title:"周末暖场活动 拍摄记录",date:"2026-08-09",time:"14:00",tag:"shot",done:false,desc:"露营咖啡主题活动现场"}
-  ]
+  ],
+  works:[]
 };
 
 const BANKUAI_REMAP={
@@ -4632,6 +4688,7 @@ function morphDB(d){
   if(!d.reviews)d.reviews=JSON.parse(JSON.stringify(SEED.reviews));
   if(!d.ideas)d.ideas=JSON.parse(JSON.stringify(SEED.ideas));
   if(!d.events)d.events=JSON.parse(JSON.stringify(SEED.events));
+  if(!d.works)d.works=[];
   (d.rows||[]).forEach(rw=>{if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];});
   if(!d._ts)d._ts=Date.now();
   return d;
@@ -4664,12 +4721,14 @@ const TAB_TITLES={
   gear:{title:"🔧 器材管理",sub:"摄影器材清单 · 价值统计 · 维护提醒"},
   review:{title:"📝 复盘周记",sub:"每周回顾 · 数据沉淀 · 持续改进"},
   idea:{title:"💡 灵感收集",sub:"创意素材库 · 构图参考 · 配色方案"},
-  schedule:{title:"📅 日历行程",sub:"拍摄安排 · 策划节点 · 学习计划 · 生活提醒"}
+  schedule:{title:"📅 日历行程",sub:"拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
+  works:{title:"📷 我的作品",sub:"上传拍摄作品 · 标记客片 · 同步到客户画廊"},
+  bookings:{title:"📩 客户预约",sub:"客户在客户端提交跟拍预约 · 统一处理"}
 };
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
-  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule"];
+  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
   document.getElementById("page-title").innerHTML=info.title+' <span class="sparkle"></span>';
@@ -4678,6 +4737,7 @@ function switchTab(t){
   else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
+  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();
 }
 
 /* ==================== 首页总览 v5.28 ==================== */
@@ -5719,6 +5779,122 @@ function addIdea(){const title=prompt("灵感标题：");if(!title)return;const 
 function editIdea(i){const id=DB.ideas[i];id.title=prompt("标题：",id.title)||id.title;id.desc=prompt("描述：",id.desc)||id.id;const tagsStr=(id.tags||[]).join(", ");const nt=prompt("标签（逗号分隔）：",tagsStr)||"";id.tags=nt?nt.split(/[,，]/).map(s=>s.trim()).filter(Boolean):id.tags;id.source=prompt("来源：",id.source)||id.source;id.img=prompt("图片链接：",id.img)||id.img;save();renderIdeas();}
 function delIdea(i){if(confirm("删除该灵感？")){DB.ideas.splice(i,1);save();renderIdeas();}}
 
+/* ==================== 我的作品 / 客片 ==================== */
+const KEP_REPO="xiaoyusansui/workbench", KEP_DIR="kepian";
+const KEP_IMG_BASE="https://xiaoyusansui.github.io/workbench/kepian/";
+
+async function ghPutRepoFile(path, content, message){
+  const api="/repos/"+KEP_REPO+"/contents/"+path;
+  let sha=null;
+  try{ const cur=await ghReq(api); if(cur&&cur.sha) sha=cur.sha; }catch(e){}
+  const body={message:message, content:content}; if(sha) body.sha=sha;
+  return ghReq(api,{method:"PUT", body:JSON.stringify(body)});
+}
+async function readManifestWeb(){
+  try{ const r=await ghReq("/repos/"+KEP_REPO+"/contents/"+KEP_DIR+"/manifest.json");
+    const txt=decodeURIComponent(escape(atob(r.content||"")))||"[]";
+    return JSON.parse(txt); }
+  catch(e){ return []; }
+}
+async function writeManifestWeb(){
+  const manifest=(DB.works||[]).filter(w=>w.isKepian).map(w=>({file:w.file,caption:w.caption,isKepian:true,createdAt:w.createdAt}));
+  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(manifest,null,2))));
+  return ghPutRepoFile(KEP_DIR+"/manifest.json", b64, "update kepian manifest");
+}
+function renderWorks(){
+  const grid=document.getElementById("works-grid");
+  const arr=(DB.works||[]).slice().reverse();
+  if(!arr.length){ grid.innerHTML='<div class="add-review" onclick="document.getElementById(\'works-file\').click()">📷 上传第一张作品</div>'; return; }
+  grid.innerHTML=arr.map((w,idx)=>{
+    const realIdx=arr.length-1-idx;
+    return `<div class="work-card">
+      <img class="work-img" src="${KEP_IMG_BASE+esc(w.file)}" onerror="this.style.opacity=.2"/>
+      <input class="work-cap" value="${esc(w.caption||"")}" placeholder="作品说明" onchange="setWorkCaption(${realIdx},this.value)"/>
+      <div class="work-row">
+        <button class="work-btn ${w.isKepian?'on':''}" onclick="toggleKepian(${realIdx})">${w.isKepian?'客片✓':'设为客片'}</button>
+        <button class="work-btn del" onclick="delWork(${realIdx})">删除</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+function setWorkCaption(i,v){ DB.works[i].caption=v; save(); }
+async function toggleKepian(i){
+  DB.works[i].isKepian=!DB.works[i].isKepian; save();
+  try{ await writeManifestWeb(); }catch(e){}
+  renderWorks();
+  toast(DB.works[i].isKepian?"已设为客片":"已取消客片");
+}
+async function delWork(i){
+  if(!confirm("删除该作品？（图片文件仍保留在仓库，仅从列表移除）")) return;
+  DB.works.splice(i,1); save();
+  try{ await writeManifestWeb(); }catch(e){}
+  renderWorks(); toast("已删除");
+}
+async function uploadWorksImage(input){
+  const file=input.files&&input.files[0]; input.value=""; if(!file) return;
+  if(!ghToken){ alert("请先在 ⚙设置→账号 中填写 GitHub 令牌"); return; }
+  toast("上传中…");
+  try{
+    const b64=await new Promise(function(res,rej){
+      const fr=new FileReader();
+      fr.onload=function(){ res((fr.result.split(",")[1]||"")); };
+      fr.onerror=function(){ rej(new Error("读取图片失败")); };
+      fr.readAsDataURL(file);
+    });
+    const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+    const filename="w_"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)+"."+(ext||"jpg");
+    await ghPutRepoFile(KEP_DIR+"/"+filename, b64, "upload kepian "+filename);
+    DB.works=DB.works||[];
+    DB.works.push({file:filename, caption:"", isKepian:false, createdAt:new Date().toISOString()});
+    save();
+    try{ await writeManifestWeb(); }catch(e){}
+    renderWorks(); toast("已上传");
+  }catch(e){ alert("上传失败："+e.message); }
+}
+function toast(msg){ const t=document.createElement("div"); t.textContent=msg; t.style.cssText="position:fixed;left:50%;top:20px;transform:translateX(-50%);background:rgba(20,24,32,.95);color:#fff;padding:8px 16px;border-radius:8px;z-index:9999;font-size:13px"; document.body.appendChild(t); setTimeout(()=>t.remove(),1600); }
+
+/* ==================== 客户预约 ==================== */
+async function loadBookingsWeb(){
+  const box=document.getElementById("bookings-list");
+  if(!box){ return; }
+  if(!ghToken){ box.innerHTML='<div class="works-hint">请先在 ⚙设置→账号 中填写 GitHub 令牌，再查看客户预约。</div>'; return; }
+  box.innerHTML='<div class="works-hint">加载中…</div>';
+  try{
+    const list=await ghReq("/gists?per_page=100");
+    const desc="🐟小鱼工作台-客户预约";
+    const m=(list||[]).filter(g=>g.description===desc).sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+    if(!m.length){ box.innerHTML='<div class="works-hint">暂无预约。客户在客户端提交后会显示在这里。</div>'; return; }
+    const g=await ghReq("/gists/"+m[0].id);
+    const fn=Object.keys(g.files)[0];
+    const arr=fn&&g.files[fn].content?JSON.parse(g.files[fn].content):[];
+    if(!arr.length){ box.innerHTML='<div class="works-hint">暂无预约。</div>'; return; }
+    arr.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+    box.innerHTML=arr.map((b,i)=>`<div class="bk-card">
+      <div class="bk-top"><b>${esc(b.name)}</b><span class="bk-badge ${b.status==='done'?'done':'new'}">${b.status==='done'?'已联系':'新'}</span></div>
+      <div class="bk-line">📞 <a href="tel:${esc(b.phone)}">${esc(b.phone)}</a></div>
+      ${b.date?`<div class="bk-line">📅 ${esc(b.date)}</div>`:""}
+      <div class="bk-line">📷 ${esc(b.service||"")}${b.budget?(" · "+esc(b.budget)):""}</div>
+      ${b.note?`<div class="bk-line bk-note">💬 ${esc(b.note)}</div>`:""}
+      <div class="bk-time">${esc(b.createdAt||"")}</div>
+      <button class="work-btn" onclick="markBookingWeb(${i},'${b.status==='done'?'new':'done'}')">${b.status==='done'?'标记未联系':'标记已联系'}</button>
+    </div>`).join("");
+  }catch(e){ box.innerHTML='<div class="works-hint">读取失败：'+esc(e.message)+'</div>'; }
+}
+async function markBookingWeb(i,status){
+  try{
+    const list=await ghReq("/gists?per_page=100");
+    const desc="🐟小鱼工作台-客户预约";
+    const m=(list||[]).filter(g=>g.description===desc).sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+    if(!m.length) return;
+    const g=await ghReq("/gists/"+m[0].id);
+    const fn=Object.keys(g.files)[0];
+    const arr=JSON.parse(g.files[fn].content);
+    arr[i].status=status;
+    await ghReq("/gists/"+m[0].id,{method:"PATCH",body:JSON.stringify({files:{"bookings.json":{content:JSON.stringify(arr,null,2)}}})});
+    toast("已更新"); loadBookingsWeb();
+  }catch(e){ alert("更新失败："+e.message); }
+}
+
 /* ==================== 编辑委托 ==================== */
 document.addEventListener("input",e=>{
   const el=e.target;if(!el.classList.contains("cell-input"))return;
@@ -6567,17 +6743,11 @@ async function initAuth(){
   loadGhTokenUI();
   ghToken=localStorage.getItem(CLOUD_KEY_PREFIX+"token")||"";
   const saved=localStorage.getItem(CLOUD_KEY_PREFIX+"user");
-  if(saved&&ghToken){
-    try{
-      const u=JSON.parse(saved);
-      if(u.email){
-        if(!checkCrypto("自动登录")){useLocalMode();return;}
-        ghUser={email:u.email,pwd:"",pwdHash:u.pwdHash,regTime:u.regTime};cloudMode=true;
-        updateAccountUI();await cloudPull();startCloudTimer();
-        setSyncStatus("ok","\u6B22\u8FCE\u56DE\u6765 "+timeStr());return;}
-    }catch(e){}
-  }
-  useLocalMode();}
+  let savedEmail="";
+  if(saved){try{const u=JSON.parse(saved);if(u&&u.email)savedEmail=u.email;}catch(e){}}
+  // 每次打开先显示登录墙：输入密码（或点本地模式）后才进入工作台，不在未登录时直接显示内容
+  if(savedEmail)document.getElementById("auth-email").value=savedEmail;
+  showAuthGate();}
 
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
