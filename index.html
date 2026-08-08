@@ -6599,7 +6599,7 @@ async function cloudPush(){
 function showAuthGate(){document.getElementById("auth-gate").style.display="flex";setAuthMode(authMode);}
 function toggleAuthAdvanced(){
   const wrap=document.getElementById("auth-token-wrap");const t=document.getElementById("auth-advanced-toggle");
-  const open=wrap.classList.toggle("open");t.textContent=open?"▾ 高级设置":"▸ 高级设置";}
+  const open=wrap.classList.toggle("open");t.textContent=open?"▾ 高级设置":"▸ 高级设置";if(t)t.style.color=open?"var(--gold)":"";}
 function hideAuthGate(){document.getElementById("auth-gate").style.display="none";}
 function setAuthMode(m){
   authMode=m;
