@@ -1353,21 +1353,30 @@
   .add-idea{background:var(--surface);border:2px dashed rgba(168,85,247,.2);border-radius:var(--radius);padding:32px;text-align:center;color:#a855f7;font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
   .add-idea:hover{background:rgba(168,85,247,.04);border-color:#a855f7}
 /* ===== 账号登录墙 + 扫码同步 ===== */
-.auth-gate{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 28%,#10203f,#070b14 70%);}
-.auth-card{width:344px;max-width:92vw;background:var(--surface);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-border);border-radius:22px;padding:30px 26px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.55);}
-.auth-logo{font-size:48px;line-height:1;}
-.auth-card h2{margin:10px 0 4px;font-size:20px;font-weight:700;}
-.auth-sub{font-size:12px;color:var(--muted2);margin:0 0 18px;line-height:1.6;}
-.auth-card input{width:100%;padding:12px 14px;margin-bottom:10px;border-radius:11px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--ink);font-size:14px;box-sizing:border-box;transition:border-color .2s;}
-.auth-card input:focus{outline:none;border-color:var(--brand);}
-.auth-token{font-size:12px;letter-spacing:.3px;color:var(--muted2);}
-.auth-token::placeholder{color:var(--muted3);}
-.auth-token-hint{font-size:11px;color:var(--muted3);text-align:left;margin:-6px 0 8px;line-height:1.5;}
-.auth-submit{width:100%;padding:12px;font-size:15px;margin-top:4px;}
-.auth-switch{font-size:12px;color:var(--muted2);margin-top:12px;}
-.auth-switch a{color:var(--brand);text-decoration:none;}
-.auth-msg{font-size:12px;margin-top:8px;min-height:16px;}
-.auth-local{margin-top:14px;font-size:12px;}
+.auth-gate{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#16315a,#070b14 72%);}
+.auth-card{width:360px;max-width:92vw;background:var(--surface);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);border:1px solid var(--glass-border);border-radius:24px;padding:36px 30px;text-align:center;box-shadow:0 34px 100px rgba(0,0,0,.55);}
+.auth-logo{font-size:46px;line-height:1;margin-bottom:6px;color:var(--brand);}
+.auth-card h2{margin:0 0 6px;font-size:22px;font-weight:700;letter-spacing:.3px;}
+.auth-sub{font-size:13px;color:var(--muted2);margin:0 0 26px;line-height:1.5;}
+.auth-card input.auth-input{width:100%;padding:13px 16px;margin-bottom:14px;border-radius:13px;border:1px solid var(--glass-border);background:rgba(255,255,255,.05);color:var(--ink);font-size:15px;box-sizing:border-box;transition:border-color .2s,background .2s;}
+.auth-card input.auth-input:focus{outline:none;border-color:var(--brand);background:rgba(255,255,255,.08);}
+.auth-token-wrap{overflow:hidden;transition:max-height .25s ease;max-height:0;text-align:left;margin-bottom:8px;}
+.auth-token-wrap.open{max-height:120px;}
+.auth-token-hint{font-size:11px;color:var(--muted3);margin:0 0 8px;line-height:1.45;}
+.auth-token-row{display:flex;gap:8px;align-items:center;}
+.auth-token-row input{flex:1;padding:11px 14px;border-radius:11px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);color:var(--muted2);font-size:12px;box-sizing:border-box;}
+.auth-token-row button{padding:9px 12px;font-size:12px;border-radius:9px;border:1px solid var(--glass-border);background:rgba(255,255,255,.06);color:var(--muted2);cursor:pointer;white-space:nowrap;}
+.auth-advanced-toggle{font-size:12px;color:var(--muted3);text-align:left;margin:8px 0 0;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:color .2s;}
+.auth-advanced-toggle:hover{color:var(--brand);}
+.auth-submit{width:100%;padding:13px;font-size:15px;margin-top:20px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--brand2));border:none;color:#fff;font-weight:600;box-shadow:0 8px 24px rgba(34,197,94,.22);transition:transform .1s,opacity .2s;cursor:pointer;}
+.auth-submit:hover{opacity:.93;transform:translateY(-1px);}
+.auth-submit:active{transform:translateY(0);}
+.auth-switch{font-size:13px;color:var(--muted2);margin-top:16px;}
+.auth-switch a{color:var(--brand);text-decoration:none;font-weight:500;}
+.auth-msg{font-size:12px;margin-top:10px;min-height:16px;}
+.auth-local{margin-top:22px;padding-top:18px;border-top:1px solid var(--glass-border);font-size:13px;}
+.auth-local a{color:var(--muted2);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s;}
+.auth-local a:hover{color:var(--brand);}
 .auth-local a{color:var(--muted);text-decoration:none;border-bottom:1px dashed var(--muted2);}
 .account-chip{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:12px;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .2s;}
 .account-chip:hover{border-color:var(--brand);}
@@ -4345,7 +4354,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.43</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.44</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4365,17 +4374,22 @@ window.QRCode = {
       <!-- 账号登录墙 -->
       <div id="auth-gate" class="auth-gate" style="display:none">
         <div class="auth-card">
-          <div class="auth-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:46px;height:46px"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none"/></svg></div>
+          <div class="auth-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none"/></svg></div>
           <h2 id="auth-title">登录工作台</h2>
-          <p class="auth-sub">小鱼工作台 · 登录后数据云端同步、多设备共享</p>
-          <input type="email" id="auth-email" placeholder="邮箱" autocomplete="username"/>
-          <input type="password" id="auth-pwd" placeholder="密码" autocomplete="current-password"/>
-          <input type="text" id="auth-token" class="auth-token" placeholder="GitHub 令牌（首次使用填一次）" autocomplete="off"/>
-          <div class="auth-token-hint">登录/注册需要 GitHub 令牌做云端同步。没有的话先点最下面「本地模式」使用。</div>
-          <button class="btn auth-submit" id="auth-submit" onclick="authSubmit()">登录</button>
+          <p class="auth-sub">登录后数据云端同步，多设备共享</p>
+          <input type="email" id="auth-email" class="auth-input" placeholder="邮箱" autocomplete="username"/>
+          <input type="password" id="auth-pwd" class="auth-input" placeholder="密码" autocomplete="current-password"/>
+          <div class="auth-token-wrap" id="auth-token-wrap">
+            <div class="auth-token-hint">已内置云端同步令牌，通常无需修改。如需更换，填入新 GitHub 令牌即可。</div>
+            <div class="auth-token-row">
+              <input type="text" id="auth-token" class="auth-token" placeholder="ghp_..." autocomplete="off"/>
+            </div>
+          </div>
+          <div class="auth-advanced-toggle" id="auth-advanced-toggle" onclick="toggleAuthAdvanced()">▸ 高级设置</div>
+          <button class="auth-submit" id="auth-submit" onclick="authSubmit()">登录</button>
           <div class="auth-switch" id="auth-switch"></div>
           <div class="auth-msg" id="auth-msg"></div>
-          <div class="auth-local"><a href="#" onclick="useLocalMode();return false">本地模式（不登录，仅本机使用）</a></div>
+          <div class="auth-local"><a href="#" onclick="useLocalMode();return false">→ 本地模式（不登录，仅本机使用）</a></div>
           <div id="pair-box" style="display:none"></div>
         </div>
       </div>
@@ -6584,9 +6598,14 @@ async function cloudPush(){
 
 /* ---- 登录墙 UI ---- */
 function showAuthGate(){document.getElementById("auth-gate").style.display="flex";setAuthMode(authMode);}
+function toggleAuthAdvanced(){
+  const wrap=document.getElementById("auth-token-wrap");const t=document.getElementById("auth-advanced-toggle");
+  const open=wrap.classList.toggle("open");t.textContent=open?"▾ 高级设置":"▸ 高级设置";}
 function hideAuthGate(){document.getElementById("auth-gate").style.display="none";}
 function setAuthMode(m){
   authMode=m;
+  const wrap=document.getElementById("auth-token-wrap");if(wrap)wrap.classList.remove("open");
+  const t=document.getElementById("auth-advanced-toggle");if(t)t.textContent="▸ 高级设置";
   document.getElementById("auth-title").textContent=m==="register"?"\u6CE8\u518C\u8D26\u53F7":"\u767B\u5F55\u5DE5\u4F5C\u53F0";
   document.getElementById("auth-submit").textContent=m==="register"?"\u6CE8\u518C\u5E76\u8FDB\u5165":"\u767B\u5F55";
   document.getElementById("auth-switch").innerHTML=m==="register"?'\u5DF2\u6709\u8D26\u53F7\uFF1F<a href="#" onclick="setAuthMode(\'login\');return false">\u53BB\u767B\u5F55</a>':'\u8FD8\u6CA1\u6709\u8D26\u53F7\uFF1F<a href="#" onclick="setAuthMode(\'register\');return false">\u53BB\u6CE8\u518C</a>';
