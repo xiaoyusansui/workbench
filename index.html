@@ -1172,6 +1172,9 @@
     color:#fff;padding:10px 28px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;transition:.15s}
   .job-empty-btn:hover{transform:scale(.97);opacity:.9}
 
+  .jr-dept{background:rgba(96,165,250,.1);color:var(--blue);padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis}
+  .jr-status-label{background:var(--bg3);color:var(--muted2);padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;white-space:nowrap}
+
   @media(max-width:768px){
     .job-toolbar{gap:6px}
     .jtb-card{min-width:100%;max-width:100%}
@@ -4007,6 +4010,14 @@ window.QRCode = {
               </div>
               </div>
               <div class="jm-field"><label>📋 服务类型</label><select id="jm-type"></select></div>
+              <div class="jm-field">
+                <label>🤝 对接</label>
+                <div class="jm-row2" style="gap:8px">
+                  <select id="jm-dept-group" onchange="onJobDeptGroupChange()"></select>
+                  <select id="jm-dept-sub" onchange="onJobDeptSubChange()"></select>
+                </div>
+              </div>
+              <div class="jm-field"><label>📊 进度</label><select id="jm-status"></select></div>
               <div class="jm-field"><label>📝 拍摄计划 / 备注</label><textarea id="jm-plan" rows="2" placeholder="选填…"></textarea></div>
             </div>
             <div class="jm-foot">
@@ -4372,7 +4383,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.56</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.57</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4842,8 +4853,8 @@ function renderOverview(){
   const coursePct=totalL?Math.round(doneL/totalL*100):0;
   const hotTotal=DB.hots.length, hotDone=DB.hots.filter(h=>h.done).length;
   const jobs=DB.jobs||[];
-  const jDoing=jobs.filter(j=>j.status==="doing").length;
-  const jDone=jobs.filter(j=>j.status==="done").length;
+  const jDoing=jobs.filter(j=>jobStatusGroup(j)==="doing"||jobStatusGroup(j)==="flow").length;
+  const jDone=jobs.filter(j=>jobStatusGroup(j)==="done").length;
   const books=DB.books||[];
   const bReading=books.filter(b=>b.status==="reading").length;
   const bDone=books.filter(b=>b.status==="done").length;
@@ -5376,12 +5387,67 @@ function editHot(i){const h=DB.hots[i];const title=prompt("编辑标题：",h.ti
 
 /* ==================== 摄影工作单 ==================== */
 const JOB_STATUS_LABELS={pending:"待确认",confirmed:"已确认",doing:"进行中",done:"已完成"};
+const JOB_STATUS_ORDER=["pending","confirmed","doing","done"];
 const JOB_TYPES=["人像写真","电商产品","活动跟拍","婚礼纪实","商业拍摄","其他"];
 let _jobEditIdx=-1; /* -1=新增, >=0=编辑索引 */
 
+/* ---- 对接/进度兼容函数 ---- */
+function jobStatusGroup(j){
+  const s=(j.status||"").trim();
+  if(!j.dept){
+    if(s==="done") return "done";
+    if(s==="pending") return "todo";
+    return "doing"; // confirmed / doing
+  }
+  return statusGroup(s);
+}
+function jobStatusClass(j){
+  const g=jobStatusGroup(j);
+  return {todo:"jr-s-pending",doing:"jr-s-doing",flow:"jr-s-doing",done:"jr-s-done"}[g]||"jr-s-pending";
+}
+function jobStatusLabel(j){
+  if(!j.dept) return JOB_STATUS_LABELS[j.status]||j.status||"待确认";
+  return j.status||"—";
+}
+function buildJobDeptGroupOptions(group){
+  const groups=Object.keys(DEPT_TREE);
+  const g=(group||"").trim();
+  return `<option value="">—</option>`+groups.map(x=>`<option ${x===g?"selected":""}>${x}</option>`).join("")+(g&&!groups.includes(g)?`<option selected value="${esc(g)}">${esc(g)}</option>`:"");
+}
+function buildJobDeptSubOptions(dept){
+  const {group,sub}=parseDept(dept||"");
+  const subs=DEPT_TREE[group]||[];
+  if(subs.length===0) return `<option value="">—</option>`;
+  return subs.map(x=>`<option ${x===sub?"selected":""}>${x}</option>`).join("");
+}
+function fillJobStatusSelect(dept,current){
+  const sel=document.getElementById("jm-status");
+  if(!dept){
+    sel.innerHTML=JOB_STATUS_ORDER.map(k=>`<option value="${k}" ${k===current?"selected":""}>${JOB_STATUS_LABELS[k]}</option>`).join("");
+    return;
+  }
+  const list=getStatuses(dept);
+  sel.innerHTML=list.map(x=>`<option ${x===current?"selected":""}>${x}</option>`).join("");
+  if(list.length && !list.includes(current)) sel.value=list[0]||"";
+}
+function onJobDeptGroupChange(){
+  const group=document.getElementById("jm-dept-group").value||"";
+  const subs=DEPT_TREE[group]||[];
+  const sub=subs[0]||"";
+  const dept=sub?group+" - "+sub:group;
+  document.getElementById("jm-dept-sub").innerHTML=subs.length?buildJobDeptSubOptions(dept):`<option value="">—</option>`;
+  fillJobStatusSelect(dept,document.getElementById("jm-status").value||"");
+}
+function onJobDeptSubChange(){
+  const group=document.getElementById("jm-dept-group").value||"";
+  const sub=document.getElementById("jm-dept-sub").value||"";
+  const dept=sub?group+" - "+sub:group;
+  fillJobStatusSelect(dept,document.getElementById("jm-status").value||"");
+}
+
 /* ---- 智能排序权重 ---- */
 function _jobSortWeight(j){
-  if(j.status==="done") return 999;
+  if(jobStatusGroup(j)==="done") return 999;
   if(!j.date) return 90;
   const d=new Date(j.date+"T00:00:00");const today=new Date();today.setHours(0,0,0,0);
   const diff=Math.ceil((d-today)/86400000);
@@ -5401,17 +5467,17 @@ function renderJobs(){
   /* 筛选 */
   let jobs=all.map((j,i)=>({...j,_i:i}));
   const _jf=_jobFilter||"";
-  if(_jf==="urgent")jobs=jobs.filter(j=>j.status!=="done"&&j.date&&(new Date(j.date+"T00:00:00")<=new Date(Date.now()+3*86400000)));
+  if(_jf==="urgent")jobs=jobs.filter(j=>jobStatusGroup(j)!=="done"&&j.date&&(new Date(j.date+"T00:00:00")<=new Date(Date.now()+3*86400000)));
   else if(_jf=="week"){const ws=new Date();ws.setDate(ws.getDate()-ws.getDay());ws.setHours(0,0,0,0);const we=new Date(ws);we.setDate(we.getDate()+7);jobs=jobs.filter(j=>{if(!j.date)return false;const dd=new Date(j.date+"T00:00:00");return dd>=ws&&dd<we;});}
-  else if(_jf==="open")jobs=jobs.filter(j=>j.status!=="done");
-  if(q) jobs=jobs.filter(j=>!((j.client||"")+(j.type||"")+(j.plan||"")).toLowerCase().includes(q));
+  else if(_jf==="open")jobs=jobs.filter(j=>jobStatusGroup(j)!=="done");
+  if(q) jobs=jobs.filter(j=>!((j.client||"")+(j.type||"")+(j.dept||"")+(j.status||"")+(j.plan||"")).toLowerCase().includes(q));
 
   /* 排序 */
   jobs.sort((a,b)=>_jobSortWeight(a)-_jobSortWeight(b));
 
   /* ====== 今日焦点横幅 ====== */
   const todayJobs=all.filter(j=>{
-    if(j.status==="done")return false;
+    if(jobStatusGroup(j)==="done")return false;
     if(!j.date)return false;
     return j.date===today.toISOString().slice(0,10);
   });
@@ -5420,7 +5486,6 @@ function renderJobs(){
   if(todayJobs.length&&!q&& !_jf){
     banner.style.display="";
     tlist.innerHTML=todayJobs.map(j=>{
-      const st=j.status||"pending";
       const isOverdue=false; /* 今天不算逾期 */
       return `<div class="jtb-card" onclick="openJobModal(${j._i})">
         <span class="jtb-dot ${isOverdue?'jtb-dot-overdue':'jtb-dot-today'}"></span>
@@ -5435,14 +5500,14 @@ function renderJobs(){
   }
 
   /* ====== 统计摘要 ====== */
-  const soonCount=all.filter(j=>j.status!=="done"&&j.date&&(new Date(j.date+"T00:00:00")<=new Date(Date.now()+7*86400000))).length;
-  const totalIncome=all.filter(j=>j.status!=="done").reduce((s,j)=>s+(j.price||0),0);
+  const soonCount=all.filter(j=>jobStatusGroup(j)!=="done"&&j.date&&(new Date(j.date+"T00:00:00")<=new Date(Date.now()+7*86400000))).length;
+  const totalIncome=all.filter(j=>jobStatusGroup(j)!=="done").reduce((s,j)=>s+(j.price||0),0);
   const receivedIncome=all.reduce((s,j)=>s+(j.deposit||0)+(j.finalPay||0),0);
   document.getElementById("job-summary").innerHTML=
     `<div class="jsum-pill"><span class="jsum-n">${all.length}</span>总单</div>`+
-    `<div class="jsum-pill"><span class="jsum-n jsum-n-amber">${all.filter(j=>j.status==="pending").length}</span>待确认</div>`+
-    `<div class="jsum-pill"><span class="jsum-n jsum-n-blue">${all.filter(j=>j.status==="doing").length}</span>进行中</div>`+
-    `<div class="jsum-pill"><span class="jsum-n jsum-n-green">${all.filter(j=>j.status==="done").length}</span>已完成</div>`+
+    `<div class="jsum-pill"><span class="jsum-n jsum-n-amber">${all.filter(j=>jobStatusGroup(j)==="todo").length}</span>待确认</div>`+
+    `<div class="jsum-pill"><span class="jsum-n jsum-n-blue">${all.filter(j=>jobStatusGroup(j)==="doing"||jobStatusGroup(j)==="flow").length}</span>进行中</div>`+
+    `<div class="jsum-pill"><span class="jsum-n jsum-n-green">${all.filter(j=>jobStatusGroup(j)==="done").length}</span>已完成</div>`+
     (soonCount?`<div class="jsum-pill"><span class="jsum-n jsum-n-coral">${soonCount}</span>⚡即将到期</div>`:"")+
     `<div class="jsum-pill"><span class="jsum-n jsum-n-gold">¥${totalIncome.toLocaleString()}</span>预计收入</div>`+
     (receivedIncome?`<div class="jsum-pill"><span class="jsum-n jsum-n-green">¥${receivedIncome.toLocaleString()}</span>已收款</div>`:"");
@@ -5463,11 +5528,11 @@ function renderJobs(){
 
   /* 分组 */
   const groups=[
-    {key:"urgent",label:"🔥 紧急",icon:"🔥",filter:j=>{if(j.status==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");return d<today}},
-    {key:"today",label:"📅 今天",icon:"📅",filter:j=>{if(j.status==="done")return false;if(!j.date)return false;return j.date===today.toISOString().slice(0,10)}},
-    {key:"soon",label:"📌 即将",icon:"📌",filter:j=>{if(j.status==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");const diff=Math.ceil((d-today)/86400000);return diff>0&&diff<=7}},
-    {key:"later",label:"🔵 更远",icon:"🔵",filter:j=>{if(j.status==="done")return false;if(!j.date)return true;const d=new Date(j.date+"T00:00:00");return d>new Date(today.getTime()+7*86400000)}},
-    {key:"done",label:"✅ 已完成",icon:"✅",filter:j=>j.status==="done"}
+    {key:"urgent",label:"🔥 紧急",icon:"🔥",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");return d<today}},
+    {key:"today",label:"📅 今天",icon:"📅",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;return j.date===today.toISOString().slice(0,10)}},
+    {key:"soon",label:"📌 即将",icon:"📌",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");const diff=Math.ceil((d-today)/86400000);return diff>0&&diff<=7}},
+    {key:"later",label:"🔵 更远",icon:"🔵",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return true;const d=new Date(j.date+"T00:00:00");return d>new Date(today.getTime()+7*86400000)}},
+    {key:"done",label:"✅ 已完成",icon:"✅",filter:j=>jobStatusGroup(j)==="done"}
   ];
 
   let html="";
@@ -5476,7 +5541,8 @@ function renderJobs(){
     if(!gjobs.length)return;
     html+=`<div class="job-group-label"><span class="jgl-icon">${g.icon}</span>${g.label}<span class="jgl-count">${gjobs.length}</span></div>`;
     gjobs.forEach(j=>{
-      const st=j.status||"pending";
+      const stCls=jobStatusClass(j);
+      const stLabel=jobStatusLabel(j);
       let dateClass="jr-date-none",dateLabel="待定";
       if(j.date){
         const d=new Date(j.date+"T00:00:00");
@@ -5488,12 +5554,14 @@ function renderJobs(){
         else{dateClass="jr-date-ok";dateLabel=j.date;}
       }
       html+=`<div class="job-row" data-idx="${j._i}" onclick="toggleRowExpand(this)">
-        <span class="jr-status jr-s-${st}" onclick="event.stopPropagation();cycleJobStatus(${j._i})" title="${JOB_STATUS_LABELS[st]} — 点击切换"></span>
+        <span class="jr-status ${stCls}" onclick="event.stopPropagation();cycleJobStatus(${j._i})" title="${stLabel} — 点击切换"></span>
         <div class="jr-main">
           <span class="jr-client" onclick="event.stopPropagation();showClientHistory(event,'${esc(j.client)}')">${esc(j.client)}</span>
           <div class="jr-meta">
             <span class="jr-date ${dateClass}">${dateLabel}</span>
             <span class="jr-type" title="${esc(j.type)}">${esc(j.type)}</span>
+            ${j.dept?`<span class="jr-dept" title="${esc(j.dept)}">${esc(j.dept)}</span>`:''}
+            <span class="jr-status-label" title="${stLabel}">${stLabel}</span>
             ${j.price?`<span class="jr-price">¥${j.price.toLocaleString()}</span>`:''}
             ${j.deposit?`<span class="jr-pay jr-pay-dep">定¥${j.deposit.toLocaleString()}</span>`:''}
             ${j.finalPay?`<span class="jr-pay jr-pay-fin">尾¥${j.finalPay.toLocaleString()}</span>`:''}
@@ -5542,11 +5610,11 @@ function renderTimeline(allJobs){
     const d=new Date(today);d.setDate(d.getDate()+i);
     const ds=d.toISOString().slice(0,10);
     const dow=["日","一","二","三","四","五","六"][d.getDay()];
-    const dayJobs=jobs.filter(j=>j.date===ds&&j.status!=="done");
+    const dayJobs=jobs.filter(j=>j.date===ds&&jobStatusGroup(j)!=="done");
     const isToday=i===0;
     let dotHtml="";
     if(dayJobs.length){
-      const hasOverdue=dayJobs.some(j=>j.status==="pending"||j.status==="confirmed");
+      const hasOverdue=dayJobs.some(j=>jobStatusGroup(j)==="todo");
       const hasSoon=dayJobs.length>0;
       dotHtml=`<span class="tl-dot ${hasOverdue&&(i===0||new Date(ds+"T00:00:00")<today)?"overdue":i<=3?"soon":""}" title="${dayJobs.map(j=>j.client).join(", ")} · ${dayJobs.length}单"></span>`;
     }
@@ -5567,7 +5635,7 @@ function showClientHistory(e,client){
     <div class="cp-head"><span>👤 ${esc(client)} · ${jobs.length}条记录</span><span class="cp-close" onclick="closeClientPopover()">✕</span></div>
     <div class="cp-list">
       ${jobs.map(j=>`<div class="cp-item" onclick="closeClientPopover();openJobModal(${j._i})">
-        <div class="cp-item-info"><div class="cp-item-client">${esc(j.type)} ${j.price?"· ¥"+j.price.toLocaleString():""}${(j.deposit||j.finalPay)?`<span style="color:var(--brand);font-size:10px"> 已收¥${((j.deposit||0)+(j.finalPay||0)).toLocaleString()}</span>`:""}</div><div class="cp-item-date">${j.date||"待定"} · ${JOB_STATUS_LABELS[j.status]||j.status}</div></div>
+        <div class="cp-item-info"><div class="cp-item-client">${esc(j.type)} ${j.price?"· ¥"+j.price.toLocaleString():""}${(j.deposit||j.finalPay)?`<span style="color:var(--brand);font-size:10px"> 已收¥${((j.deposit||0)+(j.finalPay||0)).toLocaleString()}</span>`:""}</div><div class="cp-item-date">${j.date||"待定"} · ${jobStatusLabel(j)}</div></div>
         <span class="cp-item-type">${esc(j.type)}</span>${j.price?`<span class="cp-item-price">¥${j.price.toLocaleString()}</span>`:""}
       </div>`).join("")}
     </div>
@@ -5585,7 +5653,7 @@ function closeClientPopover(){
 function dupJobForClient(client){
   const last=(DB.jobs||[]).filter(j=>j.client===client).pop();
   if(!last)return;
-  const nj={client:last.client,date:"",type:last.type,price:last.price||0,plan:"",status:"pending"};
+  const nj={client:last.client,date:"",type:last.type,price:last.price||0,dept:last.dept||"",plan:"",status:"pending"};
   DB.jobs.push(nj);save();
   openJobModal(DB.jobs.length-1);
 }
@@ -5606,6 +5674,9 @@ function openJobModal(idx){
   const sel=document.getElementById("jm-type");
   /* 填充服务类型下拉 */
   sel.innerHTML=JOB_TYPES.map(t=>`<option value="${t}">${t}</option>`).join("");
+  const deptGroupSel=document.getElementById("jm-dept-group");
+  const deptSubSel=document.getElementById("jm-dept-sub");
+  const statusSel=document.getElementById("jm-status");
   if(_jobEditIdx>=0){
     const j=DB.jobs[_jobEditIdx];
     titleEl.textContent="✏ 编辑工作单";
@@ -5615,6 +5686,10 @@ function openJobModal(idx){
     document.getElementById("jm-deposit").value=j.deposit||"";
     document.getElementById("jm-final").value=j.finalPay||"";
     sel.value=j.type||JOB_TYPES[0];
+    const parsed=parseDept(j.dept||"");
+    deptGroupSel.innerHTML=buildJobDeptGroupOptions(parsed.group);
+    deptSubSel.innerHTML=buildJobDeptSubOptions(j.dept||"");
+    fillJobStatusSelect(j.dept||"",j.status||"");
     document.getElementById("jm-plan").value=j.plan||"";
     document.getElementById("jm-save-btn").textContent="保存修改";
   }else{
@@ -5625,6 +5700,9 @@ function openJobModal(idx){
     document.getElementById("jm-deposit").value="";
     document.getElementById("jm-final").value="";
     sel.value=JOB_TYPES[0];
+    deptGroupSel.innerHTML=buildJobDeptGroupOptions("");
+    deptSubSel.innerHTML=buildJobDeptSubOptions("");
+    fillJobStatusSelect("","pending");
     document.getElementById("jm-plan").value="";
     document.getElementById("jm-save-btn").textContent="保存工作单";
   }
@@ -5635,6 +5713,9 @@ function closeJobModal(){document.getElementById("job-modal").style.display="non
 function saveJobModal(){
   const client=(document.getElementById("jm-client").value||"").trim();
   if(!client){alert("请输入客户名称");return;}
+  const group=document.getElementById("jm-dept-group").value||"";
+  const sub=document.getElementById("jm-dept-sub").value||"";
+  const dept=sub?group+" - "+sub:group;
   const data={
     client:client,
     date:document.getElementById("jm-date").value||"",
@@ -5642,14 +5723,13 @@ function saveJobModal(){
     deposit:parseInt(document.getElementById("jm-deposit").value)||0,
     finalPay:parseInt(document.getElementById("jm-final").value)||0,
     type:document.getElementById("jm-type").value||JOB_TYPES[0],
+    dept:dept,
+    status:document.getElementById("jm-status").value||"pending",
     plan:(document.getElementById("jm-plan").value||"").trim()
   };
   if(_jobEditIdx>=0){
-    /* 编辑时保留原状态 */
-    data.status=DB.jobs[_jobEditIdx].status;
     Object.assign(DB.jobs[_jobEditIdx],data);
   }else{
-    data.status="pending";
     DB.jobs.push(data);
   }
   save();closeJobModal();renderJobs();
@@ -5658,14 +5738,20 @@ function saveJobModal(){
 /* ---- 快捷操作 ---- */
 function cycleJobStatus(i){
   const j=DB.jobs[i];if(!j)return;
-  const curIdx=JOB_STATUS_ORDER.indexOf(j.status);
-  const nextIdx=(curIdx+1)%JOB_STATUS_ORDER.length;
-  j.status=JOB_STATUS_ORDER[nextIdx];
+  if(j.dept){
+    const list=getStatuses(j.dept);
+    const idx=list.indexOf(j.status||"");
+    j.status=list[(idx+1)%list.length]||"";
+  }else{
+    const curIdx=JOB_STATUS_ORDER.indexOf(j.status);
+    const nextIdx=(curIdx+1)%JOB_STATUS_ORDER.length;
+    j.status=JOB_STATUS_ORDER[nextIdx];
+  }
   save();renderJobs();
 }
 function dupJob(i){
   const j=DB.jobs[i];if(!j)return;
-  const copy={...j,status:"pending",date:"",client:j.client+" (复)"};
+  const copy={...j,status:"pending",dept:j.dept||"",date:"",client:j.client+" (复)"};
   DB.jobs.push(copy);save();renderJobs();
   /* 自动打开编辑让用户改日期 */
   openJobModal(DB.jobs.length-1);
@@ -5680,8 +5766,8 @@ function togglePlan(el){
 }
 function delJob(i){if(confirm("删除这张工作单？")){DB.jobs.splice(i,1);save();renderJobs();}}
 function exportJobsCSV(){
-  const csv="\uFEFF客户,约定日期,服务类型,报价,定金,尾款,已收合计,状态,拍摄计划\n"+(DB.jobs||[]).map(j=>
-    `${j.client},${j.date||""},${j.type},${j.price||""},${j.deposit||""},${j.finalPay||""},${(j.deposit||0)+(j.finalPay||0)||""},${JOB_STATUS_LABELS[j.status]||""},"${(j.plan||"").replace(/"/g,'""')}"`
+  const csv="\uFEFF客户,约定日期,服务类型,对接,进度,报价,定金,尾款,已收合计,状态,拍摄计划\n"+(DB.jobs||[]).map(j=>
+    `${j.client},${j.date||""},${j.type},${j.dept||""},${j.status||""},${j.price||""},${j.deposit||""},${j.finalPay||""},${(j.deposit||0)+(j.finalPay||0)||""},${jobStatusLabel(j)},"${(j.plan||"").replace(/"/g,'""')}"`
   ).join("\n");
   const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
