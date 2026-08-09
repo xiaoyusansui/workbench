@@ -265,8 +265,11 @@
   select.cell-input{cursor:pointer;background:var(--bg3);color:var(--ink)}
   /* 策划工作「对接」列：两级级联选择 */
   .cell-dept-wrap{display:flex;gap:6px;align-items:center;min-width:190px}
-  .cell-dept-wrap select{flex:1;min-width:0}
-  .cell-dept-group,.cell-dept-sub{color:var(--gold2);font-weight:600;padding-right:22px}
+  .cell-dept-wrap select,.cell-dept-wrap input{flex:1;min-width:0}
+  .cell-dept-group,.cell-dept-sub{color:var(--gold2);font-weight:600}
+  .cell-dept-group{padding-right:22px;min-width:90px}
+  .cell-dept-sub{padding-right:8px;min-width:90px}
+  .cell-dept-sub::placeholder{color:var(--muted2);font-weight:400}
   .cell-dept-sub:disabled{opacity:.45;cursor:not-allowed}
   .cell-dept-group:focus,.cell-dept-sub:focus{color:var(--ink);background:var(--bg3);border-color:var(--gold)}
   /* 策划工作「进度」列：彩色状态标签 */
@@ -4369,7 +4372,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.47</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.48</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4505,7 +4508,6 @@ const STATUS_MAP={
   "推广公司":["已下单","进行中","待设计","待定稿","修改中","已定稿"],
   "制作公司":["已下单","制作中","待验收","已完成"],
   "公司":["已提交","签批中","已签批","待修改","已驳回"],
-  "采购":["待采购","采购中","待入库","已入库"],
   "客户":["待沟通","已确认","待反馈","已签约","已完结"],
   "场地":["待联系","已预约","已踩点","已签约","已进场"],
   "模特":["待邀约","已确认","已定妆","已拍摄","已结算"],
@@ -4513,8 +4515,7 @@ const STATUS_MAP={
   "摄影师":["待安排","已确认","已拍样","已交片","已结算"],
   "设计师":["待沟通","设计中","待确认","修改中","已定稿"],
   "印刷厂":["待询价","已下单","制作中","待验收","已收货"],
-  "媒体":["待联系","已投稿","待发布","已发布","已结案"],
-  "——":["未启动","进行中","已完成","待确认"]
+  "媒体":["待联系","已投稿","待发布","已发布","已结案"]
 };
 
 const DEPT_TREE={
@@ -4522,16 +4523,14 @@ const DEPT_TREE={
   "制作公司":["安装师傅","设计员","制作主管","安装工"],
   "公司":["财务","采购","行政","工程","法务","总经办"],
   "策划":["策划专员简强","推广公司策划","自由策划"],
-  "客户":[],
-  "场地":[],
-  "模特":[],
-  "化妆师":[],
-  "摄影师":[],
-  "设计师":[],
-  "印刷厂":[],
-  "媒体":[],
-  "采购":[],
-  "——":[]
+  "客户":[],          // 小类输入具体客户名
+  "场地":[],          // 输入场地名
+  "模特":[],          // 输入模特名
+  "化妆师":[],        // 输入化妆师名
+  "摄影师":[],        // 输入摄影师名
+  "设计师":[],        // 输入设计师名
+  "印刷厂":[],        // 输入印刷厂名
+  "媒体":[]           // 输入媒体名
 };
 const GENERIC_STATUSES=["未启动","进行中","已完成","待确认","走流程","已下单",
   "待开始","待沟通","已确认","修改中","制作中","设计中","待定稿","待安装","待设计",
@@ -4574,7 +4573,7 @@ const SEED={
     {b:"推广传播",t:"项目入市视频发布",s:"剪辑中",d:"推广公司 - 视频",dt:"2026-05-08",m:"待剪辑完"},
     {b:"推广传播",t:"小红书房产号运营",s:"进行中",d:"推广公司 - 文案",dt:"2026-05-20",m:"每周2篇软文"},
     {b:"包装物料",t:"置业顾问形象照",s:"安装中",d:"制作公司 - 安装师傅",dt:"",m:""},
-    {b:"活动执行",t:"周末暖场活动执行",s:"进行中",d:"——",dt:"2026-05-11",m:"露营/咖啡主题"},
+    {b:"活动执行",t:"周末暖场活动执行",s:"进行中",d:"",dt:"2026-05-11",m:"露营/咖啡主题"},
     {b:"工程协同",t:"样板间赠送面积确认",s:"已提资",d:"公司 - 工程",dt:"",m:"规划出新意见，等签批",key:true},
     {b:"采购综合",t:"制作公司物料款",s:"审批中",d:"公司 - 财务",dt:"2026-05-18",m:"",key:true}
   ],
@@ -4960,18 +4959,7 @@ function renderPlan(){
           ${(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("")}
         </select></td>
         <td><input class="cell-input" data-op="plan" data-i="${r._i}" data-f="t" value="${esc(r.t)}"/></td>
-        <td>
-          <div class="cell-dept-wrap">
-            <select class="cell-input cell-dept-group" data-op="plan" data-i="${r._i}" data-f="dg"
-              onchange="onDeptGroupChange(${r._i},this.value)">
-              ${buildDeptGroupOptions(r.d)}
-            </select>
-            <select class="cell-input cell-dept-sub" data-op="plan" data-i="${r._i}" data-f="ds"
-              onchange="onDeptSubChange(${r._i},this.value)">
-              ${buildDeptSubOptions(r.d)}
-            </select>
-          </div>
-        </td>
+        <td>${renderDeptCell(r.d,r._i)}</td>
         <td><select class="cell-input cell-status ${statusClass(r.s)}" data-op="plan" data-i="${r._i}" data-f="s"
           onchange="DB.rows[${r._i}].s=this.value;save();this.className='cell-input cell-status '+statusClass(this.value)">
           ${stList.map(s=>`<option ${s===r.s?"selected":""}>${s}</option>`).join("")}
@@ -5016,22 +5004,48 @@ function renderPlanStats(){
   renderBoardBars();
 }
 
-function buildDeptGroupOptions(d){
-  const {group,sub}=parseDept(d);
+function buildDeptGroupOptions(group){
   const groups=Object.keys(DEPT_TREE);
-  const g=d?group:(groups.includes(d)?d:"");
-  return `<option value="">选择大类</option>`+groups.map(x=>`<option ${x===g?"selected":""}>${x}</option>`).join("")+`<option ${(!groups.includes(g)&&g)?"selected":""} value="${esc(g)}">${esc(g)}</option>`;
+  const g=(group||"").trim();
+  // 兼容旧数据中不在 DEPT_TREE 的大类（如旧版 "——"），以普通选项形式兜底保留
+  return `<option value="">—</option>`+groups.map(x=>`<option ${x===g?"selected":""}>${x}</option>`).join("")+(g&&!groups.includes(g)?`<option selected value="${esc(g)}">${esc(g)}</option>`:"");
 }
 function buildDeptSubOptions(d){
   const {group,sub}=parseDept(d);
   const subs=DEPT_TREE[group]||[];
-  if(subs.length===0){
-    return `<option value="" ${sub?"disabled":""}>无需细分</option>`+(sub?`<option selected>${esc(sub)}</option>`:"");
+  if(subs.length===0) return `<option value="">—</option>`;
+  return subs.map(x=>`<option ${x===sub?"selected":""}>${x}</option>`).join("");
+}
+function renderDeptCell(d,i){
+  const {group,sub}=parseDept(d);
+  const subs=DEPT_TREE[group]||[];
+  const hasSubs=subs.length>0;
+  const gHtml=buildDeptGroupOptions(group);
+  if(!hasSubs){
+    // 无子类的大类：小类用 input，让用户输入具体客户名/场地名/模特名等
+    return `<div class="cell-dept-wrap">
+      <select class="cell-input cell-dept-group" data-op="plan" data-i="${i}" data-f="dg"
+        onchange="onDeptGroupChange(${i},this.value)">${gHtml}</select>
+      <input class="cell-input cell-dept-sub" data-op="plan" data-i="${i}" data-f="ds"
+        value="${esc(sub)}" placeholder="${subPlaceholder(group)}"
+        onchange="onDeptSubInput(${i},this.value)" onblur="onDeptSubInput(${i},this.value)"/>
+    </div>`;
   }
-  return `<option value="">选择${sub?"或保持":""}</option>`+subs.map(x=>`<option ${x===sub?"selected":""}>${x}</option>`).join("");
+  return `<div class="cell-dept-wrap">
+    <select class="cell-input cell-dept-group" data-op="plan" data-i="${i}" data-f="dg"
+      onchange="onDeptGroupChange(${i},this.value)">${gHtml}</select>
+    <select class="cell-input cell-dept-sub" data-op="plan" data-i="${i}" data-f="ds"
+      onchange="onDeptSubChange(${i},this.value)">${buildDeptSubOptions(d)}</select>
+  </div>`;
+}
+function subPlaceholder(group){
+  const map={"客户":"客户名","场地":"场地名","模特":"模特名","化妆师":"化妆师名","摄影师":"摄影师名","设计师":"设计师名","印刷厂":"印刷厂名","媒体":"媒体名"};
+  return map[group]||"具体名称";
 }
 function onDeptGroupChange(i,group){
-  const sub=(group && DEPT_TREE[group]||[])[0]||"";
+  const subs=DEPT_TREE[group]||[];
+  // 有大类默认子类则自动选第一个；无子类则小类留空等用户输入
+  const sub=subs[0]||"";
   const d=sub?group+" - "+sub:group;
   DB.rows[i].d=d;save();
   const stList=getStatuses(d);
@@ -5042,6 +5056,15 @@ function onDeptGroupChange(i,group){
 function onDeptSubChange(i,sub){
   const {group}=parseDept(DB.rows[i].d||"");
   const d=sub?group+" - "+sub:group;
+  DB.rows[i].d=d;save();
+  const stList=getStatuses(d);
+  const curS=DB.rows[i].s;
+  if(!stList.includes(curS)){ DB.rows[i].s=stList[0]||"";save();}
+  renderPlan();
+}
+function onDeptSubInput(i,sub){
+  const {group}=parseDept(DB.rows[i].d||"");
+  const d=group+(sub?" - "+sub:"");
   DB.rows[i].d=d;save();
   const stList=getStatuses(d);
   const curS=DB.rows[i].s;
@@ -5073,15 +5096,16 @@ function doneState(dept){
   if(key==="推广公司-视频")return "已交片";
   if(key==="推广公司-文案")return "已发布";
   if(key==="推广公司-媒介")return "已结案";
-  if(group==="制作公司"||group==="公司-工程")return "已完成";
+  if(group==="制作公司")return "已完成";
   if(group==="公司"){
     if(sub==="财务")return "已付款";
+    if(sub==="采购")return "已入库";
+    if(sub==="工程")return "已完成";
     if(sub==="行政"||sub==="法务"||sub==="总经办")return "已签批";
   }
   if(dept==="推广公司")return "已定稿";
   if(dept==="制作公司")return "已完成";
   if(dept==="公司")return "已签批";
-  if(dept==="采购")return "已入库";
   if(dept==="客户")return "已完结";
   if(dept==="场地")return "已进场";
   if(dept==="模特"||dept==="化妆师"||dept==="摄影师")return "已结算";
