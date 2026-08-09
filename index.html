@@ -913,7 +913,7 @@
     grid-column:1/-1}
   .add-book:hover{background:rgba(167,139,250,.04);border-color:var(--purple)}
 
-  /* ====== 摄影工作单 ====== */
+  /* ====== 摄影工作 ====== */
   .job-header{display:flex;gap:14px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
   .job-stats{display:flex;gap:10px;flex-wrap:wrap}
   .job-stat{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);
@@ -3741,7 +3741,7 @@ window.QRCode = {
       </li>
       <li class="nav-item" data-nav="job" onclick="switchTab('job')">
         <span class="nav-icon" style="background:rgba(96,165,250,.12);color:var(--blue)">📸</span>
-        <span>摄影工作单</span>
+        <span>摄影工作</span>
       </li>
 
       <div class="nav-label">📸 摄影</div>
@@ -3958,7 +3958,7 @@ window.QRCode = {
         <div class="hot-grid" id="hot-grid"></div>
       </section>
 
-      <!-- ==================== 摄影工作单 ==================== -->
+      <!-- ==================== 摄影工作 ==================== -->
       <section id="panel-job" style="display:none">
 
         <!-- 今日焦点（动态横幅） -->
@@ -4383,7 +4383,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.57</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.58</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4820,7 +4820,7 @@ const TAB_TITLES={
   plan:{title:"📋 策划工作",sub:"百江富淮城运营项目策划 · 任务追踪与进度管理"},
   course:{title:"📷 摄影师课程",sub:"从基础到实战，系统化提升摄影能力"},
   hot:{title:"🔥 摄影师热点",sub:"追踪平台热门趋势，保持创作敏感度"},
-  job:{title:"📸 摄影工作单",sub:"客户预约 · 服务事项 · 拍摄计划管理"},
+  job:{title:"📸 摄影工作",sub:"客户预约 · 服务事项 · 拍摄计划管理"},
   read:{title:"📖 读书计划",sub:"持续阅读，构建知识体系"},
   okr:{title:"🎯 目标与OKR",sub:"季度目标拆解 · 关键结果追踪 · 进度可视化"},
   gear:{title:"🔧 器材管理",sub:"摄影器材清单 · 价值统计 · 维护提醒"},
@@ -4882,7 +4882,7 @@ function renderOverview(){
     {nav:"plan",icon:"📋",color:"var(--brand)",title:"策划工作",
      big:DB.rows.length,sub:`进行中 ${planDoing} · 已完成 ${planDone}`,
      pct:DB.rows.length?Math.round(planDone/DB.rows.length*100):0},
-    {nav:"job",icon:"📸",color:"var(--blue)",title:"摄影工作单",
+    {nav:"job",icon:"📸",color:"var(--blue)",title:"摄影工作",
      big:jobs.length,sub:`进行中 ${jDoing} · 已完成 ${jDone}`,
      pct:jobs.length?Math.round(jDone/jobs.length*100):0}
   ];
@@ -5385,7 +5385,7 @@ function addHot(){
 }
 function editHot(i){const h=DB.hots[i];const title=prompt("编辑标题：",h.title)||h.title;const desc=prompt("编辑描述：",h.desc)||h.desc;h.title=title;h.desc=desc;save();renderHotCards();}
 
-/* ==================== 摄影工作单 ==================== */
+/* ==================== 摄影工作 ==================== */
 const JOB_STATUS_LABELS={pending:"待确认",confirmed:"已确认",doing:"进行中",done:"已完成"};
 const JOB_STATUS_ORDER=["pending","confirmed","doing","done"];
 const JOB_TYPES=["人像写真","电商产品","活动跟拍","婚礼纪实","商业拍摄","其他"];
@@ -5771,7 +5771,7 @@ function exportJobsCSV(){
   ).join("\n");
   const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
-  a.download="摄影工作单_"+new Date().toISOString().slice(0,10)+".csv";a.click();
+  a.download="摄影工作_"+new Date().toISOString().slice(0,10)+".csv";a.click();
 }
 
 /* ---- 兼容旧调用 ---- */
