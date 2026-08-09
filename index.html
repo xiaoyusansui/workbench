@@ -4372,7 +4372,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.52</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.53</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4517,12 +4517,16 @@ const STATUS_MAP={
   "推广公司-设计师":["待沟通","设计中","待确认","修改中","已定稿"],
   // 制作公司子类（印刷厂归入制作公司）
   "制作公司-印刷厂":["待询价","已下单","制作中","待验收","已收货"],
-  // 兼容旧版：模特/化妆师/摄影师/设计师/印刷厂 曾作为独立大类
+  // 活动公司子类（场地/媒体归入活动公司）
+  "活动公司-场地":["待联系","已预约","已踩点","已签约","已进场"],
+  "活动公司-媒体":["待联系","已投稿","待发布","已发布","已结案"],
+  // 兼容旧版：模特/化妆师/摄影师/设计师/印刷厂/场地/媒体 曾作为独立大类
   "模特":["待邀约","已确认","已定妆","已拍摄","已结算"],
   "化妆师":["待邀约","已确认","已试妆","已跟妆","已结算"],
   "摄影师":["待安排","已确认","已拍样","已交片","已结算"],
   "设计师":["待沟通","设计中","待确认","修改中","已定稿"],
   "印刷厂":["待询价","已下单","制作中","待验收","已收货"],
+  "场地":["待联系","已预约","已踩点","已签约","已进场"],
   "媒体":["待联系","已投稿","待发布","已发布","已结案"]
 };
 
@@ -4531,8 +4535,7 @@ const DEPT_TREE={
   "制作公司":["安装师傅","设计员","制作主管","安装工","印刷厂"],
   "公司":["财务","采购","行政","工程","法务"],
   "策划":["策划专员简强","推广公司策划","自由策划"],
-  "场地":[],          // 输入场地名
-  "媒体":[]           // 输入媒体名
+  "活动公司":["场地","媒体"]
 };
 const GENERIC_STATUSES=["未启动","进行中","已完成","待确认","走流程","已下单",
   "待开始","待沟通","已确认","修改中","制作中","设计中","待定稿","待安装","待设计",
@@ -5041,7 +5044,7 @@ function renderDeptCell(d,i){
   </div>`;
 }
 function subPlaceholder(group){
-  const map={"客户":"客户名","场地":"场地名","媒体":"媒体名"};
+  const map={"客户":"客户名"};
   return map[group]||"具体名称";
 }
 function onDeptGroupChange(i,group){
@@ -5118,6 +5121,10 @@ function doneState(dept){
   }
   if(dept==="制作公司")return "已完成";
   if(dept==="公司")return "已签批";
+  if(group==="活动公司"){
+    if(sub==="场地")return "已进场";
+    if(sub==="媒体")return "已结案";
+  }
   if(dept==="客户")return "已完结";
   if(dept==="场地")return "已进场";
   // 兼容旧版独立大类
