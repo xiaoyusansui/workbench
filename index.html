@@ -63,7 +63,7 @@
   .home-layout{display:grid;grid-template-columns:1fr 260px;gap:16px;align-items:start}
   .home-main{min-width:0}
   .home-sidebar{display:flex;flex-direction:column;gap:12px;position:sticky;top:0}
-  @media(max-width:1000px){.home-layout{grid-template-columns:1fr}.home-sidebar{display:none}}
+  @media(max-width:768px){.home-layout{grid-template-columns:1fr}.home-sidebar{display:none}}
 
   /* 右侧迷你日历 */
   .sidebar-cal{background:var(--surface);border:1px solid var(--glass-border);
@@ -225,8 +225,8 @@
 
   /* 表格（参考截图4-5风格） */
   .tblwrap{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);
-    box-shadow:var(--card-shadow);overflow:hidden;backdrop-filter:blur(16px)}
-  table{width:100%;border-collapse:collapse;font-size:13px}
+    box-shadow:var(--card-shadow);overflow-x:auto;backdrop-filter:blur(16px)}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:860px}
   thead th{background:rgba(0,0,0,.25);color:var(--gold);font-weight:700;text-align:left;
     padding:11px 12px;border-bottom:1px solid var(--line-strong);position:sticky;top:0;
     white-space:nowrap;font-size:12px;letter-spacing:.3px}
@@ -263,7 +263,7 @@
     background:transparent;color:var(--ink);outline:none;font-family:inherit;transition:.12s}
   .cell-input:focus{background:var(--bg3);border-color:var(--gold)}
   select.cell-input{cursor:pointer;background:var(--bg3);color:var(--ink)}
-  textarea.cell-note{resize:none;min-height:34px;line-height:1.45;overflow:hidden;white-space:pre-wrap;field-sizing:content}
+  textarea.cell-note{resize:none;min-height:34px;max-height:140px;line-height:1.45;overflow-y:auto;white-space:pre-wrap}
   /* 策划工作「对接」列：两级级联选择 */
   .cell-dept-wrap{display:flex;gap:6px;align-items:center;min-width:190px}
   .cell-dept-wrap select,.cell-dept-wrap input{flex:1;min-width:0}
@@ -295,6 +295,9 @@
   .del:hover{background:rgba(248,113,113,.2)}
   .datewrap{display:flex;align-items:center;gap:2px}
   .empty{padding:28px;text-align:center;color:var(--muted)}
+  .plan-empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 0}
+  .plan-empty .pe-emoji{font-size:32px;opacity:.85}
+  .plan-empty .pe-text{font-size:13px;color:var(--muted2);font-weight:600}
 
   /* 重点行高亮 */
   .star-btn{border:none;background:transparent;font-size:16px;cursor:pointer;width:28px;height:28px;border-radius:7px;line-height:1;padding:0;transition:.12s}
@@ -4007,13 +4010,11 @@ window.QRCode = {
             <div class="jm-head"><span id="jm-title">新增工作单</span><span class="jm-close" onclick="closeJobModal()">✕</span></div>
             <div class="jm-body">
               <div class="jm-field"><label>👤 客户名称 *</label><input id="jm-client" list="client-datalist" placeholder="输入客户名…" autocomplete="off"/></div>
-              <div class="jm-row2">
-                <div class="jm-field"><label>📅 约定日期</label><input id="jm-date" type="date" placeholder="留空=待定"/></div>
+              <div class="jm-field"><label>📅 约定日期</label><input id="jm-date" type="date" placeholder="留空=待定"/></div>
               <div class="jm-row3">
                 <div class="jm-field"><label>💰 报价（元）</label><input id="jm-price" type="number" placeholder="总价" min="0"/></div>
                 <div class="jm-field"><label>🪙 定金（元）</label><input id="jm-deposit" type="number" placeholder="选填" min="0"/></div>
                 <div class="jm-field"><label>💵 尾款（元）</label><input id="jm-final" type="number" placeholder="选填" min="0"/></div>
-              </div>
               </div>
               <div class="jm-field"><label>📋 服务类型</label><select id="jm-type"></select></div>
               <div class="jm-field">
@@ -4407,7 +4408,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.61</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.62</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -4914,8 +4915,7 @@ function renderOverview(){
   const photoCards=[
     {nav:"schedule",icon:"📅",color:"var(--coral)",title:"日历行程",
      big:evts.length,sub:`今日 ${eToday} 项`,
-     pct:evts.length?Math.round(evts.filter(e=>e.done).length/evts.length*100):0,
-     action:"none"},
+     pct:evts.length?Math.round(evts.filter(e=>e.done).length/evts.length*100):0},
     {nav:"hot",icon:"🔥",color:"var(--coral)",title:"摄影热点",
      big:hotTotal,sub:`已跟进 ${hotDone} 条`,pct:hotTotal?Math.round(hotDone/hotTotal*100):0},
     {nav:"course",icon:"📷",color:"var(--amber)",title:"摄影课程",
@@ -4982,8 +4982,12 @@ function renderPlan(){
     });
 
   const body=document.getElementById("body-plan");
-  if(rows.length===0)
-    body.innerHTML=`<tr><td colspan="9" class="empty">暂无匹配任务</td></tr>`;
+  if(rows.length===0){
+    if(DB.rows.length===0)
+      body.innerHTML=`<tr><td colspan="9" class="empty"><div class="plan-empty"><div class="pe-emoji">📋</div><div class="pe-text">还没有任何任务</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增第一个任务</button></div></td></tr>`;
+    else
+      body.innerHTML=`<tr><td colspan="9" class="empty">没有匹配的任务</td></tr>`;
+  }
   else
     body.innerHTML=rows.map(r=>{
       const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
