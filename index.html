@@ -307,31 +307,45 @@
   .plan-empty .pe-emoji{font-size:32px;opacity:.85}
   .plan-empty .pe-text{font-size:13px;color:var(--muted2);font-weight:600}
 
-  /* 手机端策划工作卡片列表 */
+  /* 手机端策划工作卡片列表（v5.67 可折叠简洁卡片） */
   .plan-mobile-list{display:none;flex-direction:column;gap:10px}
   .pm-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);
-    padding:12px 14px;box-shadow:var(--card-shadow);position:relative;overflow:hidden}
+    box-shadow:var(--card-shadow);position:relative;overflow:hidden}
   .pm-card.key-row{border-left:3px solid var(--amber)}
   .pm-card.row-done{opacity:.75}
-  .pm-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .pm-header{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+  .pm-header:active{background:rgba(255,255,255,.03)}
   .pm-idx{color:var(--muted);font-size:12px;font-weight:800;min-width:24px}
-  .pm-star{background:transparent;border:none;font-size:16px;cursor:pointer;width:28px;height:28px;border-radius:6px;line-height:1;padding:0;color:var(--muted2)}
+  .pm-star{background:transparent;border:none;font-size:17px;cursor:pointer;width:32px;height:32px;border-radius:8px;line-height:1;padding:0;color:var(--muted2);flex-shrink:0}
   .pm-star:hover{background:rgba(251,191,36,.1)}
   .pm-main{flex:1;min-width:0}
-  .pm-title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.3;word-break:break-all}
-  .pm-board{font-size:11px;color:var(--gold);font-weight:700;background:rgba(212,165,116,.1);padding:2px 8px;border-radius:99px;display:inline-block;margin-bottom:6px}
-  .pm-body{display:grid;gap:8px}
-  .pm-field{display:flex;flex-direction:column;gap:3px}
+  .pm-title{font-size:15px;font-weight:800;color:var(--ink);line-height:1.35;word-break:break-word}
+  .pm-title .over{margin-left:6px;font-size:10px;background:var(--coral);color:#fff;padding:1px 6px;border-radius:99px;vertical-align:1px}
+  .pm-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:5px}
+  .pm-board{font-size:10.5px;color:var(--gold);font-weight:800;background:rgba(212,165,116,.12);padding:3px 9px;border-radius:99px}
+  .pm-dept{font-size:10.5px;color:var(--blue);font-weight:700;background:rgba(96,165,250,.1);padding:3px 9px;border-radius:99px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pm-date{font-size:10.5px;color:var(--muted2);font-weight:700;background:var(--bg3);padding:3px 9px;border-radius:99px}
+  .pm-status-pill{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:99px;margin-left:auto;flex-shrink:0}
+  .pm-body{display:none;padding:0 14px 14px;gap:10px;flex-direction:column}
+  .pm-card.expanded .pm-body{display:flex}
+  .pm-card.expanded .pm-header{padding-bottom:10px}
+  .pm-field{display:flex;flex-direction:column;gap:4px}
   .pm-field label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   .pm-field select,.pm-field input,.pm-field textarea{
-    background:var(--bg3);border:1px solid var(--glass-border);border-radius:9px;padding:9px 10px;
-    font-size:14px;color:var(--ink);outline:none;font-family:inherit;width:100%}
-  .pm-field select:focus,.pm-field input:focus,.pm-field textarea:focus{border-color:var(--gold)}
-  .pm-field textarea{resize:none;min-height:44px;line-height:1.45}
-  .pm-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .pm-actions{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
-  .pm-actions .act-btn,.pm-actions .del{width:34px;height:34px;font-size:15px}
+    background:var(--bg3);border:1px solid var(--glass-border);border-radius:10px;padding:10px 12px;
+    font-size:15px;color:var(--ink);outline:none;font-family:inherit;width:100%}
+  .pm-field select:focus,.pm-field input:focus,.pm-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-glow)}
+  .pm-field textarea{resize:none;min-height:60px;line-height:1.5}
+  .pm-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pm-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+  .pm-actions .act-btn,.pm-actions .del{width:38px;height:38px;font-size:16px;border-radius:10px}
   .pm-status-done{background:rgba(34,197,94,.08)}
+  .pm-empty{padding:40px 20px;text-align:center;color:var(--muted2)}
+  .pm-empty .pe-emoji{font-size:42px;margin-bottom:10px;opacity:.5}
+  .pm-empty .pe-text{font-size:14px;font-weight:700;margin-bottom:14px}
+  .pm-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),#16a34a);color:#fff;border:none;font-size:26px;font-weight:300;
+    display:none;place-items:center;box-shadow:0 4px 18px rgba(34,197,94,.35);z-index:90;cursor:pointer}
   @media(max-width:768px){
     #plan-table-wrap{display:none}
     .plan-mobile-list{display:flex}
@@ -350,6 +364,7 @@
     .qview button{flex:1;padding:9px 0}
     .board-bars{gap:6px}
     .mini-board{padding:7px 10px}
+    .pm-fab{display:grid}
   }
   .star-btn:hover{background:rgba(251,191,36,.12);transform:scale(1.1)}
   .key-row{background:rgba(251,191,36,.04)!important}
@@ -948,7 +963,7 @@
     .nav-item .nav-icon{width:26px;height:26px;font-size:15px}
     .nav-item.mobile-only{display:flex}
     .sync-chip.mobile-only{display:flex}
-    .main-content{padding:14px 14px calc(110px + env(safe-area-inset-bottom,0px));height:auto;overflow-y:visible;min-height:calc(100dvh - 56px)}
+    .main-content{padding:14px 14px calc(130px + env(safe-area-inset-bottom,0px));height:auto;overflow-y:visible;min-height:calc(100dvh - 56px)}
     .topbar{flex-wrap:wrap;gap:8px 12px;margin-bottom:8px}
     .week-bar{order:99;width:100%;margin-top:6px}
     .page-header h1{font-size:18px}
@@ -1091,6 +1106,13 @@
   .kbd-hint{font-size:10.5px;color:var(--muted);background:var(--bg3);padding:3px 10px;border-radius:99px;
     font-weight:700;border:1px solid var(--glass-border);cursor:default;letter-spacing:.3px}
   .btn.sm{padding:5px 12px;font-size:11.5px}
+
+  /* 底部筛选栏（v5.67） */
+  .job-bottom-bar{display:flex;align-items:center;gap:8px;margin-top:12px;padding:10px 12px;
+    background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm)}
+  .job-bottom-bar .filter-chips{flex:1;gap:6px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .job-bottom-bar .filter-chips::-webkit-scrollbar{display:none}
+  .job-bottom-bar .btn.job{padding:8px 16px;font-size:13px}
 
   /* ====== 时间线 ====== */
   .job-timeline{display:flex;gap:4px;margin-bottom:16px;padding:10px 14px;background:var(--surface);
@@ -1282,12 +1304,17 @@
   .jr-status-label{background:var(--bg3);color:var(--muted2);padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;white-space:nowrap}
 
   @media(max-width:768px){
-    .job-toolbar{flex-direction:column;align-items:stretch;gap:8px;margin-bottom:10px;background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:10px}
-    .job-toolbar input{width:100%;min-width:0!important;padding:10px 12px;font-size:14px}
-    .job-toolbar .filter-chips{gap:6px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:none}
-    .job-toolbar .filter-chips::-webkit-scrollbar{display:none}
-    .job-toolbar .jt-right{width:100%;justify-content:flex-end;margin-top:2px}
+    .job-toolbar{flex-direction:row;align-items:center;gap:8px;margin-bottom:10px;background:transparent;border:none;border-radius:0;padding:0}
+    .job-toolbar input{flex:1;min-width:0!important;padding:11px 14px;font-size:14px;background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm)}
+    .job-toolbar .jt-right{flex-shrink:0}
     .job-toolbar .kbd-hint{display:none}
+    .job-bottom-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:85;margin:0;
+      padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));border-radius:0;
+      border-top:1px solid var(--glass-border);border-left:none;border-right:none;border-bottom:none;
+      background:rgba(12,18,32,.92);backdrop-filter:blur(16px);box-shadow:0 -4px 20px rgba(0,0,0,.3)}
+    .job-bottom-bar .filter-chips{gap:6px}
+    .job-bottom-bar .chip{padding:8px 14px;font-size:12px}
+    .job-bottom-bar .btn.job{padding:8px 16px;font-size:13px;border-radius:10px}
     .job-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
     .job-summary .jsum-pill{width:auto;justify-content:center;padding:8px 10px}
     .job-timeline{padding:8px 10px;margin-bottom:12px}
@@ -1295,6 +1322,7 @@
     .jr-meta{display:none}
     .job-row{padding:10px 12px}
     .jr-client{max-width:120px;font-size:13px}
+    #panel-job .job-list{padding-bottom:62px}
   }
 
   /* ====== 首页总览 v5.28（全新仪表盘设计）====== */
@@ -4056,7 +4084,9 @@ window.QRCode = {
         </table></div>
 
         <!-- 手机端：策划工作卡片列表 -->
-        <div class="plan-mobile-list" id="plan-mobile-list" style="display:none"></div>
+        <div class="plan-mobile-list" id="plan-mobile-list"></div>
+        <!-- 手机端：新增任务悬浮按钮 -->
+        <button class="pm-fab mobile-only" onclick="addRowPlan()" title="新增任务">＋</button>
       </section>
 
       <!-- ==================== 摄影师课程 ==================== -->
@@ -4098,18 +4128,11 @@ window.QRCode = {
           <div class="jtb-list" id="job-today-list"></div>
         </div>
 
-        <!-- 单行工具栏：搜索 + 筛选 + 操作 -->
+        <!-- 搜索 + 导出 -->
         <div class="job-toolbar">
           <input type="text" id="search-job" placeholder="🔍 搜索客户…" oninput="renderJobs()" list="client-datalist"/>
-          <div class="filter-chips" id="job-filters">
-            <button class="chip active" data-f="" onclick="setJobFilter(this,'')">全部</button>
-            <button class="chip chip-urgent" data-f="urgent" onclick="setJobFilter(this,'urgent')">🔥紧急</button>
-            <button class="chip chip-week" data-f="week" onclick="setJobFilter(this,'week')">📅本周</button>
-            <button class="chip chip-open" data-f="open" onclick="setJobFilter(this,'open')">⏳未完</button>
-          </div>
           <div class="jt-right">
             <span class="kbd-hint" title="快捷键：N=新建">⌨N</span>
-            <button class="btn sm job" onclick="openJobModal()">＋新增</button>
             <button class="btn ghost sm" onclick="exportJobsCSV()">⬇导出</button>
           </div>
         </div>
@@ -4122,6 +4145,17 @@ window.QRCode = {
 
         <!-- 工作单列表（分组紧凑行） -->
         <div class="job-list" id="job-grid"></div>
+
+        <!-- 底部筛选栏 + 新增（手机端固定底部，桌面端普通横条） -->
+        <div class="job-bottom-bar" id="job-bottom-bar">
+          <div class="filter-chips" id="job-filters">
+            <button class="chip active" data-f="" onclick="setJobFilter(this,'')">全部</button>
+            <button class="chip chip-urgent" data-f="urgent" onclick="setJobFilter(this,'urgent')">🔥紧急</button>
+            <button class="chip chip-week" data-f="week" onclick="setJobFilter(this,'week')">📅本周</button>
+            <button class="chip chip-open" data-f="open" onclick="setJobFilter(this,'open')">⏳未完</button>
+          </div>
+          <button class="btn sm job" onclick="openJobModal()">＋新增</button>
+        </div>
 
         <!-- 客户记忆 -->
         <datalist id="client-datalist"></datalist>
@@ -4530,7 +4564,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.66</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.67</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
@@ -5111,8 +5145,11 @@ function renderPlan(){
     const emptyHtml=DB.rows.length===0
       ?`<div class="plan-empty"><div class="pe-emoji">📋</div><div class="pe-text">还没有任何任务</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增第一个任务</button></div>`
       :`<div class="empty">没有匹配的任务</div>`;
+    const mobileEmpty=DB.rows.length===0
+      ?`<div class="pm-empty"><div class="pe-emoji">📋</div><div class="pe-text">还没有任何任务</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增第一个任务</button></div>`
+      :`<div class="pm-empty">没有匹配的任务</div>`;
     body.innerHTML=`<tr><td colspan="9" class="empty">${emptyHtml}</td></tr>`;
-    if(mobileBody) mobileBody.innerHTML=emptyHtml;
+    if(mobileBody) mobileBody.innerHTML=mobileEmpty;
   }
   else{
     body.innerHTML=rows.map(r=>{
@@ -5152,7 +5189,7 @@ function renderPlan(){
   requestAnimationFrame(()=>{document.querySelectorAll(".cell-note").forEach(t=>{t.style.height="auto";t.style.height=t.scrollHeight+"px";});});
 }
 
-/* 手机端策划工作单条卡片渲染 */
+/* 手机端策划工作单条卡片渲染（v5.67 可折叠） */
 function renderPlanMobileCard(r,today){
   const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
   const done=statusGroup(r.s)==="done";
@@ -5164,6 +5201,8 @@ function renderPlanMobileCard(r,today){
   const subs=DEPT_TREE[group]||[];
   const hasSubs=subs.length>0;
   const gOptions=buildDeptGroupOptions(group);
+  const statusPillClass=statusClass(r.s);
+  const statusLabel=r.s||"未设置";
   let subHtml="";
   if(hasSubs){
     subHtml=`<select class="cell-dept-sub" data-i="${r._i}" onchange="onMobileDeptSubChange(${r._i},this.value)">${buildDeptSubOptions(r.d)}</select>`;
@@ -5171,18 +5210,23 @@ function renderPlanMobileCard(r,today){
     subHtml=`<input class="cell-dept-sub" data-i="${r._i}" value="${esc(sub)}" placeholder="${subPlaceholder(group)}" onchange="onMobileDeptSubInput(${r._i},this.value)" onblur="onMobileDeptSubInput(${r._i},this.value)"/>`;
   }
   return `<div class="${rowCls}" id="pm-card-${r._i}">
-    <div class="pm-head">
+    <div class="pm-header" onclick="togglePmCard(${r._i})">
       <span class="pm-idx">#${r._i+1}</span>
-      <button class="pm-star" onclick="toggleKey(${r._i})">${r.key?'⭐':'☆'}</button>
+      <button class="pm-star" onclick="event.stopPropagation();toggleKey(${r._i})">${r.key?'⭐':'☆'}</button>
       <div class="pm-main">
-        <div class="pm-board">${esc(r.b||"未分类")}</div>
         <div class="pm-title">${esc(r.t||"未命名事项")}${overdue?'<span class="over">逾期</span>':''}</div>
+        <div class="pm-meta">
+          <span class="pm-board">${esc(r.b||"未分类")}</span>
+          <span class="pm-dept" title="${esc(r.d||'')}">${esc(r.d?r.d.replace(/ - /g,' / '):'未分配')}</span>
+          ${r.dt?`<span class="pm-date">${fmtDateShort(r.dt)}</span>`:''}
+        </div>
       </div>
+      <span class="pm-status-pill ${statusPillClass}">${esc(statusLabel)}</span>
     </div>
     <div class="pm-body">
       <div class="pm-field"><label>事项</label><input value="${esc(r.t)}" onchange="onMobilePlanField(${r._i},'t',this.value)"/></div>
       <div class="pm-row2">
-        <div class="pm-field"><label>板块</label><select onchange="onMobilePlanField(${r._i},'b',this.value);this.previousElementSibling.previousElementSibling.querySelector('.pm-board').textContent=this.value">${bOptions}</select></div>
+        <div class="pm-field"><label>板块</label><select onchange="onMobilePlanField(${r._i},'b',this.value)">${bOptions}</select></div>
         <div class="pm-field"><label>日期</label><input type="date" value="${esc(r.dt)}" onchange="onMobilePlanField(${r._i},'dt',this.value)"/></div>
       </div>
       <div class="pm-field"><label>对接</label>
@@ -5193,13 +5237,24 @@ function renderPlanMobileCard(r,today){
       </div>
       <div class="pm-field"><label>进度</label><select class="cell-status ${statusClass(r.s)}" onchange="onMobilePlanStatusChange(${r._i},this.value,this)">${sOptions}</select></div>
       <div class="pm-field"><label>备注</label><textarea rows="2" onchange="onMobilePlanField(${r._i},'m',this.value)">${esc(r.m)}</textarea></div>
-    </div>
-    <div class="pm-actions">
-      <button class="act-btn ${done?'done':''}" title="一键完成" onclick="toggleDone(${r._i})">${done?'✓':'○'}</button>
-      <button class="act-btn dup" title="复制" onclick="dupRow(${r._i})">⧉</button>
-      <button class="del" onclick="delRowPlan(${r._i})">×</button>
+      <div class="pm-actions">
+        <button class="act-btn ${done?'done':''}" title="一键完成" onclick="toggleDone(${r._i})">${done?'✓':'○'}</button>
+        <button class="act-btn dup" title="复制" onclick="dupRow(${r._i})">⧉</button>
+        <button class="del" onclick="delRowPlan(${r._i})">×</button>
+      </div>
     </div>
   </div>`;
+}
+function fmtDateShort(dt){
+  if(!dt)return "";
+  const d=new Date(dt);
+  if(isNaN(d))return dt;
+  return `${d.getMonth()+1}/${d.getDate()}`;
+}
+function togglePmCard(i){
+  const card=document.getElementById("pm-card-"+i);
+  if(!card)return;
+  card.classList.toggle("expanded");
 }
 function onMobilePlanField(i,field,value){
   if(!DB.rows[i])return;
