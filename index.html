@@ -240,8 +240,9 @@
     white-space:nowrap;font-size:12px;letter-spacing:.3px}
   tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink2)}
   table th,table td{white-space:nowrap}
-  /* 备注列允许换行，但限制最小宽度，避免字符被压成竖排 */
-  table th:nth-child(8),table td:nth-child(8){min-width:160px;max-width:260px}
+  /* 备注列允许换行，限制宽度避免字符被压成竖排；同时放宽行距与留白，避免文字挤在一起 */
+  table th:nth-child(8),table td:nth-child(8){min-width:200px;max-width:340px}
+  table td:nth-child(8){padding:10px 12px;vertical-align:top}
   .cell-note{white-space:pre-wrap!important;min-width:100%;width:100%}
   tbody tr{transition:.15s}
   tbody tr:hover{background:rgba(255,255,255,.03)}
@@ -275,7 +276,7 @@
     background:transparent;color:var(--ink);outline:none;font-family:inherit;transition:.12s}
   .cell-input:focus{background:var(--bg3);border-color:var(--gold)}
   select.cell-input{cursor:pointer;background:var(--bg3);color:var(--ink)}
-  textarea.cell-note{resize:none;min-height:34px;max-height:140px;line-height:1.45;overflow-y:auto;white-space:pre-wrap}
+  textarea.cell-note{resize:none;min-height:48px;max-height:200px;line-height:1.6;padding:8px 10px;overflow-y:auto;white-space:pre-wrap}
   /* 策划工作「对接」列：两级级联选择 */
   .cell-dept-wrap{display:flex;gap:6px;align-items:center;min-width:190px}
   .cell-dept-wrap select,.cell-dept-wrap input{flex:1;min-width:0}
@@ -947,7 +948,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.70） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.71） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1607,9 +1608,9 @@
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板横屏优化（v5.70） ====== */
-/* 区间 835–1194px：覆盖 iPad mini/9/Air/Pro11 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
-@media(min-width:835px) and (max-width:1194px){
+/* ====== iPad / 平板横屏优化（v5.71） ====== */
+/* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
+@media(min-width:835px) and (max-width:1366px){
   /* 左侧边栏收窄，给主内容让出空间 */
   .sidebar{width:180px;min-width:180px;padding:14px 0 12px}
   .sidebar-brand{padding:0 14px 12px}
@@ -1648,7 +1649,7 @@
   .wd.d-today .dnum{font-size:13.5px}
 }
 
-/* ====== iPad / 平板竖屏专属优化（v5.70） ====== */
+/* ====== iPad / 平板竖屏专属优化（v5.71） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -3969,7 +3970,7 @@ window.QRCode = {
 <div class="app-layout">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.70） -->
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.71） -->
   <header class="mobile-header">
     <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航">☰</button>
     <div class="mh-brand">
@@ -4672,7 +4673,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.70</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.71</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
