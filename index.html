@@ -239,6 +239,10 @@
     padding:11px 12px;border-bottom:1px solid var(--line-strong);position:sticky;top:0;
     white-space:nowrap;font-size:12px;letter-spacing:.3px}
   tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink2)}
+  table th,table td{white-space:nowrap}
+  /* 备注列允许换行，但限制最小宽度，避免字符被压成竖排 */
+  table th:nth-child(8),table td:nth-child(8){min-width:160px;max-width:260px}
+  .cell-note{white-space:pre-wrap!important;min-width:100%;width:100%}
   tbody tr{transition:.15s}
   tbody tr:hover{background:rgba(255,255,255,.03)}
   .idx{color:var(--muted);font-weight:700;text-align:center;width:38px}
@@ -943,7 +947,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.69） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.70） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1603,7 +1607,48 @@
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板竖屏专属优化（v5.69） ====== */
+/* ====== iPad / 平板横屏优化（v5.70） ====== */
+/* 区间 835–1194px：覆盖 iPad mini/9/Air/Pro11 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
+@media(min-width:835px) and (max-width:1194px){
+  /* 左侧边栏收窄，给主内容让出空间 */
+  .sidebar{width:180px;min-width:180px;padding:14px 0 12px}
+  .sidebar-brand{padding:0 14px 12px}
+  .sidebar-brand .sb-avatar{width:38px;height:38px;font-size:20px}
+  .sidebar-brand .sb-name{font-size:13px}
+  .nav-list{padding:4px 6px}
+  .nav-item{padding:10px 12px;font-size:12.5px;gap:10px}
+  .nav-item .nav-icon{width:28px;height:28px;font-size:15px}
+  .nav-label{padding:14px 14px 6px}
+  .sidebar-footer{padding:8px 12px}
+  /* 主内容区稍微收紧 */
+  .main-content{padding:18px 22px 30px}
+  /* 首页：右侧边栏下沉到主内容下方，释放卡片区 */
+  .home-layout{grid-template-columns:1fr}
+  .home-sidebar{position:static;width:100%;margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;align-items:start}
+  /* 让右侧日历/行程/即将到来在平板下两列排布 */
+  .home-sidebar .sidebar-cal,.home-sidebar .hcs-timeline-card,.home-sidebar .hcs-upcoming-card{grid-column:span 1}
+  /* 卡片网格从4列收为3列，避免拥挤换行 */
+  .ov-grid{grid-template-columns:repeat(3,1fr)}
+  .pg-grid{grid-template-columns:repeat(3,1fr)}
+  .ov-grid.biz-row{grid-template-columns:1fr 1fr}
+  /* 策划工作：横屏不再用拥挤的桌面表格，改用双列卡片 */
+  #plan-table-wrap{display:none}
+  .plan-mobile-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  /* 个人事务：保持卡片，但一行最多2张 */
+  .job-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* 日历行程：右侧边栏同样下沉 */
+  .cal-layout{grid-template-columns:1fr}
+  .cal-sidebar{margin-top:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  /* 顶部信息条紧凑一点 */
+  .topbar{padding:6px 14px;gap:0}
+  #clock{font-size:17px;letter-spacing:1.5px}
+  .week-bar{margin-left:4px;gap:2px}
+  .wd{width:28px;height:30px}
+  .wd .dnum{font-size:12px}
+  .wd.d-today .dnum{font-size:13.5px}
+}
+
+/* ====== iPad / 平板竖屏专属优化（v5.70） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -3924,7 +3969,7 @@ window.QRCode = {
 <div class="app-layout">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.69） -->
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.70） -->
   <header class="mobile-header">
     <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航">☰</button>
     <div class="mh-brand">
@@ -4627,7 +4672,7 @@ window.QRCode = {
             <div class="sett-sect">
               <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
               <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.69</span></div>
+                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.70</span></div>
                 <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
