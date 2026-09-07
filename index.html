@@ -12,7 +12,7 @@
     --bg-deep:#070b14; --bg:#0c1220; --bg2:#111827; --bg3:#1a2235;
     --surface:rgba(17,24,39,.65); --surface-hover:rgba(25,35,55,.75);
     --glass:rgba(15,23,42,.55); --glass-border:rgba(255,255,255,.07);
-    --ink:#f1f5f9; --ink2:#cbd5e1; --muted:#64748b; --muted2:#475569;
+    --ink:#f1f5f9; --ink2:#cbd5e1; --muted:#64748b; --muted2:#475569; --muted3:#8b98ab;
     --line:rgba(255,255,255,.06); --line-strong:rgba(255,255,255,.12);
     --gold:#d4a574; --gold2:#e8c49a; --gold-glow:rgba(212,165,116,.25);
     --brand:#22c55e; --brand2:#4ade80; --coral:#f87171; --amber:#fbbf24;
@@ -20,6 +20,68 @@
     --card-shadow:0 8px 32px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.04);
     --radius:16px; --radius-sm:12px; --radius-xs:8px;
   }
+
+  /* ====== 白天 / 夜晚 双主题 · 白天亮色模式 ====== */
+  html[data-theme="light"]{
+    --bg-deep:#eef2f7; --bg:#f6f8fb; --bg2:#ffffff; --bg3:#e7ecf3;
+    --surface:rgba(255,255,255,.85); --surface-hover:rgba(240,245,251,.95);
+    --glass:rgba(255,255,255,.72); --glass-border:rgba(15,23,42,.09);
+    --ink:#1a2333; --ink2:#34415a; --muted:#5b6b82; --muted2:#8a97ac; --muted3:#6b7a8f;
+    --line:rgba(15,23,42,.07); --line-strong:rgba(15,23,42,.14);
+    --gold:#b07a2e; --gold2:#8a5a18; --gold-glow:rgba(176,122,46,.16);
+    --brand:#16a34a; --brand2:#22c55e; --coral:#dc2626; --amber:#d97706;
+    --purple:#7c3aed; --blue:#2563eb; --teal:#0d9488;
+    --card-shadow:0 8px 24px rgba(15,23,42,.08),0 2px 6px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.75);
+  }
+  html[data-theme="light"] body{
+    background:linear-gradient(180deg,#eef2f7 0%,#f6f8fb 45%,#e9eef6 100%);
+  }
+  html[data-theme="light"] body::before{
+    background:
+      radial-gradient(640px 360px at 85% -10%,rgba(176,122,46,.10),transparent 60%),
+      radial-gradient(520px 300px at -5% 110%,rgba(22,163,74,.07),transparent 55%),
+      radial-gradient(420px 260px at 50% 100%,rgba(124,58,237,.05),transparent 60%);
+  }
+  html[data-theme="light"] body::after{
+    background:linear-gradient(170deg,transparent 30%,rgba(238,242,247,.65) 50%,#eef2f7 100%);
+    opacity:.45;
+  }
+  /* 白天模式：登录墙同步变亮 */
+  html[data-theme="light"] .auth-gate{background:radial-gradient(circle at 50% 30%,#d9e5f2,#eef2f7 72%);}
+  html[data-theme="light"] .auth-card,
+  html[data-theme="light"] .pair-box{box-shadow:0 24px 70px rgba(15,23,42,.18);}
+  /* 白天模式：把「白色浮层」hover/底改为深色浮层，保证可辨识 */
+  html[data-theme="light"] .wd:hover,
+  html[data-theme="light"] .weather-card,
+  html[data-theme="light"] .nav-item:hover,
+  html[data-theme="light"] .cal-day:hover,
+  html[data-theme="light"] .hcd:hover,
+  html[data-theme="light"] .tl-day:hover,
+  html[data-theme="light"] tbody tr:hover{background:rgba(15,23,42,.05)}
+  html[data-theme="light"] .weather-card:hover{background:rgba(15,23,42,.08)}
+  html[data-theme="light"] .stat-card:hover,
+  html[data-theme="light"] .ov-card:hover,
+  html[data-theme="light"] .book-card:hover{border-color:rgba(15,23,42,.18)}
+  html[data-theme="light"] .sett-row,
+  html[data-theme="light"] .acct-status-bar,
+  html[data-theme="light"] .token-card,
+  html[data-theme="light"] .dash-stats{background:rgba(15,23,42,.03)}
+  html[data-theme="light"] .sett-action{background:rgba(15,23,42,.02)}
+  html[data-theme="light"] .sett-action:hover{background:rgba(15,23,42,.05);border-color:rgba(15,23,42,.16)}
+  html[data-theme="light"] .account-chip,
+  html[data-theme="light"] .sync-chip{background:rgba(15,23,42,.05)}
+  html[data-theme="light"] .auth-card input.auth-input,
+  html[data-theme="light"] .auth-token-row input,
+  html[data-theme="light"] .auth-token-row button{background:rgba(15,23,42,.05)}
+  html[data-theme="light"] .auth-card input.auth-input:focus,
+  html[data-theme="light"] .auth-token-row input:focus{background:rgba(15,23,42,.08)}
+  html[data-theme="light"] .module-head:hover,
+  html[data-theme="light"] .lesson:hover,
+  html[data-theme="light"] .assign-item:hover,
+  html[data-theme="light"] .pm-header:active{background:rgba(15,23,42,.03)}
+  html[data-theme="light"] .ng-note{background:rgba(15,23,42,.04)}
+  html[data-theme="light"] .okr-kr{border-bottom-color:rgba(15,23,42,.06)}
+  html[data-theme="light"] .sidebar-footer .sf-sync:hover{background:rgba(15,23,42,.05)}
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
@@ -90,7 +152,7 @@
     background:var(--bg3);font-size:11px;display:grid;place-items:center;cursor:pointer;
     transition:.15s;color:var(--muted2)}
   .sct:hover{border-color:var(--line-strong);color:var(--ink2)}
-  .sct.active{background:var(--ink);color:#0c1220;border-color:var(--ink)}
+  .sct.active{background:var(--ink);color:var(--bg-deep);border-color:var(--ink)}
   .title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .title-group h1{font-size:30px;font-weight:900;letter-spacing:.5px;color:var(--ink);
     text-shadow:0 2px 20px rgba(0,0,0,.3);margin-bottom:4px;line-height:1.2}
@@ -584,7 +646,7 @@
   .tc-chip[data-tag="plan"].active{background:var(--brand);border-color:var(--brand)}
   .tc-chip[data-tag="study"].active{background:var(--amber);border-color:var(--amber)}
   .tc-chip[data-tag="life"].active{background:var(--purple);border-color:var(--purple)}
-  .tc-chip[data-tag=""].active{background:var(--ink);color:#0c1220;border-color:var(--ink)}
+  .tc-chip[data-tag=""].active{background:var(--ink);color:var(--bg-deep);border-color:var(--ink)}
 
   /* 日历行程：手机端日期选择器与标签筛选适配 */
   @media(max-width:834px){
@@ -682,7 +744,7 @@
     background:var(--bg3);font-size:12px;display:grid;place-items:center;cursor:pointer;
     transition:.12s;color:var(--muted2)}
   .htc:hover{border-color:var(--line-strong);color:var(--ink2)}
-  .htc.active{background:var(--ink);color:#0c1220;border-color:var(--ink)}
+  .htc.active{background:var(--ink);color:var(--bg-deep);border-color:var(--ink)}
 
   /* 首页时间线项（复用+微调） */
   .htl-item{position:relative;padding:9px 12px;margin-bottom:6px;border-radius:10px;
@@ -951,7 +1013,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.74） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.75） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1589,6 +1651,9 @@
 .account-chip:hover{border-color:var(--brand);}
 .sync-chip{display:none;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:12px;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .2s;}
 .sync-chip:hover{border-color:var(--blue);}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin-left:6px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);font-size:15px;line-height:1;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;flex:none}
+.theme-toggle:hover{border-color:var(--gold);transform:rotate(18deg)}
+html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 /* ===== 我的作品 / 客片 ===== */
 .works-hint{color:var(--muted);font-size:13px;line-height:1.7;margin:6px 0 16px;background:var(--surface);border:1px solid var(--glass-border);border-radius:10px;padding:10px 14px;}
 .works-hint code{background:var(--bg3);padding:1px 6px;border-radius:5px;color:var(--gold);font-size:12px;}
@@ -1611,7 +1676,7 @@
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板横屏优化（v5.74） ====== */
+/* ====== iPad / 平板横屏优化（v5.75） ====== */
 /* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
 @media(min-width:835px) and (max-width:1366px){
   /* 左侧边栏收窄，给主内容让出空间 */
@@ -1652,7 +1717,7 @@
   .wd.d-today .dnum{font-size:13.5px}
 }
 
-/* ====== iPad / 平板竖屏专属优化（v5.74） ====== */
+/* ====== iPad / 平板竖屏专属优化（v5.75） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -1673,6 +1738,15 @@
   .cal-stats{grid-template-columns:repeat(4,1fr)}
 }
 </style>
+<script>
+  /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
+  (function(){
+    try{
+      var t=localStorage.getItem("wb_theme")||"dark";
+      document.documentElement.setAttribute("data-theme",t);
+    }catch(e){}
+  })();
+</script>
 <!-- GitHub 云后端 + 二维码生成 -->
 <script>
 var qrcode = function() {
@@ -3973,7 +4047,7 @@ window.QRCode = {
 <div class="app-layout" data-page-node-id="wLbULnFRuLbSHjnfee7c3j">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.74） -->
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.75） -->
   <header class="mobile-header" data-page-node-id="Jqb9mSa4gpGaMOdcrC7Axn">
     <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航" data-page-node-id="pGCYefE7WbwZpRszatvvR2">☰</button>
     <div class="mh-brand" data-page-node-id="WeZeV79PJlfpLodukBFkiC">
@@ -4085,6 +4159,7 @@ window.QRCode = {
           </div>
           <div class="sync-chip mobile-only" id="sync-chip-top" onclick="openSyncSetup()" title="云同步状态" data-page-node-id="gRD6JeSAEVjJURJenFDzfM">☁ <span id="sync-text-top" data-page-node-id="LlaHgxR7i2EX6BKbkNpdLX">未开启</span></div>
           <div class="account-chip" id="account-chip" onclick="accountChipClick()" title="账号" data-page-node-id="zX01COehlmuAhGrVFKnOFt">👤 <span id="account-indicator" data-page-node-id="TGxInDP18q5ymH1VaFrFxf">未登录</span></div>
+          <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="切换白天 / 夜晚模式">🌙</div>
         </div>
         <!-- 紧凑统计条 -->
         <div class="dash-stats" id="dash-stats" style="margin-top:10px" data-page-node-id="4oYzMl968H9Q5aNcODNIxB"></div>
@@ -4676,7 +4751,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.74</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.75</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5462,7 +5537,7 @@ function renderPlanStats(){
   const barP=document.getElementById("bar-plan");if(barP)barP.style.width=pct+"%";
   renderBoardBars();
 
-  /* 统计卡片点击跳转对应筛选视图（v5.74 改为事件委托，避免内联 onclick 不生效） */
+  /* 统计卡片点击跳转对应筛选视图（v5.75 改为事件委托，避免内联 onclick 不生效） */
   const statsWrap=document.querySelector(".plan-stats");
   if(statsWrap && !statsWrap._bound){
     statsWrap.addEventListener("click",e=>{
@@ -7573,6 +7648,20 @@ async function initAuth(){
   // 每次打开先显示登录墙：输入密码（或点本地模式）后才进入工作台，不在未登录时直接显示内容
   if(savedEmail)document.getElementById("auth-email").value=savedEmail;
   showAuthGate();}
+
+/* ---- 白天 / 夜晚 主题切换 ---- */
+function applyTheme(t){
+  var root=document.documentElement;
+  root.setAttribute("data-theme",t);
+  try{localStorage.setItem("wb_theme",t);}catch(e){}
+  var btn=document.getElementById("theme-toggle");
+  if(btn)btn.textContent=(t==="light")?"☀️":"🌙";
+}
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute("data-theme")==="light"?"light":"dark";
+  applyTheme(cur==="light"?"dark":"light");
+}
+applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
 
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
