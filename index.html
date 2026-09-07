@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+<html lang="zh-CN" data-page-node-id="myaHRsiAQW7Zs91nhDtMEc">
+<head data-page-node-id="qxfrN1KD4uEzxnayRz73lc">
+<meta charset="UTF-8" data-page-node-id="OBqFEPhMjqzLyhMeYljDGj" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="bmCLxcYxYUL2dEYXyTGwtl" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" data-page-node-id="LpdMNpFjMu6l6Fw8wLaC9u" />
+<meta http-equiv="Pragma" content="no-cache" data-page-node-id="GOKA8T5wvhcEsCmlMnCsaz" />
+<meta http-equiv="Expires" content="0" data-page-node-id="a7bH5xcjrzwJKwjj71FGUN" />
 <title>小鱼三岁就很酷 · 工作台</title>
 <style>
   :root{
@@ -213,6 +213,9 @@
   .ps-card.ps-warn .ps-num{color:var(--coral)}
   .ps-label{font-size:12px;color:var(--muted2);margin-top:2px}
   .ps-sub{font-size:11px;color:var(--muted);margin-top:4px;min-height:14px}
+  .ps-card{cursor:pointer;transition:.12s}
+  .ps-card:hover{background:var(--surface-hover);border-color:var(--gold)}
+  .ps-card.active{background:rgba(251,191,36,.14);border-color:var(--amber)}
 
   /* 板块条 */
   .board-bars{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
@@ -948,7 +951,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.72） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.73） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1608,7 +1611,7 @@
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板横屏优化（v5.72） ====== */
+/* ====== iPad / 平板横屏优化（v5.73） ====== */
 /* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
 @media(min-width:835px) and (max-width:1366px){
   /* 左侧边栏收窄，给主内容让出空间 */
@@ -1649,7 +1652,7 @@
   .wd.d-today .dnum{font-size:13.5px}
 }
 
-/* ====== iPad / 平板竖屏专属优化（v5.72） ====== */
+/* ====== iPad / 平板竖屏专属优化（v5.73） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -3965,788 +3968,788 @@ window.QRCode = {
 };
 </script>
 </head>
-<body>
+<body data-page-node-id="n2d1RjvdBwhRWvd9jCLaYo">
 
-<div class="app-layout">
+<div class="app-layout" data-page-node-id="wLbULnFRuLbSHjnfee7c3j">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.72） -->
-  <header class="mobile-header">
-    <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航">☰</button>
-    <div class="mh-brand">
-      <div class="mh-avatar">🐟</div>
-      <div class="mh-title">小鱼工作台</div>
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.73） -->
+  <header class="mobile-header" data-page-node-id="Jqb9mSa4gpGaMOdcrC7Axn">
+    <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航" data-page-node-id="pGCYefE7WbwZpRszatvvR2">☰</button>
+    <div class="mh-brand" data-page-node-id="WeZeV79PJlfpLodukBFkiC">
+      <div class="mh-avatar" data-page-node-id="A405LB5yczST64VgAvrOCx">🐟</div>
+      <div class="mh-title" data-page-node-id="fW1TQeAPN5uWvKUDbviBEc">小鱼工作台</div>
     </div>
   </header>
 
   <!-- 手机端导航抽屉遮罩 -->
-  <div class="mobile-nav-overlay" onclick="closeMobileNav()"></div>
+  <div class="mobile-nav-overlay" onclick="closeMobileNav()" data-page-node-id="eOQKcpd3598GsRinLxxFvn"></div>
 
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="sb-avatar">🐟</div>
-      <div class="sb-name">小鱼工作台</div>
-      <div class="sb-role">专业能力是根本，资源整合是杠杆，持续学习是保障</div>
+  <aside class="sidebar" data-page-node-id="tcSb0QCWqGmvdjd5MYUE1b">
+    <div class="sidebar-brand" data-page-node-id="V2f3k7y9l51FtcV19OSEo1">
+      <div class="sb-avatar" data-page-node-id="hGd8A07hglO2RMmanvgHBV">🐟</div>
+      <div class="sb-name" data-page-node-id="s5aYjUCQZuwi4CkvRtstS6">小鱼工作台</div>
+      <div class="sb-role" data-page-node-id="WuRZeFmEBW7sZDtqv14Udu">专业能力是根本，资源整合是杠杆，持续学习是保障</div>
     </div>
 
-    <ul class="nav-list">
-      <li class="nav-item active" data-nav="home" onclick="switchTab('home')">
-        <span class="nav-icon" style="background:linear-gradient(135deg,rgba(212,165,116,.18),rgba(251,191,36,.12));color:var(--gold)">🐟</span>
-        <span>首页</span>
+    <ul class="nav-list" data-page-node-id="xYbUBqHBpNqF95QFEbvQ39">
+      <li class="nav-item active" data-nav="home" onclick="switchTab('home')" data-page-node-id="ys7wd6KTlmt1W6vKLrskBy">
+        <span class="nav-icon" style="background:linear-gradient(135deg,rgba(212,165,116,.18),rgba(251,191,36,.12));color:var(--gold)" data-page-node-id="ZPK8gfHKER5dsxHCcSlysd">🐟</span>
+        <span data-page-node-id="62ECbf8OIeTUdJO1QgBrvb">首页</span>
       </li>
-      <div class="nav-label">💼 业务</div>
-      <li class="nav-item" data-nav="plan" onclick="switchTab('plan')">
-        <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)">📋</span>
-        <span>策划工作</span>
+      <div class="nav-label" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 业务</div>
+      <li class="nav-item" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
+        <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
+        <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
       </li>
-      <li class="nav-item" data-nav="job" onclick="switchTab('job')">
-        <span class="nav-icon" style="background:rgba(96,165,250,.12);color:var(--blue)">📸</span>
-        <span>个人事务</span>
-      </li>
-
-      <div class="nav-label">📸 摄影</div>
-      <li class="nav-item" data-nav="hot" onclick="switchTab('hot')">
-        <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)">🔥</span>
-        <span>摄影热点</span>
-      </li>
-      <li class="nav-item" data-nav="course" onclick="switchTab('course')">
-        <span class="nav-icon" style="background:rgba(251,191,36,.12);color:var(--amber)">📷</span>
-        <span>摄影课程</span>
-      </li>
-      <li class="nav-item" data-nav="gear" onclick="switchTab('gear')">
-        <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)">🔧</span>
-        <span>器材管理</span>
-      </li>
-      <li class="nav-item" data-nav="idea" onclick="switchTab('idea')">
-        <span class="nav-icon" style="background:rgba(168,85,247,.12);color:#a855f7">💡</span>
-        <span>灵感收集</span>
+      <li class="nav-item" data-nav="job" onclick="switchTab('job')" data-page-node-id="VevhHCl34o2gXEOj9lNjrp">
+        <span class="nav-icon" style="background:rgba(96,165,250,.12);color:var(--blue)" data-page-node-id="FjVkYehqgOgGtjzEuIsnrL">📸</span>
+        <span data-page-node-id="6JissmAfzQLUmY1Y4CTVC2">个人事务</span>
       </li>
 
-      <div class="nav-label">🌱 成长</div>
-      <li class="nav-item" data-nav="okr" onclick="switchTab('okr')">
-        <span class="nav-icon" style="background:rgba(236,72,153,.12);color:#ec4899">🎯</span>
-        <span>目标与OKR</span>
+      <div class="nav-label" data-page-node-id="2C1Q4ndWaFrqxUF2cUcBaE">📸 摄影</div>
+      <li class="nav-item" data-nav="hot" onclick="switchTab('hot')" data-page-node-id="nID8Fkejtze1jJEHvMR4Kf">
+        <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="zGyyIPmQwvmoiSCGgZwFrY">🔥</span>
+        <span data-page-node-id="dnlvfEKEGnNlyftWRWNur7">摄影热点</span>
       </li>
-      <li class="nav-item" data-nav="read" onclick="switchTab('read')">
-        <span class="nav-icon" style="background:rgba(167,139,250,.12);color:var(--purple)">📖</span>
-        <span>读书计划</span>
+      <li class="nav-item" data-nav="course" onclick="switchTab('course')" data-page-node-id="gxobD6lGDxUX3yPrqeyadP">
+        <span class="nav-icon" style="background:rgba(251,191,36,.12);color:var(--amber)" data-page-node-id="V6T4gn86XMoGCEw8G4Nrt3">📷</span>
+        <span data-page-node-id="JWYFRzqG2HC9IMrOoJo3wT">摄影课程</span>
       </li>
-      <li class="nav-item" data-nav="review" onclick="switchTab('review')">
-        <span class="nav-icon" style="background:rgba(20,184,166,.12);color:#14b8a6">📝</span>
-        <span>复盘周记</span>
+      <li class="nav-item" data-nav="gear" onclick="switchTab('gear')" data-page-node-id="B5r7a55iwO5hkgRYl9YfII">
+        <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="WiqH3FCTOxqXH8AvQfY4f7">🔧</span>
+        <span data-page-node-id="It7IbDmD8QuDAzRSnkdzuE">器材管理</span>
       </li>
-      <li class="nav-item" data-nav="works" onclick="switchTab('works')">
-        <span class="nav-icon" style="background:rgba(239,68,68,.12);color:#ef4444">📷</span>
-        <span>我的作品</span>
+      <li class="nav-item" data-nav="idea" onclick="switchTab('idea')" data-page-node-id="Vevrn2WprJQVkvoRZTf8WO">
+        <span class="nav-icon" style="background:rgba(168,85,247,.12);color:#a855f7" data-page-node-id="di1KYKibD7RkpteFLkDDHV">💡</span>
+        <span data-page-node-id="PL3xnvyGbxSqmg3IyItCn6">灵感收集</span>
       </li>
-      <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')">
-        <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff">📩</span>
-        <span>客户预约</span>
+
+      <div class="nav-label" data-page-node-id="XEPCsx5cOk1d9MpIAMD29Q">🌱 成长</div>
+      <li class="nav-item" data-nav="okr" onclick="switchTab('okr')" data-page-node-id="L9XlV5wbcr3AepXXEjz3mD">
+        <span class="nav-icon" style="background:rgba(236,72,153,.12);color:#ec4899" data-page-node-id="fOUkXpsGcLnzHNCJAfH8C8">🎯</span>
+        <span data-page-node-id="3J8rPAxuLCYFw07xxGbBzK">目标与OKR</span>
       </li>
-      <li class="nav-item mobile-only" onclick="openSettings()">
-        <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)">⚙</span>
-        <span>设置</span>
+      <li class="nav-item" data-nav="read" onclick="switchTab('read')" data-page-node-id="GQrtMYAETEhPFRnX7WY7Ul">
+        <span class="nav-icon" style="background:rgba(167,139,250,.12);color:var(--purple)" data-page-node-id="ni6NCrN9TgunBdENRYOuri">📖</span>
+        <span data-page-node-id="ZG9sAnH5lC2FwWnH1qPBDn">读书计划</span>
+      </li>
+      <li class="nav-item" data-nav="review" onclick="switchTab('review')" data-page-node-id="VFAi3BzwRHA2RH67nnJyMa">
+        <span class="nav-icon" style="background:rgba(20,184,166,.12);color:#14b8a6" data-page-node-id="BgiDCh8bAgBvFEbrji7lRt">📝</span>
+        <span data-page-node-id="SnIXIkyg5HQli1GWHfj6Hi">复盘周记</span>
+      </li>
+      <li class="nav-item" data-nav="works" onclick="switchTab('works')" data-page-node-id="KzmgDthN6R97s3YOOkf3pB">
+        <span class="nav-icon" style="background:rgba(239,68,68,.12);color:#ef4444" data-page-node-id="msmNEeTHxzTHEvxj5O08Fn">📷</span>
+        <span data-page-node-id="A2PmV1lJVoRTN9Fkyahf5J">我的作品</span>
+      </li>
+      <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')" data-page-node-id="gGJbns4dGyvCfWU01X8Z4R">
+        <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff" data-page-node-id="rm9HmhaHklHZ2CxPyeTQJO">📩</span>
+        <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
+      </li>
+      <li class="nav-item mobile-only" onclick="openSettings()" data-page-node-id="fRY9QSnHloflPjokfljQZo">
+        <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="GJYpTqwp0WM2usPpzXmpQP">⚙</span>
+        <span data-page-node-id="HtFGo0Rs02eiP2FNhz5vOH">设置</span>
       </li>
     </ul>
 
-    <div class="sidebar-footer">
-      <div class="sf-row">
-        <div class="sf-sync" onclick="openSyncSetup()" title="云同步设置">
-          <span class="dot" id="sf-dot"></span><span id="sync-text-side">未开启</span>
+    <div class="sidebar-footer" data-page-node-id="rERjelEKUWUuFfUpxkypFY">
+      <div class="sf-row" data-page-node-id="JFcsaC8aGq4O1Tvao8zEjw">
+        <div class="sf-sync" onclick="openSyncSetup()" title="云同步设置" data-page-node-id="I0p6fRoaTHSNt0lXJUVmEp">
+          <span class="dot" id="sf-dot" data-page-node-id="UO4DrYijdffsA2XQ3bILKN"></span><span id="sync-text-side" data-page-node-id="7ufieXtU40PgvtLgo4XaQq">未开启</span>
         </div>
-        <div class="sf-settings" onclick="openSettings()" title="设置">⚙ 设置</div>
+        <div class="sf-settings" onclick="openSettings()" title="设置" data-page-node-id="Aac2gnBegELR06PsBr8BC3">⚙ 设置</div>
       </div>
     </div>
   </aside>
 
   <!-- ====== 右侧主内容区 ====== -->
-  <main class="main-content">
-    <div class="wrap">
+  <main class="main-content" data-page-node-id="iysNynqLfasZZWVHhKOjmL">
+    <div class="wrap" data-page-node-id="Zs5l7PqEET6jrf26LkGmCj">
 
       <!-- 页面标题 + 时间信息条 + 右侧迷你日历 -->
-      <div class="page-header">
-        <div class="title-row">
-          <div class="title-group">
-            <h1 id="page-title">📋 策划工作 <span class="sparkle"></span></h1>
-            <div class="subtitle" id="page-subtitle">百江富淮城运营项目策划 · 任务追踪与进度管理</div>
+      <div class="page-header" data-page-node-id="9ObO0eBAQs2eetkpaFR7JD">
+        <div class="title-row" data-page-node-id="ngnJnuxBFrtKZXaKMUreds">
+          <div class="title-group" data-page-node-id="hoqNTMJmwWS02m41Gmbb62">
+            <h1 id="page-title" data-page-node-id="8HrcLbNhiXE5yY7oSxrEWW">📋 策划工作 <span class="sparkle" data-page-node-id="wHL937EYAEOEhhRLxwzUGz"></span></h1>
+            <div class="subtitle" id="page-subtitle" data-page-node-id="cV44qApNUZ7gS5SV0DoLmG">百江富淮城运营项目策划 · 任务追踪与进度管理</div>
           </div>
         </div>
-        <div class="topbar">
-          <span id="date">—</span><div class="sep"></div>
-          <span id="clock">--:--:--</span><div class="sep"></div>
-          <span id="greet">你好，小鱼</span>
-          <div class="week-bar" id="week-bar"></div>
-          <div class="spacer"></div>
-          <div class="weather-card" title="天气 · 点击刷新" onclick="fetchWeather()">
-            <span class="w-icon" id="w-icon">🌤</span>
+        <div class="topbar" data-page-node-id="tV8RHh7gylXsZ9KkmWXQ6y">
+          <span id="date" data-page-node-id="6f9HUhudZtLYWvYd7JDTKs">—</span><div class="sep" data-page-node-id="pvym3Vjnwms0rB6zZJoZDX"></div>
+          <span id="clock" data-page-node-id="m028H3opwBMfU9DYNHmiTZ">--:--:--</span><div class="sep" data-page-node-id="K7PXzB3xPeUl4PYXqrDZFN"></div>
+          <span id="greet" data-page-node-id="LLFVRtBrdMQlDRQglxyDhX">你好，小鱼</span>
+          <div class="week-bar" id="week-bar" data-page-node-id="rrEULcQjuhRWDNW2rc3p2Q"></div>
+          <div class="spacer" data-page-node-id="4P5vruTojDqjIxqQjoKSeA"></div>
+          <div class="weather-card" title="天气 · 点击刷新" onclick="fetchWeather()" data-page-node-id="ymqXMdMWrGLHSvBpHX52Pc">
+            <span class="w-icon" id="w-icon" data-page-node-id="dC3L2HOUiSOmjNWcIDIvia">🌤</span>
           </div>
-          <div class="sync-chip mobile-only" id="sync-chip-top" onclick="openSyncSetup()" title="云同步状态">☁ <span id="sync-text-top">未开启</span></div>
-          <div class="account-chip" id="account-chip" onclick="accountChipClick()" title="账号">👤 <span id="account-indicator">未登录</span></div>
+          <div class="sync-chip mobile-only" id="sync-chip-top" onclick="openSyncSetup()" title="云同步状态" data-page-node-id="gRD6JeSAEVjJURJenFDzfM">☁ <span id="sync-text-top" data-page-node-id="LlaHgxR7i2EX6BKbkNpdLX">未开启</span></div>
+          <div class="account-chip" id="account-chip" onclick="accountChipClick()" title="账号" data-page-node-id="zX01COehlmuAhGrVFKnOFt">👤 <span id="account-indicator" data-page-node-id="TGxInDP18q5ymH1VaFrFxf">未登录</span></div>
         </div>
         <!-- 紧凑统计条 -->
-        <div class="dash-stats" id="dash-stats" style="margin-top:10px"></div>
+        <div class="dash-stats" id="dash-stats" style="margin-top:10px" data-page-node-id="4oYzMl968H9Q5aNcODNIxB"></div>
       </div>
 
       <!-- ==================== 首页（总览）v5.29 ==================== -->
-      <section id="panel-home">
-        <div class="home-layout">
+      <section id="panel-home" data-page-node-id="vkxTfYip0TqlVFdwTCpApF">
+        <div class="home-layout" data-page-node-id="2jqOV5Nl7ge0EDmUHUIki7">
           <!-- 左侧：卡片区 -->
-          <div class="home-main">
+          <div class="home-main" data-page-node-id="lwBXFgLqqOU0qGbuNQreVq">
             <!-- 💼 业务区（大卡片） -->
-            <div class="dash-section" id="dash-biz-section">
-              <div class="dash-sect-label">💼 业务</div>
-              <div class="ov-grid biz-row" id="ov-grid-biz"></div>
+            <div class="dash-section" id="dash-biz-section" data-page-node-id="rqDVOurq4OYodVAEZ7YGKx">
+              <div class="dash-sect-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 业务</div>
+              <div class="ov-grid biz-row" id="ov-grid-biz" data-page-node-id="WTcJrSVsDiNs9Ef4eq9dW2"></div>
             </div>
 
             <!-- 📸🌱 摄影与成长（8卡片统一网格） -->
-            <div class="dash-section" id="dash-pg-section">
-              <div class="ov-grid pg-grid" id="ov-grid-pg"></div>
+            <div class="dash-section" id="dash-pg-section" data-page-node-id="Ejc1v71aLre7ZSWFQZOzYx">
+              <div class="ov-grid pg-grid" id="ov-grid-pg" data-page-node-id="1OLPWDqnScYwkOW0U3bFir"></div>
             </div>
 
           </div>          <!-- 右侧栏：日历 + 今日行程 -->
-          <div class="home-sidebar">
+          <div class="home-sidebar" data-page-node-id="shiPERWi011i1u4ItBXNN8">
             <!-- 月历卡片 -->
-            <div class="sidebar-cal">
-              <div class="sc-header">
-                <button class="sc-nav" onclick="homeCalOffset(-1)">◀</button>
-                <span class="sc-title" id="home-cal-title"></span>
-                <button class="sc-nav" onclick="homeCalOffset(1)">▶</button>
+            <div class="sidebar-cal" data-page-node-id="PId20gHTu07BUSej47iadB">
+              <div class="sc-header" data-page-node-id="FeImP2T96bFSal7W1E3tZE">
+                <button class="sc-nav" onclick="homeCalOffset(-1)" data-page-node-id="NdOHOQ9UyVyUIk5Muc0CWk">◀</button>
+                <span class="sc-title" id="home-cal-title" data-page-node-id="pnlMJCAd9g6qdB488EufMl"></span>
+                <button class="sc-nav" onclick="homeCalOffset(1)" data-page-node-id="EPCuDKbGeLQzappM4Lr6xJ">▶</button>
               </div>
-              <div class="sc-weekdays">
-                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+              <div class="sc-weekdays" data-page-node-id="znCMcCzwUFG6adNwF4lHTA">
+                <span data-page-node-id="NJ1D8H1ko14x8dixC8pHHj">日</span><span data-page-node-id="FBIER64ACTVAoEqU84L44R">一</span><span data-page-node-id="kpe925PavzpqtG5nNppfPC">二</span><span data-page-node-id="eBxb3mA4Y9j31psrxZ1fmr">三</span><span data-page-node-id="A6wjdjjhgVs7O1Bbwyt1CX">四</span><span data-page-node-id="rjsF7HzlBRw3323A4tZXnt">五</span><span data-page-node-id="VPnmekRWOgC4EDfHthwmeB">六</span>
               </div>
-              <div class="sc-grid" id="home-cal-grid"></div>
-              <div class="sc-footer">
-                <button class="btn ghost sm" onclick="openEvtModal()" style="font-size:11px;padding:4px 10px">＋ 添加</button>
-                <div class="sc-tags" id="home-tag-chips">
-                  <span class="sct active" data-tag="" onclick="filterHomeTag('')">全部</span>
-                  <span class="sct" data-tag="shot" onclick="filterHomeTag('shot')">📸</span>
-                  <span class="sct" data-tag="plan" onclick="filterHomeTag('plan')">📋</span>
-                  <span class="sct" data-tag="study" onclick="filterHomeTag('study')">📖</span>
-                  <span class="sct" data-tag="life" onclick="filterHomeTag('life')">🌿</span>
+              <div class="sc-grid" id="home-cal-grid" data-page-node-id="Cc2L1uys4qHhmICkNFsTXt"></div>
+              <div class="sc-footer" data-page-node-id="bJvFcLxvxwJj7LlPPaoJ6H">
+                <button class="btn ghost sm" onclick="openEvtModal()" style="font-size:11px;padding:4px 10px" data-page-node-id="EPYIXtMdoHk8PSiFJu5fwD">＋ 添加</button>
+                <div class="sc-tags" id="home-tag-chips" data-page-node-id="Qn92gIlXMx56SBYHNIabqX">
+                  <span class="sct active" data-tag="" onclick="filterHomeTag('')" data-page-node-id="WpLONb4ddXypWwS0hczZRr">全部</span>
+                  <span class="sct" data-tag="shot" onclick="filterHomeTag('shot')" data-page-node-id="AwSlAoFhQHMWgLXgi7rAro">📸</span>
+                  <span class="sct" data-tag="plan" onclick="filterHomeTag('plan')" data-page-node-id="iAXWsCukHei9mS6r0UEyKW">📋</span>
+                  <span class="sct" data-tag="study" onclick="filterHomeTag('study')" data-page-node-id="6h4P87W1A3C0j6H1h6d6jo">📖</span>
+                  <span class="sct" data-tag="life" onclick="filterHomeTag('life')" data-page-node-id="xYBIL3X7kDerbemd0qgCk2">🌿</span>
                 </div>
               </div>
             </div>
 
             <!-- 今日行程时间线 -->
-            <div class="hcs-timeline-card">
-              <div class="hcs-tl-head">
-                <span class="hcs-tl-date" id="home-tl-date"></span>
-                <span class="hcs-tl-label">今日行程</span>
+            <div class="hcs-timeline-card" data-page-node-id="fLaeNIwSxnlSwpXeENR1XN">
+              <div class="hcs-tl-head" data-page-node-id="DKbydrmrHzl6yNxRkgL0gE">
+                <span class="hcs-tl-date" id="home-tl-date" data-page-node-id="PoJOQoDESrfDSuAUuMzlaH"></span>
+                <span class="hcs-tl-label" data-page-node-id="27BcAo9uDA81kIWTOsV5o1">今日行程</span>
               </div>
-              <div class="hcs-tl-body" id="home-timeline"></div>
+              <div class="hcs-tl-body" id="home-timeline" data-page-node-id="8tMFbTMVvWRH2dbQoN5c4q"></div>
             </div>
 
             <!-- 即将到来 -->
-            <div class="hcs-upcoming-card">
-              <h4>🕐 即将到来</h4>
-              <div id="home-upcoming"></div>
+            <div class="hcs-upcoming-card" data-page-node-id="yCE6As7SppGeV5MtTKh8ov">
+              <h4 data-page-node-id="Jolfk73tJfXClCJKv0QO8G">🕐 即将到来</h4>
+              <div id="home-upcoming" data-page-node-id="DwiNfFAqCMKLswwyBBdw3g"></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== 策划工作 ==================== -->
-      <section id="panel-plan" style="display:none">
-        <div class="focus-key">
-          <h4>⭐ 本周重点事项（自动汇总 · 共 <span id="key-count">0</span> 项）</h4>
-          <div id="key-items"></div>
+      <section id="panel-plan" style="display:none" data-page-node-id="ru3ciqiCYgW1aI1kbvgFWf">
+        <div class="focus-key" data-page-node-id="ppBypqpeaG3aawlVfle5UK">
+          <h4 data-page-node-id="3zDZZ8HHa8xnXEhfbHmXru">⭐ 本周重点事项（自动汇总 · 共 <span id="key-count" data-page-node-id="rEgW3y9sjfA9hOJynXCWmN">0</span> 项）</h4>
+          <div id="key-items" data-page-node-id="L7oVgbNFBmCfKxULBuxknd"></div>
         </div>
 
-        <div class="toolbar">
-          <input type="text" id="search-plan" placeholder="🔍 搜索事项…" oninput="renderPlan()"/>
-          <select id="fban-plan" onchange="renderPlan()"><option value="">全部板块</option></select>
-          <select id="fstat-plan" onchange="renderPlan()">
-            <option value="">全部进度</option><option value="done">已完成</option>
-            <option value="doing">进行中</option><option value="flow">等待中</option>
-            <option value="todo">待处理</option>
+        <div class="toolbar" data-page-node-id="C14TdY9FuTdUePh6Zp1l2s">
+          <input type="text" id="search-plan" placeholder="🔍 搜索事项…" oninput="renderPlan()" data-page-node-id="4vsInOzby2XOB9zrBFKNmv"/>
+          <select id="fban-plan" onchange="renderPlan()" data-page-node-id="iMfF55XZ034ukBctcG42JU"><option value="" data-page-node-id="Y25Kwk9q6bVOtm14CpVCoL">全部板块</option></select>
+          <select id="fstat-plan" onchange="renderPlan()" data-page-node-id="bgz0R6hyhKgFTrfAVHCkA4">
+            <option value="" data-page-node-id="WilQJVhC5nrJBcpCRuI2kr">全部进度</option><option value="done" data-page-node-id="2GaGaHZmBgPnIyPHNYQR0P">已完成</option>
+            <option value="doing" data-page-node-id="wf8ti6NgM5HdsSVOpXOgcZ">进行中</option><option value="flow" data-page-node-id="9VDMMndSyNx27ytd7PsQxS">等待中</option>
+            <option value="todo" data-page-node-id="oEBbUYU1cHdgm2XC3Dgs2K">待处理</option>
           </select>
-          <div class="qview">
-            <button data-v="all" class="active" onclick="setQuickView('all',this)">全部</button>
-            <button data-v="key" onclick="setQuickView('key',this)">⭐重点</button>
-            <button data-v="due" onclick="setQuickView('due',this)">⚠逾期·本周</button>
+          <div class="qview" data-page-node-id="WyvxI9RsGQmcERBLG5xcT3">
+            <button data-v="all" class="active" onclick="setQuickView('all',this)" data-page-node-id="xbJSdHtW022M14pGXSQ5Me">全部</button>
+            <button data-v="key" onclick="setQuickView('key',this)" data-page-node-id="BRbXreSiXmqQlGLZ4cNyAU">⭐重点</button>
+            <button data-v="due" onclick="setQuickView('due',this)" data-page-node-id="tDvesUIfkXmjRC2p1kzIoB">⚠逾期·本周</button>
           </div>
-          <button class="btn ghost" onclick="sortByTime()">⏱ 排序</button>
-          <div class="spacer"></div>
-          <button class="btn ghost" onclick="exportCSV('plan')">⬇ 导出</button>
-          <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步">💾 保存</button>
-          <button class="btn" onclick="addRowPlan()">＋ 新增</button>
+          <button class="btn ghost" onclick="sortByTime()" data-page-node-id="6mg0SZw7vhTq8DzgNUk39x">⏱ 排序</button>
+          <div class="spacer" data-page-node-id="UfnzQgBuaTIXdJxsRhOCot"></div>
+          <button class="btn ghost" onclick="exportCSV('plan')" data-page-node-id="vEtytEF2VTpNBGsBJszEsS">⬇ 导出</button>
+          <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步" data-page-node-id="tRkTG544G4v1Ua50jD2KZq">💾 保存</button>
+          <button class="btn" onclick="addRowPlan()" data-page-node-id="WgLonM2Ay3oecDCXxjognI">＋ 新增</button>
         </div>
 
-        <div class="plan-stats">
-          <div class="ps-card"><div class="ps-num" id="sc-total">0</div><div class="ps-label">总任务</div><div class="ps-sub" id="sc-total-sub">—</div></div>
-          <div class="ps-card"><div class="ps-num" id="sc-done">0</div><div class="ps-label">已完成</div><div class="ps-sub" id="sc-done-sub">—</div></div>
-          <div class="ps-card"><div class="ps-num" id="sc-doing">0</div><div class="ps-label">进行中</div><div class="ps-sub" id="sc-doing-sub">—</div></div>
-          <div class="ps-card ps-warn"><div class="ps-num" id="sc-over">0</div><div class="ps-label">逾期</div><div class="ps-sub" id="sc-over-sub">—</div></div>
+        <div class="plan-stats" data-page-node-id="wIaLZnkYturyTLetzpLfav">
+          <div class="ps-card" data-filter="all" onclick="filterPlanBy('all')" data-page-node-id="0NzGBZxHAXuujGIVAKMeGc"><div class="ps-num" id="sc-total" data-page-node-id="tZiTd0wsquJ3rDH63aYh5a">0</div><div class="ps-label" data-page-node-id="nV8n1RGaNmVYmdow2axKyT">总任务</div><div class="ps-sub" id="sc-total-sub" data-page-node-id="gIjfrglHzkexMxRsPwTHUM">—</div></div>
+          <div class="ps-card" data-filter="done" onclick="filterPlanBy('done')" data-page-node-id="zMse5ccHKh6fscbC7JuYEF"><div class="ps-num" id="sc-done" data-page-node-id="C7WI58DOo4CHqYbY1rM617">0</div><div class="ps-label" data-page-node-id="Mx9I5VKt3JsI5Ut9t2zMSf">已完成</div><div class="ps-sub" id="sc-done-sub" data-page-node-id="UQSpysfPmTY4NDZRBFpWeg">—</div></div>
+          <div class="ps-card" data-filter="doing" onclick="filterPlanBy('doing')" data-page-node-id="JSJtAqcwOxQRO7aApSy0j2"><div class="ps-num" id="sc-doing" data-page-node-id="gyxpDLBZzDf893CBeMatjR">0</div><div class="ps-label" data-page-node-id="uOneHN0MTnWE6Z6LpNDLIv">进行中</div><div class="ps-sub" id="sc-doing-sub" data-page-node-id="gbdeCfFM5hwXFlcXJrd6Xa">—</div></div>
+          <div class="ps-card ps-warn" data-filter="due" onclick="filterPlanBy('due')" data-page-node-id="PmjO20Qd8PowhBKoRte4qc"><div class="ps-num" id="sc-over" data-page-node-id="dmdDTNQNFuW3XkYAa2psOH">0</div><div class="ps-label" data-page-node-id="5gEp5skP8b7vPPjWrFVUZr">逾期</div><div class="ps-sub" id="sc-over-sub" data-page-node-id="RFP25PjRIL9kwssmO1Eo0e">—</div></div>
         </div>
 
-        <div class="bar"><i id="bar-plan"></i></div>
-        <div class="board-bars" id="board-bars"></div>
+        <div class="bar" data-page-node-id="W66EsApFiWN2ffhnFe63fo"><i id="bar-plan" data-page-node-id="F8654hsiYPXHWTa3riZliH"></i></div>
+        <div class="board-bars" id="board-bars" data-page-node-id="ymINfu8KQfnYyXoixPFgpJ"></div>
 
-        <div class="tblwrap" id="plan-table-wrap"><table>
-          <thead><tr>
-            <th style="width:38px">#</th><th style="width:42px;color:#f1c40f">★</th><th style="width:115px">板块</th><th>事项</th>
-            <th style="width:220px">对接</th><th style="width:125px">进度</th>
-            <th style="width:125px">预计完成</th><th>备注</th><th style="width:82px">操作</th>
+        <div class="tblwrap" id="plan-table-wrap" data-page-node-id="EermSYpDYbqeZ69yTw1LXB"><table data-page-node-id="4KZ8sHRM4LZBpLmR4lTBlu">
+          <thead data-page-node-id="UnIh2sVGWcJhGEFDFpEz77"><tr data-page-node-id="WdzkB54EL1LzxuCSmBKXND">
+            <th style="width:38px" data-page-node-id="Bd7T8lmUh2jFJNkXvfckFJ">#</th><th style="width:42px;color:#f1c40f" data-page-node-id="V7ep84wJRVFwTPz52VUiet">★</th><th style="width:115px" data-page-node-id="hez98I9kjSortpHDlAA0Pp">板块</th><th data-page-node-id="PUQPJWXeuLU7QNQjlVZfSg">事项</th>
+            <th style="width:220px" data-page-node-id="ZN2xkHQGZoyEdHtNxgme7y">对接</th><th style="width:125px" data-page-node-id="uA9CadQYQx2QMwvTduXqHP">进度</th>
+            <th style="width:125px" data-page-node-id="wAsq0nUGyX5AhkX97WiX6i">预计完成</th><th data-page-node-id="e0AprvtPW79kHafZpQ7ZPP">备注</th><th style="width:82px" data-page-node-id="1DH8h8FyxHEhWaOXSpZMr6">操作</th>
           </tr></thead>
-          <tbody id="body-plan"></tbody>
+          <tbody id="body-plan" data-page-node-id="wJ3LZtA25PYdoJaeLY3r7Z"></tbody>
         </table></div>
 
         <!-- 手机端：策划工作卡片列表 -->
-        <div class="plan-mobile-list" id="plan-mobile-list"></div>
+        <div class="plan-mobile-list" id="plan-mobile-list" data-page-node-id="NeZ6N2keNtj6PVZ5aqIuAG"></div>
         <!-- 手机端：新增任务悬浮按钮 -->
-        <button class="pm-fab mobile-only" onclick="addRowPlan()" title="新增任务">＋</button>
+        <button class="pm-fab mobile-only" onclick="addRowPlan()" title="新增任务" data-page-node-id="GbTKmisyFz6QkDEUqrcpAz">＋</button>
       </section>
 
       <!-- ==================== 摄影师课程 ==================== -->
-      <section id="panel-course" style="display:none">
+      <section id="panel-course" style="display:none" data-page-node-id="uixyOnqV4dLD0HaGSBAUim">
         <!-- 学习路线图 -->
-        <div class="course-roadmap" id="course-roadmap"></div>
+        <div class="course-roadmap" id="course-roadmap" data-page-node-id="QEo5pK9BRa0DQheSHsQAeQ"></div>
 
         <!-- 总进度 -->
-        <div class="course-header">
-          <div class="course-stat">
-            <div class="ring" id="course-ring"></div>
-            <div class="info">
-              <div class="big" id="course-pct">0%</div>
-              <div class="sm">课程总进度 · <span id="course-done">0</span>/<span id="course-total">0</span> 课时</div>
+        <div class="course-header" data-page-node-id="AzKA3NBNGH360QAOIMHAv4">
+          <div class="course-stat" data-page-node-id="B3dL6fVBTXC1rq9VWfI8ut">
+            <div class="ring" id="course-ring" data-page-node-id="XfQDxexXcYwyBoxhu3CXso"></div>
+            <div class="info" data-page-node-id="5vyUGCT2N1ruzexRRz3GzH">
+              <div class="big" id="course-pct" data-page-node-id="0iF1N35tAvoRuEhRb3M4sf">0%</div>
+              <div class="sm" data-page-node-id="BJQ72cTv3ewVUue9CAc3EM">课程总进度 · <span id="course-done" data-page-node-id="f4Z7RqZzXz5xFxwshjFFL1">0</span>/<span id="course-total" data-page-node-id="Ou4SRfBLTYgINGdZOBD8Iu">0</span> 课时</div>
             </div>
           </div>
-          <button class="btn course" onclick="addModule()">＋ 新增模块</button>
+          <button class="btn course" onclick="addModule()" data-page-node-id="8HwjUzaH4GFr8ZMaBjdcAS">＋ 新增模块</button>
         </div>
-        <div id="modules"></div>
+        <div id="modules" data-page-node-id="m8ykuBF2WHyGQSqv1dQpRc"></div>
       </section>
 
       <!-- ==================== 摄影师热点 ==================== -->
-      <section id="panel-hot" style="display:none">
-        <div class="platform-tabs">
-          <div class="pf xhs active" onclick="filterHot('all',this)">🔥 全部平台</div>
-          <div class="pf xhs" onclick="filterHot('xhs',this)">📕 小红书</div>
-          <div class="pf dy" onclick="filterHot('dy',this)">🎵 抖音</div>
-          <div class="pf bz" onclick="filterHot('bz',this)">📺 B站</div>
+      <section id="panel-hot" style="display:none" data-page-node-id="CB1HO9YS0WAd2qcShF9RM1">
+        <div class="platform-tabs" data-page-node-id="OIXkE5gOUE2AB47mywgGAR">
+          <div class="pf xhs active" onclick="filterHot('all',this)" data-page-node-id="yx0tZUObAY6i7DZyaijyQo">🔥 全部平台</div>
+          <div class="pf xhs" onclick="filterHot('xhs',this)" data-page-node-id="wGtSEBHGSb6CEhF2cr2AIz">📕 小红书</div>
+          <div class="pf dy" onclick="filterHot('dy',this)" data-page-node-id="zOa2VzOrO6CENuT5B6K0x4">🎵 抖音</div>
+          <div class="pf bz" onclick="filterHot('bz',this)" data-page-node-id="G66DymEavmxphS9yWNfoKL">📺 B站</div>
         </div>
-        <div class="hot-grid" id="hot-grid"></div>
+        <div class="hot-grid" id="hot-grid" data-page-node-id="6yKgSu2vcXtNytsflF9RQq"></div>
       </section>
 
       <!-- ==================== 个人事务 ==================== -->
-      <section id="panel-job" style="display:none">
+      <section id="panel-job" style="display:none" data-page-node-id="50htiAusEgynxeT1QcTMFO">
 
         <!-- 今日焦点（动态横幅） -->
-        <div id="job-today-banner" class="job-today-banner" style="display:none">
-          <div class="jtb-head"><span class="jtb-icon">🔥</span><span>今日拍摄安排</span></div>
-          <div class="jtb-list" id="job-today-list"></div>
+        <div id="job-today-banner" class="job-today-banner" style="display:none" data-page-node-id="V5UviDhj5i7lZhst9kkFeB">
+          <div class="jtb-head" data-page-node-id="kAVbjpkL5GuCIQuIcFXEfq"><span class="jtb-icon" data-page-node-id="8EbSOEcFOJDeqsuz5Y2TS3">🔥</span><span data-page-node-id="G2AbddV1OMhanOYWtPacOW">今日拍摄安排</span></div>
+          <div class="jtb-list" id="job-today-list" data-page-node-id="3juom4J4SCC8aSejOUsw7w"></div>
         </div>
 
         <!-- 搜索 + 导出 -->
-        <div class="job-toolbar">
-          <input type="text" id="search-job" placeholder="🔍 搜索客户…" oninput="renderJobs()" list="client-datalist"/>
-          <div class="jt-right">
-            <span class="kbd-hint" title="快捷键：N=新建">⌨N</span>
-            <button class="btn ghost sm" onclick="exportJobsCSV()">⬇导出</button>
+        <div class="job-toolbar" data-page-node-id="oNDZ7HhpaxRkmpNfZ2iovD">
+          <input type="text" id="search-job" placeholder="🔍 搜索客户…" oninput="renderJobs()" list="client-datalist" data-page-node-id="1PFxEcoDD9F7XozkAUiSBP"/>
+          <div class="jt-right" data-page-node-id="Bia4riW2GGNrLGIIxxBUUL">
+            <span class="kbd-hint" title="快捷键：N=新建" data-page-node-id="CzCzaRqXrBML03fiMWm61k">⌨N</span>
+            <button class="btn ghost sm" onclick="exportJobsCSV()" data-page-node-id="5GvmZv5Qbx4xfEaNOSaPCA">⬇导出</button>
           </div>
         </div>
 
         <!-- 统计摘要（内联） -->
-        <div class="job-summary" id="job-summary"></div>
+        <div class="job-summary" id="job-summary" data-page-node-id="GcqqOsns9TtIwFR6Dq6wFe"></div>
 
         <!-- 14天时间线（精简版） -->
-        <div class="job-timeline" id="job-timeline"></div>
+        <div class="job-timeline" id="job-timeline" data-page-node-id="OiDa9WIVq7ZSWAGjZx2eCv"></div>
 
         <!-- 工作单列表（分组紧凑行） -->
-        <div class="job-list" id="job-grid"></div>
+        <div class="job-list" id="job-grid" data-page-node-id="cELcm5s8ByrBFbcSUGPuLd"></div>
 
         <!-- 底部筛选栏 + 新增（手机端固定底部，桌面端普通横条） -->
-        <div class="job-bottom-bar" id="job-bottom-bar">
-          <div class="filter-chips" id="job-filters">
-            <button class="chip active" data-f="" onclick="setJobFilter(this,'')">全部</button>
-            <button class="chip chip-urgent" data-f="urgent" onclick="setJobFilter(this,'urgent')">🔥紧急</button>
-            <button class="chip chip-week" data-f="week" onclick="setJobFilter(this,'week')">📅本周</button>
-            <button class="chip chip-open" data-f="open" onclick="setJobFilter(this,'open')">⏳未完</button>
+        <div class="job-bottom-bar" id="job-bottom-bar" data-page-node-id="Hq5o6pypfg28QQPPBlB6Ey">
+          <div class="filter-chips" id="job-filters" data-page-node-id="2LfJntb6pSQCS28a2NlyrL">
+            <button class="chip active" data-f="" onclick="setJobFilter(this,'')" data-page-node-id="XZfYWsJWGaf77yIC2OJf85">全部</button>
+            <button class="chip chip-urgent" data-f="urgent" onclick="setJobFilter(this,'urgent')" data-page-node-id="dYL9dI8rRVHBAjBuwyunST">🔥紧急</button>
+            <button class="chip chip-week" data-f="week" onclick="setJobFilter(this,'week')" data-page-node-id="hC64Ho6DFyoLtLXvS9iBDr">📅本周</button>
+            <button class="chip chip-open" data-f="open" onclick="setJobFilter(this,'open')" data-page-node-id="JdtCcewXeu1sffwYPofWjS">⏳未完</button>
           </div>
-          <button class="btn sm job" onclick="openJobModal()">＋新增</button>
+          <button class="btn sm job" onclick="openJobModal()" data-page-node-id="nUYhwpJmMMFqWbjAkJMKYR">＋新增</button>
         </div>
 
         <!-- 客户记忆 -->
-        <datalist id="client-datalist"></datalist>
+        <datalist id="client-datalist" data-page-node-id="DNJgTijW9Q4o2CyGGHygg2"></datalist>
 
         <!-- 模态表单 -->
-        <div class="job-modal-overlay" id="job-modal" style="display:none" onclick="if(event.target===this)closeJobModal()">
-          <div class="job-modal">
-            <div class="jm-head"><span id="jm-title">新增工作单</span><span class="jm-close" onclick="closeJobModal()">✕</span></div>
-            <div class="jm-body">
-              <div class="jm-field"><label>👤 客户名称 *</label><input id="jm-client" list="client-datalist" placeholder="输入客户名…" autocomplete="off"/></div>
-              <div class="jm-field"><label>📅 约定日期</label><input id="jm-date" type="date" placeholder="留空=待定"/></div>
-              <div class="jm-row3">
-                <div class="jm-field"><label>💰 报价（元）</label><input id="jm-price" type="number" placeholder="总价" min="0"/></div>
-                <div class="jm-field"><label>🪙 定金（元）</label><input id="jm-deposit" type="number" placeholder="选填" min="0"/></div>
-                <div class="jm-field"><label>💵 尾款（元）</label><input id="jm-final" type="number" placeholder="选填" min="0"/></div>
+        <div class="job-modal-overlay" id="job-modal" style="display:none" onclick="if(event.target===this)closeJobModal()" data-page-node-id="q70dbFRsJfmfZtVCBCGr3d">
+          <div class="job-modal" data-page-node-id="7bwXD9RcUP9ffT2PeejRvC">
+            <div class="jm-head" data-page-node-id="25I8krQ9zjXGaBerycyRo4"><span id="jm-title" data-page-node-id="hxKe5FRQofnlpK9dcPzNOE">新增工作单</span><span class="jm-close" onclick="closeJobModal()" data-page-node-id="VZbQRFJJnTRfjIgpsaCrkA">✕</span></div>
+            <div class="jm-body" data-page-node-id="e8ypqD17vAQU3GKOOP97Bh">
+              <div class="jm-field" data-page-node-id="3o4PRkHqTXkhDiTGv7Mw1e"><label data-page-node-id="dc8TaqXKLGJjLjufIRpF2y">👤 客户名称 *</label><input id="jm-client" list="client-datalist" placeholder="输入客户名…" autocomplete="off" data-page-node-id="RCaF528ZA0ert0ZoTKyGpm"/></div>
+              <div class="jm-field" data-page-node-id="7GMpOEfvT0qulGpnLaAfEN"><label data-page-node-id="QkM9f93PkEEcoahSldADdd">📅 约定日期</label><input id="jm-date" type="date" placeholder="留空=待定" data-page-node-id="HxJwLZUiMtnODrzc8cAZfy"/></div>
+              <div class="jm-row3" data-page-node-id="4BXNDcAAMQJg0Nyfvbir5j">
+                <div class="jm-field" data-page-node-id="OSc1w1huqdr0f3gBjMIEWh"><label data-page-node-id="tyjjckioQu4ugmAFAkX8ub">💰 报价（元）</label><input id="jm-price" type="number" placeholder="总价" min="0" data-page-node-id="OTduQebRDBv9qol7bdVxW0"/></div>
+                <div class="jm-field" data-page-node-id="nHrhsCyHJDmUAZ9KCOgKHj"><label data-page-node-id="ignJmAskKEA9MRZpX0OGvR">🪙 定金（元）</label><input id="jm-deposit" type="number" placeholder="选填" min="0" data-page-node-id="7phfBo2ZIhffgEkmg0ITeU"/></div>
+                <div class="jm-field" data-page-node-id="GvD9xWVUfVpBMehUBe33We"><label data-page-node-id="8dqPn7aozhPCmiWcPbzB8m">💵 尾款（元）</label><input id="jm-final" type="number" placeholder="选填" min="0" data-page-node-id="iZkdvjPxcrzy406W5VEJ0c"/></div>
               </div>
-              <div class="jm-field"><label>📋 服务类型</label><select id="jm-type"></select></div>
-              <div class="jm-field">
-                <label>🤝 对接</label>
-                <div class="jm-row2" style="gap:8px">
-                  <select id="jm-dept-group" onchange="onJobDeptGroupChange()"></select>
-                  <select id="jm-dept-sub" onchange="onJobDeptSubChange()"></select>
+              <div class="jm-field" data-page-node-id="eBmekvzqQYf1rx2nDOX0DX"><label data-page-node-id="ZCGORvqdB0OGxjmsKqq9VW">📋 服务类型</label><select id="jm-type" data-page-node-id="8HUKG55SY2xAzMWjnRJcv5"></select></div>
+              <div class="jm-field" data-page-node-id="xKrAk1zacy9Q2ZPImwKPHk">
+                <label data-page-node-id="AnrKUldxXW7fAAG3FZKKHj">🤝 对接</label>
+                <div class="jm-row2" style="gap:8px" data-page-node-id="Eo7k0Ug2YV5uYCDJAijBs0">
+                  <select id="jm-dept-group" onchange="onJobDeptGroupChange()" data-page-node-id="UIe2UpB849N2HcvTy19W3I"></select>
+                  <select id="jm-dept-sub" onchange="onJobDeptSubChange()" data-page-node-id="4kgagHrXWk87g9H5jAJT4B"></select>
                 </div>
               </div>
-              <div class="jm-field"><label>📊 进度</label><select id="jm-status"></select></div>
-              <div class="jm-field"><label>📝 拍摄计划 / 备注</label><textarea id="jm-plan" rows="2" placeholder="选填…"></textarea></div>
+              <div class="jm-field" data-page-node-id="P6a4KSQckayOup6ThearaW"><label data-page-node-id="BFiEXHDuyJBzfY6OGg2a4Z">📊 进度</label><select id="jm-status" data-page-node-id="HKWj8ecVzJNzykOvSPyYNy"></select></div>
+              <div class="jm-field" data-page-node-id="DQqXLBWtvmp0uWuOlh6OnA"><label data-page-node-id="QFEFybVI4TCBgJyeV4j28B">📝 拍摄计划 / 备注</label><textarea id="jm-plan" rows="2" placeholder="选填…"></textarea></div>
             </div>
-            <div class="jm-foot">
-              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeJobModal()">取消</button>
-              <button class="btn sm job" id="jm-save-btn" onclick="saveJobModal()">💾 保存</button>
+            <div class="jm-foot" data-page-node-id="Y3UF45fagvM0vcu8YtQFkB">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeJobModal()" data-page-node-id="Kz0LzJJBK9djDhPv2hgjkN">取消</button>
+              <button class="btn sm job" id="jm-save-btn" onclick="saveJobModal()" data-page-node-id="90QuwxZxYBLKyQ96vI6I7c">💾 保存</button>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== 读书计划（新增）==================== -->
-      <section id="panel-read" style="display:none">
-        <div class="bc" style="margin:0 2px 14px;background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.12)">
-          <h4 style="color:var(--purple)">📖 本月 · 读书计划重点</h4>
-          <ul id="mc-read" contenteditable="true">
-            <li>《摄影构图艺术》—— 构图进阶必读</li>
-            <li>《写给大家看的设计书》—— 视觉审美提升</li>
-            <li>《非暴力沟通》—— 人际关系与表达</li>
-            <li>《深度工作》—— 专注力与效率管理</li>
+      <section id="panel-read" style="display:none" data-page-node-id="fElJxl0oHIH4EeqoOF2tdz">
+        <div class="bc" style="margin:0 2px 14px;background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.12)" data-page-node-id="F7oqNQCFiA3Aw3AVhQuEWG">
+          <h4 style="color:var(--purple)" data-page-node-id="ftJJVsGEGqPtaEhToS7SPE">📖 本月 · 读书计划重点</h4>
+          <ul id="mc-read" contenteditable="true" data-page-node-id="IUMmX0T5ReU7UMcmbxqnYQ">
+            <li data-page-node-id="hsseNkV6JwxyVJa8T4IJZN">《摄影构图艺术》—— 构图进阶必读</li>
+            <li data-page-node-id="BvQhC8EqXSQWHwzAB7bp2d">《写给大家看的设计书》—— 视觉审美提升</li>
+            <li data-page-node-id="WYh79XCi1RDCsO8VhWXsuC">《非暴力沟通》—— 人际关系与表达</li>
+            <li data-page-node-id="DkdEfpOdfLXErgrXLETAnA">《深度工作》—— 专注力与效率管理</li>
           </ul>
         </div>
 
-        <div class="read-header">
-          <div class="read-stat">
-            <div class="rs-icon rs-total">📚</div>
-            <div class="rs-info"><div class="big" id="rs-total">0</div><div class="sm">在读书籍</div></div>
+        <div class="read-header" data-page-node-id="HH9t45X3sM7Z9udzZo1hMi">
+          <div class="read-stat" data-page-node-id="aDKDsbcUZ8zeTRMhDmn1pu">
+            <div class="rs-icon rs-total" data-page-node-id="J146OAgpwlFHIwYG93xiEn">📚</div>
+            <div class="rs-info" data-page-node-id="AoW3SaVZQ0CIC0HREgPdr2"><div class="big" id="rs-total" data-page-node-id="uOIrgrVrlLZrLdFkDzz2rh">0</div><div class="sm" data-page-node-id="xSjsZ2O2hj1TGiZMI78kms">在读书籍</div></div>
           </div>
-          <div class="read-stat">
-            <div class="rs-icon rs-done">✅</div>
-            <div class="rs-info"><div class="big" id="rs-done">0</div><div class="sm">已读完</div></div>
+          <div class="read-stat" data-page-node-id="IuPr7Rqsaysv3HV8umXHXD">
+            <div class="rs-icon rs-done" data-page-node-id="wnRGWQo6FN1HUOGAqgwQP4">✅</div>
+            <div class="rs-info" data-page-node-id="Ms7anmWCWrONUCqkPkHbO3"><div class="big" id="rs-done" data-page-node-id="kDGhjX2ZPUTT89hrJfxxIU">0</div><div class="sm" data-page-node-id="BzWlCtoAOQasHuegmP0Yb5">已读完</div></div>
           </div>
-          <button class="btn hot" onclick="addBook()">＋ 新增书籍</button>
+          <button class="btn hot" onclick="addBook()" data-page-node-id="FHU8MB9m8ptyaNEa7Cgora">＋ 新增书籍</button>
         </div>
 
-        <div class="book-grid" id="book-grid"></div>
+        <div class="book-grid" id="book-grid" data-page-node-id="tOsVaW8sdytCejEPsiHW7p"></div>
       </section>
 
       <!-- ==================== 目标与OKR ==================== -->
-      <section id="panel-okr" style="display:none">
-        <div class="sec-head">
-          <h2>🎯 目标与 OKR</h2>
-          <div class="sec-actions">
-            <button class="btn sm" onclick="addOkr()">＋ 新建目标</button>
+      <section id="panel-okr" style="display:none" data-page-node-id="OAte3YqDPN2N2vBrTxnozp">
+        <div class="sec-head" data-page-node-id="svVIIIpzH0n3Q06mhtmO1z">
+          <h2 data-page-node-id="duyCanvcaNlcSL6FQ84gdh">🎯 目标与 OKR</h2>
+          <div class="sec-actions" data-page-node-id="z8kXSH9u6B9VLpWQQjB4oK">
+            <button class="btn sm" onclick="addOkr()" data-page-node-id="f30DcP3mlaHGZ0f0HLCiOJ">＋ 新建目标</button>
           </div>
         </div>
-        <div class="okr-stats" id="okr-stats">
-          <div class="okr-stat"><span class="os-num" id="os-total">0</span><span class="os-lb">目标总数</span></div>
-          <div class="okr-stat"><span class="os-num os-on" id="os-on">0</span><span class="os-lb">进行中</span></div>
-          <div class="okr-stat"><span class="os-num os-done" id="os-done">0</span><span class="os-lb">已完成</span></div>
-          <div class="okr-stat"><span class="os-num os-avg" id="os-avg">0%</span><span class="os-lb">平均进度</span></div>
+        <div class="okr-stats" id="okr-stats" data-page-node-id="QIe6dPY1kyK6O5ysBSpUAN">
+          <div class="okr-stat" data-page-node-id="SwZcqLoAbHOmOPBDFHXMNs"><span class="os-num" id="os-total" data-page-node-id="nsnlzF3d3b7XYeYXO5X1Dt">0</span><span class="os-lb" data-page-node-id="V2GA0zGrDxMGxp8Ptu9N2V">目标总数</span></div>
+          <div class="okr-stat" data-page-node-id="l9YRl61UdoeazC5XABfj6q"><span class="os-num os-on" id="os-on" data-page-node-id="yrLA2TmXWogDldHJXGTFhG">0</span><span class="os-lb" data-page-node-id="GsESVf9OCKioEhx4q3XOo5">进行中</span></div>
+          <div class="okr-stat" data-page-node-id="JNmQpKskFx7HvWhVUFPEIg"><span class="os-num os-done" id="os-done" data-page-node-id="L79zFXn2IoJ3gGprbJTPl8">0</span><span class="os-lb" data-page-node-id="SuVpUNsj3rE1teLwC5AZPz">已完成</span></div>
+          <div class="okr-stat" data-page-node-id="Ityt47eai6qfljpiaFKNpE"><span class="os-num os-avg" id="os-avg" data-page-node-id="KW4yE9TESuozowXOocJLZt">0%</span><span class="os-lb" data-page-node-id="CB6xwkQPz94Nur83tlatcN">平均进度</span></div>
         </div>
-        <div class="okr-grid" id="okr-grid"></div>
+        <div class="okr-grid" id="okr-grid" data-page-node-id="4hpXQUrXPXyxt0qV9R6cL5"></div>
       </section>
 
       <!-- ==================== 器材管理 ==================== -->
-      <section id="panel-gear" style="display:none">
-        <div class="sec-head">
-          <h2>🔧 器材管理</h2>
-          <div class="sec-actions">
-            <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()"/>
-            <button class="btn sm" onclick="openGearModal()">＋ 新增器材</button>
+      <section id="panel-gear" style="display:none" data-page-node-id="7GtagXtVHyvEjAofPFhOLg">
+        <div class="sec-head" data-page-node-id="JsPHo6olfCA35ih4pmywas">
+          <h2 data-page-node-id="DEkF4sUWqWAMBa7ADhGH6P">🔧 器材管理</h2>
+          <div class="sec-actions" data-page-node-id="U66zRRqyFQI2aaNTFcDETB">
+            <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()" data-page-node-id="2tt6yFLAEnHXtSwT2Uv1Bi"/>
+            <button class="btn sm" onclick="openGearModal()" data-page-node-id="JpbF1yhtfFECnY7cODy5GT">＋ 新增器材</button>
           </div>
         </div>
-        <div class="gear-stats" id="gear-stats">
-          <div class="gear-stat"><span class="gs-num" id="gs-total">0</span><span class="gs-lb">总数量</span></div>
-          <div class="gear-stat"><span class="gs-num gs-active" id="gs-active">0</span><span class="gs-lb">在用</span></div>
-          <div class="gear-stat"><span class="gs-num gs-repair" id="gs-repair">0</span><span class="gs-lb">维修中</span></div>
-          <div class="gear-stat"><span class="gs-num gs-val" id="gs-val">¥0</span><span class="gs-lb">总价值</span></div>
+        <div class="gear-stats" id="gear-stats" data-page-node-id="8FxdYeHjoYVVoaDvpVBenQ">
+          <div class="gear-stat" data-page-node-id="0EJiujdauBAbppKoZC4a7u"><span class="gs-num" id="gs-total" data-page-node-id="GJRtgiVZxUm43JHogV14rb">0</span><span class="gs-lb" data-page-node-id="qgwRPwuQ4cVi9ZrURM5Gcm">总数量</span></div>
+          <div class="gear-stat" data-page-node-id="OoBjaaCSW21H58ylDsYPHC"><span class="gs-num gs-active" id="gs-active" data-page-node-id="7ZERDeYJRKkYUnUW94s94Q">0</span><span class="gs-lb" data-page-node-id="PYX1iYkZlt7j8HepZGDXI0">在用</span></div>
+          <div class="gear-stat" data-page-node-id="ODCg9A4RmDQZvwgTDkgG4k"><span class="gs-num gs-repair" id="gs-repair" data-page-node-id="nev521GNIoct7BGZjLLF8N">0</span><span class="gs-lb" data-page-node-id="uEQHkFwzI3TeqdNtIzyQvV">维修中</span></div>
+          <div class="gear-stat" data-page-node-id="IUcKBjHy0j3rUHEBbUTIk2"><span class="gs-num gs-val" id="gs-val" data-page-node-id="L59IxiB0ssYOnDJJ6tRodO">¥0</span><span class="gs-lb" data-page-node-id="vd3uC2AsTDTBYvjYDF9wYh">总价值</span></div>
         </div>
         <!-- 分类筛选 -->
-        <div class="gear-filter-bar" id="gear-filters"></div>
-        <div class="gear-grid" id="gear-grid"></div>
+        <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
+        <div class="gear-grid" id="gear-grid" data-page-node-id="AMdYidqOThffeVKb0CBUUk"></div>
 
         <!-- 模态表单 -->
-        <div class="job-modal-overlay" id="gear-modal" style="display:none" onclick="if(event.target===this)closeGearModal()">
-          <div class="job-modal">
-            <div class="jm-head"><span id="gm-title">新增器材</span><span class="jm-close" onclick="closeGearModal()">✕</span></div>
-            <div class="jm-body">
-              <div class="jm-field"><label>📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4"/></div>
-              <div class="jm-row2">
-                <div class="jm-field"><label>🏷 类别</label><select id="gm-category"></select></div>
-                <div class="jm-field"><label>📊 状态</label><select id="gm-status"><option value="active">✅ 在用</option><option value="repair">🔧 维修中</option><option value="retired">📦 已退役</option></select></div>
+        <div class="job-modal-overlay" id="gear-modal" style="display:none" onclick="if(event.target===this)closeGearModal()" data-page-node-id="RRFtlDUicIy5gXTv7TAmxv">
+          <div class="job-modal" data-page-node-id="31HMgeCqUcIMwXOAHM6zEb">
+            <div class="jm-head" data-page-node-id="BZbB1w36437iZ0Gx52CrlF"><span id="gm-title" data-page-node-id="RayfNr87xoWC2DGSnFW2hQ">新增器材</span><span class="jm-close" onclick="closeGearModal()" data-page-node-id="YbHcequ8GK0b4nMTjNP245">✕</span></div>
+            <div class="jm-body" data-page-node-id="bAmpH1tX4IIHMXCmzotAne">
+              <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9"/></div>
+              <div class="jm-row2" data-page-node-id="mYzPMnZoVBVACr81YRC48U">
+                <div class="jm-field" data-page-node-id="jjtqO0MMqe4srgG8BVnAIK"><label data-page-node-id="uc2RRScQ5xuySk2WvIuMCQ">🏷 类别</label><select id="gm-category" data-page-node-id="UK5O6cruLwjIg7pmLoj0vP"></select></div>
+                <div class="jm-field" data-page-node-id="0gF4LyYtbr8ck2zbydCGkt"><label data-page-node-id="pVtsXIT1AGD2BU1nmFNoHo">📊 状态</label><select id="gm-status" data-page-node-id="lODG0sQkEdgj7eqcqsyTDn"><option value="active" data-page-node-id="ov6FkPLx5gzzaIziDsZadm">✅ 在用</option><option value="repair" data-page-node-id="OEC49nGZhNsiza98QI7ceW">🔧 维修中</option><option value="retired" data-page-node-id="mmsiEQLw8ZigCGmD79WSAb">📦 已退役</option></select></div>
               </div>
-              <div class="jm-row2">
-                <div class="jm-field"><label>🏭 品牌</label><input id="gm-brand" placeholder="如：Sony"/></div>
-                <div class="jm-field"><label>🔢 型号</label><input id="gm-model" placeholder="如：A7M4"/></div>
+              <div class="jm-row2" data-page-node-id="LhQth7dchcrvMePQBHMPk4">
+                <div class="jm-field" data-page-node-id="QizUp6J3ynZba3LEfty30X"><label data-page-node-id="hWk4IuRcvhehurLfKZDzbL">🏭 品牌</label><input id="gm-brand" placeholder="如：Sony" data-page-node-id="S56VetcZeAl1bTEXnzYMs3"/></div>
+                <div class="jm-field" data-page-node-id="QXA7A0Vwu1OuFk2FaaC35z"><label data-page-node-id="Hwl626sKmiSGIVEVUyHMza">🔢 型号</label><input id="gm-model" placeholder="如：A7M4" data-page-node-id="mUjYPxB435rhfbyLgoB3y6"/></div>
               </div>
-              <div class="jm-row2">
-                <div class="jm-field"><label>📅 购入日期</label><input id="gm-buyDate" type="date"/></div>
-                <div class="jm-field"><label>💰 价格（元）</label><input id="gm-price" type="number" placeholder="0" min="0"/></div>
+              <div class="jm-row2" data-page-node-id="mwPimDZXPL7pNq1HjhQlag">
+                <div class="jm-field" data-page-node-id="HKkEWnGpzHSC3rD6sRy129"><label data-page-node-id="160WtyaK6yCVq5ZBDite2u">📅 购入日期</label><input id="gm-buyDate" type="date" data-page-node-id="clAlODsxEwJCYUIsMvcyEA"/></div>
+                <div class="jm-field" data-page-node-id="RSTTHGAjKNiP0CubRONaKe"><label data-page-node-id="dWgvVOcMLVrInIuEWyyEGs">💰 价格（元）</label><input id="gm-price" type="number" placeholder="0" min="0" data-page-node-id="aAnJWoZ6CnHh78Ekn1Yo1b"/></div>
               </div>
-              <div class="jm-field"><label>📝 维护备注</label><textarea id="gm-maintNote" rows="2" placeholder="选填…"></textarea></div>
+              <div class="jm-field" data-page-node-id="MlGZMbLbnlon0TMrhBHHc9"><label data-page-node-id="pfGeMNmVJCq6SyMesndMN7">📝 维护备注</label><textarea id="gm-maintNote" rows="2" placeholder="选填…"></textarea></div>
             </div>
-            <div class="jm-foot">
-              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeGearModal()">取消</button>
-              <button class="btn sm job" onclick="saveGearModal()">💾 保存</button>
+            <div class="jm-foot" data-page-node-id="ynTCf9OBTaEua3BImTJDe7">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeGearModal()" data-page-node-id="QBnMVVz3kG9oBjXCl24U77">取消</button>
+              <button class="btn sm job" onclick="saveGearModal()" data-page-node-id="pVprjyrQvxkuNYCUCAtxsh">💾 保存</button>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== 复盘周记 ==================== -->
-      <section id="panel-review" style="display:none">
-        <div class="sec-head">
-          <h2>📝 复盘周记</h2>
-          <div class="sec-actions">
-            <button class="btn sm" onclick="addReview()">＋ 写周记</button>
+      <section id="panel-review" style="display:none" data-page-node-id="p6BaLaVFiWrjbgVcc3K0EE">
+        <div class="sec-head" data-page-node-id="SV70D0Apc3MHuhM8qjb76g">
+          <h2 data-page-node-id="Sb0f3EnLjuQ5STsdUFnRoh">📝 复盘周记</h2>
+          <div class="sec-actions" data-page-node-id="yY2rCUwDshstoQEukIEkGj">
+            <button class="btn sm" onclick="addReview()" data-page-node-id="Am3n7VviSqkoOblcztTxpD">＋ 写周记</button>
           </div>
         </div>
-        <div class="review-list" id="review-list"></div>
+        <div class="review-list" id="review-list" data-page-node-id="UwEdhC3fdZeQA2BLmbLvWp"></div>
       </section>
 
       <!-- ==================== 灵感收集 ==================== -->
-      <section id="panel-idea" style="display:none">
-        <div class="sec-head">
-          <h2>💡 灵感收集</h2>
-          <div class="sec-actions">
-            <input class="search-input" id="idea-search" placeholder="🔍 搜索灵感..." oninput="renderIdeas()"/>
-            <select id="idea-tag-filter" onchange="renderIdeas()" style="background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700">
-              <option value="">全部标签</option>
+      <section id="panel-idea" style="display:none" data-page-node-id="l4lqRu6CZgpq9RQ1rhHA7f">
+        <div class="sec-head" data-page-node-id="pdBBsx2IGVym9miytFDQ8d">
+          <h2 data-page-node-id="UjC9wmvDp4vlsk5AfzxrG2">💡 灵感收集</h2>
+          <div class="sec-actions" data-page-node-id="mDFMj1dhhKSOoE2BaDTTQQ">
+            <input class="search-input" id="idea-search" placeholder="🔍 搜索灵感..." oninput="renderIdeas()" data-page-node-id="4sTZ6df53vxCotS6XNJHNa"/>
+            <select id="idea-tag-filter" onchange="renderIdeas()" style="background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700" data-page-node-id="JI9DUsE4naawSLJ7hJFiPf">
+              <option value="" data-page-node-id="kNDIW01RwEDHMZCSaEu9LG">全部标签</option>
             </select>
-            <button class="btn sm" onclick="addIdea()">✨ 记灵感</button>
+            <button class="btn sm" onclick="addIdea()" data-page-node-id="ZVxWJdGP0KtqYTTfplDJJW">✨ 记灵感</button>
           </div>
         </div>
-        <div class="idea-grid" id="idea-grid"></div>
+        <div class="idea-grid" id="idea-grid" data-page-node-id="2t7P9KSF4Ulaab23kGlACd"></div>
       </section>
 
       <!-- ==================== 日历行程 v5.26 ==================== -->
-      <section id="panel-schedule" style="display:none">
-        <div class="sec-head">
-          <h2>📅 日历行程</h2>
-          <div class="sec-actions">
-            <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()"/>
-            <div class="cal-date-picker">
-              <input type="number" id="cal-year" min="2020" max="2030" onchange="jumpToDate()"/>
-              <span class="dp-sep">/</span>
-              <input type="number" id="cal-month" min="1" max="12" onchange="jumpToDate()"/>
-              <span class="dp-sep">/</span>
-              <input type="number" id="cal-day" min="1" max="31" onchange="jumpToDate()"/>
+      <section id="panel-schedule" style="display:none" data-page-node-id="5Rw6rzQwGj7GF1tIpmfJ3G">
+        <div class="sec-head" data-page-node-id="DU8bKe68NUy4shjTAp73fp">
+          <h2 data-page-node-id="1lFMoPoFL8YOLRGNZN0P1q">📅 日历行程</h2>
+          <div class="sec-actions" data-page-node-id="FxuhzwhbBTyleN5WVz16TK">
+            <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()" data-page-node-id="4oGVd9DbfaTmfNT2FTD9sN"/>
+            <div class="cal-date-picker" data-page-node-id="P3x9XETGkvtLREY3KPp9xg">
+              <input type="number" id="cal-year" min="2020" max="2030" onchange="jumpToDate()" data-page-node-id="Wzr4iMSBQOfIKYVatuUqRR"/>
+              <span class="dp-sep" data-page-node-id="Olfkonk8oNcp1QEBAt87S5">/</span>
+              <input type="number" id="cal-month" min="1" max="12" onchange="jumpToDate()" data-page-node-id="YIwUJPBqd2XaNmMwHMPBAP"/>
+              <span class="dp-sep" data-page-node-id="JbP8PIknxvh7CKoITacI93">/</span>
+              <input type="number" id="cal-day" min="1" max="31" onchange="jumpToDate()" data-page-node-id="aVGDWtlxrgTfMHHnj5gppb"/>
             </div>
-            <button class="cal-nav-btn" onclick="calOffset(-1)" title="上个月">◀</button>
-            <button class="cal-nav-btn" onclick="calOffset(1)" title="下个月">▶</button>
-            <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="openEvtModal()">＋ 添加</button>
+            <button class="cal-nav-btn" onclick="calOffset(-1)" title="上个月" data-page-node-id="hmfxRUatk1TfI4cUHfRcyE">◀</button>
+            <button class="cal-nav-btn" onclick="calOffset(1)" title="下个月" data-page-node-id="LDdL0zwKCcyDg3JczpIgWy">▶</button>
+            <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="openEvtModal()" data-page-node-id="tccbFHaWwoB3NJxJLB4SpM">＋ 添加</button>
           </div>
         </div>
 
         <!-- 统计卡片 -->
-        <div class="cal-stats" id="cal-stats"></div>
+        <div class="cal-stats" id="cal-stats" data-page-node-id="V6RC8G7DgjYMqTvZ0N7OBe"></div>
 
         <!-- 标签筛选 -->
-        <div class="tag-chips" id="cal-tag-chips">
-          <span class="tc-chip active" data-tag="" onclick="filterCalTag('')">全部</span>
-          <span class="tc-chip" data-tag="shot" onclick="filterCalTag('shot')">📸 拍摄</span>
-          <span class="tc-chip" data-tag="plan" onclick="filterCalTag('plan')">📋 策划</span>
-          <span class="tc-chip" data-tag="study" onclick="filterCalTag('study')">📖 学习</span>
-          <span class="tc-chip" data-tag="life" onclick="filterCalTag('life')">🌿 生活</span>
+        <div class="tag-chips" id="cal-tag-chips" data-page-node-id="4dnIMsPBjEpoh2lWRtlQdt">
+          <span class="tc-chip active" data-tag="" onclick="filterCalTag('')" data-page-node-id="O4h4cWl49gjzy8J2cg0O6e">全部</span>
+          <span class="tc-chip" data-tag="shot" onclick="filterCalTag('shot')" data-page-node-id="qzJRr33qeZvmbdtZRAczMp">📸 拍摄</span>
+          <span class="tc-chip" data-tag="plan" onclick="filterCalTag('plan')" data-page-node-id="fSLwOgLRZeREPuokVVkYWt">📋 策划</span>
+          <span class="tc-chip" data-tag="study" onclick="filterCalTag('study')" data-page-node-id="bwPzep01vzsvWm1cCxdBON">📖 学习</span>
+          <span class="tc-chip" data-tag="life" onclick="filterCalTag('life')" data-page-node-id="OVbziaVsyruM73nO0psal0">🌿 生活</span>
         </div>
 
         <!-- 主布局：左侧日历+时间线，右侧即将到来 -->
-        <div class="cal-layout">
-          <div>
+        <div class="cal-layout" data-page-node-id="sOePKXXDOARLeRnmXphAdb">
+          <div data-page-node-id="pOljLqD8dheW2Vh412HsfL">
             <!-- 月历 -->
-            <div class="cal-container" id="cal-container"></div>
+            <div class="cal-container" id="cal-container" data-page-node-id="FjBT7podPvuKB7rY663QEA"></div>
             <!-- 当日时间线 -->
-            <div class="timeline-section" id="timeline-section">
-              <div class="tls-head">
-                <h3>📌 当日行程</h3>
-                <span class="tls-date-label" id="tls-date-label"></span>
+            <div class="timeline-section" id="timeline-section" data-page-node-id="43ES1JjXQMuimCmZeKMHFC">
+              <div class="tls-head" data-page-node-id="sjgpGCLHaBOWjrqhn82T4C">
+                <h3 data-page-node-id="CGf07EDvIoouFgRMPKEJko">📌 当日行程</h3>
+                <span class="tls-date-label" id="tls-date-label" data-page-node-id="LCyuoXPwreLuhvoJlf0nDG"></span>
               </div>
-              <div class="timeline" id="timeline-body"></div>
+              <div class="timeline" id="timeline-body" data-page-node-id="aeAzBC1sfiyrvMo6T4i18L"></div>
             </div>
           </div>
           <!-- 右侧即将到来 -->
-          <div class="cal-sidebar">
-            <div class="upcoming-card">
-              <h4>🕐 即将到来</h4>
-              <div id="upcoming-list"></div>
+          <div class="cal-sidebar" data-page-node-id="CDGCKoLMzEOY4IiXkR01gB">
+            <div class="upcoming-card" data-page-node-id="iKEvAJvYHIkofuK2tWak7B">
+              <h4 data-page-node-id="FgBLr4w1ATSsVsGiGW4GIH">🕐 即将到来</h4>
+              <div id="upcoming-list" data-page-node-id="MMrv4KbM9cX5VlhKTdrKhH"></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== 我的作品 ==================== -->
-      <section id="panel-works" style="display:none">
-        <div class="sec-head">
-          <h2>📷 我的作品</h2>
-          <div class="sec-actions">
-            <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="document.getElementById('works-file').click()">＋ 上传作品</button>
-            <input type="file" id="works-file" accept="image/*" style="display:none" onchange="uploadWorksImage(this)"/>
+      <section id="panel-works" style="display:none" data-page-node-id="fO1gehETwCJNvwzeMXE3Fu">
+        <div class="sec-head" data-page-node-id="KUJHhFU4uf5cP0XMWR1ZpJ">
+          <h2 data-page-node-id="ggZlbHwGPgmCO5nQTW5TYK">📷 我的作品</h2>
+          <div class="sec-actions" data-page-node-id="iOTQH4l77D5eyGjtN2uXDI">
+            <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="document.getElementById('works-file').click()" data-page-node-id="H6mER2FB0wByTwo2jdA3cp">＋ 上传作品</button>
+            <input type="file" id="works-file" accept="image/*" style="display:none" onchange="uploadWorksImage(this)" data-page-node-id="oVEp9Eg4DfN8BkjOp57ONu"/>
           </div>
         </div>
-        <div class="works-hint">上传拍摄作品。标记为「客片」后，才会出现在给客户看的客片画廊（<code>client.html</code> / 小程序客户端）。图片存于公开仓库，仅标记者可见。</div>
-        <div class="works-grid" id="works-grid"></div>
+        <div class="works-hint" data-page-node-id="OX2y6jxtPdtBEBDWpy7zFe">上传拍摄作品。标记为「客片」后，才会出现在给客户看的客片画廊（<code data-page-node-id="DAt1CsvggycF8VUaQxazT8">client.html</code> / 小程序客户端）。图片存于公开仓库，仅标记者可见。</div>
+        <div class="works-grid" id="works-grid" data-page-node-id="lVOGBjIKLuMZrvw3CHChp3"></div>
       </section>
 
       <!-- ==================== 客户预约 ==================== -->
-      <section id="panel-bookings" style="display:none">
-        <div class="sec-head">
-          <h2>📩 客户预约</h2>
-          <div class="sec-actions">
-            <button class="btn sm" onclick="loadBookingsWeb()">刷新</button>
+      <section id="panel-bookings" style="display:none" data-page-node-id="ic37ZHDx0SQvfuGs6am6ch">
+        <div class="sec-head" data-page-node-id="BFuGVyM6AnAipUIkrA720y">
+          <h2 data-page-node-id="J568r6JkACcXnyHw2NoXYP">📩 客户预约</h2>
+          <div class="sec-actions" data-page-node-id="1leeDJHilzSAvEYUeOsCTa">
+            <button class="btn sm" onclick="loadBookingsWeb()" data-page-node-id="iQNqB55CIcH1CPfWXBXIpe">刷新</button>
           </div>
         </div>
-        <div class="works-hint">客户在客户端提交「预约跟拍」后会显示在这里，可标记是否已联系。</div>
-        <div id="bookings-list"></div>
+        <div class="works-hint" data-page-node-id="7eG1FNmlGgI7tA7VHeVwFD">客户在客户端提交「预约跟拍」后会显示在这里，可标记是否已联系。</div>
+        <div id="bookings-list" data-page-node-id="CmYhs9maHkcExCM0OlaZiG"></div>
       </section>
 
       <!-- ==================== 同步托盘 ==================== -->
-      <div class="synctray">
-        <div class="sync-status" id="sync-status" title="点击设置云同步" onclick="openSyncSetup()">
-          <span class="dot" id="sync-dot"></span><span id="sync-text">未开启云同步</span>
+      <div class="synctray" data-page-node-id="RPWmzwziWBAQJjzQIljPfx">
+        <div class="sync-status" id="sync-status" title="点击设置云同步" onclick="openSyncSetup()" data-page-node-id="hXSdgKHRAmcDxcVGgGnOJC">
+          <span class="dot" id="sync-dot" data-page-node-id="DNUFlsKA55tAoLLZIe3GBm"></span><span id="sync-text" data-page-node-id="rIdyQMXFBE5k3AEE2Bz3CJ">未开启云同步</span>
         </div>
-        <div class="spacer"></div>
-        <button class="btn ghost" onclick="exportJSON()">⬇ 备份</button>
-        <button class="btn ghost" onclick="importJSON()">⬆ 恢复</button>
-        <span id="sync-extra-btns" style="display:none">
-          <button class="btn ghost" onclick="syncNow()">🔄 同步</button>
-          <button class="btn ghost" onclick="openSyncSetup()">☁ 设置</button>
+        <div class="spacer" data-page-node-id="CDC1yiNNIhsIq3IDUrQ1ZJ"></div>
+        <button class="btn ghost" onclick="exportJSON()" data-page-node-id="Hi7XjwHh8xbrXjQ2KFvIOO">⬇ 备份</button>
+        <button class="btn ghost" onclick="importJSON()" data-page-node-id="rWd71AWd6c0dqENsasfwT5">⬆ 恢复</button>
+        <span id="sync-extra-btns" style="display:none" data-page-node-id="pylM9hedl5KvASQf86nhY6">
+          <button class="btn ghost" onclick="syncNow()" data-page-node-id="12FkKzsZNlbtWGIrYf3u9h">🔄 同步</button>
+          <button class="btn ghost" onclick="openSyncSetup()" data-page-node-id="hjoTLcNoI89rDKO5RoTR7f">☁ 设置</button>
         </span>
       </div>
-      <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="doImport(this)"/>
+      <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="doImport(this)" data-page-node-id="rVCnvGWWauXQFYigeFCR30"/>
 
       <!-- 云同步设置弹窗 -->
-      <div class="modal" id="sync-modal" style="display:none">
-        <div class="modal-box">
-          <h3>☁ 云同步设置</h3>
-          <p class="modal-tip">选一种云存储：电脑 / 手机 / 平板填写<strong>相同账号信息</strong>即可共享数据。不联网时用 ⬇ 备份 / ⬆ 恢复 经百度网盘 / WPS 云文档迁移。</p>
-          <div class="sync-prov">
-            <label class="sp-item"><input type="radio" name="sync-provider" value="jsonbin" checked onchange="switchSyncProv('jsonbin')"/> JSONBin.io（海外·免备案）</label>
-            <label class="sp-item"><input type="radio" name="sync-provider" value="gitee" onchange="switchSyncProv('gitee')"/> Gitee 码云（国内·需注册）</label>
+      <div class="modal" id="sync-modal" style="display:none" data-page-node-id="gh2c8v00ZCevxdf4vr5V6K">
+        <div class="modal-box" data-page-node-id="bUDW8OhAoFkaAAEWw9saG4">
+          <h3 data-page-node-id="Llb3EiLExd0mBa0rb29MZ1">☁ 云同步设置</h3>
+          <p class="modal-tip" data-page-node-id="gfGy7EDk33vn6f9uWX2TqU">选一种云存储：电脑 / 手机 / 平板填写<strong data-page-node-id="pPe6g1FBSahCzGh8iLO3S3">相同账号信息</strong>即可共享数据。不联网时用 ⬇ 备份 / ⬆ 恢复 经百度网盘 / WPS 云文档迁移。</p>
+          <div class="sync-prov" data-page-node-id="baJ0W5jplqDRkfbxjgNs4S">
+            <label class="sp-item" data-page-node-id="TxVbaltCyTKNyhleT42QUp"><input type="radio" name="sync-provider" value="jsonbin" checked onchange="switchSyncProv('jsonbin')" data-page-node-id="6RquMAqHDNEGosDYh4SjXs"/> JSONBin.io（海外·免备案）</label>
+            <label class="sp-item" data-page-node-id="kRX3J0la2E5GQzTqOwepLy"><input type="radio" name="sync-provider" value="gitee" onchange="switchSyncProv('gitee')" data-page-node-id="pCtrXcDtPmpBkIgxcBYzzV"/> Gitee 码云（国内·需注册）</label>
           </div>
-          <div id="prov-jsonbin">
-            <label>API Key（X-Master-Key）</label>
-            <input type="text" id="sync-key" placeholder="粘贴你的 JSONBin API Key"/>
-            <label>Bin ID（首次可留空，自动新建）</label>
-            <input type="text" id="sync-bin" placeholder="留空 = 自动创建新云存储"/>
+          <div id="prov-jsonbin" data-page-node-id="F0GV9jprBbXvPkVvXA16HY">
+            <label data-page-node-id="jIRT7cka6VS0EVm4Fo2eW5">API Key（X-Master-Key）</label>
+            <input type="text" id="sync-key" placeholder="粘贴你的 JSONBin API Key" data-page-node-id="z9qGC50rqNloOqB7bkqW8B"/>
+            <label data-page-node-id="GIEwcbmKsuaGUrLAfJYN8E">Bin ID（首次可留空，自动新建）</label>
+            <input type="text" id="sync-bin" placeholder="留空 = 自动创建新云存储" data-page-node-id="U988Dlecg4EY7AFmRafAgI"/>
           </div>
-          <div id="prov-gitee" style="display:none">
-            <label>私人令牌 Token（需 repo 权限）</label>
-            <input type="text" id="sync-gitee-token" placeholder="Gitee 设置→私人令牌，勾选 repo"/>
-            <label>仓库名（格式 owner/repo）</label>
-            <input type="text" id="sync-gitee-repo" placeholder="例如 xiaoyu/workbench-sync"/>
-            <label>存放路径（默认 data.json）</label>
-            <input type="text" id="sync-gitee-path" placeholder="data.json"/>
+          <div id="prov-gitee" style="display:none" data-page-node-id="swmlldYYU6J2hwPFTdRyob">
+            <label data-page-node-id="Cz8RqvJi1G7JUdDMqBzH5S">私人令牌 Token（需 repo 权限）</label>
+            <input type="text" id="sync-gitee-token" placeholder="Gitee 设置→私人令牌，勾选 repo" data-page-node-id="jeN971b8q1S8nmOhdVgz1f"/>
+            <label data-page-node-id="aQ5UyqowWjF9pckrpzumUA">仓库名（格式 owner/repo）</label>
+            <input type="text" id="sync-gitee-repo" placeholder="例如 xiaoyu/workbench-sync" data-page-node-id="5TAd5ZAA4afjjLDXHjaogX"/>
+            <label data-page-node-id="6GKScGF9YCaKC5fYKkRXNN">存放路径（默认 data.json）</label>
+            <input type="text" id="sync-gitee-path" placeholder="data.json" data-page-node-id="Kzane3Gd84udsdR2x4zUkk"/>
           </div>
-          <div class="modal-actions">
-            <button class="btn ghost" onclick="closeSyncSetup()">取消</button>
-            <button class="btn" onclick="applySync()">保存并同步</button>
+          <div class="modal-actions" data-page-node-id="fWJZrvxaajbRksWMrQTBF5">
+            <button class="btn ghost" onclick="closeSyncSetup()" data-page-node-id="AyUp37YYjMmcXnC1raSpMd">取消</button>
+            <button class="btn" onclick="applySync()" data-page-node-id="6giP8qlT6iqkjiAnHwMA9Q">保存并同步</button>
           </div>
-          <div class="modal-msg" id="sync-msg"></div>
+          <div class="modal-msg" id="sync-msg" data-page-node-id="avY0MAGooFURop9NKFDkr7"></div>
         </div>
       </div>
 
       <!-- 网盘同步指南卡（百度网盘 / WPS） -->
-      <div class="netguide" id="netguide">
-        <div class="netguide-toggle" onclick="document.getElementById('netguide').classList.toggle('open')">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.05em;height:1.05em;vertical-align:-0.18em"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg> 怎么用「百度网盘 / WPS」在手机·平板·电脑间同步？</span>
-          <span class="ng-arrow">▸</span>
+      <div class="netguide" id="netguide" data-page-node-id="kzCGIA4a2EaoNHfRSXRU0v">
+        <div class="netguide-toggle" onclick="document.getElementById('netguide').classList.toggle('open')" data-page-node-id="C78GEQkmgEZaQizLutS9tg">
+          <span data-page-node-id="OOIE5tGRaehCvfv4qDq7wQ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.05em;height:1.05em;vertical-align:-0.18em" data-page-node-id="PgCdB9CJFppzO4OsfzC4TN"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" data-page-node-id="eb5qlD02Q8cdD1zFASAkFc"/></svg> 怎么用「百度网盘 / WPS」在手机·平板·电脑间同步？</span>
+          <span class="ng-arrow" data-page-node-id="6ZXwssqpmyZ2u6RZj3NUrY">▸</span>
         </div>
-        <div class="netguide-body">
-          <div class="ng-tabs">
-            <span class="ng-tab active" onclick="ngSwitch('bd')"><span style="color:#22c55e;font-size:10px">●</span> 百度网盘</span>
-            <span class="ng-tab" onclick="ngSwitch('wps')"><span style="color:#3b82f6;font-size:10px">●</span> WPS 云文档</span>
+        <div class="netguide-body" data-page-node-id="GavqZiuxbUEHBSquS6SlaA">
+          <div class="ng-tabs" data-page-node-id="0UrQASzQY7g1R3asPwWsFs">
+            <span class="ng-tab active" onclick="ngSwitch('bd')" data-page-node-id="QhhepVi9srVg7cnCE62k0E"><span style="color:#22c55e;font-size:10px" data-page-node-id="eFW3jVN2nvpdd8QZFwQWav">●</span> 百度网盘</span>
+            <span class="ng-tab" onclick="ngSwitch('wps')" data-page-node-id="xEPEBpG2ObEWu6WD5HSYML"><span style="color:#3b82f6;font-size:10px" data-page-node-id="l8HhZgNxJunvDoUan3SViT">●</span> WPS 云文档</span>
           </div>
-          <div class="ng-pane active" id="ng-bd">
-            <ol>
-              <li>电脑上正常使用工作台，<b>改完重要内容后</b>点底部「<b>⬇ 备份</b>」，会下载一个 <code>小鱼工作台_备份_日期.json</code>。</li>
-              <li>打开<b>百度网盘</b>（电脑客户端或网页版），新建一个文件夹如「工作台备份」，把刚下载的 <b>JSON</b> 和 <b>小鱼工作台.html</b>（代码本体）都传进去。</li>
-              <li>手机/平板装 <b>百度网盘 App</b>，登录同一账号，进入「工作台备份」文件夹，把这两个文件都<b>下载</b>到本地。</li>
-              <li>手机用<b>浏览器</b>（Safari / Chrome）打开 <code>小鱼工作台.html</code> → 点底部「<b>⬆ 恢复</b>」→ 选中下载的 JSON → 数据就过来了 ✅</li>
+          <div class="ng-pane active" id="ng-bd" data-page-node-id="ikJIBucHzAe3occTAJVoD6">
+            <ol data-page-node-id="VG5LCEwp825sT76rIkQV9P">
+              <li data-page-node-id="Q5T7rACi0k8xbWxs2EE4tf">电脑上正常使用工作台，<b data-page-node-id="T5sAFPsjR3Eoef7stPbRzN">改完重要内容后</b>点底部「<b data-page-node-id="VQL9jd7vcF9AGmHkMU5iOo">⬇ 备份</b>」，会下载一个 <code data-page-node-id="kqBNoG4AZZkjfFMnLEDuna">小鱼工作台_备份_日期.json</code>。</li>
+              <li data-page-node-id="eoSiiGCAdrk9dHED0tCHG9">打开<b data-page-node-id="7pmveeitqW2uVUuQAdrSGI">百度网盘</b>（电脑客户端或网页版），新建一个文件夹如「工作台备份」，把刚下载的 <b data-page-node-id="UJu7r2WdiNvBDy0MiL6is1">JSON</b> 和 <b data-page-node-id="OucxCJM2DUJKENCosPGaWE">小鱼工作台.html</b>（代码本体）都传进去。</li>
+              <li data-page-node-id="hyF4yCZWu46TSfBiFg9ms5">手机/平板装 <b data-page-node-id="eXO5qAyOTPHJRDnadCSAV2">百度网盘 App</b>，登录同一账号，进入「工作台备份」文件夹，把这两个文件都<b data-page-node-id="CX01beialGmPvj9hlE5OFE">下载</b>到本地。</li>
+              <li data-page-node-id="qYOig3CqoGZrrPUUAQLvfx">手机用<b data-page-node-id="mfLxV7xK7m9t9ELWwzyXSV">浏览器</b>（Safari / Chrome）打开 <code data-page-node-id="kHrdT2f1uUaRb8zaBml9VW">小鱼工作台.html</code> → 点底部「<b data-page-node-id="hXZx1flaawaBx3Y3CYVH45">⬆ 恢复</b>」→ 选中下载的 JSON → 数据就过来了 ✅</li>
             </ol>
-            <div class="ng-note">💡 小技巧：手机微信「文件传输助手」发这个 HTML 也能秒传到手机；百度网盘的「同步空间」还能让电脑端自动上传备份文件，换设备只差一步下载恢复。</div>
+            <div class="ng-note" data-page-node-id="g7Hn0sk1GD0xzZ1X64mUyS">💡 小技巧：手机微信「文件传输助手」发这个 HTML 也能秒传到手机；百度网盘的「同步空间」还能让电脑端自动上传备份文件，换设备只差一步下载恢复。</div>
           </div>
-          <div class="ng-pane" id="ng-wps">
-            <ol>
-              <li>电脑上点底部「<b>⬇ 备份</b>」得到 JSON 备份文件。</li>
-              <li>打开 <b>WPS / 金山文档</b>，把 <b>JSON</b> 和 <b>小鱼工作台.html</b> 都存入云文档（建议同一文件夹）。</li>
-              <li>手机装 <b>WPS App</b>，登录同一账号，从云文档把这两个文件<b>下载</b>到本地。</li>
-              <li>手机用<b>浏览器</b>打开 HTML → 点「<b>⬆ 恢复</b>」→ 选 JSON → 完成迁移 ✅</li>
+          <div class="ng-pane" id="ng-wps" data-page-node-id="r2hTX6s4cuC0NXocpSjpve">
+            <ol data-page-node-id="zZ4hEw6iO02Rtw4QFHTA2q">
+              <li data-page-node-id="9DAIebktu5GH4RIXoTDc8E">电脑上点底部「<b data-page-node-id="GXKgEbxFdKcOsEBZNHF8tt">⬇ 备份</b>」得到 JSON 备份文件。</li>
+              <li data-page-node-id="hjDr3FnyhJBIHMaGprE0eD">打开 <b data-page-node-id="Q4Fcx4bnqPCzxruQyFym1S">WPS / 金山文档</b>，把 <b data-page-node-id="MW5brVVa4N8kFLJnQm8j6K">JSON</b> 和 <b data-page-node-id="ZlcnQMJXTYsU3MgvCkefAB">小鱼工作台.html</b> 都存入云文档（建议同一文件夹）。</li>
+              <li data-page-node-id="269QpkAkLW7lzwjBvSNzgm">手机装 <b data-page-node-id="kiq39Q2MB1n1k1bAlCAZCL">WPS App</b>，登录同一账号，从云文档把这两个文件<b data-page-node-id="QP0fKuo8BiIKtxsYInnzEA">下载</b>到本地。</li>
+              <li data-page-node-id="0ok0NBJr1ohZEcjQA5NpEF">手机用<b data-page-node-id="9Ska0L3uKf5Z6gdvgiDyvz">浏览器</b>打开 HTML → 点「<b data-page-node-id="8ZXF8MvwACPwFdQmXGhlTA">⬆ 恢复</b>」→ 选 JSON → 完成迁移 ✅</li>
             </ol>
-            <div class="ng-note">💡 想更快？把 <code>小鱼工作台.html</code> 本体也常驻云文档，三端都从云文档取同一份，避免版本不一致。注意：网盘只同步"文件"，数据仍需用 ⬇/⬆ 这一步搬运。</div>
+            <div class="ng-note" data-page-node-id="HVjJDg9sAeqQBBh9DQSKXo">💡 想更快？把 <code data-page-node-id="UCb1ne4lDKAn9DIEjxcUMd">小鱼工作台.html</code> 本体也常驻云文档，三端都从云文档取同一份，避免版本不一致。注意：网盘只同步"文件"，数据仍需用 ⬇/⬆ 这一步搬运。</div>
           </div>
         </div>
       </div>
 
       <!-- ⚙ 设置弹窗 v5.37 -->
-      <div class="modal" id="settings-modal" style="display:none">
-        <div class="modal-box" style="max-width:560px">
-          <h3>⚙ 设置</h3>
-          <div class="settings-sections">
+      <div class="modal" id="settings-modal" style="display:none" data-page-node-id="aR4aWzAS1AO4CyeE0EFSKf">
+        <div class="modal-box" style="max-width:560px" data-page-node-id="bdYw95QGEvgWI5AkUZD1yd">
+          <h3 data-page-node-id="7YMo4onmHys6kPwF95r0HL">⚙ 设置</h3>
+          <div class="settings-sections" data-page-node-id="Cl06WVP54BxSXShshK7DVm">
 
             <!-- 📦 数据与安全 -->
-            <div class="sett-sect">
-              <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span> 数据与安全</h4>
-              <div class="sett-grid">
-                <div class="sett-action" onclick="exportJSON()">
-                  <span class="sa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 20h14"/></svg></span>
-                  <span class="sa-label">备份数据</span>
-                  <span class="sa-desc">导出 JSON 到本地</span>
+            <div class="sett-sect" data-page-node-id="v2GmkqpcsemIkqi1IsQIoz">
+              <h4 data-page-node-id="6aCLAQG8UDG4kP8FQgK9XH"><span class="sect-icon" data-page-node-id="h5jrVjyq1zVffOT9nqeC0B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="yWPpEk9j0PLtwqIuKZWAyd"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z" data-page-node-id="2mpFML52I1MSEvWSGHbQnW"/><path d="M3 8l9 5 9-5" data-page-node-id="zVP2iAyvjmoVO9cbEdPgMx"/><path d="M12 13v8" data-page-node-id="GCeW9HKFfB3E1XUM6kFyBG"/></svg></span> 数据与安全</h4>
+              <div class="sett-grid" data-page-node-id="TVds4oYZVOCTpIZoEWc1GJ">
+                <div class="sett-action" onclick="exportJSON()" data-page-node-id="8grM3BBByBQ1C6e09im1Hv">
+                  <span class="sa-icon" data-page-node-id="ReARUwz4Y1ccpeMgPdvqkD"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="EvOaaYGv2rC5nXcaGqo5Tp"><path d="M12 4v11" data-page-node-id="p3IC66uYGiRtStIxSu1TLO"/><path d="M8 11l4 4 4-4" data-page-node-id="1zyjCF51atxuasuucXrr4d"/><path d="M5 20h14" data-page-node-id="wocIZJKbXOFj54pDZ2ebiE"/></svg></span>
+                  <span class="sa-label" data-page-node-id="JQ02VcKurScdoxvAxorlh3">备份数据</span>
+                  <span class="sa-desc" data-page-node-id="qfpArJNxBVXpfO4rvw4s0l">导出 JSON 到本地</span>
                 </div>
-                <div class="sett-action" onclick="document.getElementById('import-file').click()">
-                  <span class="sa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M12 20V9"/><path d="M8 13l4-4 4 4"/><path d="M5 4h14"/></svg></span>
-                  <span class="sa-label">恢复数据</span>
-                  <span class="sa-desc">从 JSON 导入（自动留存快照）</span>
+                <div class="sett-action" onclick="document.getElementById('import-file').click()" data-page-node-id="gCXiIzFpxF4eKI8hBfIfWh">
+                  <span class="sa-icon" data-page-node-id="M6LnfEwpHcWaZ1qD1d2sUn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="CJkYgv3gCrBYsfc5VBAsGo"><path d="M12 20V9" data-page-node-id="MO1HNzJ3hJKB37CJidMAFi"/><path d="M8 13l4-4 4 4" data-page-node-id="YD7wbPni9NMhLrN11vW0fQ"/><path d="M5 4h14" data-page-node-id="z5Na7DaoEUqZ8R6Ntb6vQk"/></svg></span>
+                  <span class="sa-label" data-page-node-id="0Nlvx3geniHYJZAzJQBgAT">恢复数据</span>
+                  <span class="sa-desc" data-page-node-id="E3ncAeNEK7CfYqe4QrV8te">从 JSON 导入（自动留存快照）</span>
                 </div>
-                <div class="sett-action danger" onclick="if(confirm('确定清空所有数据？此操作不可撤销！')){localStorage.removeItem(KEY);location.reload()}">
-                  <span class="sa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M4 7h16"/><path d="M9 7V5h6v2"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg></span>
-                  <span class="sa-label">清空数据</span>
-                  <span class="sa-desc">删除本地存储，回到初始状态</span>
+                <div class="sett-action danger" onclick="if(confirm('确定清空所有数据？此操作不可撤销！')){localStorage.removeItem(KEY);location.reload()}" data-page-node-id="xGpGTeZsCDPEjn50xZGrHL">
+                  <span class="sa-icon" data-page-node-id="cSKNAhbAFu8SI8UxCeFXh5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="LwUPetl5rxrm2nOIfAGXLF"><path d="M4 7h16" data-page-node-id="t5nvpbQU4U86gYr39Fdu0d"/><path d="M9 7V5h6v2" data-page-node-id="zdSLJUbCvpAkdbJHUOvAqR"/><path d="M6 7l1 13h10l1-13" data-page-node-id="Xc4r3UNMKEbjh6GYAPEkY6"/><path d="M10 11v6M14 11v6" data-page-node-id="qBrXOAHfkv9FjBCO3UsfTW"/></svg></span>
+                  <span class="sa-label" data-page-node-id="QVoE6q93cBqIZTPGgieUat">清空数据</span>
+                  <span class="sa-desc" data-page-node-id="G7Uf4dLqOcouhNjBAfmYx1">删除本地存储，回到初始状态</span>
                 </div>
-                <div class="sett-action warn" onclick="if(confirm('确定重置为示例数据？当前数据将被覆盖！')){localStorage.removeItem(KEY);location.reload()}">
-                  <span class="sa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M21 12a9 9 0 1 1-2.7-6.4"/><path d="M21 3v6h-6"/></svg></span>
-                  <span class="sa-label">示例数据</span>
-                  <span class="sa-desc">恢复内置的示例内容</span>
+                <div class="sett-action warn" onclick="if(confirm('确定重置为示例数据？当前数据将被覆盖！')){localStorage.removeItem(KEY);location.reload()}" data-page-node-id="2FkYWaVBt3oKx8ysMKydCM">
+                  <span class="sa-icon" data-page-node-id="bqoh55S4bpuac2mFy1Q3LH"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="hZERXEqJs3nWBsAvP8QFyj"><path d="M21 12a9 9 0 1 1-2.7-6.4" data-page-node-id="knI2mAaZ9oJOcOIUvKxVy2"/><path d="M21 3v6h-6" data-page-node-id="nsD5iCkWtEHSalAFTHXd6E"/></svg></span>
+                  <span class="sa-label" data-page-node-id="fXrA05hqSqrEtEVFflbocf">示例数据</span>
+                  <span class="sa-desc" data-page-node-id="KaRS44SHIMAwsdqneKpHV5">恢复内置的示例内容</span>
                 </div>
               </div>
             </div>
 
             <!-- ☁ 云端账号 -->
-            <div class="sett-sect">
-              <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><path d="M7 18a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 0117 18H7z"/></svg></span> 云端账号</h4>
+            <div class="sett-sect" data-page-node-id="3UzMdoEyHjBXrjydCPE6NJ">
+              <h4 data-page-node-id="QN0LBxXGOED26GxAK505ps"><span class="sect-icon" data-page-node-id="uO1CYhmac0mbvRNrch46Kf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="QxT7aFwpAKeAuXEfDrsqMG"><path d="M7 18a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 0117 18H7z" data-page-node-id="KAoEvHPYG2LhuSXCPwbAly"/></svg></span> 云端账号</h4>
 
               <!-- 状态栏 -->
-              <div class="acct-status-bar">
-                <span class="acct-status-dot offline" id="acct-dot"></span>
-                <div class="acct-status-text">
-                  <div id="acct-status-main">本地模式 · 数据仅存本机浏览器</div>
-                  <div class="acct-status-email" id="acct-email-row"></div>
+              <div class="acct-status-bar" data-page-node-id="c98XqClBA1oMblMMgMf3jT">
+                <span class="acct-status-dot offline" id="acct-dot" data-page-node-id="OmC85AyDuDvc7cES9hHSWL"></span>
+                <div class="acct-status-text" data-page-node-id="G9ig21aG2DLuSxiv0eAhRr">
+                  <div id="acct-status-main" data-page-node-id="SeTPNHASnm8UwNJ1D1yepG">本地模式 · 数据仅存本机浏览器</div>
+                  <div class="acct-status-email" id="acct-email-row" data-page-node-id="5dJJLyH7tyFFjAmu0ndBHK"></div>
                 </div>
               </div>
 
               <!-- 登录/注册按钮 -->
-              <div class="acct-btns">
-                <button class="btn sm" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e" onclick="showAuthGate()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.05em;height:1.05em;vertical-align:-0.18em"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9"/><path d="M16.5 16.5l2-2M19 19l2-2"/></svg> 登录 / 注册</button>
-                <button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()">🚪 退出登录</button>
+              <div class="acct-btns" data-page-node-id="wvxOor04e34ETP09tFFu5Z">
+                <button class="btn sm" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e" onclick="showAuthGate()" data-page-node-id="QwhO3tMdooUr9EYaJGz5Ao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.05em;height:1.05em;vertical-align:-0.18em" data-page-node-id="DWuSrhQakt3LQrBcypAuIW"><circle cx="8" cy="8" r="4" data-page-node-id="B9iqQZ5A6qJZgFs8iheDY0"/><path d="M11 11l9 9" data-page-node-id="VQrkfQhGup0wytHIOKTWcR"/><path d="M16.5 16.5l2-2M19 19l2-2" data-page-node-id="1fcrZUMR3lxCvOUhu3vh3S"/></svg> 登录 / 注册</button>
+                <button class="btn ghost sm" id="auth-logout-btn" style="display:none;color:var(--coral)" onclick="authLogout()" data-page-node-id="j56ZzwcGTNYlQWh5DqHG9Y">🚪 退出登录</button>
               </div>
 
               <!-- GitHub 令牌 -->
-              <div class="token-card">
-                <div class="tc-head">
-                  <span class="tc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> GitHub 令牌</span>
-                  <span class="tc-status no" id="gh-token-status">未设置</span>
+              <div class="token-card" data-page-node-id="pxjQDYzwWbLALEXip5zdyJ">
+                <div class="tc-head" data-page-node-id="JhyVcMjrNs3dqHDz72ERCt">
+                  <span class="tc-title" data-page-node-id="kekFWcVZ3ClD8CuUE8XMjq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="82ZQuClRg3RIrj2Wa0Di3Q"><rect x="5" y="11" width="14" height="9" rx="2" data-page-node-id="SmASJTBEkmpLWVVxTieB2e"/><path d="M8 11V8a4 4 0 018 0v3" data-page-node-id="UqER7YXIlS795FLOALj6jZ"/></svg> GitHub 令牌</span>
+                  <span class="tc-status no" id="gh-token-status" data-page-node-id="7UED4D7Yt12TPQP1MyXBzF">未设置</span>
                 </div>
-                <div class="tc-body">
-                  <input type="password" id="gh-token-input" placeholder="ghp_... 粘贴令牌后点击保存"/>
-                  <button class="btn sm" onclick="saveGhToken()">保存</button>
+                <div class="tc-body" data-page-node-id="0E2KYo314E2CU8PTymPKc5">
+                  <input type="password" id="gh-token-input" placeholder="ghp_... 粘贴令牌后点击保存" data-page-node-id="DeAq7RszLSOhOvYK2xySf1"/>
+                  <button class="btn sm" onclick="saveGhToken()" data-page-node-id="BG3OBeDkxZ2H4HUTinEkZj">保存</button>
                 </div>
-                <div class="tc-note">云端同步必填，令牌仅存本机浏览器，不会上传到其他服务器。</div>
+                <div class="tc-note" data-page-node-id="f6kCrGWGEVSMyIonOoAIn1">云端同步必填，令牌仅存本机浏览器，不会上传到其他服务器。</div>
               </div>
 
               <!-- 扫码同步 -->
-              <div class="sett-quick" onclick="openScanSync()">
-                <span class="sq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg></span>
-                <div class="sq-text">
-                  <div class="sq-label">扫码同步到手机</div>
-                  <div class="sq-desc">生成二维码，手机扫码登录即同步数据</div>
+              <div class="sett-quick" onclick="openScanSync()" data-page-node-id="cuW0nIqA43gtQOAp1SAi7v">
+                <span class="sq-icon" data-page-node-id="f18dNYcZqd2OLxjupqTVAO"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="5ImYVGQ5OzWmMDcZ0FA2FH"><rect x="7" y="3" width="10" height="18" rx="2.5" data-page-node-id="38htEHpXeKrChm6FjZ3YSR"/><path d="M11 18h2" data-page-node-id="vfDeNaTI45cY2kxyciCVir"/></svg></span>
+                <div class="sq-text" data-page-node-id="Q6IzgPCJeXK4cPlj3a2LTl">
+                  <div class="sq-label" data-page-node-id="UqhONVPArvUpey1Nk95ZqM">扫码同步到手机</div>
+                  <div class="sq-desc" data-page-node-id="5zdu9zcHZAEXYXeLJdiDDy">生成二维码，手机扫码登录即同步数据</div>
                 </div>
-                <span class="sq-arrow">›</span>
+                <span class="sq-arrow" data-page-node-id="TBIkHTzwPM3M7Oiyay0H63">›</span>
               </div>
             </div>
 
             <!-- 🔄 自动同步 -->
-            <div class="sett-sect">
-              <h4><span class="sect-icon">🔄</span> 自动同步</h4>
-              <div class="sett-row">
-                <div>
-                  <label for="cloud-sync-interval">自动拉取云端间隔</label>
-                  <div class="sa-desc">编辑中或弹窗打开时会自动跳过拉取</div>
+            <div class="sett-sect" data-page-node-id="djKO9vNBBFqBJB5Qqc7h6Z">
+              <h4 data-page-node-id="KfePowD0uF59s1RRmjxoio"><span class="sect-icon" data-page-node-id="yF28i1ISFIiKU3Fe1QExHS">🔄</span> 自动同步</h4>
+              <div class="sett-row" data-page-node-id="Ei8orUVdHwjqSpFp9C717s">
+                <div data-page-node-id="Ma3pHWgQQsiwGwr5QzKGWl">
+                  <label for="cloud-sync-interval" data-page-node-id="Fq4gNlFBXj2HigqpJScvWt">自动拉取云端间隔</label>
+                  <div class="sa-desc" data-page-node-id="K89eiszaoE84eGmk8bIkuD">编辑中或弹窗打开时会自动跳过拉取</div>
                 </div>
-                <select id="cloud-sync-interval" onchange="setCloudSyncInterval(this.value)">
-                  <option value="30">30 秒</option>
-                  <option value="60">1 分钟</option>
-                  <option value="120">2 分钟</option>
-                  <option value="300">5 分钟</option>
-                  <option value="0">关闭自动拉取</option>
+                <select id="cloud-sync-interval" onchange="setCloudSyncInterval(this.value)" data-page-node-id="CZP2UXomTG3knvto0lKV9l">
+                  <option value="30" data-page-node-id="nm0lSQGeHYhEACB6e2OOg0">30 秒</option>
+                  <option value="60" data-page-node-id="dnf1szClQmnfl6yAwUCjWY">1 分钟</option>
+                  <option value="120" data-page-node-id="LyQYO5KktEg8yAWkpwZz5E">2 分钟</option>
+                  <option value="300" data-page-node-id="UaOefJuFwy0WOkGIVXWajC">5 分钟</option>
+                  <option value="0" data-page-node-id="QdjghHwoX9lKYnsj2kp8tc">关闭自动拉取</option>
                 </select>
               </div>
             </div>
 
             <!-- ℹ 关于 -->
-            <div class="sett-sect">
-              <h4><span class="sect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span> 关于</h4>
-              <div class="about-info">
-                <div class="about-row"><span class="alabel">版本</span><span class="avalue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none"/></svg> v5.72</span></div>
-                <div class="about-row"><span class="alabel">定位</span><span class="avalue">百江富淮城运营 + 摄影师工作台</span></div>
-                <div class="about-row"><span class="alabel">特性</span><span class="avalue">GitHub 云端同步 · 端到端加密</span></div>
-                <div class="about-row"><span class="alabel">存储</span><span class="avalue" id="about-storage-mode">未登录时存于本机（离线可用）</span></div>
+            <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
+              <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
+              <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.73</span></div>
+                <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
+                <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
+                <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
               </div>
-              <div class="about-footer">
+              <div class="about-footer" data-page-node-id="Wi2ViO2lpNHNwHZLkehD5J">
                 小鱼三岁就很酷 © 2026 · 数据安全第一
               </div>
             </div>
 
           </div>
-          <div class="modal-actions">
-            <button class="btn" onclick="closeSettings()">关闭</button>
+          <div class="modal-actions" data-page-node-id="80qz24j947iOoZe31JrkAz">
+            <button class="btn" onclick="closeSettings()" data-page-node-id="FrVxg6oxtVUnZXCyDdrWDf">关闭</button>
           </div>
         </div>
       </div>
 
       <!-- 账号登录墙 -->
-      <div id="auth-gate" class="auth-gate" style="display:none">
-        <div class="auth-card" id="auth-card">
-          <div class="auth-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z"/><path d="M21 12l-3-3v6l3-3z"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none"/></svg></div>
-          <h2 id="auth-title">登录工作台</h2>
-          <p class="auth-sub">登录后作品、预约、计划多端自动同步</p>
-          <input type="email" id="auth-email" class="auth-input" placeholder="邮箱" autocomplete="username"/>
-          <input type="password" id="auth-pwd" class="auth-input" placeholder="密码" autocomplete="current-password"/>
-          <div class="auth-token-wrap" id="auth-token-wrap">
-            <div class="auth-token-hint">已内置云端同步令牌，通常无需修改。如需更换，填入新 GitHub 令牌即可。</div>
-            <div class="auth-token-row">
-              <input type="text" id="auth-token" class="auth-token" placeholder="ghp_..." autocomplete="off"/>
+      <div id="auth-gate" class="auth-gate" style="display:none" data-page-node-id="dVHB4H0Oj0ZmuHGlYa54wp">
+        <div class="auth-card" id="auth-card" data-page-node-id="HhL1brrrNqdAdjJZrpYqf9">
+          <div class="auth-logo" data-page-node-id="MJPxBKgCjuXUcZKp37VzsC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px" data-page-node-id="buc9C3RaDpnFA8EHPxEQzh"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="EMPc6UrKR5oDrbtXpMCjPa"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="zeS48HFxUA0TnxirKOXboO"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none" data-page-node-id="KhsVTlh8BCYt016YXb171q"/></svg></div>
+          <h2 id="auth-title" data-page-node-id="IKmiLBEYf7Dih77rBEnG3m">登录工作台</h2>
+          <p class="auth-sub" data-page-node-id="qxbQB6A29YDiEQYw3KESfk">登录后作品、预约、计划多端自动同步</p>
+          <input type="email" id="auth-email" class="auth-input" placeholder="邮箱" autocomplete="username" data-page-node-id="deW66Sqln8v5rDnxgQ3pEQ"/>
+          <input type="password" id="auth-pwd" class="auth-input" placeholder="密码" autocomplete="current-password" data-page-node-id="BASArafkeH6LyLLj1uTOXu"/>
+          <div class="auth-token-wrap" id="auth-token-wrap" data-page-node-id="6htmoQqWiadVkPwG4oGmlS">
+            <div class="auth-token-hint" data-page-node-id="QIHarBfobw6vZDvWBBU82J">已内置云端同步令牌，通常无需修改。如需更换，填入新 GitHub 令牌即可。</div>
+            <div class="auth-token-row" data-page-node-id="XnjzNIiaEvE1EtOAebAC6y">
+              <input type="text" id="auth-token" class="auth-token" placeholder="ghp_..." autocomplete="off" data-page-node-id="HNLkXSLzmKu2izYAOZs1If"/>
             </div>
           </div>
-          <div class="auth-advanced-toggle" id="auth-advanced-toggle" onclick="toggleAuthAdvanced()">▸ 高级设置</div>
-          <button class="auth-submit" id="auth-submit" onclick="authSubmit()">登录</button>
-          <div class="auth-switch" id="auth-switch"></div>
-          <div class="auth-msg" id="auth-msg"></div>
-          <div class="auth-local"><a href="#" onclick="useLocalMode();return false">→ 本地模式（不登录，仅本机使用）</a></div>
+          <div class="auth-advanced-toggle" id="auth-advanced-toggle" onclick="toggleAuthAdvanced()" data-page-node-id="p1lR95OMDykjWJKkdoE7Yu">▸ 高级设置</div>
+          <button class="auth-submit" id="auth-submit" onclick="authSubmit()" data-page-node-id="BhGu3cWyl5QqaodeoFDPvr">登录</button>
+          <div class="auth-switch" id="auth-switch" data-page-node-id="JwQJ53fgUJmMXeixw4xP5j"></div>
+          <div class="auth-msg" id="auth-msg" data-page-node-id="j219AOP27WPhpWu0qdBCFf"></div>
+          <div class="auth-local" data-page-node-id="ddpAgSsCcGuWe8S1Oq3DQu"><a href="#" onclick="useLocalMode();return false" data-page-node-id="dq3WGKSBijjDj0UDi5zFIi">→ 本地模式（不登录，仅本机使用）</a></div>
         </div>
-        <div id="pair-box" class="pair-box" style="display:none"></div>
+        <div id="pair-box" class="pair-box" style="display:none" data-page-node-id="wlgr122ZuGFg54kr0Y1pSz"></div>
       </div>
       <!-- 扫码同步二维码弹窗 -->
-      <div class="modal" id="qr-modal" style="display:none">
-        <div class="modal-box" style="max-width:340px;text-align:center">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;vertical-align:-0.15em"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg> 扫码同步到手机</h3>
-          <p class="modal-tip">用手机相机扫这个二维码，打开后输入本账号密码即可登录并同步数据。</p>
-          <img id="qr-img" style="width:240px;height:240px;margin:10px auto;display:block;background:#fff;border-radius:12px"/>
-          <p style="font-size:11px;color:var(--muted2);word-break:break-all" id="qr-url"></p>
-          <div class="modal-actions"><button class="btn ghost" onclick="copyQrUrl()">复制链接</button><button class="btn" onclick="closeQr()">关闭</button></div>
+      <div class="modal" id="qr-modal" style="display:none" data-page-node-id="NHvfDr3YbdwYwba1LG0pVj">
+        <div class="modal-box" style="max-width:340px;text-align:center" data-page-node-id="TDNsOVsXtRPxECWJOHNrZd">
+          <h3 data-page-node-id="kBx85fYV9F0M4TuNOZs6F4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.1em;height:1.1em;vertical-align:-0.15em" data-page-node-id="9QOFOaMLOWcaBPgcGnsXL8"><rect x="7" y="3" width="10" height="18" rx="2.5" data-page-node-id="SE64DNuwwxoFC2BGcljSkk"/><path d="M11 18h2" data-page-node-id="6CZGKg9ESK2q8AJJrrzz2a"/></svg> 扫码同步到手机</h3>
+          <p class="modal-tip" data-page-node-id="Mr5NCirEPUkjGLHhU46XyY">用手机相机扫这个二维码，打开后输入本账号密码即可登录并同步数据。</p>
+          <img id="qr-img" style="width:240px;height:240px;margin:10px auto;display:block;background:#fff;border-radius:12px" data-page-node-id="Y4BVvAnXXdzA8w6TiNHcFv"/>
+          <p style="font-size:11px;color:var(--muted2);word-break:break-all" id="qr-url" data-page-node-id="1jJCXiEJihsv5MuAahuK72"></p>
+          <div class="modal-actions" data-page-node-id="QFzRAHNpzbsdfg7OYYypla"><button class="btn ghost" onclick="copyQrUrl()" data-page-node-id="LbXxvANbh097cxyINdVIcg">复制链接</button><button class="btn" onclick="closeQr()" data-page-node-id="YVdK9ub6IjsSNy3IPdjtLq">关闭</button></div>
         </div>
       </div>
 
       <!-- 行程编辑弹窗 v5.26 -->
-      <div class="modal" id="evt-modal" style="display:none">
-        <div class="modal-box" style="max-width:480px">
-          <h3 id="evt-modal-title">📅 添加行程</h3>
-          <div class="evt-form">
-            <label>📌 标题 *</label>
-            <input type="text" id="evf-title" placeholder="例如：上午10点 威盛酒店婚礼拍摄"/>
-            <div class="evt-form-row">
-              <div><label>📅 日期</label><input type="date" id="evf-date"/></div>
-              <div><label>⏰ 时间</label><input type="time" id="evf-time" placeholder="10:00"/></div>
+      <div class="modal" id="evt-modal" style="display:none" data-page-node-id="Lp6ScNAjeVaov2Cw5gA7Aq">
+        <div class="modal-box" style="max-width:480px" data-page-node-id="7anKDxFgfGIX4Aw7DWuD0X">
+          <h3 id="evt-modal-title" data-page-node-id="aJK2LapyCKJa7V3jntmeEe">📅 添加行程</h3>
+          <div class="evt-form" data-page-node-id="yhaIEXNOSGuLa7FItiG9IU">
+            <label data-page-node-id="tbFiebAl83J9O4eobcyM44">📌 标题 *</label>
+            <input type="text" id="evf-title" placeholder="例如：上午10点 威盛酒店婚礼拍摄" data-page-node-id="Rtx8TISd9ItB5k19YNMrmO"/>
+            <div class="evt-form-row" data-page-node-id="UsC1iSboLGJg6BnDzCD5V9">
+              <div data-page-node-id="jAfyXdx7EMFT8wCbTDZH5X"><label data-page-node-id="RnX6VpijpRSyidYYqu6ZqV">📅 日期</label><input type="date" id="evf-date" data-page-node-id="XDKvdsqtdJU9badzhqZcUh"/></div>
+              <div data-page-node-id="86NziF2k3KQb4UnH6bc7LE"><label data-page-node-id="huUdbhkPW0oNkyYa0qJpvE">⏰ 时间</label><input type="time" id="evf-time" placeholder="10:00" data-page-node-id="W9iAiEo8d6yIQ2hHYoT8nS"/></div>
             </div>
-            <label>🏷 分类</label>
-            <div class="evf-tags">
-              <span class="evf-tag" data-v="shot" onclick="pickEvtTag('shot')">📸 拍摄</span>
-              <span class="evf-tag selected" data-v="plan" onclick="pickEvtTag('plan')">📋 策划</span>
-              <span class="evf-tag" data-v="study" onclick="pickEvtTag('study')">📖 学习</span>
-              <span class="evf-tag" data-v="life" onclick="pickEvtTag('life')">🌿 生活</span>
+            <label data-page-node-id="zLMWG24NqiwsUqAVkiko4s">🏷 分类</label>
+            <div class="evf-tags" data-page-node-id="U9EvwZXPIMK8mHH8R4mSUD">
+              <span class="evf-tag" data-v="shot" onclick="pickEvtTag('shot')" data-page-node-id="uBprchPJpK8eSH6lq4ehKb">📸 拍摄</span>
+              <span class="evf-tag selected" data-v="plan" onclick="pickEvtTag('plan')" data-page-node-id="ximYojsycjHjyYuNUKvkDM">📋 策划</span>
+              <span class="evf-tag" data-v="study" onclick="pickEvtTag('study')" data-page-node-id="cHVlBvvfmnSn6XoRDRejLi">📖 学习</span>
+              <span class="evf-tag" data-v="life" onclick="pickEvtTag('life')" data-page-node-id="isxHRfM3AKxcdWdwyJjF0x">🌿 生活</span>
             </div>
-            <label>📝 备注</label>
+            <label data-page-node-id="WtxnhNLhjWk2OUMXUvdq4c">📝 备注</label>
             <textarea id="evf-desc" placeholder="补充说明（可选）..."></textarea>
           </div>
-          <div class="modal-actions">
-            <button class="btn ghost" onclick="closeEvtModal()">取消</button>
-            <button class="btn" onclick="saveEvtModal()" style="background:linear-gradient(135deg,var(--coral),#ef4444)">保存行程</button>
+          <div class="modal-actions" data-page-node-id="HuTTk8EyQx88C6tJAi7IBD">
+            <button class="btn ghost" onclick="closeEvtModal()" data-page-node-id="eNMFAd3XCaQGo50YbjuHbG">取消</button>
+            <button class="btn" onclick="saveEvtModal()" style="background:linear-gradient(135deg,var(--coral),#ef4444)" data-page-node-id="442lwxV530qnXTlo3gglni">保存行程</button>
           </div>
         </div>
       </div>
@@ -5539,6 +5542,27 @@ let quickView="all", lastBoard=BANKUAI_PLAN[0];
 function setQuickView(v,el){
   quickView=v;
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===v));
+  document.querySelectorAll(".ps-card").forEach(c=>c.classList.remove("active"));
+  renderPlan();
+}
+function filterPlanBy(v){
+  const fban=document.getElementById("fban-plan");
+  const fstat=document.getElementById("fstat-plan");
+  const search=document.getElementById("search-plan");
+  if(fban) fban.value="";
+  if(search) search.value="";
+  document.querySelectorAll(".ps-card").forEach(c=>c.classList.toggle("active",c.dataset.filter===v));
+  if(v==="all"){
+    if(fstat) fstat.value="";
+    quickView="all";
+  }else if(v==="done"||v==="doing"){
+    if(fstat) fstat.value=v;
+    quickView="all";
+  }else if(v==="due"){
+    if(fstat) fstat.value="";
+    quickView="due";
+  }
+  document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===quickView));
   renderPlan();
 }
 function onBoardChange(i,b){
