@@ -82,6 +82,111 @@
   html[data-theme="light"] .ng-note{background:rgba(15,23,42,.04)}
   html[data-theme="light"] .okr-kr{border-bottom-color:rgba(15,23,42,.06)}
   html[data-theme="light"] .sidebar-footer .sf-sync:hover{background:rgba(15,23,42,.05)}
+
+  /* ====== 行业报告库模块（v5.76 移植自资料库蓝图） ====== */
+  .est-bar{display:flex;align-items:center;gap:12px;margin:14px 0 10px;flex-wrap:wrap}
+  .est-tabs{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+  .est-tabs::-webkit-scrollbar{display:none}
+  .etab{border:1px solid var(--glass-border);background:var(--surface);color:var(--ink2);
+    padding:7px 14px;border-radius:99px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:.15s}
+  .etab:hover{border-color:var(--gold);color:var(--gold)}
+  .etab.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1206;border-color:transparent}
+  html[data-theme="light"] .etab.active{color:#fff}
+  .est-actions{display:flex;gap:8px}
+  .est-body{min-height:40vh}
+  .est-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  .est-kpi{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:14px 16px;box-shadow:var(--card-shadow)}
+  .est-kpi .n{font-size:26px;font-weight:900;color:var(--gold);line-height:1.1}
+  .est-kpi .l{font-size:12px;color:var(--muted);margin-top:4px}
+  .est-sec{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px;box-shadow:var(--card-shadow)}
+  .est-sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:14px;font-weight:800;color:var(--ink)}
+  .est-sec-hd .sub{font-size:11px;color:var(--muted);font-weight:600}
+  .est-pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700;margin:2px 4px 2px 0}
+  .p-green{background:rgba(34,197,94,.16);color:var(--brand)}
+  .p-amber{background:rgba(251,191,36,.16);color:var(--amber)}
+  .p-red{background:rgba(248,113,113,.16);color:var(--coral)}
+  .p-blue{background:rgba(96,165,250,.16);color:var(--blue)}
+  .p-gray{background:var(--bg3);color:var(--muted2)}
+  .est-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 14px;box-shadow:var(--card-shadow);cursor:pointer;transition:.15s}
+  .est-card:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .est-card .t{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px}
+  .est-card .m{font-size:12px;color:var(--muted2);line-height:1.5}
+  .est-grid{display:grid;gap:12px}
+  .est-grid.c2{grid-template-columns:repeat(2,1fr)}
+  .est-grid.c3{grid-template-columns:repeat(3,1fr)}
+  .est-dlist{font-size:12.5px;line-height:1.7}
+  .est-drow{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .est-drow .k{color:var(--muted);min-width:84px;flex:none;font-weight:700}
+  .est-drow .v{color:var(--ink2);flex:1}
+  .est-banner{background:linear-gradient(135deg,rgba(34,197,94,.14),rgba(212,165,116,.12));border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:10px 14px;font-size:12px;color:var(--ink2);margin-bottom:12px}
+  .est-timeline{position:relative;padding-left:14px}
+  .est-timeline:before{content:"";position:absolute;left:3px;top:4px;bottom:4px;width:2px;background:var(--line-strong)}
+  .est-month{font-size:13px;font-weight:900;color:var(--gold);margin:14px 0 8px}
+  .est-tl-row{position:relative;padding:8px 12px;margin-bottom:8px;background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-xs);cursor:pointer;transition:.15s}
+  .est-tl-row:hover{border-color:var(--gold)}
+  .est-tl-row:before{content:"";position:absolute;left:-14px;top:14px;width:8px;height:8px;border-radius:99px;background:var(--gold);box-shadow:0 0 0 3px var(--bg)}
+  .est-tl-row .date{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:700}
+  .est-tl-row .nm{font-size:13.5px;color:var(--ink);font-weight:700;margin-top:2px}
+  .est-src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .est-src-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 14px;box-shadow:var(--card-shadow)}
+  .est-src-card .nm{font-size:13.5px;font-weight:800;color:var(--ink)}
+  .est-src-card .cat{font-size:11px;color:var(--gold);font-weight:700;margin:3px 0 6px}
+  .est-src-card .info{font-size:12px;color:var(--muted2);line-height:1.5}
+  .est-taxo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .est-taxo-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 14px;box-shadow:var(--card-shadow)}
+  .est-taxo-card .c{font-size:14px;font-weight:800;color:var(--ink)}
+  .est-taxo-card .d{font-size:12px;color:var(--muted2);margin:4px 0;line-height:1.5}
+  .est-taxo-card .iss{font-size:11px;color:var(--gold);font-weight:700}
+  .est-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .est-toolbar input,.est-toolbar select{background:var(--bg3);border:1px solid var(--glass-border);color:var(--ink);border-radius:var(--radius-xs);padding:7px 10px;font-size:12.5px;font-family:inherit}
+  .est-toolbar input{flex:1;min-width:160px}
+  .est-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .est-chip{border:1px solid var(--glass-border);background:var(--surface);color:var(--muted2);padding:5px 12px;border-radius:99px;font-size:12px;font-weight:700;cursor:pointer;transition:.15s}
+  .est-chip:hover{border-color:var(--gold);color:var(--gold)}
+  .est-chip.on{background:var(--gold);color:#1a1206;border-color:transparent}
+  html[data-theme="light"] .est-chip.on{color:#fff}
+  .est-empty{text-align:center;color:var(--muted);padding:40px 10px;font-size:13px}
+  .est-row-acts{display:flex;gap:6px;margin-top:8px}
+  .est-row-acts button{font-size:11px;padding:4px 10px;border-radius:8px;border:1px solid var(--glass-border);background:var(--bg3);color:var(--ink2);cursor:pointer}
+  .est-row-acts button:hover{border-color:var(--gold);color:var(--gold)}
+  .est-row-acts button.del:hover{border-color:var(--coral);color:var(--coral)}
+  .est-land-tabs{display:flex;gap:6px;margin-bottom:12px}
+  .est-land-tabs button{border:1px solid var(--glass-border);background:var(--surface);color:var(--ink2);padding:7px 14px;border-radius:var(--radius-xs);font-size:13px;font-weight:700;cursor:pointer}
+  .est-land-tabs button.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#06210f;border-color:transparent}
+  html[data-theme="light"] .est-land-tabs button.on{color:#fff}
+  .qmask{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:78;display:none}
+  .qmask.on{display:block}
+  .qdrawer{position:fixed;top:0;right:0;height:100vh;width:min(484px,100vw);background:var(--bg2);border-left:1px solid var(--glass-border);box-shadow:-12px 0 40px rgba(0,0,0,.35);z-index:79;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+  .qdrawer.on{transform:translateX(0)}
+  .q-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font-size:15px;font-weight:800;color:var(--ink)}
+  .q-close{background:var(--bg3);border:1px solid var(--glass-border);color:var(--ink2);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px}
+  .q-body{padding:14px 18px;overflow:auto;flex:1}
+  .q-sec{margin-bottom:16px}
+  .q-sec-h{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:8px;padding-left:8px;border-left:3px solid var(--gold)}
+  .q-input{width:100%;background:var(--bg3);border:1px solid var(--glass-border);color:var(--ink);border-radius:var(--radius-xs);padding:10px 12px;font-size:13px;font-family:inherit;margin-bottom:10px}
+  .q-hit{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-xs);padding:9px 12px;margin-bottom:7px;cursor:pointer;transition:.15s}
+  .q-hit:hover{border-color:var(--gold)}
+  .q-hit .t{font-size:13px;font-weight:700;color:var(--ink)}
+  .q-hit .s{font-size:11.5px;color:var(--muted2);margin-top:2px}
+  .q-none{color:var(--muted);font-size:12.5px;text-align:center;padding:14px}
+  .q-src{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-xs);padding:9px 12px;margin-bottom:7px;text-decoration:none;transition:.15s}
+  .q-src:hover{border-color:var(--gold)}
+  .q-src .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:800;flex:none}
+  .q-src .info .nm{font-size:13px;font-weight:700;color:var(--ink)}
+  .q-src .info .hint{font-size:11px;color:var(--muted2)}
+  .q-tpl{background:var(--bg3);border:1px dashed var(--glass-border);border-radius:var(--radius-xs);padding:10px 12px;font-size:12px;color:var(--ink2);white-space:pre-wrap;line-height:1.6;margin-bottom:8px}
+  .q-note{font-size:11.5px;color:var(--muted);line-height:1.6}
+  .est-editor{display:grid;gap:10px}
+  .est-editor label{font-size:12px;font-weight:700;color:var(--ink2)}
+  .est-editor input,.est-editor textarea,.est-editor select{background:var(--bg3);border:1px solid var(--glass-border);color:var(--ink);border-radius:var(--radius-xs);padding:9px 11px;font-size:13px;font-family:inherit;width:100%}
+  .est-editor textarea{min-height:64px;resize:vertical}
+  .modal-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--card-shadow);backdrop-filter:blur(16px);max-height:88vh;overflow:auto}
+  .modal-hd{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px}
+  @media(max-width:680px){
+    .est-kpis{grid-template-columns:repeat(2,1fr)}
+    .est-grid.c2,.est-grid.c3{grid-template-columns:1fr}
+    .est-src-grid,.est-taxo-grid{grid-template-columns:1fr}
+  }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
@@ -1013,7 +1118,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.75） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.76） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1676,7 +1781,7 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板横屏优化（v5.75） ====== */
+/* ====== iPad / 平板横屏优化（v5.76） ====== */
 /* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
 @media(min-width:835px) and (max-width:1366px){
   /* 左侧边栏收窄，给主内容让出空间 */
@@ -1717,7 +1822,7 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   .wd.d-today .dnum{font-size:13.5px}
 }
 
-/* ====== iPad / 平板竖屏专属优化（v5.75） ====== */
+/* ====== iPad / 平板竖屏专属优化（v5.76） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -4047,7 +4152,7 @@ window.QRCode = {
 <div class="app-layout" data-page-node-id="wLbULnFRuLbSHjnfee7c3j">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.75） -->
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.76） -->
   <header class="mobile-header" data-page-node-id="Jqb9mSa4gpGaMOdcrC7Axn">
     <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航" data-page-node-id="pGCYefE7WbwZpRszatvvR2">☰</button>
     <div class="mh-brand" data-page-node-id="WeZeV79PJlfpLodukBFkiC">
@@ -4119,6 +4224,10 @@ window.QRCode = {
       <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')" data-page-node-id="gGJbns4dGyvCfWU01X8Z4R">
         <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff" data-page-node-id="rm9HmhaHklHZ2CxPyeTQJO">📩</span>
         <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
+      </li>
+      <li class="nav-item" data-nav="estate" onclick="switchTab('estate')" data-page-node-id="estNavXyZ12Ab">
+        <span class="nav-icon" style="background:rgba(212,165,116,.14);color:var(--gold)" data-page-node-id="estNavIconAb">🏘</span>
+        <span data-page-node-id="estNavLblAb">行业报告库</span>
       </li>
       <li class="nav-item mobile-only" onclick="openSettings()" data-page-node-id="fRY9QSnHloflPjokfljQZo">
         <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="GJYpTqwp0WM2usPpzXmpQP">⚙</span>
@@ -4751,7 +4860,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.75</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.76</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -4830,6 +4939,47 @@ window.QRCode = {
       </div>
 
     </div><!-- /.wrap -->
+
+      <!-- ==================== 行业报告库（v5.76 移植自资料库蓝图） ==================== -->
+      <section id="panel-estate" style="display:none" data-page-node-id="estPanelAb">
+        <div class="est-bar">
+          <div class="est-tabs" id="estate-tabs">
+            <button class="etab active" data-et="overview" onclick="estateTab('overview')">概览</button>
+            <button class="etab" data-et="reports" onclick="estateTab('reports')">数据报告</button>
+            <button class="etab" data-et="policies" onclick="estateTab('policies')">政策解读</button>
+            <button class="etab" data-et="board" onclick="estateTab('board')">政策看板</button>
+            <button class="etab" data-et="land" onclick="estateTab('land')">土拍</button>
+            <button class="etab" data-et="sources" onclick="estateTab('sources')">数据源</button>
+            <button class="etab" data-et="research" onclick="estateTab('research')">研报智库</button>
+            <button class="etab" data-et="pol828" onclick="estateTab('pol828')">828新政</button>
+          </div>
+          <div class="est-actions">
+            <button class="btn sm" onclick="openEstateAdd()" id="estate-add-btn">＋ 新增</button>
+            <button class="btn sm ghost" onclick="openQueryPanel()">🔍 查询</button>
+          </div>
+        </div>
+        <div id="estate-body" class="est-body"></div>
+
+        <!-- 全局查询抽屉 -->
+        <div class="qmask" id="qmask" onclick="closeQueryPanel()"></div>
+        <div class="qdrawer" id="qdrawer">
+          <div class="q-hd"><span>🔍 全局查询</span><button class="q-close" onclick="closeQueryPanel()">✕</button></div>
+          <div class="q-body" id="qbody"></div>
+        </div>
+
+        <!-- 通用编辑器弹层 -->
+        <div class="modal" id="estate-modal" style="display:none" onclick="if(event.target===this)closeEstateModal()">
+          <div class="modal-card" style="max-width:580px;width:100%">
+            <div class="modal-hd" id="estate-modal-hd">编辑</div>
+            <div class="modal-bd" id="estate-modal-bd"></div>
+            <div class="modal-actions">
+              <button class="btn ghost" onclick="closeEstateModal()">取消</button>
+              <button class="btn" onclick="saveEstateModal()">保存</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
   </main><!-- /.main-content -->
 </div><!-- /.app-layout -->
 
@@ -5118,7 +5268,13 @@ const SEED={
     {title:"摄影课程 Phase1 作业：盲调练习",date:"2026-08-07",time:"20:00",tag:"study",done:false,desc:"闭眼回忆三要素数值"},
     {title:"周末暖场活动 拍摄记录",date:"2026-08-09",time:"14:00",tag:"shot",done:false,desc:"露营咖啡主题活动现场"}
   ],
-  works:[]
+  works:[],
+  estateReports:[],
+  estatePolicies:[
+    {来源标注:"住建部·自然资源部·金融监管总局",政策名称:"关于完善商品住房销售制度的通知",政策类型:"现房销售",层级:"部委",发布日:"2026-08-28",文号:"建房〔2026〕82号",政策沿革:"承接2025年现房销售试点扩围，五部门联合明确现房优先+新老划断。",政策速览:"新出让土地及未取得工规证项目优先现房销售；已取工规证按原预售政策，不「一刀切」。",影响解读:"回款曲线右移12-24月，倒逼房企从规模转向产品力，优质现房更受青睐。",执行提示:"重做全周期资金测算；梳理在途项目新老划断口径；组建新政落地专班。"}
+  ],
+  estateLandPub:[],
+  estateLandDeals:[]
 };
 
 const BANKUAI_REMAP={
@@ -5162,6 +5318,10 @@ function morphDB(d){
   if(!d.ideas)d.ideas=JSON.parse(JSON.stringify(SEED.ideas));
   if(!d.events)d.events=JSON.parse(JSON.stringify(SEED.events));
   if(!d.works)d.works=[];
+  if(!d.estateReports)d.estateReports=[];
+  if(!d.estatePolicies)d.estatePolicies=JSON.parse(JSON.stringify(SEED.estatePolicies));
+  if(!d.estateLandPub)d.estateLandPub=[];
+  if(!d.estateLandDeals)d.estateLandDeals=[];
   (d.rows||[]).forEach(rw=>{if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];});
   if(!d._ts)d._ts=Date.now();
   return d;
@@ -5197,7 +5357,8 @@ const TAB_TITLES={
   idea:{title:"💡 灵感收集",sub:"创意素材库 · 构图参考 · 配色方案"},
   schedule:{title:"📅 日历行程",sub:"拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
   works:{title:"📷 我的作品",sub:"上传拍摄作品 · 标记客片 · 同步到客户画廊"},
-  bookings:{title:"📩 客户预约",sub:"客户在客户端提交跟拍预约 · 统一处理"}
+  bookings:{title:"📩 客户预约",sub:"客户在客户端提交跟拍预约 · 统一处理"},
+  estate:{title:"🏘 行业报告库",sub:"地产数据报告 · 政策解读 · 土拍 · 研报智库 · 现房新政"}
 };
 function openMobileNav(){
   const sb=document.querySelector(".sidebar");const ov=document.querySelector(".mobile-nav-overlay");
@@ -5212,7 +5373,7 @@ function closeMobileNav(){
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
-  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings"];
+  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","estate"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
   document.getElementById("page-title").innerHTML=info.title+' <span class="sparkle"></span>';
@@ -5221,7 +5382,7 @@ function switchTab(t){
   else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
-  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();
+  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();else if(t==="estate")renderEstate();
   // 手机端切换模块后关闭抽屉并回到顶部
   if(window.innerWidth<=834){closeMobileNav();window.scrollTo({top:0,behavior:"smooth"});}
 }
@@ -5537,7 +5698,7 @@ function renderPlanStats(){
   const barP=document.getElementById("bar-plan");if(barP)barP.style.width=pct+"%";
   renderBoardBars();
 
-  /* 统计卡片点击跳转对应筛选视图（v5.75 改为事件委托，避免内联 onclick 不生效） */
+  /* 统计卡片点击跳转对应筛选视图（v5.76 改为事件委托，避免内联 onclick 不生效） */
   const statsWrap=document.querySelector(".plan-stats");
   if(statsWrap && !statsWrap._bound){
     statsWrap.addEventListener("click",e=>{
@@ -7285,6 +7446,7 @@ function renderAll(){
   if(curTab==="home")renderOverview();else if(curTab==="plan")renderPlan();else if(curTab==="course")renderCourse();else if(curTab==="hot")renderHot();else if(curTab==="job")renderJobs();else if(curTab==="read")renderRead();
   else if(curTab==="okr")renderOKRs();else if(curTab==="gear")renderGears();else if(curTab==="review")renderReviews();else if(curTab==="idea")renderIdeas();
   else if(curTab==="schedule")renderSchedule();
+  else if(curTab==="estate")renderEstate();
   renderWeekBar();
 }
 
@@ -7662,6 +7824,353 @@ function toggleTheme(){
   applyTheme(cur==="light"?"dark":"light");
 }
 applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
+
+/* ==================== 行业报告库模块（v5.76 移植自资料库蓝图） ==================== */
+var ESTATE_STATE={tab:"overview",repKw:"",repCat:"全部",polKw:"",polLv:"全部",landTab:"pub",landProv:"全部",landKw:"",landDay:"全部",srcKw:"",srcCat:"全部"};
+var _estateEdit=null;
+function estEsc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function estNormDay(s){var m=String(s||"").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);return m?(m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2)):"";}
+function estByDateDesc(a,b){var x=estNormDay(a.发布日||a.成交日||a.公告日||""),y=estNormDay(b.发布日||b.成交日||b.公告日||"");if(x<y)return 1;if(x>y)return -1;return 0;}
+function estNum(s){var m=String(s==null?"":s).replace(/[^0-9.]/g,"");return parseFloat(m)||0;}
+function estInAny(o,fields,ql){return fields.some(function(f){return String(o[f]||"").toLowerCase().indexOf(ql)>=0;});}
+function estArr(kind){return kind==="reports"?DB.estateReports:kind==="policies"?DB.estatePolicies:kind==="landPub"?DB.estateLandPub:DB.estateLandDeals;}
+
+/* 静态数据：828 现房销售新政（五部门 2026-08-28 联合新政） */
+var POL828_FILES=[
+  {t:"《关于完善商品住房销售制度的通知》",s:"住建部·自然资源部·金融监管总局｜现房优先+新老划断+封顶预售+全额监管+交房即交证"},
+  {t:"《关于改革完善房地产信贷管理推动加快构建房地产发展新模式的意见》",s:"央行·金融监管总局｜开发贷主办银行制+资金封闭+按揭后置+房贷延至40年"},
+  {t:"《关于资本市场支持构建房地产发展新模式的意见》",s:"证监会｜融资从主体信用转向项目信用：再融资/并购/公司债/CMBS/ABS/REITs/不动产私募"}
+];
+var POL828_DIMS=[
+  {dim:"销售端",col:"#b03a2e",items:["现房销售优先：新出让土地+未取得工规证项目优先现房销售","新老划断：已取工规证项目按原政策（预售），不“一刀切”取消","预售门槛提至主体结构封顶方可申请","房款（首付+按揭）全额进监管账户，竣工备案+配套具备后解控","交房即交证：交房与办证同步","认购定金制度规范"]},
+  {dim:"信贷端",col:"#1f6f8b",items:["开发贷主办银行制+资金封闭管理（一项目一银行，禁跨项目调拨）","开发贷期限：预售最长5年/现房最长7年；首次还本原则上竣工备案后","按揭放款时点后移：现房备案后发、预售竣工备案后发——能拿房、再还贷","房贷期限延至40年（同等本金月供约降15%）","债务收入比 DSR 上限55%→60%，购房能力边际提升"]},
+  {dim:"融资端",col:"#6c3483",items:["融资逻辑：从主体信用→项目信用","再融资/并购/公司债/CMBS/ABS","公募REITs/不动产私募股权","优质项目股权融资、夹层融资打开空间"]},
+  {dim:"配套合规",col:"#b9770e",items:["项目公司制：开发主体独立核算","自有资金购地：拿地资金须为自有资金","土地款分期缴纳：缓解短期资金压力","优化审批：容缺受理、并联审批提速"]},
+  {dim:"对地产人实操",col:"#1e8449",items:["投资拿地：重资本厚度，自有资金购地+现房拉长回款","营销产品：从拼话术→拼产品力实景","财务资金：高资本金沉淀、回款曲线右移12-24月","组织：设新政落地专班","决策：AI赋能投拓/客研/测算"]}
+];
+var POL828_ROLES=[
+  {n:"1",role:"投资拿地",items:["重做全周期资金峰值测算：现房销售使回款曲线右移12-24月，自有资金占用翻倍","城市/板块择址更重去化确定性，弃高杠杆快周转逻辑","自有资金购地+合作开发分摊资本，慎拿大体量远郊地","用AI做地块多情景现金流压力测试"]},
+  {n:"2",role:"营销产品",items:["从拼话术、造概念转向拼产品力、拼实景：实景示范区/现房样板成核心卖点","好房子标准落地：品质/适老化/智能化/绿色低碳","交付即口碑节点：交付不再是履约终点，而是传播与复购起点","客研前置：用AI客研锁定真实需求再定产品"]},
+  {n:"3",role:"财务资金",items:["高资本金沉淀+慢回流：IRR显著下降（华润担忧降至1/4）","资金封闭管理：一项目一账，禁跨项目腾挪","融资结构重构：主体信用→项目信用（REITs/ABS/CMBS盘活）","建立24-36月资金安全垫预警模型"]}
+];
+var POL828_ORGS=[
+  {who:"中指研究院",v:"现房对房价影响有限，引导行业回归产品力；短期供给收缩，优质现房更受青睐。"},
+  {who:"克而瑞",v:"回款曲线右移12-24月；行业将经历认知→阵痛→重塑三阶段；最终受益者是强资产负债表+强项目执行力者，而非单纯央国企。"},
+  {who:"华润置地",v:"全面拥抱现房时代；对IRR降至1/4有担忧，但坚定把转型落到产品力。"},
+  {who:"李宇嘉（广东省城规院）",v:"倒逼品质之战，开发商竞争从规模转向品质交付。"},
+  {who:"虞晓芬/柴强（中房学）",v:"现房销售是发展新模式下半场，真正考验交付与品控能力。"},
+  {who:"经济日报/央广网",v:"有多大实力办多大事，降低金融杠杆与烂尾风险，保护购房人权益。"}
+];
+var POL828_CITIES=[
+  {t:"海南",d:"全域现房销售（2018起试点，全国最彻底）"},{t:"荆门",d:"新出让地块全部现房销售"},
+  {t:"广州南沙",d:"首宗现房销售试点地块出让"},{t:"苏州",d:"现房销售项目公积金贷款额度上浮50%"},
+  {t:"烟台",d:"现房销售套数不计入限购核减（套数核减优惠）"},{t:"美的置业",d:"主动现房战略，交房即交证标杆"},
+  {t:"天津泰达·格调玖章",d:"现房销售产品力标杆项目"},{t:"合肥/深圳",d:"多宗地块试点竞现房销售面积"}
+];
+var POL828_FAQ=[
+  {q:"828新政是全面取消预售吗？",a:"不是。预售名义保留、实质现房化：新出让土地+未取工规证项目优先现房；已取工规证按原政策。属新老划断，并非一刀切取消预售。"},
+  {q:"房贷真的交房前不用还吗？",a:"是。按揭放款时点后移：现房销售备案后发放、预售竣工备案后发放，即能拿房、再还贷。但利息自放款日起计，并非免息。"},
+  {q:"房贷延至40年，月供降多少？",a:"期限上限从30年延至40年，同等本金月供约降15%；DSR上限55%→60%，购房能力边际提升。"},
+  {q:"对中介/策划/营销的影响？",a:"营销从拼话术转拼产品力实景；策划需前置介入产品力打造；中介卖点从预期转眼见为实。"},
+  {q:"房企最该立刻做什么？",a:"重做全周期资金测算、梳理在途项目新老划断口径、搭建新政落地专班、把好房子标准落到产品与交付。"}
+];
+var POL828_CHIPS=["828新政","现房销售","交房前不还贷","开发贷主办银行制","房贷40年","预售资金监管","交房即交证","房地产发展新模式","好房子"];
+
+/* 静态数据：研报智库 */
+var RESEARCH_TAXO=[
+  {c:"月报/周报",d:"市场月度/周度运行监测",iss:"中指/克而瑞/亿翰",cad:"月/周",ex:"中国房地产指数系统百城价格指数报告"},
+  {c:"数据点评",d:"70城/百城/投资开发/销售数据点评",iss:"国家统计局/易居/中指",cad:"月",ex:"70城价格指数解读"},
+  {c:"季度/半年度/年度",d:"半年度市场总结、趋势展望、年度白皮书",iss:"中指、亿翰、各大券商",cad:"季/半年/年",ex:"物业管理市场总结与2026趋势展望"},
+  {c:"政策解读/快评",d:"政治局会议、中央经济工作会议、购房补贴",iss:"易居(严跃进/崔霁)、中指、中诚信",cad:"政策发布 T+0~3",ex:"中央经济工作会议解读"},
+  {c:"房企销售/榜单",d:"百强房企销售榜、拿地/融资监测",iss:"克而瑞、中指",cad:"月/周",ex:"TOP100销售榜"},
+  {c:"土地市场动态",d:"全国/核心城市土地成交、出让金、流拍率",iss:"58安居客、中指",cad:"月",ex:"全国土地市场报告"},
+  {c:"价格指数",d:"70城(统计局/易居)、百城(中指)、物业服务指数",iss:"国家统计局、易居、中指",cad:"月",ex:"70城价格指数"},
+  {c:"商业地产/大宗投资",d:"写字楼、零售、物流、险资配置",iss:"CBRE、Savills、Cushman&Wakefield、JLL",cad:"季/年",ex:"人民币机构资本重塑商业地产投资格局"},
+  {c:"物业服务/资管",d:"物业ESG、运营管理、资产证券化",iss:"中指、JLL",cad:"年/半年",ex:"物业服务上市公司ESG测评"},
+  {c:"城市研究/都市圈/城市更新",d:"都市圈、城市更新、城市高质量发展",iss:"华高莱斯、高和资本、人大国发院",cad:"专题/季",ex:"国家级都市圈谁在领跑"},
+  {c:"专题/产品趋势",d:"好房子、现房销售、去公摊、定制化",iss:"亿翰、中指",cad:"专题",ex:"上半年好房子产品趋势报告"},
+  {c:"案例/项目洞察",d:"热点楼盘诊断、板块供需与客群",iss:"58安居客楼盘洞察",cad:"不定期",ex:"上海楼市分化"},
+  {c:"金融/融资/化债",d:"房企融资监测、化债规模榜、REITs",iss:"中指、各大券商",cad:"月/专题",ex:"房企化债规模排行榜"},
+  {c:"AI+地产趋势",d:"AI投拓、营销、客研、智能体",iss:"房地产行业AI研报智库(IMA)",cad:"实时/专题",ex:"AI赋能地产投拓与营销"}
+];
+var IMA_LIBS=[
+  {n:"房地产行业研报智库",cnt:"5728 篇",col:"#b03a2e",tag:"实时更新",cov:"涵盖全国房地产市场研报、月报、季度分析、政策解读、房企销售、土地市场、金融支持等；2026年研报合集535篇，多机构出品"},
+  {n:"房地产行业AI研报智库",cnt:"7484 篇",col:"#1f6f8b",tag:"含 AI+地产 趋势",cov:"按2024/2025/2026年分月归档（2026合集653篇、2025年1-12月10个文件夹等）；含AI+地产趋势视角"}
+];
+var RESEARCH_QWORDS=["70城房价","LPR","房企销售榜","土地市场","商业地产","物业服务","城市更新","好房子","AI 地产","政治局会议","购房补贴","REITs"];
+
+/* 静态数据：数据源手册 24 卡 */
+var SRC_DATA=[
+  {cat:"宏观数据",name:"国家统计局",upd:"月度",src:"www.stats.gov.cn",entry:"房价/投资/销售",note:"70城价格指数官方口径"},
+  {cat:"货币政策",name:"中国人民银行",upd:"即时",src:"www.pbc.gov.cn",entry:"LPR/信贷",note:"LPR每月20日公布"},
+  {cat:"住建政策",name:"住房城乡建设部",upd:"即时",src:"www.mohurd.gov.cn",entry:"销售/资质/标准",note:"现房销售新政出处"},
+  {cat:"土地管理",name:"自然资源部",upd:"即时",src:"www.mnr.gov.cn",entry:"土地出让/规划",note:"供地计划与公示"},
+  {cat:"财税政策",name:"财政部",upd:"即时",src:"www.mof.gov.cn",entry:"专项债/预算",note:"房产税试点口径"},
+  {cat:"价格指数",name:"中指研究院·百城",upd:"月度",src:"www.cih-index.com",entry:"百城价格指数",note:"样本为新建住宅"},
+  {cat:"房企榜单",name:"克而瑞CRIC",upd:"月度",src:"www.cric.com",entry:"TOP100销售榜",note:"权益/全口径双榜"},
+  {cat:"市场研究",name:"易居研究院",upd:"周/月",src:"www.ehousechina.com",entry:"70城/专题",note:"严跃进团队快评"},
+  {cat:"房企榜单",name:"亿翰智库",upd:"月度",src:"www.eh51.com",entry:"销售/拿地",note:"民企视角榜单"},
+  {cat:"房价数据",name:"70城价格指数",upd:"月度",src:"stats.gov.cn",entry:"环比/同比",note:"统计局口径，T+15发布"},
+  {cat:"土地市场",name:"58安居客",upd:"月度",src:"www.anjuke.com",entry:"土地成交/流拍",note:"城市级土地出让金"},
+  {cat:"二手房",name:"贝壳研究院",upd:"月度",src:"research.ke.com",entry:"二手房景气",note:"带看/成交先行指标"},
+  {cat:"房产平台",name:"房天下",upd:"日更",src:"www.fang.com",entry:"楼盘/资讯",note:"新房二手房大全"},
+  {cat:"金融终端",name:"Wind",upd:"实时",src:"www.wind.com.cn",entry:"宏观/行业",note:"机构标配终端"},
+  {cat:"金融终端",name:"同花顺iFinD",upd:"实时",src:"www.51ifind.com",entry:"财报/融资",note:"房企信用数据"},
+  {cat:"地方政府",name:"各省市政府网",upd:"即时",src:"省份.gov.cn",entry:"供地/规划",note:"地块公告一手源"},
+  {cat:"省统计局",name:"各省统计局",upd:"月度",src:"省份.stats.gov.cn",entry:"投资/销售",note:"分城市明细"},
+  {cat:"商业地产",name:"CBRE世邦魏理仕",upd:"季/年",src:"www.cbre.com.cn",entry:"写字楼/大宗",note:"四大行研报"},
+  {cat:"商业地产",name:"戴德梁行/仲量联行",upd:"季/年",src:"www.cushmanwakefield.com",entry:"零售/物流",note:"REITs底层资产"},
+  {cat:"城市更新",name:"华高莱斯",upd:"专题",src:"www.hhl.com.cn",entry:"都市圈/更新",note:"城市战略咨询"},
+  {cat:"城市更新",name:"高和资本",upd:"专题",src:"www.gohigh.com",entry:"存量/REITs",note:"商业地产资管"},
+  {cat:"物业/资管",name:"中指物业",upd:"年/半年",src:"www.cii.com.cn",entry:"物业ESG",note:"上市物企测评"},
+  {cat:"产品趋势",name:"亿翰/中指产品",upd:"专题",src:"www.eh51.com",entry:"好房子/现房",note:"产品力榜单"},
+  {cat:"AI研报",name:"房地产行业AI研报智库(IMA)",upd:"实时",src:"IMA智库",entry:"AI+地产",note:"分月归档研报库"}
+];
+
+/* 静态数据：查询抽屉权威源 */
+var EXT_SITES=[
+  {ic:"政",bg:"#b03a2e",name:"中国政府网·政策文件库",hint:"国务院及部门政策原文",site:"gov.cn",home:"https://www.gov.cn/zhengce/zuixin/"},
+  {ic:"住",bg:"#1f6f8b",name:"住房城乡建设部",hint:"住建政策·资质·标准",site:"mohurd.gov.cn",home:"https://www.mohurd.gov.cn/"},
+  {ic:"央",bg:"#a07c12",name:"中国人民银行",hint:"LPR·信贷·货币政策",site:"pbc.gov.cn",home:"http://www.pbc.gov.cn/"},
+  {ic:"统",bg:"#2f6fb3",name:"国家统计局",hint:"70城房价·投资开发数据",site:"stats.gov.cn",home:"https://www.stats.gov.cn/"},
+  {ic:"财",bg:"#6b4fb3",name:"财政部",hint:"财税政策·专项债·预算",site:"mof.gov.cn",home:"https://www.mof.gov.cn/"},
+  {ic:"自",bg:"#2f8f5b",name:"自然资源部",hint:"土地出让·用地·规划",site:"mnr.gov.cn",home:"https://www.mnr.gov.cn/"}
+];
+
+/* 编辑字段 schema：[标签, 键, 是否多行] */
+var ESTATE_FIELDS={
+  reports:[["板块","板块"],["指标名称","指标名称"],["期数","期数"],["数据截至","数据截至"],["核心结论","核心结论",true],["数据速览","数据速览"],["口径说明","口径说明",true],["来源与链接","来源与链接"],["发布日","发布日"],["下次更新","下次更新"]],
+  policies:[["来源标注","来源标注"],["政策名称","政策名称"],["政策类型","政策类型"],["层级","层级"],["发布日","发布日"],["文号","文号"],["政策沿革","政策沿革",true],["政策速览","政策速览",true],["影响解读","影响解读",true],["执行提示","执行提示",true]],
+  landPub:[["公示类型","公示类型"],["省份","省份"],["城市","城市"],["区域","区域"],["地块编号","地块编号"],["地块位置","地块位置"],["出让面积","出让面积"],["用地性质","用地性质"],["出让方式","出让方式"],["起始价","起始价"],["保证金","保证金"],["公告日","公告日"],["挂牌起止","挂牌起止"],["状态","状态"],["来源渠道","来源渠道"],["来源链接","来源链接"],["备注","备注",true]],
+  landDeals:[["成交日","成交日"],["省份","省份"],["城市","城市"],["区域","区域"],["地块编号","地块编号"],["地块位置","地块位置"],["用地性质","用地性质"],["出让方式","出让方式"],["起始价","起始价"],["成交价","成交价"],["溢价率","溢价率"],["楼面价","楼面价"],["竞得人","竞得人"],["来源链接","来源链接"],["备注","备注",true]]
+};
+
+/* ---------- 切换与渲染入口 ---------- */
+function estateTab(t){ESTATE_STATE.tab=t;var bs=document.querySelectorAll("#estate-tabs .etab");bs.forEach(function(b){b.classList.toggle("active",b.dataset.et===t);});renderEstate();}
+function renderEstate(){
+  var tab=ESTATE_STATE.tab,body=document.getElementById("estate-body"),addBtn=document.getElementById("estate-add-btn");
+  addBtn.style.display=(tab==="reports"||tab==="policies"||tab==="land")?"":"none";
+  if(tab==="overview")body.innerHTML=estOverview();
+  else if(tab==="reports")body.innerHTML=estReports();
+  else if(tab==="policies")body.innerHTML=estPolicies();
+  else if(tab==="board")body.innerHTML=estBoard();
+  else if(tab==="land")body.innerHTML=estLand();
+  else if(tab==="sources")body.innerHTML=estSources();
+  else if(tab==="research")body.innerHTML=estResearch();
+  else if(tab==="pol828")body.innerHTML=estPol828();
+}
+function kpi(n,l){return '<div class="est-kpi"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
+function chipsRow(cats,cur,act){return '<div class="est-chips">'+cats.map(function(c){return '<span class="est-chip'+(c===cur?" on":"")+'" onclick="'+act+'(\''+estEsc(c)+'\')">'+estEsc(c)+'</span>';}).join("")+'</div>';}
+
+function estOverview(){
+  var reps=DB.estateReports||[],pols=DB.estatePolicies||[],srcs=SRC_DATA;
+  var months={};(pols||[]).forEach(function(p){var d=estNormDay(p.发布日);if(d)months[d.slice(0,7)]=1;});
+  var k='<div class="est-kpis">'+kpi(reps.length,"数据报告")+kpi(pols.length,"政策解读")+kpi(Object.keys(months).length,"覆盖月份")+kpi(srcs.length,"数据源站")+'</div>';
+  var tl='<div class="est-sec"><div class="est-sec-hd">最新政策 <span class="sub">近 6 条</span></div><div class="est-timeline">';
+  var sorted=(pols||[]).slice().sort(estByDateDesc).slice(0,6);
+  if(!sorted.length)tl+='<div class="est-empty">暂无政策，点右上角「＋新增」添加</div>';
+  sorted.forEach(function(p){var i=pols.indexOf(p);tl+='<div class="est-tl-row" onclick="openEstateDetail(\'policies\','+i+')"><div class="date">'+estEsc(p.发布日||"待核录")+'</div><div class="nm">'+estEsc(p.政策名称||"(未命名)")+'</div></div>';});
+  tl+='</div></div>';
+  return k+tl;
+}
+function estReports(){
+  var all=DB.estateReports||[];
+  var cats=["全部"].concat([...new Set(all.map(function(r){return r.板块||"未分类";}))]);
+  var h='<div class="est-toolbar"><input id="est-rep-kw" placeholder="搜索指标/结论…" value="'+estEsc(ESTATE_STATE.repKw)+'" oninput="estLiveFilter(\'reports\',this.value)"></div>';
+  h+=chipsRow(cats,ESTATE_STATE.repCat,"estSetRepCat");
+  h+='<div id="est-list-host">'+estReportsGrid()+'</div>';
+  return h;
+}
+function estSetRepCat(c){ESTATE_STATE.repCat=c;renderEstate();}
+function estReportsGrid(){
+  var all=DB.estateReports||[];var kw=ESTATE_STATE.repKw.toLowerCase();
+  var f=all.filter(function(r){if(ESTATE_STATE.repCat!=="全部"&&(r.板块||"未分类")!==ESTATE_STATE.repCat)return false;if(kw&&((r.指标名称||"")+(r.核心结论||"")+(r.板块||"")).toLowerCase().indexOf(kw)<0)return false;return true;});
+  if(!f.length)return '<div class="est-empty">暂无数据报告。点右上角「＋新增」添加，或后续用 WebSearch 定时任务自动抓取。</div>';
+  return '<div class="est-grid c2">'+f.map(function(r){var i=all.indexOf(r);return '<div class="est-card" onclick="openEstateDetail(\'reports\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-blue">'+estEsc(r.板块||"未分类")+'</span><span class="est-pill p-gray">'+estEsc(r.期数||"")+'</span></div><div class="t">'+estEsc(r.指标名称||"(未命名)")+'</div><div class="m">'+estEsc(r.核心结论||"")+'</div><div class="est-row-acts"><button onclick="event.stopPropagation();openEstateEdit(\'reports\','+i+')">编辑</button><button class="del" onclick="event.stopPropagation();delEstate(\'reports\','+i+')">删除</button></div></div>';}).join("")+'</div>';
+}
+function estPolicies(){
+  var all=DB.estatePolicies||[];
+  var lv=["全部"].concat([...new Set(all.map(function(r){return r.层级||"未分类";}))]);
+  var h='<div class="est-toolbar"><input id="est-pol-kw" placeholder="搜索政策名/解读…" value="'+estEsc(ESTATE_STATE.polKw)+'" oninput="estLiveFilter(\'policies\',this.value)"></div>';
+  h+=chipsRow(lv,ESTATE_STATE.polLv,"estSetPolLv");
+  h+='<div id="est-list-host">'+estPoliciesGrid()+'</div>';
+  return h;
+}
+function estSetPolLv(c){ESTATE_STATE.polLv=c;renderEstate();}
+function estPoliciesGrid(){
+  var all=DB.estatePolicies||[];var kw=ESTATE_STATE.polKw.toLowerCase();
+  var f=all.filter(function(r){if(ESTATE_STATE.polLv!=="全部"&&(r.层级||"未分类")!==ESTATE_STATE.polLv)return false;if(kw&&((r.政策名称||"")+(r.影响解读||"")+(r.政策速览||"")).toLowerCase().indexOf(kw)<0)return false;return true;});
+  if(!f.length)return '<div class="est-empty">暂无政策。点右上角「＋新增」添加；828 新政已内置在「828新政」标签页。</div>';
+  return '<div class="est-grid c2">'+f.map(function(r){var i=all.indexOf(r);return '<div class="est-card" onclick="openEstateDetail(\'policies\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-amber">'+estEsc(r.层级||"未分类")+'</span><span class="est-pill p-gray">'+estEsc(r.发布日||"")+'</span></div><div class="t">'+estEsc(r.政策名称||"(未命名)")+'</div><div class="m">'+estEsc(r.来源标注||"")+'</div><div class="est-row-acts"><button onclick="event.stopPropagation();openEstateEdit(\'policies\','+i+')">编辑</button><button class="del" onclick="event.stopPropagation();delEstate(\'policies\','+i+')">删除</button></div></div>';}).join("")+'</div>';
+}
+function estBoard(){
+  var all=(DB.estatePolicies||[]).filter(function(p){return estNormDay(p.发布日);}).sort(estByDateDesc);
+  if(!all.length)return '<div class="est-empty">暂无带日期的政策，添加政策并填写「发布日」后在此按月份生成时间轴。</div>';
+  var html='<div class="est-sec-hd">政策发布日期看板 <span class="sub">按月分组 · 跳过无日期</span></div><div class="est-timeline">';
+  var cur="";
+  all.forEach(function(p){var m=estNormDay(p.发布日).slice(0,7);if(m!==cur){cur=m;html+='<div class="est-month">'+m+'</div>';}var i=DB.estatePolicies.indexOf(p);html+='<div class="est-tl-row" onclick="openEstateDetail(\'policies\','+i+')"><div class="date">'+estEsc(p.发布日)+'</div><div class="nm">'+estEsc(p.政策名称||"(未命名)")+'</div></div>';});
+  return html+'</div>';
+}
+function estLand(){
+  var t=ESTATE_STATE.landTab;
+  var tabs='<div class="est-land-tabs"><button class="'+(t==="pub"?"on":"")+'" onclick="ESTATE_STATE.landTab=\'pub\';renderEstate()">出让公示</button><button class="'+(t==="deal"?"on":"")+'" onclick="ESTATE_STATE.landTab=\'deal\';renderEstate()">今日成交</button><button class="'+(t==="builders"?"on":"")+'" onclick="ESTATE_STATE.landTab=\'builders\';renderEstate()">摘地房企</button></div>';
+  if(t==="pub"){
+    var all=DB.estateLandPub||[];var provs=["全部"].concat([...new Set(all.map(function(r){return r.省份||"全国";}))]);
+    var h=tabs+'<div class="est-toolbar"><input placeholder="搜索城市/地块…" value="'+estEsc(ESTATE_STATE.landKw)+'" oninput="estLiveFilter(\'landPub\',this.value)"></div>';
+    h+=chipsRow(provs,ESTATE_STATE.landProv,"estSetLandProv");
+    h+='<div id="est-list-host">'+estLandPubGrid()+'</div>';return h;
+  }
+  if(t==="deal"){
+    var d=DB.estateLandDeals||[];var today=new Date().toISOString().slice(0,10);
+    var totToday=d.filter(function(r){return r.成交日===today;}).length;
+    var sumAmt=d.reduce(function(s,r){return s+estNum(r.成交价);},0);
+    var avgPre=d.length?Math.round(d.reduce(function(s,r){return s+estNum(r.溢价率);},0)/d.length*10)/10:0;
+    var kp='<div class="est-kpis">'+kpi(totToday,"今日宗数")+kpi((sumAmt/10000).toFixed(1)+"亿","成交总额")+kpi(avgPre+"%","平均溢价率")+kpi(d.length,"累计条数")+'</div>';
+    var days=["全部","今日","近7天","近30天"];
+    var h=tabs+kp+'<div class="est-chips">'+days.map(function(c){return '<span class="est-chip'+(c===ESTATE_STATE.landDay?" on":"")+'" onclick="ESTATE_STATE.landDay=\''+c+'\';renderEstate()">'+c+'</span>';}).join("")+'</div>';
+    h+='<div id="est-list-host">'+estLandDealGrid()+'</div>';return h;
+  }
+  return tabs+estBuilders();
+}
+function estSetLandProv(c){ESTATE_STATE.landProv=c;renderEstate();}
+function estLandPubGrid(){
+  var all=DB.estateLandPub||[];var kw=ESTATE_STATE.landKw.toLowerCase();
+  var f=all.filter(function(r){if(ESTATE_STATE.landProv!=="全部"&&(r.省份||"全国")!==ESTATE_STATE.landProv)return false;if(kw&&((r.城市||"")+(r.地块位置||"")+(r.用地性质||"")).toLowerCase().indexOf(kw)<0)return false;return true;});
+  if(!f.length)return '<div class="est-empty">暂无土地出让公示。点右上角「＋新增」登记，或后续用定时任务抓取。</div>';
+  return '<div class="est-grid c2">'+f.map(function(r){var i=all.indexOf(r);return '<div class="est-card" onclick="openEstateDetail(\'landPub\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-blue">'+estEsc(r.省份||"全国")+'</span><span class="est-pill p-gray">'+estEsc(r.用地性质||"")+'</span></div><div class="t">'+estEsc(r.城市||"")+' '+estEsc(r.地块位置||"")+'</div><div class="m">'+estEsc(r.出让面积||"")+' · 起始价 '+estEsc(r.起始价||"")+'</div><div class="est-row-acts"><button onclick="event.stopPropagation();openEstateEdit(\'landPub\','+i+')">编辑</button><button class="del" onclick="event.stopPropagation();delEstate(\'landPub\','+i+')">删除</button></div></div>';}).join("")+'</div>';
+}
+function estLandDealGrid(){
+  var all=DB.estateLandDeals||[];var kw=ESTATE_STATE.landKw.toLowerCase();var day=ESTATE_STATE.landDay;var today=new Date().toISOString().slice(0,10);
+  var f=all.filter(function(r){if(kw&&((r.城市||"")+(r.竞得人||"")+(r.地块位置||"")).toLowerCase().indexOf(kw)<0)return false;
+    if(day==="今日")return r.成交日===today;if(day==="近7天"){var dt=estNormDay(r.成交日);return dt&&(today-dt<=7);}if(day==="近30天"){var d2=estNormDay(r.成交日);return d2&&(today-d2<=30);}return true;});
+  if(!f.length)return '<div class="est-empty">暂无成交记录。</div>';
+  return '<div class="est-grid c2">'+f.map(function(r){var i=all.indexOf(r);return '<div class="est-card" onclick="openEstateDetail(\'landDeals\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-green">'+estEsc(r.城市||"")+'</span><span class="est-pill p-gray">'+estEsc(r.成交日||"")+'</span></div><div class="t">'+estEsc(r.竞得人||"")+'</div><div class="m">成交价 '+estEsc(r.成交价||"")+' · 溢价 '+estEsc(r.溢价率||"")+' · 楼面价 '+estEsc(r.楼面价||"")+'</div></div>';}).join("")+'</div>';
+}
+function estBuilders(){
+  var d=DB.estateLandDeals||[];if(!d.length)return '<div class="est-empty">暂无成交数据，摘地房企榜将自动按「竞得人」聚合。</div>';
+  var map={};d.forEach(function(r){var k=r.竞得人||"未知";if(!map[k])map[k]={n:0,amt:0};map[k].n++;map[k].amt+=estNum(r.成交价);});
+  var arr=Object.keys(map).map(function(k){return {name:k,n:map[k].n,amt:map[k].amt};}).sort(function(a,b){return b.amt-a.amt;});
+  var html='<div class="est-sec"><div class="est-sec-hd">摘地房企榜 <span class="sub">按竞得人聚合 · 累计金额</span></div><div class="est-dlist">';
+  arr.forEach(function(b){html+='<div class="est-drow"><span class="k">'+estEsc(b.name)+'</span><span class="v">'+b.n+' 宗 · 累计 '+(b.amt/10000).toFixed(1)+' 亿</span></div>';});
+  return html+'</div></div>';
+}
+function estSources(){
+  var all=SRC_DATA;var cats=["全部"].concat([...new Set(all.map(function(r){return r.cat;}))]);
+  var kw=ESTATE_STATE.srcKw.toLowerCase();
+  var f=all.filter(function(r){if(ESTATE_STATE.srcCat!=="全部"&&r.cat!==ESTATE_STATE.srcCat)return false;if(kw&&((r.名称||"")+(r.类别||"")+(r.口径注意||"")).toLowerCase().indexOf(kw)<0)return false;return true;});
+  var h='<div class="est-toolbar"><input placeholder="搜索数据源…" value="'+estEsc(ESTATE_STATE.srcKw)+'" oninput="estLiveFilter(\'sources\',this.value)"></div>';
+  h+=chipsRow(cats,ESTATE_STATE.srcCat,"estSetSrcCat");
+  h+='<div class="est-src-grid">'+f.map(function(r){return '<div class="est-src-card"><div class="nm">'+estEsc(r.名称)+'</div><div class="cat">'+estEsc(r.cat)+' · '+estEsc(r.upd)+'</div><div class="info">首选源：'+estEsc(r.src)+'<br>入口：'+estEsc(r.entry)+'<br>口径：'+estEsc(r.口径注意||"")+'</div></div>';}).join("")+'</div>';
+  return h;
+}
+function estSetSrcCat(c){ESTATE_STATE.srcCat=c;renderEstate();}
+function estResearch(){
+  var h='<div class="est-sec"><div class="est-sec-hd">行业研报类型图谱 <span class="sub">'+RESEARCH_TAXO.length+' 类</span></div><div class="est-taxo-grid">';
+  h+=RESEARCH_TAXO.map(function(t){return '<div class="est-taxo-card"><div class="c">'+estEsc(t.c)+'</div><div class="d">'+estEsc(t.d)+'</div><div class="iss">出品：'+estEsc(t.iss)+' · '+estEsc(t.cad)+'</div><div class="info" style="font-size:11px;color:var(--muted);margin-top:4px">例：'+estEsc(t.ex)+'</div></div>';}).join("");
+  h+='</div></div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">两大 IMA 智库入口</div><div class="est-taxo-grid">';
+  h+=IMA_LIBS.map(function(l){return '<div class="est-taxo-card" style="border-left:3px solid '+l.col+'"><div class="c">'+estEsc(l.n)+'</div><div class="iss">'+estEsc(l.cnt)+' · '+estEsc(l.tag)+'</div><div class="d">'+estEsc(l.cov)+'</div></div>';}).join("");
+  h+='</div></div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">研报检索词</div><div class="est-chips">'+RESEARCH_QWORDS.map(function(w){return '<span class="est-chip" onclick="runQuery(\''+estEsc(w)+'\')">'+estEsc(w)+'</span>';}).join("")+'</div></div>';
+  return h;
+}
+function estPol828(){
+  var h='<div class="est-banner">五部门 2026-08-28 联合新政：现房优先 + 新老划断 + 封顶预售 + 全额监管 + 交房即交证。与你二批次 7#-10#「交房晚于竞品」的去化难题直接相关。</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">政策文件 <span class="sub">'+POL828_FILES.length+' 份</span></div>'+POL828_FILES.map(function(f){return '<div class="est-card" style="cursor:default;margin-bottom:8px"><div class="t">'+estEsc(f.t)+'</div><div class="m">'+estEsc(f.s)+'</div></div>';}).join("")+'</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">五维制度重构</div>'+POL828_DIMS.map(function(d){return '<div style="margin-bottom:12px"><div class="est-pill" style="background:'+d.col+'22;color:'+d.col+'">'+estEsc(d.dim)+'</div><div class="est-dlist" style="margin-top:6px">'+d.items.map(function(it){return '<div class="est-drow"><span class="k" style="min-width:0">•</span><span class="v">'+estEsc(it)+'</span></div>';}).join("")+'</div></div>';}).join("")+'</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">三角色实操应对</div>'+POL828_ROLES.map(function(r){return '<div style="margin-bottom:12px"><div class="est-pill p-green">'+estEsc(r.n)+' · '+estEsc(r.role)+'</div><div class="est-dlist" style="margin-top:6px">'+r.items.map(function(it){return '<div class="est-drow"><span class="k" style="min-width:0">•</span><span class="v">'+estEsc(it)+'</span></div>';}).join("")+'</div></div>';}).join("")+'</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">机构观点</div>'+POL828_ORGS.map(function(o){return '<div class="est-card" style="cursor:default;margin-bottom:8px"><div class="t">'+estEsc(o.who)+'</div><div class="m">'+estEsc(o.v)+'</div></div>';}).join("")+'</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">城市/企业试点</div><div class="est-grid c3">'+POL828_CITIES.map(function(c){return '<div class="est-card" style="cursor:default"><div class="t">'+estEsc(c.t)+'</div><div class="m">'+estEsc(c.d)+'</div></div>';}).join("")+'</div></div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">常见问答</div>'+POL828_FAQ.map(function(f){return '<div class="est-card" style="cursor:default;margin-bottom:8px"><div class="t" style="font-size:13px">'+estEsc(f.q)+'</div><div class="m">'+estEsc(f.a)+'</div></div>';}).join("")+'</div>';
+  h+='<div class="est-sec"><div class="est-sec-hd">检索词 · 点击直达查询</div><div class="est-chips">'+POL828_CHIPS.map(function(w){return '<span class="est-chip" onclick="runQuery(\''+estEsc(w)+'\')">'+estEsc(w)+'</span>';}).join("")+'</div></div>';
+  return h;
+}
+function estLiveFilter(kind,val){
+  if(kind==="reports")ESTATE_STATE.repKw=val;else if(kind==="policies")ESTATE_STATE.polKw=val;else if(kind==="landPub")ESTATE_STATE.landKw=val;else if(kind==="sources")ESTATE_STATE.srcKw=val;
+  var host=document.getElementById("est-list-host");if(host)host.innerHTML=estListHtml(kind);
+}
+function estListHtml(kind){
+  if(kind==="reports")return estReportsGrid();if(kind==="policies")return estPoliciesGrid();
+  if(kind==="landPub")return estLandPubGrid();if(kind==="landDeals")return estLandDealGrid();if(kind==="sources")return "";return "";
+}
+
+/* ---------- 编辑器 ---------- */
+function openEstateAdd(){
+  var t=ESTATE_STATE.tab;var kind=t==="reports"?"reports":t==="policies"?"policies":t==="land"?(ESTATE_STATE.landTab==="pub"?"landPub":"landDeals"):null;
+  if(!kind)return;_estateEdit={kind:kind,idx:-1};estBuildForm(kind,{});
+}
+function openEstateEdit(kind,idx){_estateEdit={kind:kind,idx:idx};estBuildForm(kind,estArr(kind)[idx]||{});}
+function estBuildForm(kind,obj){
+  var sch=ESTATE_FIELDS[kind]||[];var html='<div class="est-editor">';
+  sch.forEach(function(f){var label=f[0],key=f[1],ta=f[2],val=obj[key]!=null?obj[key]:"";
+    if(ta)html+='<label>'+estEsc(label)+'</label><textarea data-est="'+estEsc(key)+'">'+estEsc(val)+'</textarea>';
+    else html+='<label>'+estEsc(label)+'</label><input data-est="'+estEsc(key)+'" value="'+estEsc(val)+'">';});
+  html+='</div>';
+  document.getElementById("estate-modal-hd").textContent=(_estateEdit.idx<0?"新增 · ":"编辑 · ")+kind;
+  document.getElementById("estate-modal-bd").innerHTML=html;
+  document.getElementById("estate-modal").style.display="flex";
+}
+function saveEstateModal(){
+  if(!_estateEdit)return;var kind=_estateEdit.kind,sch=ESTATE_FIELDS[kind]||[];
+  var els=document.querySelectorAll("#estate-modal-bd .est-editor > input, #estate-modal-bd .est-editor > textarea");
+  var obj={};sch.forEach(function(f,i){obj[f[1]]=els[i]?els[i].value.trim():"";});
+  var arr=estArr(kind);if(_estateEdit.idx<0)arr.push(obj);else arr[_estateEdit.idx]=obj;
+  save();closeEstateModal();renderEstate();
+}
+function closeEstateModal(){var m=document.getElementById("estate-modal");if(m)m.style.display="none";_estateEdit=null;}
+function delEstate(kind,idx){if(!confirm("确认删除该条？"))return;var arr=estArr(kind);if(idx>=0&&idx<arr.length)arr.splice(idx,1);save();renderEstate();}
+function openEstateDetail(kind,idx){
+  var arr=estArr(kind);var o=arr[idx];if(!o)return;var html='<div class="est-dlist">';
+  Object.keys(o).forEach(function(k){if(o[k]!=null&&o[k]!=="")html+='<div class="est-drow"><span class="k">'+estEsc(k)+'</span><span class="v">'+estEsc(o[k])+'</span></div>';});
+  html+='</div>';
+  document.getElementById("estate-modal-hd").textContent=kind+" · 详情";
+  document.getElementById("estate-modal-bd").innerHTML=html;
+  document.getElementById("estate-modal").style.display="flex";_estateEdit=null;
+}
+
+/* ---------- 全局查询抽屉 ---------- */
+function openQueryPanel(){var q=document.getElementById("qdrawer"),m=document.getElementById("qmask");if(q)q.classList.add("on");if(m)m.classList.add("on");
+  document.getElementById("qbody").innerHTML='<input class="q-input" id="qInput" placeholder="输入关键词，如 70城房价 / LPR / 现房销售…" oninput="runQuery(this.value)"><div id="qres"></div>';runQuery("");}
+function closeQueryPanel(){var q=document.getElementById("qdrawer"),m=document.getElementById("qmask");if(q)q.classList.remove("on");if(m)m.classList.remove("on");}
+function runQuery(q){
+  q=(q||"").trim();var ql=q.toLowerCase();var host=document.getElementById("qres");if(!host)return;
+  var hits=[];
+  (DB.estateReports||[]).forEach(function(r,i){if(estInAny(r,["板块","指标名称","核心结论","数据速览","来源与链接"],ql))hits.push({t:r.指标名称||"(报告)",s:r.板块+" · "+(r.发布日||""),kind:"reports",idx:i});});
+  (DB.estatePolicies||[]).forEach(function(r,i){if(estInAny(r,["政策名称","来源标注","政策类型","层级","政策速览","影响解读","执行提示"],ql))hits.push({t:r.政策名称||"(政策)",s:r.层级+" · "+(r.发布日||""),kind:"policies",idx:i});});
+  (DB.estateLandPub||[]).forEach(function(r,i){if(estInAny(r,["城市","区域","地块位置","用地性质","公示类型","竞得人","备注"],ql))hits.push({t:(r.城市||"")+" "+(r.地块位置||""),s:"出让公示",kind:"landPub",idx:i});});
+  (DB.estateLandDeals||[]).forEach(function(r,i){if(estInAny(r,["城市","区域","地块位置","竞得人","用地性质"],ql))hits.push({t:(r.城市||"")+" "+(r.竞得人||""),s:"成交",kind:"landDeals",idx:i});});
+  SRC_DATA.forEach(function(r,i){if(estInAny(r,["名称","类别","首选源","入口","口径注意"],ql))hits.push({t:r.名称||"(数据源)",s:r.cat,kind:"src",idx:i});});
+  var h='';
+  if(q){
+    h+='<div class="q-sec"><div class="q-sec-h">库内命中（'+(hits.length||0)+'）</div>';
+    if(!hits.length)h+='<div class="q-none">库内暂无匹配，试试下方权威源或让 AI 梳理</div>';
+    else h+=hits.slice(0,30).map(function(x){return '<div class="q-hit" onclick="estHit(\''+x.kind+"','"+x.idx+'\')"><div class="t">'+estEsc(x.t)+'</div><div class="s">'+estEsc(x.s)+'</div></div>';}).join("");
+    h+='</div>';
+    h+='<div class="q-sec"><div class="q-sec-h">权威源直达</div>'+EXT_SITES.map(function(s){return '<a class="q-src" href="'+s.home+'" target="_blank" rel="noopener"><span class="ic" style="background:'+s.bg+'">'+s.ic+'</span><span class="info"><div class="nm">'+estEsc(s.name)+'</div><div class="hint">'+estEsc(s.hint)+'</div></span></a>';}).join("")+'</div>';
+    h+='<div class="q-sec"><div class="q-sec-h">让 AI 梳理（复制委托）</div>';
+    h+='<div class="q-tpl" id="tplP">请基于「'+estEsc(q)+'」梳理政策解读：\n①政策速览 ②政策沿革 ③对房企/项目影响解读 ④一线执行提示。附官方链接后再入库。</div><button class="btn sm" onclick="estCopy(\'tplP\')">复制政策委托</button> ';
+    h+='<div class="q-tpl" id="tplD" style="margin-top:8px">请整理「'+estEsc(q)+'」数据三要素：\n①最新数值 ②同比/环比 ③口径与来源。附官方链接。</div><button class="btn sm" onclick="estCopy(\'tplD\')">复制数据委托</button>';
+    h+='<div class="q-note" style="margin-top:8px">搜索结果零散不能直接用，复制委托+官方链接给 AI 成稿后再入库。</div></div>';
+  }else{
+    h+='<div class="q-sec"><div class="q-sec-h">热门检索</div><div class="est-chips">'+["70城房价","LPR","现房销售","土地出让","房企销售榜","REITs","好房子"].map(function(w){return '<span class="est-chip" onclick="runQuery(\''+w+'\')">'+w+'</span>';}).join("")+'</div></div>';
+    h+='<div class="q-sec"><div class="q-sec-h">权威源直达</div>'+EXT_SITES.map(function(s){return '<a class="q-src" href="'+s.home+'" target="_blank" rel="noopener"><span class="ic" style="background:'+s.bg+'">'+s.ic+'</span><span class="info"><div class="nm">'+estEsc(s.name)+'</div><div class="hint">'+estEsc(s.hint)+'</div></span></a>';}).join("")+'</div>';
+  }
+  host.innerHTML=h;
+}
+function estHit(kind,idx){
+  if(kind==="src"){return;}
+  closeQueryPanel();switchTab("estate");
+  if(kind==="reports")ESTATE_STATE.tab="reports";
+  else if(kind==="policies")ESTATE_STATE.tab="policies";
+  else if(kind==="landPub"){ESTATE_STATE.tab="land";ESTATE_STATE.landTab="pub";}
+  else if(kind==="landDeals"){ESTATE_STATE.tab="land";ESTATE_STATE.landTab="deal";}
+  estateTab(ESTATE_STATE.tab);
+  setTimeout(function(){openEstateDetail(kind,idx);},60);
+}
+function estCopy(id){var el=document.getElementById(id);if(!el)return;var txt=el.innerText||el.textContent;
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){estToast("已复制 ✓");},function(){estFallbackCopy(txt);});}else estFallbackCopy(txt);}
+function estFallbackCopy(txt){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");estToast("已复制 ✓");}catch(e){}document.body.removeChild(ta);}
+function estToast(m){var t=document.getElementById("est-toast");if(!t){t=document.createElement("div");t.id="est-toast";t.style.cssText="position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:var(--gold);color:#1a1206;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:700;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.3)";document.body.appendChild(t);}t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none";},1400);}
 
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
