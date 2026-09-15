@@ -563,7 +563,14 @@
     .mini-board{padding:7px 10px}
     .pm-fab{display:grid}
   }
-  .star-btn:hover{background:rgba(251,191,36,.12);transform:scale(1.1)}
+  /* 星标分级（v5.82）：一行 5 颗可点小星 —— 点第几颗就给几颗，点当前最后一颗清零；★ 实心=已给，☆ 空心=未给 */
+  .star-rate{display:inline-flex;gap:1px;line-height:1;cursor:pointer;user-select:none;padding:2px 3px;border-radius:6px}
+  .star-rate:hover{background:rgba(251,191,36,.10)}
+  .star-rate .sr{font-style:normal;font-size:13px;width:12px;text-align:center;color:rgba(148,163,184,.42);transition:color .12s ease,transform .12s ease}
+  .star-rate .sr.on{color:#f1c40f;text-shadow:0 0 6px rgba(241,196,15,.55)}
+  .star-rate .sr:hover{transform:scale(1.25)}
+  .pm-rate{padding:0 2px}
+  .pm-rate .sr{font-size:14px;width:13px}
   .key-row{background:rgba(251,191,36,.04)!important}
   .key-row:hover{background:rgba(251,191,36,.08)!important}
   .key-row td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
@@ -4421,7 +4428,7 @@ window.QRCode = {
 
         <div class="tblwrap" id="plan-table-wrap" data-page-node-id="EermSYpDYbqeZ69yTw1LXB"><table data-page-node-id="4KZ8sHRM4LZBpLmR4lTBlu">
           <thead data-page-node-id="UnIh2sVGWcJhGEFDFpEz77"><tr data-page-node-id="WdzkB54EL1LzxuCSmBKXND">
-            <th style="width:38px" data-page-node-id="Bd7T8lmUh2jFJNkXvfckFJ">#</th><th style="width:42px;color:#f1c40f" data-page-node-id="V7ep84wJRVFwTPz52VUiet">★</th><th style="width:115px" data-page-node-id="hez98I9kjSortpHDlAA0Pp">板块</th><th data-page-node-id="PUQPJWXeuLU7QNQjlVZfSg">事项</th>
+            <th style="width:38px" data-page-node-id="Bd7T8lmUh2jFJNkXvfckFJ">#</th><th style="width:86px;color:#f1c40f" title="星标：点第几颗就给几颗（1~5 颗），星越多排越前" data-page-node-id="V7ep84wJRVFwTPz52VUiet">★</th><th style="width:115px" data-page-node-id="hez98I9kjSortpHDlAA0Pp">板块</th><th data-page-node-id="PUQPJWXeuLU7QNQjlVZfSg">事项</th>
             <th style="width:220px" data-page-node-id="ZN2xkHQGZoyEdHtNxgme7y">对接</th><th style="width:125px" data-page-node-id="uA9CadQYQx2QMwvTduXqHP">进度</th>
             <th style="width:125px" data-page-node-id="wAsq0nUGyX5AhkX97WiX6i">预计完成</th><th data-page-node-id="e0AprvtPW79kHafZpQ7ZPP">备注</th><th style="width:82px" data-page-node-id="1DH8h8FyxHEhWaOXSpZMr6">操作</th>
           </tr></thead>
@@ -4909,7 +4916,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.81</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.82</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5367,7 +5374,10 @@ function morphDB(d){
   if(!d.estatePolicies)d.estatePolicies=JSON.parse(JSON.stringify(SEED.estatePolicies));
   if(!d.estateLandPub)d.estateLandPub=[];
   if(!d.estateLandDeals)d.estateLandDeals=[];
-  (d.rows||[]).forEach(rw=>{if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];});
+  (d.rows||[]).forEach(rw=>{
+    if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];
+    if(rw)rw.key=keyLevel(rw);   /* 星标统一为 0~5 的数字（兼容旧版 true/false） */
+  });
   if(!d._ts)d._ts=Date.now();
   return d;
 }
@@ -5375,7 +5385,7 @@ function morphDB(d){
 let DB=load();
 function load(){
   try{const r=localStorage.getItem(KEY);if(r){const d=morphDB(JSON.parse(r));if(d)return d;}}catch(e){}
-  return JSON.parse(JSON.stringify(SEED));
+  return morphDB(JSON.parse(JSON.stringify(SEED)));
 }
 function save(){
   DB._ts=Date.now();
@@ -5541,7 +5551,11 @@ function renderPlan(){
       }
       return true;
     })
-    .sort((a,b)=>{const grp=r=>statusGroup(r.s)==="done"?2:(r.key?0:1);return grp(a)-grp(b);});
+    .sort((a,b)=>{
+      const da=statusGroup(a.s)==="done",db=statusGroup(b.s)==="done";
+      if(da!==db)return da?1:-1;          /* 完成态一律沉底（星标也不例外） */
+      return keyLevel(b)-keyLevel(a);      /* 未完成行：星数多的靠前（多颗星=更重要的优先） */
+    });
 
   const body=document.getElementById("body-plan");
   const mobileBody=document.getElementById("plan-mobile-list");
@@ -5566,7 +5580,7 @@ function renderPlan(){
         ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
         ondrop="dragDrop(event,${r._i})" ondragend="dragEnd(event)">
         <td class="idx"><span class="grip" title="拖动排序">⠿</span>${r._i+1}</td>
-        <td style="text-align:center"><button class="star-btn" title="标记为本周重点" onclick="toggleKey(${r._i})">${r.key?'⭐':'☆'}</button></td>
+        <td style="text-align:center">${starRateCell(r)}</td>
         <td><select class="cell-input" data-op="plan" data-i="${r._i}" data-f="b"
           onchange="onBoardChange(${r._i},this.value)">
           ${(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("")}
@@ -5616,7 +5630,7 @@ function renderPlanMobileCard(r,today){
   return `<div class="${rowCls}" id="pm-card-${r._i}">
     <div class="pm-header" onclick="togglePmCard(${r._i})">
       <span class="pm-idx">#${r._i+1}</span>
-      <button class="pm-star" onclick="event.stopPropagation();toggleKey(${r._i})">${r.key?'⭐':'☆'}</button>
+      ${starRateCell(r,"pm-rate")}
       <div class="pm-main">
         <div class="pm-title">${esc(r.t||"未命名事项")}${overdue?'<span class="over">逾期</span>':''}</div>
         <div class="pm-meta">
@@ -5954,13 +5968,13 @@ function toggleDone(i){
 function dupRow(i){
   const r=DB.rows[i];if(!r)return;
   const copy=JSON.parse(JSON.stringify(r));
-  copy.key=false; delete copy.ps;
+  copy.key=0; delete copy.ps;
   DB.rows.splice(i+1,0,copy);
   save();renderPlan();
 }
 function addRowPlan(){
   const dt=new Date();dt.setDate(dt.getDate()+7);
-  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:dt.toISOString().slice(0,10),m:"",key:false});
+  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:dt.toISOString().slice(0,10),m:"",key:0});
   const ni=DB.rows.length-1;
   // 确保新行不会被当前筛选/搜索条件隐藏（否则用户看不到刚新增的行）
   const fstat=document.getElementById("fstat-plan");if(fstat)fstat.value="";
@@ -5975,23 +5989,48 @@ function addRowPlan(){
   focusPlanRow(ni);
 }
 function delRowPlan(i){DB.rows.splice(i,1);save();renderPlan();}
+/* 星标等级：0~5 颗（兼容旧版 true/false —— true 视为 1 颗） */
+function keyLevel(r){
+  const v=r&&r.key;
+  if(v===true)return 1;
+  const n=Number(v);
+  return isFinite(n)?Math.max(0,Math.min(5,Math.round(n))):0;
+}
+/* 星标单元格：5 颗可点的小星，点第几颗就给几颗；点当前最后一颗清零。星数越多排越前 */
+function starRateCell(r,extraCls){
+  const i=r._i,lv=keyLevel(r);
+  const cls="star-rate"+(lv>0?" has":"")+(extraCls?" "+extraCls:"");
+  let s='<span class="'+cls+'" data-star="'+i+'" title="点第几颗星就给几颗（再点当前最后一颗＝清零）；星越多排越前">';
+  for(let k=1;k<=5;k++)s+='<i class="sr'+(k<=lv?" on":"")+'" data-v="'+k+'">'+(k<=lv?"★":"☆")+'</i>';
+  return s+"</span>";
+}
+/* 设置星标等级；level===当前等级时清零 */
+function setKeyLevel(i,level){
+  if(!DB.rows[i])return;
+  const cur=keyLevel(DB.rows[i]);
+  const next=(level===cur)?0:level;
+  DB.rows[i].key=next;
+  save();
+  if(next>0)markPlanJump(i);   /* 加星：置顶并落位闪光；清零/取消不闪 */
+  renderPlan();
+}
+/* 兼容旧调用（「本周重点」列表的 × 等）：有星就清零，没星就给 1 颗 */
 function toggleKey(i){
   if(!DB.rows[i])return;
-  DB.rows[i].key=!DB.rows[i].key;save();
-  if(DB.rows[i].key)markPlanJump(i);   /* 加星：置顶并落位闪光；取消星标不闪 */
-  renderPlan();
+  setKeyLevel(i,keyLevel(DB.rows[i])>0?0:1);
 }
 function renderKeyItems(){
   const box=document.getElementById("key-items");if(!box)return;
-  const items=DB.rows.filter(r=>r.key);
+  const items=DB.rows.filter(r=>keyLevel(r)>0).sort((a,b)=>keyLevel(b)-keyLevel(a));
   document.getElementById("key-count").textContent=items.length;
   if(items.length===0){
-    box.innerHTML=`<div class="empty-k">暂无标记 · 点击 ☆ 即可加入本周重点</div>`;return;
+    box.innerHTML=`<div class="empty-k">暂无标记 · 点左侧星标即可加入本周重点（1~5 颗，越多越靠前）</div>`;return;
   }
   box.innerHTML=items.map(r=>{
-    const idx=DB.rows.indexOf(r),c=bkColor(r.b);
+    const idx=DB.rows.indexOf(r),c=bkColor(r.b),lv=keyLevel(r);
+    const stars="★".repeat(lv);
     return `<div class="ki">
-      <span style="color:#f1c40f;font-size:14px">⭐</span>
+      <span style="color:#f1c40f;font-size:14px;letter-spacing:1px">${stars}</span>
       <span class="kchip" style="background:${c}22;color:${c};border:1px solid ${c}55">${esc(r.b)}</span>
       <span class="ktxt">${esc(r.t)||"（未命名）"}</span>
       <span class="st ${statusClass(r.s)}">${esc(r.s)}</span>
@@ -7005,7 +7044,7 @@ function exportCSV(){
   const head=["序号","重点","板块","事项","进度","对接","预计完成","备注"];
   const lines=[head.join(",")];
   rows.forEach((r,i)=>{
-    const arr=[i+1,r.key?"★":"",r.b,r.t,r.s,r.d,r.dt,r.m].map(v=>{
+    const arr=[i+1,"★".repeat(keyLevel(r)),r.b,r.t,r.s,r.d,r.dt,r.m].map(v=>{
       v=(v||"").toString();return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;
     });
     lines.push(arr.join(","));
@@ -8297,6 +8336,18 @@ renderWeekBar();
     var go=el.getAttribute("data-go");
     if(go==="query") openQueryPanel(); else if(go) estateTab(go);
   });
+})();
+// 星标分级事件委托（v5.82）：捕获阶段拦截 —— PC/iPad/手机（含触屏）都可靠，且不会误触发手机卡片展开
+(function(){
+  document.addEventListener("click", function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var cell=t.closest(".star-rate"); if(!cell) return;
+    e.stopPropagation();
+    var i=parseInt(cell.getAttribute("data-star"),10);
+    var v=parseInt(t.getAttribute&&t.getAttribute("data-v"),10);
+    if(isNaN(i)||isNaN(v)) return;   /* 点在第几颗的空隙上：不改动 */
+    setKeyLevel(i,v);
+  }, true);
 })();
 initAuth();
 fetchWeather();
