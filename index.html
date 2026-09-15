@@ -4916,7 +4916,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.82</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.83</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5557,6 +5557,10 @@ function renderPlan(){
       return keyLevel(b)-keyLevel(a);      /* 未完成行：星数多的靠前（多颗星=更重要的优先） */
     });
 
+  /* 序号按「当前排列顺序」自动重排（v5.83）：过滤+排序后的第几条就显示几 */
+  PLAN_DISP={};
+  rows.forEach((r,di)=>{PLAN_DISP[r._i]=di+1;});
+
   const body=document.getElementById("body-plan");
   const mobileBody=document.getElementById("plan-mobile-list");
   if(rows.length===0){
@@ -5579,7 +5583,7 @@ function renderPlan(){
         ondragstart="dragStart(event,${r._i})" ondragover="dragOver(event)"
         ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
         ondrop="dragDrop(event,${r._i})" ondragend="dragEnd(event)">
-        <td class="idx"><span class="grip" title="拖动排序">⠿</span>${r._i+1}</td>
+        <td class="idx"><span class="grip" title="拖动排序">⠿</span>${PLAN_DISP[r._i]||(r._i+1)}</td>
         <td style="text-align:center">${starRateCell(r)}</td>
         <td><select class="cell-input" data-op="plan" data-i="${r._i}" data-f="b"
           onchange="onBoardChange(${r._i},this.value)">
@@ -5600,7 +5604,7 @@ function renderPlan(){
         </td>
       </tr>`;
     }).join("");
-    if(mobileBody) mobileBody.innerHTML=rows.map(r=>renderPlanMobileCard(r,today)).join("");
+    if(mobileBody) mobileBody.innerHTML=rows.map(r=>renderPlanMobileCard(r,today,PLAN_DISP[r._i])).join("");
   }
 
   renderPlanStats();renderKeyItems();
@@ -5608,7 +5612,7 @@ function renderPlan(){
 }
 
 /* 手机端策划工作单条卡片渲染（v5.67 可折叠） */
-function renderPlanMobileCard(r,today){
+function renderPlanMobileCard(r,today,disp){
   const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
   const done=statusGroup(r.s)==="done";
   const stList=getStatuses(r.d);
@@ -5629,7 +5633,7 @@ function renderPlanMobileCard(r,today){
   }
   return `<div class="${rowCls}" id="pm-card-${r._i}">
     <div class="pm-header" onclick="togglePmCard(${r._i})">
-      <span class="pm-idx">#${r._i+1}</span>
+      <span class="pm-idx">#${disp||(r._i+1)}</span>
       ${starRateCell(r,"pm-rate")}
       <div class="pm-main">
         <div class="pm-title">${esc(r.t||"未命名事项")}${overdue?'<span class="over">逾期</span>':''}</div>
@@ -5710,7 +5714,7 @@ function onMobileDeptGroupChange(i,group){
   const card=document.getElementById("pm-card-"+i);
   if(card){
     const today=new Date();today.setHours(0,0,0,0);
-    card.outerHTML=renderPlanMobileCard({...DB.rows[i],_i:i},today);
+    card.outerHTML=renderPlanMobileCard({...DB.rows[i],_i:i},today,PLAN_DISP[i]);
   }
   renderPlanStats();renderKeyItems();
 }
@@ -5844,6 +5848,9 @@ function onDeptChange(i,dept){
 }
 
 let quickView="all", lastBoard=BANKUAI_PLAN[0];
+/* 序号自动重排状态（v5.83）：真实下标 _i -> 当前排列顺序里的显示序号（1..N）。
+   桌面表格 / 手机卡片 / 局部重绘共用，保证「星星前面的 1、2、3」永远跟着排列顺序走。 */
+let PLAN_DISP={};
 /* 新增行高亮状态：记录刚新增的行索引，渲染时给该行加 .row-fresh 醒目提示（15s 后或再次新增时切换） */
 let PLAN_FRESH_I=-1, planFreshTimer=null;
 function markPlanFresh(i){
@@ -7040,7 +7047,12 @@ document.addEventListener("change",e=>{
 
 /* 导出 CSV */
 function exportCSV(){
-  const rows=DB.rows;
+  /* 导出顺序与界面「排列顺序」保持一致（v5.83）：完成沉底 + 星数降序，序号 1..N 递增 */
+  const rows=DB.rows.slice().sort((a,b)=>{
+    const da=statusGroup(a.s)==="done",db=statusGroup(b.s)==="done";
+    if(da!==db)return da?1:-1;
+    return keyLevel(b)-keyLevel(a);
+  });
   const head=["序号","重点","板块","事项","进度","对接","预计完成","备注"];
   const lines=[head.join(",")];
   rows.forEach((r,i)=>{
