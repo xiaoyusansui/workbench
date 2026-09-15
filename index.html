@@ -83,7 +83,7 @@
   html[data-theme="light"] .okr-kr{border-bottom-color:rgba(15,23,42,.06)}
   html[data-theme="light"] .sidebar-footer .sf-sync:hover{background:rgba(15,23,42,.05)}
 
-  /* ====== 行业报告库模块（v5.78 移植自资料库蓝图） ====== */
+  /* ====== 行业报告库模块（v5.80 移植自资料库蓝图） ====== */
   .est-bar{display:flex;align-items:center;gap:12px;margin:14px 0 10px;flex-wrap:wrap}
   .est-tabs{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
   .est-tabs::-webkit-scrollbar{display:none}
@@ -186,6 +186,8 @@
   .est-quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .est-qcard{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;transition:.15s}
   .est-qcard:hover{border-color:var(--gold);transform:translateY(-1px)}
+  button.est-qcard{width:100%;text-align:left;font-family:inherit;font-size:inherit;line-height:1.5;color:inherit;appearance:none;-webkit-appearance:none}
+  button.est-qcard:active{transform:translateY(0)}
   .est-qcard .qt{font-size:14px;font-weight:800;color:var(--gold)}
   .est-qcard .qd{font-size:11.5px;color:var(--muted2);margin-top:5px;line-height:1.5}
   /* —— 富淮城去化应用 —— */
@@ -565,6 +567,29 @@
   .key-row{background:rgba(251,191,36,.04)!important}
   .key-row:hover{background:rgba(251,191,36,.08)!important}
   .key-row td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+
+  /* ===== 新增行高亮（强）：表格行被白色输入框覆盖也不怕——同时给 td 底色 + 输入框上色 + 金色描边方框 + 左侧色条 + “新增”闪烁标签 ===== */
+  #body-plan tr.row-fresh td{background:rgba(212,165,116,.10);
+    border-top:1px solid rgba(212,165,116,.5);border-bottom:1px solid rgba(212,165,116,.5)}
+  #body-plan tr.row-fresh td:first-child{border-left:4px solid var(--gold);box-shadow:inset 4px 0 0 var(--gold)}
+  #body-plan tr.row-fresh td:last-child{border-right:1px solid rgba(212,165,116,.5)}
+  #body-plan tr.row-fresh input:not(.cell-status),
+  #body-plan tr.row-fresh select:not(.cell-status),
+  #body-plan tr.row-fresh textarea{background:rgba(212,165,116,.18)!important}
+  #body-plan tr.row-fresh input,#body-plan tr.row-fresh select,#body-plan tr.row-fresh textarea{
+    border-color:rgba(212,165,116,.62)!important}
+  #body-plan tr.row-fresh .idx{color:var(--gold);font-weight:800}
+  #body-plan tr.row-fresh .idx::after{content:"新增";margin-left:6px;font-size:10px;font-weight:800;
+    color:#1a1206;background:var(--gold);padding:1px 7px;border-radius:99px;vertical-align:middle;letter-spacing:.5px;
+    animation:rowFreshBlink 1.4s ease-in-out infinite}
+  @keyframes rowFreshBlink{0%,100%{opacity:1}50%{opacity:.5}}
+  .pm-card.row-fresh{border:1px solid rgba(212,165,116,.55)!important;border-left:4px solid var(--gold)!important;
+    background:rgba(212,165,116,.12)!important}
+  .pm-card.row-fresh .pm-header{background:rgba(212,165,116,.10)}
+  .pm-card.row-fresh .pm-idx{color:var(--gold);font-weight:800}
+  .pm-card.row-fresh .pm-idx::after{content:"新增";margin-left:6px;font-size:10px;font-weight:800;
+    color:#1a1206;background:var(--gold);padding:1px 7px;border-radius:99px;vertical-align:middle;letter-spacing:.5px;
+    animation:rowFreshBlink 1.4s ease-in-out infinite}
 
   /* ===== 课程 Tab ===== */
   .course-header{display:flex;gap:14px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
@@ -1138,7 +1163,7 @@
       radial-gradient(400px 250px at 50% 100%,rgba(167,139,250,.05),transparent 60%);
   }
 
-  /* 移动端适配：侧边栏变左侧抽屉导航（v5.78） */
+  /* 移动端适配：侧边栏变左侧抽屉导航（v5.80） */
   .nav-item.mobile-only{display:none}
   .mobile-header,.mobile-nav-overlay{display:none}
   @media(max-width:834px){
@@ -1801,7 +1826,7 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 .bk-note{color:var(--muted);}
 .bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
 
-/* ====== iPad / 平板横屏优化（v5.78） ====== */
+/* ====== iPad / 平板横屏优化（v5.80） ====== */
 /* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
 @media(min-width:835px) and (max-width:1366px){
   /* 左侧边栏收窄，给主内容让出空间 */
@@ -1842,7 +1867,7 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   .wd.d-today .dnum{font-size:13.5px}
 }
 
-/* ====== iPad / 平板竖屏专属优化（v5.78） ====== */
+/* ====== iPad / 平板竖屏专属优化（v5.80） ====== */
 /* 区间 600–834px：覆盖 iPad mini/9/10.2/Air/Pro11 竖屏，统一走平板优化布局 */
 @media(min-width:600px) and (max-width:834px){
   /* 策划工作卡片两列排布，充分利用平板宽度 */
@@ -4172,7 +4197,7 @@ window.QRCode = {
 <div class="app-layout" data-page-node-id="wLbULnFRuLbSHjnfee7c3j">
 
   <!-- ====== 左侧导航栏 ====== -->
-  <!-- 手机端顶部标题栏：左侧菜单入口（v5.78） -->
+  <!-- 手机端顶部标题栏：左侧菜单入口（v5.80） -->
   <header class="mobile-header" data-page-node-id="Jqb9mSa4gpGaMOdcrC7Axn">
     <button class="mh-menu" onclick="openMobileNav()" aria-label="打开导航" data-page-node-id="pGCYefE7WbwZpRszatvvR2">☰</button>
     <div class="mh-brand" data-page-node-id="WeZeV79PJlfpLodukBFkiC">
@@ -4880,7 +4905,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.78</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.80</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -4960,7 +4985,7 @@ window.QRCode = {
 
     </div><!-- /.wrap -->
 
-      <!-- ==================== 行业报告库（v5.78 移植自资料库蓝图） ==================== -->
+      <!-- ==================== 行业报告库（v5.80 移植自资料库蓝图） ==================== -->
       <section id="panel-estate" style="display:none" data-page-node-id="estPanelAb">
         <div class="est-bar">
           <div class="est-tabs" id="estate-tabs">
@@ -5531,8 +5556,8 @@ function renderPlan(){
       const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
       const done=statusGroup(r.s)==="done";
       const stList=getStatuses(r.d);
-      const rowCls=(r.key&&!done?"key-row ":"")+(done?"row-done":"");
-      return `<tr class="${rowCls}" draggable="true"
+      const rowCls=(r.key&&!done?"key-row ":"")+(done?"row-done":"")+(r._i===PLAN_FRESH_I?" row-fresh":"");
+      return `<tr class="${rowCls}" data-i="${r._i}" draggable="true"
         ondragstart="dragStart(event,${r._i})" ondragover="dragOver(event)"
         ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
         ondrop="dragDrop(event,${r._i})" ondragend="dragEnd(event)">
@@ -5569,7 +5594,7 @@ function renderPlanMobileCard(r,today){
   const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
   const done=statusGroup(r.s)==="done";
   const stList=getStatuses(r.d);
-  const rowCls="pm-card "+((r.key&&!done?"key-row ":"")+(done?"row-done pm-status-done":""));
+  const rowCls="pm-card "+((r.key&&!done?"key-row ":"")+(done?"row-done pm-status-done ":"")+(r._i===PLAN_FRESH_I?"row-fresh":""));
   const bOptions=(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("");
   const sOptions=stList.map(s=>`<option ${s===r.s?"selected":""}>${s}</option>`).join("");
   const {group,sub}=parseDept(r.d||"");
@@ -5714,7 +5739,7 @@ function renderPlanStats(){
   const barP=document.getElementById("bar-plan");if(barP)barP.style.width=pct+"%";
   renderBoardBars();
 
-  /* 统计卡片点击跳转对应筛选视图（v5.78 改为事件委托，避免内联 onclick 不生效） */
+  /* 统计卡片点击跳转对应筛选视图（v5.80 改为事件委托，避免内联 onclick 不生效） */
   const statsWrap=document.querySelector(".plan-stats");
   if(statsWrap && !statsWrap._bound){
     statsWrap.addEventListener("click",e=>{
@@ -5801,6 +5826,39 @@ function onDeptChange(i,dept){
 }
 
 let quickView="all", lastBoard=BANKUAI_PLAN[0];
+/* 新增行高亮状态：记录刚新增的行索引，渲染时给该行加 .row-fresh 醒目提示（15s 后或再次新增时切换） */
+let PLAN_FRESH_I=-1, planFreshTimer=null;
+function markPlanFresh(i){
+  PLAN_FRESH_I=i;
+  if(planFreshTimer)clearTimeout(planFreshTimer);
+  planFreshTimer=setTimeout(function(){PLAN_FRESH_I=-1;clearPlanFreshClass();},15000);
+}
+function clearPlanFreshClass(){
+  document.querySelectorAll("#body-plan tr.row-fresh").forEach(function(tr){tr.classList.remove("row-fresh");});
+  document.querySelectorAll(".pm-card.row-fresh").forEach(function(c){c.classList.remove("row-fresh");});
+}
+/* 安全滚动：某些环境（旧内核/测试环境）无 scrollIntoView，失败时静默跳过，不影响后续聚焦 */
+function safeScrollIntoView(el){
+  if(!el||typeof el.scrollIntoView!=="function")return;
+  try{el.scrollIntoView({block:"center",behavior:"smooth"});}catch(e){try{el.scrollIntoView();}catch(_){}}
+}
+/* 新增后把该行滚入视野并聚焦「事项」输入框，方便直接开始录入 */
+function focusPlanRow(i){
+  requestAnimationFrame(function(){
+    const tr=document.querySelector('#body-plan tr[data-i="'+i+'"]');
+    if(tr){
+      safeScrollIntoView(tr);
+      const inp=tr.querySelector('input[data-f="t"]');if(inp){try{inp.focus();}catch(e){}}
+      return;
+    }
+    const card=document.getElementById("pm-card-"+i);
+    if(card){
+      if(!card.classList.contains("expanded")){try{togglePmCard(i);}catch(e){}}
+      safeScrollIntoView(card);
+      const inp=card.querySelector('.pm-field input');if(inp){try{inp.focus();}catch(e){}}
+    }
+  });
+}
 function setQuickView(v,el){
   quickView=v;
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===v));
@@ -5887,7 +5945,20 @@ function dupRow(i){
 }
 function addRowPlan(){
   const dt=new Date();dt.setDate(dt.getDate()+7);
-  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:dt.toISOString().slice(0,10),m:"",key:false});save();renderPlan();}
+  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:dt.toISOString().slice(0,10),m:"",key:false});
+  const ni=DB.rows.length-1;
+  // 确保新行不会被当前筛选/搜索条件隐藏（否则用户看不到刚新增的行）
+  const fstat=document.getElementById("fstat-plan");if(fstat)fstat.value="";
+  const search=document.getElementById("search-plan");if(search)search.value="";
+  const fban=document.getElementById("fban-plan");if(fban&&fban.value&&fban.value!==lastBoard)fban.value="";
+  quickView="all";
+  document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v==="all"));
+  document.querySelectorAll(".ps-card").forEach(c=>c.classList.remove("active"));
+  save();
+  markPlanFresh(ni);
+  renderPlan();
+  focusPlanRow(ni);
+}
 function delRowPlan(i){DB.rows.splice(i,1);save();renderPlan();}
 function toggleKey(i){
   if(!DB.rows[i])return;
@@ -7841,7 +7912,7 @@ function toggleTheme(){
 }
 applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
 
-/* ==================== 行业报告库模块（v5.78 移植自资料库蓝图） ==================== */
+/* ==================== 行业报告库模块（v5.80 移植自资料库蓝图） ==================== */
 var ESTATE_STATE={tab:"overview",polKw:"",polLv:"全部",srcKw:"",srcCat:"全部"};
 var _estateEdit=null;
 function estEsc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -7975,10 +8046,10 @@ function estOverview(){
   var pols=DB.estatePolicies||[];
   var k='<div class="est-kpis">'+kpi(pols.length,"政策库")+kpi(SRC_DATA.length,"数据源")+kpi(POL828_DIMS.length,"828维度")+kpi(EXT_SITES.length,"权威源")+'</div>';
   var tl='<div class="est-sec"><div class="est-sec-hd">直达入口</div><div class="est-quick">';
-  tl+='<div class="est-qcard" onclick="estateTab(\'pol828\')"><div class="qt">828新政</div><div class="qd">现房优先·新老划断，和你二批次去化直接相关</div></div>';
-  tl+='<div class="est-qcard" onclick="estateTab(\'policies\')"><div class="qt">政策库</div><div class="qd">已内置 828，可补充项目相关政策</div></div>';
-  tl+='<div class="est-qcard" onclick="estateTab(\'sources\')"><div class="qt">数据源</div><div class="qd">24 个官方/机构一手源，点击直达</div></div>';
-  tl+='<div class="est-qcard" onclick="openQueryPanel()"><div class="qt">检索委托</div><div class="qd">权威源直达 + 复制检索模板</div></div>';
+  tl+='<button type="button" class="est-qcard" data-go="pol828"><div class="qt">828新政</div><div class="qd">现房优先·新老划断，和你二批次去化直接相关</div></button>';
+  tl+='<button type="button" class="est-qcard" data-go="policies"><div class="qt">政策库</div><div class="qd">已内置 828，可补充项目相关政策</div></button>';
+  tl+='<button type="button" class="est-qcard" data-go="sources"><div class="qt">数据源</div><div class="qd">24 个官方/机构一手源，点击直达</div></button>';
+  tl+='<button type="button" class="est-qcard" data-go="query"><div class="qt">检索委托</div><div class="qd">权威源直达 + 复制检索模板</div></button>';
   tl+='</div></div>';
   return k+tl;
 }
@@ -8200,6 +8271,16 @@ function estToast(m){var t=document.getElementById("est-toast");if(!t){t=documen
 fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
+// 稳健事件委托：概览「直达入口」卡片改用真实 button + data-go，触屏/任意设备点击均可靠响应（不再依赖内联 onclick）
+(function(){
+  document.addEventListener("click", function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var el=t.closest("[data-go]"); if(!el) return;
+    if(!el.closest("#estate-body")) return;
+    var go=el.getAttribute("data-go");
+    if(go==="query") openQueryPanel(); else if(go) estateTab(go);
+  });
+})();
 initAuth();
 fetchWeather();
 if(syncCfg.enabled){
