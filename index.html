@@ -567,6 +567,10 @@
   .key-row{background:rgba(251,191,36,.04)!important}
   .key-row:hover{background:rgba(251,191,36,.08)!important}
   .key-row td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+  /* 加星置顶落位闪光（v5.81）：星标行跳到顶部后闪一下，让眼睛跟得上 */
+  @keyframes rowJumpFlash{0%{background:rgba(251,191,36,.34)}100%{background:transparent}}
+  #body-plan tr.row-jump td{animation:rowJumpFlash 1.3s ease-out}
+  .pm-card.row-jump{animation:rowJumpFlash 1.3s ease-out}
 
   /* ===== 新增行高亮（强）：表格行被白色输入框覆盖也不怕——同时给 td 底色 + 输入框上色 + 金色描边方框 + 左侧色条 + “新增”闪烁标签 ===== */
   #body-plan tr.row-fresh td{background:rgba(212,165,116,.10);
@@ -4905,7 +4909,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.80</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.81</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5537,7 +5541,7 @@ function renderPlan(){
       }
       return true;
     })
-    .sort((a,b)=>statusGroup(a.s)==="done"?1:statusGroup(b.s)==="done"?-1:0);
+    .sort((a,b)=>{const grp=r=>statusGroup(r.s)==="done"?2:(r.key?0:1);return grp(a)-grp(b);});
 
   const body=document.getElementById("body-plan");
   const mobileBody=document.getElementById("plan-mobile-list");
@@ -5556,7 +5560,7 @@ function renderPlan(){
       const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
       const done=statusGroup(r.s)==="done";
       const stList=getStatuses(r.d);
-      const rowCls=(r.key&&!done?"key-row ":"")+(done?"row-done":"")+(r._i===PLAN_FRESH_I?" row-fresh":"");
+      const rowCls=(r.key&&!done?"key-row ":"")+(done?"row-done":"")+(r._i===PLAN_FRESH_I?" row-fresh":"")+(r._i===PLAN_JUMP_I?" row-jump":"");
       return `<tr class="${rowCls}" data-i="${r._i}" draggable="true"
         ondragstart="dragStart(event,${r._i})" ondragover="dragOver(event)"
         ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
@@ -5594,7 +5598,7 @@ function renderPlanMobileCard(r,today){
   const overdue=r.dt && statusGroup(r.s)!=="done" && new Date(r.dt)<today;
   const done=statusGroup(r.s)==="done";
   const stList=getStatuses(r.d);
-  const rowCls="pm-card "+((r.key&&!done?"key-row ":"")+(done?"row-done pm-status-done ":"")+(r._i===PLAN_FRESH_I?"row-fresh":""));
+  const rowCls="pm-card "+((r.key&&!done?"key-row ":"")+(done?"row-done pm-status-done ":"")+(r._i===PLAN_FRESH_I?"row-fresh":"")+(r._i===PLAN_JUMP_I?"row-jump":""));
   const bOptions=(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("");
   const sOptions=stList.map(s=>`<option ${s===r.s?"selected":""}>${s}</option>`).join("");
   const {group,sub}=parseDept(r.d||"");
@@ -5837,6 +5841,17 @@ function clearPlanFreshClass(){
   document.querySelectorAll("#body-plan tr.row-fresh").forEach(function(tr){tr.classList.remove("row-fresh");});
   document.querySelectorAll(".pm-card.row-fresh").forEach(function(c){c.classList.remove("row-fresh");});
 }
+/* 加星置顶状态：记录刚加星的行索引，渲染时加 .row-jump 做一次落位闪光（1.4s 后自动清除） */
+let PLAN_JUMP_I=-1, planJumpTimer=null;
+function markPlanJump(i){
+  PLAN_JUMP_I=i;
+  if(planJumpTimer)clearTimeout(planJumpTimer);
+  planJumpTimer=setTimeout(function(){PLAN_JUMP_I=-1;clearPlanJumpClass();},1400);
+}
+function clearPlanJumpClass(){
+  document.querySelectorAll("#body-plan tr.row-jump").forEach(function(tr){tr.classList.remove("row-jump");});
+  document.querySelectorAll(".pm-card.row-jump").forEach(function(c){c.classList.remove("row-jump");});
+}
 /* 安全滚动：某些环境（旧内核/测试环境）无 scrollIntoView，失败时静默跳过，不影响后续聚焦 */
 function safeScrollIntoView(el){
   if(!el||typeof el.scrollIntoView!=="function")return;
@@ -5962,7 +5977,9 @@ function addRowPlan(){
 function delRowPlan(i){DB.rows.splice(i,1);save();renderPlan();}
 function toggleKey(i){
   if(!DB.rows[i])return;
-  DB.rows[i].key=!DB.rows[i].key;save();renderPlan();
+  DB.rows[i].key=!DB.rows[i].key;save();
+  if(DB.rows[i].key)markPlanJump(i);   /* 加星：置顶并落位闪光；取消星标不闪 */
+  renderPlan();
 }
 function renderKeyItems(){
   const box=document.getElementById("key-items");if(!box)return;
