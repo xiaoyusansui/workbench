@@ -1316,6 +1316,34 @@
     grid-column:1/-1}
   .add-book:hover{background:rgba(167,139,250,.04);border-color:var(--purple)}
 
+  /* 读书计划 · 智能录入与评价（v5.87） */
+  .book-card .bc-src{font-size:10.5px;color:var(--muted2);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+  .book-card .bc-src a{color:var(--gold);text-decoration:none;font-weight:700}
+  .book-card .bc-src a:hover{text-decoration:underline}
+  .book-card .bc-reviews{display:flex;gap:6px;margin-bottom:9px}
+  .bc-review{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid var(--line-strong);
+    background:var(--bg3);color:var(--muted2);border-radius:8px;padding:5px 0;font-size:11px;font-weight:700;cursor:pointer;transition:.13s}
+  .bc-review:hover{color:var(--ink2);background:var(--surface-hover)}
+  .bc-review.douban:hover{border-color:#3fae4f;color:#3fae4f}
+  .bc-review.xhs:hover{border-color:#ff5a6e;color:#ff5a6e}
+  .book-form label{display:block;font-size:12.5px;font-weight:700;margin:11px 0 5px;color:var(--ink2)}
+  .book-form input,.book-form textarea{width:100%;border:1px solid var(--glass-border);border-radius:10px;
+    padding:10px 12px;font-size:13px;font-family:inherit;background:var(--bg3);color:var(--ink);outline:none;box-sizing:border-box}
+  .book-form textarea{min-height:64px;resize:vertical;line-height:1.55}
+  .book-form input:focus,.book-form textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-glow)}
+  .book-fetch{display:flex;gap:8px;align-items:stretch}
+  .book-fetch input{flex:1}
+  .book-fetch button{flex:none;white-space:nowrap;background:linear-gradient(135deg,var(--purple),#8b5cf6);color:#fff;
+    border:none;border-radius:10px;padding:0 14px;font-size:12.5px;font-weight:800;cursor:pointer;transition:.13s}
+  .book-fetch button:hover{filter:brightness(1.08)}
+  .book-fetch button:disabled{opacity:.55;cursor:default}
+  .book-fetch-msg{font-size:11.5px;color:var(--muted);min-height:16px;margin-top:6px;line-height:1.5}
+  .book-fetch-msg.ok{color:var(--brand)}
+  .book-fetch-msg.err{color:var(--coral)}
+  .book-form-row{display:flex;gap:10px}
+  .book-form-row>div{flex:1}
+  .book-hint{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5}
+
   /* ====== 个人事务 ====== */
   .job-header{display:flex;gap:14px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
   .job-stats{display:flex;gap:10px;flex-wrap:wrap}
@@ -4937,7 +4965,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.86</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.87</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5011,6 +5039,42 @@ window.QRCode = {
           <div class="modal-actions" data-page-node-id="HuTTk8EyQx88C6tJAi7IBD">
             <button class="btn ghost" onclick="closeEvtModal()" data-page-node-id="eNMFAd3XCaQGo50YbjuHbG">取消</button>
             <button class="btn" onclick="saveEvtModal()" style="background:linear-gradient(135deg,var(--coral),#ef4444)" data-page-node-id="442lwxV530qnXTlo3gglni">保存行程</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 读书计划 · 智能录入书籍（v5.87） -->
+      <div class="modal" id="book-modal" style="display:none" onclick="if(event.target===this)closeBookModal()">
+        <div class="modal-box" style="max-width:540px">
+          <h3 id="book-modal-title">📖 新增书籍</h3>
+          <div class="book-form">
+            <label>🔗 商品 / 图书链接（智能识别）</label>
+            <div class="book-fetch">
+              <input type="text" id="bkf-url" placeholder="粘贴京东 / 当当 / 淘宝 / 豆瓣 图书链接" autocomplete="off"/>
+              <button type="button" id="bkf-btn" onclick="smartFillBook()">🔍 智能识别</button>
+            </div>
+            <div class="book-fetch-msg" id="bkf-msg">粘贴购物或豆瓣链接，自动抓取书名、作者与简介；抓不到可手动填写下方字段。</div>
+            <label>📌 书名 *</label>
+            <input type="text" id="bkf-title" placeholder="例如：摄影构图艺术"/>
+            <div class="book-form-row">
+              <div><label>✍ 作者</label><input type="text" id="bkf-author" placeholder="例如：Michael Freeman"/></div>
+              <div><label>🏷 状态</label>
+                <select id="bkf-status" style="width:100%;border:1px solid var(--glass-border);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;background:var(--bg3);color:var(--ink);outline:none;box-sizing:border-box">
+                  <option value="toread">待阅读</option>
+                  <option value="reading">在读中</option>
+                  <option value="done">已读完</option>
+                </select>
+              </div>
+            </div>
+            <label>📝 简介</label>
+            <textarea id="bkf-desc" placeholder="内容简介（智能识别会自动填充，也可手动修改）"></textarea>
+            <label>🏷 标签</label>
+            <input type="text" id="bkf-tags" placeholder="多个标签用逗号分隔，例如：摄影,构图,经典"/>
+            <div class="book-hint" id="bkf-hint">💡 保存后，卡片上会出现「豆瓣」「小红书」按钮，可一键查看评分与读者评价。</div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn ghost" onclick="closeBookModal()">取消</button>
+            <button class="btn" onclick="saveBookModal()" style="background:linear-gradient(135deg,var(--purple),#8b5cf6)">保存</button>
           </div>
         </div>
       </div>
@@ -6767,12 +6831,19 @@ function renderRead(){
     const st=b.status==="reading"?"bs-reading":b.status==="done"?"bs-done":"bs-toread";
     const stLabel=b.status==="reading"?"在读中":b.status==="done"?"已读完":"待阅读";
     const tagHtml=(b.tags||[]).map(t=>`<span class="btag">#${t}</span>`).join("");
+    const srcRow=(b.srcUrl&&/^https?:\/\//i.test(b.srcUrl))?`<div class="bc-src">🔗 <a href="${esc(b.srcUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(bookHost(b.srcUrl))}</a></div>`:"";
+    const rateTxt=b.rating?` ⭐${b.rating}`:"";
     return `<div class="book-card">
       <span class="bc-status ${st}">${stLabel}</span>
       <div class="bc-head"><div class="bc-title">${esc(b.title)}</div></div>
       <div class="bc-author">✍ ${esc(b.author||"未知作者")}</div>
       <div class="bc-desc">${esc(b.desc||"")}</div>
+      ${srcRow}
       <div class="bc-tags">${tagHtml}</div>
+      <div class="bc-reviews">
+        <button class="bc-review douban" title="查看豆瓣评分与书评" onclick="openBookReview(${i},'douban')">📕 豆瓣${rateTxt}</button>
+        <button class="bc-review xhs" title="查看小红书读书笔记与评价" onclick="openBookReview(${i},'xhs')">📔 小红书</button>
+      </div>
       ${b.status!=="done"?`<div style="font-size:11px;color:var(--muted);margin-bottom:8px">进度 ${b.progress||0}%<div style="height:4px;background:var(--bg3);border-radius:99px;margin-top:4px;overflow:hidden"><div style="width:${b.progress||0}%;height:100%;background:linear-gradient(90deg,var(--purple),#8b5cf6);border-radius:99px"></div></div></div>`:""}
       <div class="bc-actions">
         <button class="bc-btn bc-btn-primary" onclick="cycleBookStatus(${i})">${b.status==="done"?"↩ 重读":"✓ 标记完成"}</button>
@@ -6789,20 +6860,174 @@ function cycleBookStatus(i){
   else{b.status="toread";b.progress=0;}
   save();renderRead();
 }
-function addBook(){
-  const title=prompt("书名：");if(!title)return;
-  const author=prompt("作者：")||"";
-  const desc=prompt("简介（可选）：")||"";
-  DB.books.push({title,author,status:"toread",desc,tags:[],progress:0});save();renderRead();
-}
-function editBook(i){
-  const b=DB.books[i];if(!b)return;
-  b.title=prompt("书名：",b.title)||b.title;
-  b.author=prompt("作者：",b.author)||b.author;
-  b.desc=prompt("简介：",b.desc)||b.desc;
-  save();renderRead();
-}
 function delBook(i){if(confirm("删除这本书？")){DB.books.splice(i,1);save();renderRead();}}
+
+/* ---- 读书计划 · 智能录入 + 豆瓣/小红书评价（v5.87） ---- */
+function bookHost(u){return String(u||"").replace(/^https?:\/\//i,"").split(/[/?#]/)[0];}
+function doubanIdOf(u){var m=String(u||"").match(/book\.douban\.com\/subject\/(\d+)/i);return m?m[1]:"";}
+function bookSearchTitle(b){return String((b&&b.title)||"").replace(/[《》「」【】]/g,"").trim();}
+function bookDoubanUrl(b){
+  if(b&&b.doubanId)return "https://book.douban.com/subject/"+b.doubanId+"/";
+  return "https://search.douban.com/book/subject_search?search_text="+encodeURIComponent(bookSearchTitle(b));
+}
+function bookXhsUrl(b){
+  return "https://www.xiaohongshu.com/search_result?keyword="+encodeURIComponent(bookSearchTitle(b)+" 读书");
+}
+function openBookReview(i,kind){
+  var b=DB.books[i];if(!b)return;
+  var u=kind==="xhs"?bookXhsUrl(b):bookDoubanUrl(b);
+  var w=window.open(u,"_blank","noopener");try{if(w)w.opener=null;}catch(e){}
+  var nm=bookSearchTitle(b).slice(0,12);
+  estToast(kind==="xhs"?"正在打开小红书「"+nm+"」读书笔记":"正在打开豆瓣「"+nm+"」评分与书评");
+}
+
+/* 清洗抓取到的书名：去掉促销前缀与站点后缀 */
+function cleanBookTitle(t){
+  t=String(t||"").trim();
+  t=t.replace(/^[【\[（(][^】\])）]{0,18}[】\])）]\s*/,"");
+  t=t.replace(/\s*[|｜_·\-—]\s*(京东图书|京东|当当网|当当|淘宝|天猫|亚马逊|Amazon|豆瓣读书|豆瓣|孔夫子旧书网|孔夫子|拼多多|苏宁)[^]*$/i,"");
+  t=t.replace(/\s*[（(]\s*豆瓣\s*[)）]\s*$/,"");
+  t=t.replace(/\s*[-|｜_]\s*图书\s*$/,"");
+  t=t.replace(/\s{2,}/g," ").trim();
+  return t.slice(0,60);
+}
+/* 解析抓取到的文本（Jina markdown 或原始 HTML），尽力提取书名/作者/简介/评分 */
+function parseBookText(txt,url){
+  var out={title:"",author:"",desc:"",rating:""},t=String(txt||"");
+  var title="";
+  var mTitle=t.match(/(?:^|\n)\s*Title:\s*(.+?)\s*(?:\n|$)/i);if(mTitle)title=mTitle[1];
+  if(!title){var mt=t.match(/<title[^>]*>([\s\S]*?)<\/title>/i);if(mt)title=mt[1];}
+  if(!title){var mh=t.match(/(?:^|\n)#{1,2}\s+(.+?)\s*(?:\n|$)/);if(mh)title=mh[1];}
+  if(!title){var mo=t.match(/<meta[^>]+(?:property|name)=["']og:title["'][^>]+content=["']([^"']+)["']/i);if(mo)title=mo[1];}
+  title=String(title||"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#\d+;/g,"").replace(/<[^>]+>/g,"");
+  out.title=cleanBookTitle(title);
+
+  var au="";
+  var ma=t.match(/(?:作者|作\s*者)\s*[:：]\s*([^\n\r|｜]{1,40})/);if(ma)au=ma[1];
+  if(!au){var ma2=t.match(/<meta[^>]+name=["'](?:author|book:author)["'][^>]+content=["']([^"']+)["']/i);if(ma2)au=ma2[1];}
+  if(!au){var ma3=t.match(/(?:^|\n)\s*Author:\s*(.+?)\s*(?:\n|$)/i);if(ma3)au=ma3[1];}
+  if(!au){var ma4=String(title).match(/[/\-–—|]\s*([A-Za-z][A-Za-z.\s·]{2,30})$/);if(ma4)au=ma4[1];}
+  au=String(au||"").split(/[,，、;；\/]/)[0].replace(/(编著|主编|译者|译|著|等)$/g,"").replace(/^[\s:：]+/,"").trim();
+  out.author=au.slice(0,40);
+
+  var desc="";
+  var md=t.match(/(?:内容简介|本书简介|内容介绍|商品介绍|编辑推荐|简介)[\s:：]*\n+([\s\S]{20,700}?)(?=\n#{1,3}\s|\n\s*(?:作者简介|目录|图书目录|标签|豆瓣评分|商品详情|规格参数)|$)/);
+  if(md)desc=md[1];
+  if(!desc){var mdd=t.match(/<meta[^>]+name=["'](?:description|og:description)["'][^>]+content=["']([^"']{20,})["']/i);if(mdd)desc=mdd[1];}
+  desc=String(desc||"").replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&nbsp;/g," ").replace(/\s+/g," ").trim();
+  out.desc=desc.slice(0,220);
+
+  var mr=t.match(/(?:豆瓣评分|评分)\s*[:：]?\s*([0-9]\.?[0-9]?)/)||t.match(/"ratingValue"\s*:\s*"?([0-9]\.?[0-9]?)/);
+  if(mr)out.rating=mr[1];
+  return out;
+}
+/* 多通道抓取：先试 Jina Reader（返回 markdown），再试 allorigins 原始 HTML */
+function fetchBookInfo(url){
+  var readers=[
+    function(u){return "https://r.jina.ai/"+u;},
+    function(u){return "https://api.allorigins.win/raw?url="+encodeURIComponent(u);}
+  ];
+  return new Promise(function(resolve,reject){
+    var idx=0;
+    function tryNext(){
+      if(idx>=readers.length){reject(new Error("all channels failed"));return;}
+      var endpoint=readers[idx++](url);
+      var ctrl=(typeof AbortController!=="undefined")?new AbortController():null;
+      var timer=setTimeout(function(){try{if(ctrl)ctrl.abort();}catch(e){}},12000);
+      fetch(endpoint,ctrl?{signal:ctrl.signal}:{}).then(function(r){
+        clearTimeout(timer);
+        if(!r.ok)throw new Error("HTTP "+r.status);
+        return r.text();
+      }).then(function(txt){
+        var info=parseBookText(txt,url);
+        if(info&&info.title)resolve(info);else tryNext();
+      }).catch(function(){clearTimeout(timer);tryNext();});
+    }
+    tryNext();
+  });
+}
+async function smartFillBook(){
+  var urlEl=document.getElementById("bkf-url"),msg=document.getElementById("bkf-msg"),
+      btn=document.getElementById("bkf-btn");
+  var raw=String(urlEl.value||"").trim();
+  if(!raw){msg.className="book-fetch-msg err";msg.textContent="请先粘贴一个图书 / 商品链接。";return;}
+  if(!/^https?:\/\//i.test(raw)){
+    document.getElementById("bkf-title").value=raw;
+    msg.className="book-fetch-msg ok";
+    msg.textContent="已按关键词填入书名，请补充作者 / 简介后保存。";
+    return;
+  }
+  btn.disabled=true;var old=btn.textContent;btn.textContent="识别中…";
+  msg.className="book-fetch-msg";msg.textContent="正在抓取链接内容，请稍候…";
+  try{
+    var info=await fetchBookInfo(raw);
+    if(info.title)document.getElementById("bkf-title").value=info.title;
+    var aEl=document.getElementById("bkf-author");
+    if(info.author&&!String(aEl.value||"").trim())aEl.value=info.author;
+    if(info.desc)document.getElementById("bkf-desc").value=info.desc;
+    if(info.rating)bookFetchedRating=info.rating;
+    if(!info.title){
+      msg.className="book-fetch-msg err";
+      msg.textContent="没能识别出书名，请手动填写下方字段（至少填书名）。";
+    }else{
+      msg.className="book-fetch-msg ok";
+      msg.textContent="✓ 已识别书名"+(info.author?"、作者 "+(info.author||"")+"":"")+(info.desc?"，并自动填入简介":"")+(info.rating?"，豆瓣评分 "+info.rating:"")+"，可继续修改后保存。";
+    }
+  }catch(e){
+    msg.className="book-fetch-msg err";
+    msg.textContent="抓取失败（网络或站点限制），请手动填写书名 / 作者 / 简介。";
+  }finally{
+    btn.disabled=false;btn.textContent=old;
+  }
+}
+
+/* 书籍录入 / 编辑弹窗 */
+var bookEditIdx=-1;
+var bookFetchedRating="";
+function openBookModal(i){
+  bookEditIdx=(typeof i==="number")?i:-1;
+  var isEdit=bookEditIdx>=0;
+  document.getElementById("book-modal-title").textContent=isEdit?"✏ 编辑书籍":"📖 新增书籍";
+  var b=isEdit?(DB.books[bookEditIdx]||{}):{};
+  bookFetchedRating=b.rating||"";
+  document.getElementById("bkf-url").value=b.srcUrl||"";
+  document.getElementById("bkf-title").value=b.title||"";
+  document.getElementById("bkf-author").value=b.author||"";
+  document.getElementById("bkf-desc").value=b.desc||"";
+  document.getElementById("bkf-tags").value=(b.tags||[]).join(",");
+  document.getElementById("bkf-status").value=b.status||"toread";
+  var msg=document.getElementById("bkf-msg");
+  msg.className="book-fetch-msg";
+  msg.textContent=isEdit?"可粘贴新的链接重新识别，或直接修改下方字段。":"粘贴购物或豆瓣链接，自动抓取书名、作者与简介；抓不到可手动填写下方字段。";
+  document.getElementById("book-modal").style.display="flex";
+}
+function closeBookModal(){document.getElementById("book-modal").style.display="none";}
+function addBook(){openBookModal();}
+function editBook(i){openBookModal(i);}
+function saveBookModal(){
+  var title=String(document.getElementById("bkf-title").value||"").trim();
+  if(!title){estToast("请填写书名");return;}
+  var url=String(document.getElementById("bkf-url").value||"").trim();
+  var author=String(document.getElementById("bkf-author").value||"").trim();
+  var desc=String(document.getElementById("bkf-desc").value||"").trim();
+  var status=document.getElementById("bkf-status").value||"toread";
+  var tags=String(document.getElementById("bkf-tags").value||"").split(/[,，、;；\s]+/).map(function(s){return s.trim();}).filter(Boolean);
+  var isUrl=/^https?:\/\//i.test(url),did=isUrl?doubanIdOf(url):"";
+  var wasEdit=bookEditIdx>=0;
+  if(wasEdit){
+    var b=DB.books[bookEditIdx]||{};
+    b.title=title;b.author=author;b.desc=desc;b.status=status;b.tags=tags;
+    if(status==="done")b.progress=100;else if(b.progress===100)b.progress=0;
+    if(isUrl)b.srcUrl=url;
+    if(did)b.doubanId=did;
+    if(bookFetchedRating)b.rating=bookFetchedRating;
+  }else{
+    DB.books.push({title:title,author:author,status:status,desc:desc,tags:tags,
+      progress:status==="done"?100:0,srcUrl:isUrl?url:"",doubanId:did,rating:bookFetchedRating||""});
+  }
+  save();closeBookModal();renderRead();
+  estToast(wasEdit?"已更新《"+title.slice(0,14)+"》✓":"已添加《"+title.slice(0,14)+"》✓");
+}
 
 /* ==================== 目标与OKR ==================== */
 function renderOKRs(){
