@@ -4977,7 +4977,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.89</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.90</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5445,7 +5445,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.89";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.90";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -5567,7 +5567,7 @@ function renderOverview(){
   const okrs=DB.okrs||[];const oActive=okrs.filter(o=>o.status==="active").length;const oDone=okrs.filter(o=>o.status==="done").length;
   const gears=DB.gears||[];const gActive=gears.filter(g=>g.status==="active").length;const gVal=gears.reduce((s,g)=>s+(g.price||0),0);
   const reviews=DB.reviews||[];const ideas=DB.ideas||[];
-  const evts=DB.events||[];const eToday=evts.filter(e=>e.date===new Date().toISOString().slice(0,10)).length;
+  const evts=DB.events||[];const eToday=evts.filter(e=>e.date===localDateStr()).length;
 
   /* 1) 紧凑统计条 */
   const planDoing=DB.rows.filter(r=>statusGroup(r.s)==="doing").length;
@@ -5774,6 +5774,12 @@ function renderPlanMobileCard(r,today,disp){
       </div>
     </div>
   </div>`;
+}
+/* ---- v5.90 本地日期串 YYYY-MM-DD：避免 toISOString() 在 UTC+8 把本地今天算成 UTC 昨天 ---- */
+function localDateStr(d){
+  d=d||new Date();
+  var y=d.getFullYear(),m=("0"+(d.getMonth()+1)).slice(-2),da=("0"+d.getDate()).slice(-2);
+  return y+"-"+m+"-"+da;
 }
 function fmtDateShort(dt){
   if(!dt)return "";
@@ -6089,7 +6095,7 @@ function dupRow(i){
 }
 function addRowPlan(){
   const dt=new Date();dt.setDate(dt.getDate()+7);
-  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:dt.toISOString().slice(0,10),m:"",key:0});
+  DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:localDateStr(dt),m:"",key:0});
   const ni=DB.rows.length-1;
   // 确保新行不会被当前筛选/搜索条件隐藏（否则用户看不到刚新增的行）
   const fstat=document.getElementById("fstat-plan");if(fstat)fstat.value="";
@@ -6529,7 +6535,7 @@ function renderJobs(){
   const todayJobs=all.filter(j=>{
     if(jobStatusGroup(j)==="done")return false;
     if(!j.date)return false;
-    return j.date===today.toISOString().slice(0,10);
+    return j.date===localDateStr(today);
   });
   const banner=document.getElementById("job-today-banner");
   const tlist=document.getElementById("job-today-list");
@@ -6579,7 +6585,7 @@ function renderJobs(){
   /* 分组 */
   const groups=[
     {key:"urgent",label:"🔥 紧急",icon:"🔥",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");return d<today}},
-    {key:"today",label:"📅 今天",icon:"📅",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;return j.date===today.toISOString().slice(0,10)}},
+    {key:"today",label:"📅 今天",icon:"📅",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;return j.date===localDateStr(today)}},
     {key:"soon",label:"📌 即将",icon:"📌",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return false;const d=new Date(j.date+"T00:00:00");const diff=Math.ceil((d-today)/86400000);return diff>0&&diff<=7}},
     {key:"later",label:"🔵 更远",icon:"🔵",filter:j=>{if(jobStatusGroup(j)==="done")return false;if(!j.date)return true;const d=new Date(j.date+"T00:00:00");return d>new Date(today.getTime()+7*86400000)}},
     {key:"done",label:"✅ 已完成",icon:"✅",filter:j=>jobStatusGroup(j)==="done"}
@@ -6658,7 +6664,7 @@ function renderTimeline(allJobs){
   let html="";
   for(let i=0;i<14;i++){
     const d=new Date(today);d.setDate(d.getDate()+i);
-    const ds=d.toISOString().slice(0,10);
+    const ds=localDateStr(d);
     const dow=["日","一","二","三","四","五","六"][d.getDay()];
     const dayJobs=jobs.filter(j=>j.date===ds&&jobStatusGroup(j)!=="done");
     const isToday=i===0;
@@ -6821,7 +6827,7 @@ function exportJobsCSV(){
   ).join("\n");
   const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
-  a.download="事务管理_"+new Date().toISOString().slice(0,10)+".csv";a.click();
+  a.download="事务管理_"+localDateStr()+".csv";a.click();
 }
 
 /* ---- 兼容旧调用 ---- */
@@ -7229,7 +7235,7 @@ function renderReviews(){
     </div>`;
   }).join("");
 }
-function addReview(){const week=prompt("周次（如：2026年第32周 8.3-8.9）：");if(!week)return;const date=new Date().toISOString().slice(0,10);const done=prompt("本周完成了什么？（逐行写）:")||"";const plan=prompt("下周计划？")||"";const insight=prompt("心得与洞察？")||"";DB.reviews=DB.reviews||[];DB.reviews.unshift({week:week,date:date,done:done,plan:plan,insight:insight,data:{}});save();renderReviews();}
+function addReview(){const week=prompt("周次（如：2026年第32周 8.3-8.9）：");if(!week)return;const date=localDateStr();const done=prompt("本周完成了什么？（逐行写）:")||"";const plan=prompt("下周计划？")||"";const insight=prompt("心得与洞察？")||"";DB.reviews=DB.reviews||[];DB.reviews.unshift({week:week,date:date,done:done,plan:plan,insight:insight,data:{}});save();renderReviews();}
 function editReview(i){const r=DB.reviews[i];r.week=prompt("周次：",r.week)||r.week;r.done=prompt("本周完成：",r.done)||r.done;r.plan=prompt("下周计划：",r.plan)||r.plan;r.insight=prompt("心得洞察：",r.insight)||r.insight;save();renderReviews();}
 function delReview(i){if(confirm("删除该周记？")){DB.reviews.splice(i,1);save();renderReviews();}}
 
@@ -7261,7 +7267,7 @@ function renderIdeas(){
     </div>`;
   }).join("");
 }
-function addIdea(){const title=prompt("灵感标题：");if(!title)return;const desc=prompt("描述这个灵感：")||"";const tagsStr=prompt("标签（逗号分隔，如：人像,夜景,配色）：")||"";const source=prompt("来源（小红书/Behance/自己...）：")||"";const img=prompt("图片链接（可选，留空则无图）：")||"";DB.ideas=DB.ideas||[];DB.ideas.unshift({title:title,desc:desc,tags:tagsStr?tagsStr.split(/[,，]/).map(s=>s.trim()).filter(Boolean):[],source:source,img:img,created:new Date().toISOString().slice(0,10)});save();renderIdeas();}
+function addIdea(){const title=prompt("灵感标题：");if(!title)return;const desc=prompt("描述这个灵感：")||"";const tagsStr=prompt("标签（逗号分隔，如：人像,夜景,配色）：")||"";const source=prompt("来源（小红书/Behance/自己...）：")||"";const img=prompt("图片链接（可选，留空则无图）：")||"";DB.ideas=DB.ideas||[];DB.ideas.unshift({title:title,desc:desc,tags:tagsStr?tagsStr.split(/[,，]/).map(s=>s.trim()).filter(Boolean):[],source:source,img:img,created:localDateStr()});save();renderIdeas();}
 function editIdea(i){const id=DB.ideas[i];id.title=prompt("标题：",id.title)||id.title;id.desc=prompt("描述：",id.desc)||id.id;const tagsStr=(id.tags||[]).join(", ");const nt=prompt("标签（逗号分隔）：",tagsStr)||"";id.tags=nt?nt.split(/[,，]/).map(s=>s.trim()).filter(Boolean):id.tags;id.source=prompt("来源：",id.source)||id.source;id.img=prompt("图片链接：",id.img)||id.img;save();renderIdeas();}
 function delIdea(i){if(confirm("删除该灵感？")){DB.ideas.splice(i,1);save();renderIdeas();}}
 
@@ -7435,11 +7441,11 @@ function renderWeekBar(){
   const taskDates=new Set();
   (DB.rows||[]).forEach(r=>{if(r.dt)taskDates.add(r.dt.slice(0,10));});
   (DB.events||[]).forEach(e=>{if(e.date)taskDates.add(e.date.slice(0,10));});
-  const todayStr=today.toISOString().slice(0,10);
+  const todayStr=localDateStr(today);
   let html="";
   for(let i=0;i<7;i++){
     const d=new Date(mon);d.setDate(mon.getDate()+i);
-    const ds=d.toISOString().slice(0,10),isToday=ds===todayStr,isPast=d<today&&!isToday,
+    const ds=localDateStr(d),isToday=ds===todayStr,isPast=d<today&&!isToday,
       hasTask=taskDates.has(ds);
     html+=`<div class="wd${isToday?" d-today":""}${isPast?" d-past":""}${hasTask?" has-task":""}" title="${ds}${hasTask?' · 有事项/行程':''}" onclick="switchTab('schedule');selectCalDate('${ds}')">${d.getDate()}</div>`;
   }
@@ -7476,7 +7482,7 @@ const TAG_CLASS={shot:"tl-shot",plan:"tl-plan",study:"tl-study",life:"tl-life"};
 function renderSchedule(){
   const now=new Date();
   if(!calYear){calYear=now.getFullYear();calMonth=now.getMonth();}
-  if(!calSelectedDate)calSelectedDate=now.toISOString().slice(0,10);
+  if(!calSelectedDate)calSelectedDate=localDateStr(now);
   document.getElementById("cal-year").value=calYear;
   document.getElementById("cal-month").value=calMonth+1;
   document.getElementById("cal-day").value=parseInt(calSelectedDate.slice(8),10);
@@ -7490,7 +7496,7 @@ function renderCalStats(){
   const total=evts.length;
   const done=evts.filter(e=>e.done).length;
   const pend=total-done;
-  const todayStr=new Date().toISOString().slice(0,10);
+  const todayStr=localDateStr();
   const todayCnt=evts.filter(e=>e.date===todayStr).length;
   document.getElementById("cal-stats").innerHTML=
     `<div class="cs-card cs-total"><div class="cs-num">${total}</div><div class="cs-label">总行程</div></div>`+
@@ -7504,7 +7510,7 @@ function renderCalMonth(){
   const firstDay=new Date(y,m,1).getDay();
   const daysInMonth=new Date(y,m+1,0).getDate();
   const daysInPrev=new Date(y,m,0).getDate();
-  const todayStr=new Date().toISOString().slice(0,10);
+  const todayStr=localDateStr();
   const evts=DB.events||[];
   /* build date -> events map */
   const evtMap={};
@@ -7558,7 +7564,7 @@ function buildCalCell(d,dateStr,isOther,evtsOnDay,todayStr){
 function formatDate(y,m,d){return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;}
 function selectCalDate(ds){calSelectedDate=ds;renderSchedule();}
 function calOffset(dir){
-  if(dir===0){const n=new Date();calYear=n.getFullYear();calMonth=n.getMonth();calSelectedDate=n.toISOString().slice(0,10);}
+  if(dir===0){const n=new Date();calYear=n.getFullYear();calMonth=n.getMonth();calSelectedDate=localDateStr(n);}
   else{calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}}
   renderSchedule();
 }
@@ -7585,7 +7591,7 @@ function renderTimeline(){
   const body=document.getElementById("timeline-body");
   const label=document.getElementById("tls-date-label");
   const today=new Date();
-  const ds=calSelectedDate||today.toISOString().slice(0,10);
+  const ds=calSelectedDate||localDateStr(today);
   label.textContent=ds;
   let evts=getFilteredEvts().filter(e=>e.date===ds);
   /* sort by time */
@@ -7607,7 +7613,7 @@ function renderTimeline(){
 }
 function renderUpcoming(){
   const ul=document.getElementById("upcoming-list");
-  const today=new Date(),todayStr=today.toISOString().slice(0,10);
+  const today=new Date(),todayStr=localDateStr(today);
   let evts=getFilteredEvts().filter(e=>e.date>=todayStr&&!e.done);
   evts.sort((a,b)=>{if(a.date!==b.date)return a.date.localeCompare(b.date);return(a.time||"").localeCompare(b.time||"");});
   evts=evts.slice(0,8);
@@ -7675,7 +7681,7 @@ let homeCalYear,homeCalMonth,homeCalTagFilter="";
 function renderHomeCal(){
   const now=new Date();
   if(!homeCalYear){homeCalYear=now.getFullYear();homeCalMonth=now.getMonth();}
-  if(!calSelectedDate)calSelectedDate=now.toISOString().slice(0,10);
+  if(!calSelectedDate)calSelectedDate=localDateStr(now);
   renderHomeCalGrid();
   renderHomeTimeline();
   renderHomeUpcoming();
@@ -7688,7 +7694,7 @@ function renderHomeCalGrid(){
   const firstDay=new Date(y,m,1).getDay();
   const daysInMonth=new Date(y,m+1,0).getDate();
   const daysInPrev=new Date(y,m,0).getDate();
-  const todayStr=new Date().toISOString().slice(0,10);
+  const todayStr=localDateStr();
   const evts=DB.events||[];
   const evtMap={};
   evts.forEach(e=>{if(!evtMap[e.date])evtMap[e.date]=[];evtMap[e.date].push(e);});
@@ -7728,7 +7734,7 @@ function buildHcd(d,dateStr,isOther,evtsOnDay,todayStr){
     <span class="hcd-num">${d}</span><div class="hcd-dots">${dotsHtml}</div></div>`;
 }
 function homeCalOffset(dir){
-  if(dir===0){const n=new Date();homeCalYear=n.getFullYear();homeCalMonth=n.getMonth();calSelectedDate=n.toISOString().slice(0,10);}
+  if(dir===0){const n=new Date();homeCalYear=n.getFullYear();homeCalMonth=n.getMonth();calSelectedDate=localDateStr(n);}
   else{homeCalMonth+=dir;if(homeCalMonth>11){homeCalMonth=0;homeCalYear++;}if(homeCalMonth<0){homeCalMonth=11;homeCalYear--;}}
   renderHomeCal();
 }
@@ -7745,7 +7751,7 @@ function getHomeFilteredEvts(){
 function renderHomeTimeline(){
   const body=document.getElementById("home-timeline");
   const dateLabel=document.getElementById("home-tl-date");
-  const todayStr=new Date().toISOString().slice(0,10);
+  const todayStr=localDateStr();
   dateLabel.textContent=todayStr;
   let evts=getHomeFilteredEvts().filter(e=>e.date===todayStr);
   evts.sort((a,b)=>(a.time||"").localeCompare(b.time||""));
@@ -7769,7 +7775,7 @@ function renderHomeTimeline(){
 }
 function renderHomeUpcoming(){
   const ul=document.getElementById("home-upcoming");
-  const todayStr=new Date().toISOString().slice(0,10);
+  const todayStr=localDateStr();
   let evts=getHomeFilteredEvts().filter(e=>e.date>todayStr&&!e.done);
   evts.sort((a,b)=>{if(a.date!==b.date)return a.date.localeCompare(b.date);return(a.time||"").localeCompare(b.time||"");});
   evts=evts.slice(0,5);
@@ -8564,7 +8570,7 @@ function estLand(){
     h+='<div id="est-list-host">'+estLandPubGrid()+'</div>';return h;
   }
   if(t==="deal"){
-    var d=DB.estateLandDeals||[];var today=new Date().toISOString().slice(0,10);
+    var d=DB.estateLandDeals||[];var today=localDateStr();
     var totToday=d.filter(function(r){return r.成交日===today;}).length;
     var sumAmt=d.reduce(function(s,r){return s+estNum(r.成交价);},0);
     var avgPre=d.length?Math.round(d.reduce(function(s,r){return s+estNum(r.溢价率);},0)/d.length*10)/10:0;
@@ -8583,7 +8589,7 @@ function estLandPubGrid(){
   return '<div class="est-grid c2">'+f.map(function(r){var i=all.indexOf(r);return '<div class="est-card" onclick="openEstateDetail(\'landPub\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-blue">'+estEsc(r.省份||"全国")+'</span><span class="est-pill p-gray">'+estEsc(r.用地性质||"")+'</span></div><div class="t">'+estEsc(r.城市||"")+' '+estEsc(r.地块位置||"")+'</div><div class="m">'+estEsc(r.出让面积||"")+' · 起始价 '+estEsc(r.起始价||"")+'</div><div class="est-row-acts"><button onclick="event.stopPropagation();openEstateEdit(\'landPub\','+i+')">编辑</button><button class="del" onclick="event.stopPropagation();delEstate(\'landPub\','+i+')">删除</button></div></div>';}).join("")+'</div>';
 }
 function estLandDealGrid(){
-  var all=DB.estateLandDeals||[];var kw=ESTATE_STATE.landKw.toLowerCase();var day=ESTATE_STATE.landDay;var today=new Date().toISOString().slice(0,10);
+  var all=DB.estateLandDeals||[];var kw=ESTATE_STATE.landKw.toLowerCase();var day=ESTATE_STATE.landDay;var today=localDateStr();
   var f=all.filter(function(r){if(kw&&((r.城市||"")+(r.竞得人||"")+(r.地块位置||"")).toLowerCase().indexOf(kw)<0)return false;
     if(day==="今日")return r.成交日===today;if(day==="近7天"){var dt=estNormDay(r.成交日);return dt&&(today-dt<=7);}if(day==="近30天"){var d2=estNormDay(r.成交日);return d2&&(today-d2<=30);}return true;});
   if(!f.length)return '<div class="est-empty">暂无成交记录。</div>';
