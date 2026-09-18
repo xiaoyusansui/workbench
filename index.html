@@ -4931,7 +4931,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.84</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.85</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7321,8 +7321,8 @@ function renderTimeline(){
       <span class="tl-time">${e.time||"全天"}</span>
       <div class="tl-body"><div class="tl-title">${escHtml(e.title)}${tg}</div>${descHtml}</div>
       <div class="tl-actions">
-        <button class="tl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${i},'${ds}')">${e.done?"✓":"☐"}</button>
-        <button class="tl-del" title="删除" onclick="deleteEvt(${i},'${ds}')">✕</button>
+        <button class="tl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${DB.events.indexOf(e)},'${ds}')">${e.done?"✓":"☐"}</button>
+        <button class="tl-del" title="删除" onclick="deleteEvt(${DB.events.indexOf(e)},'${ds}')">✕</button>
       </div></div>`;
   }).join("");
 }
@@ -7380,18 +7380,14 @@ function saveEvtModal(){
   }else{evt.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);evts.push(evt);}
   save();closeEvtModal();renderSchedule();
 }
-function toggleEvt(filteredIdx,dateStr){
+function toggleEvt(realIdx,dateStr){
   const evts=DB.events||[];
-  const dayEvts=evts.filter(e=>e.date===dateStr);
-  const realEvt=dayEvts[filteredIdx];
-  if(realEvt){const idx=evts.indexOf(realEvt);if(idx>=0){evts[idx].done=!evts[idx].done;save();renderSchedule();}}
+  if(realIdx>=0 && realIdx<evts.length){evts[realIdx].done=!evts[realIdx].done;save();renderSchedule();}
 }
-function deleteEvt(filteredIdx,dateStr){
+function deleteEvt(realIdx,dateStr){
   if(!confirm("确定删除这条行程？"))return;
   const evts=DB.events||[];
-  const dayEvts=evts.filter(e=>e.date===dateStr);
-  const realEvt=dayEvts[filteredIdx];
-  if(realEvt){const idx=evts.indexOf(realEvt);if(idx>=0){evts.splice(idx,1);save();renderSchedule();}}
+  if(realIdx>=0 && realIdx<evts.length){evts.splice(realIdx,1);save();renderSchedule();}
 }
 function escHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
@@ -7487,8 +7483,8 @@ function renderHomeTimeline(){
       <span class="htl-time">${e.time||"全天"}</span>
       <div class="htl-body"><div class="htl-title">${escHtml(e.title)}${tg}</div>${descHtml}</div>
       <div class="htl-actions">
-        <button class="htl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${i},'${todayStr}');renderHomeCal()">${e.done?"✓":"☐"}</button>
-        <button class="htl-del" title="删除" onclick="deleteEvt(${i},'${todayStr}');renderHomeCal()">✕</button>
+        <button class="htl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${DB.events.indexOf(e)},'${todayStr}');renderHomeCal()">${e.done?"✓":"☐"}</button>
+        <button class="htl-del" title="删除" onclick="deleteEvt(${DB.events.indexOf(e)},'${todayStr}');renderHomeCal()">✕</button>
       </div></div>`;
   }).join("");
 }
