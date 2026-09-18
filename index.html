@@ -1163,6 +1163,49 @@
   /* 分隔标签 */
   .nav-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;
     padding:16px 18px 6px;pointer-events:none}
+  /* v5.92 全局常驻分组：琥珀金描边，与业务分组做视觉区分 */
+  .nav-label-global{color:var(--gold);opacity:.85}
+  .nav-item.nav-global.active{box-shadow:inset 3px 0 0 var(--gold),0 0 12px var(--gold-glow)}
+
+  /* v5.92 全局 Toast：增删改统一 2 秒反馈 */
+  #wb-toast{
+    position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:99999;display:none;
+    background:rgba(20,24,32,.96);color:#fff;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);max-width:80vw;text-align:center;line-height:1.5
+  }
+  #wb-toast.wb-toast-ok{background:linear-gradient(135deg,#16a34a,#22c55e)}
+  #wb-toast.wb-toast-warn{background:linear-gradient(135deg,#d97706,#f59e0b);color:#1a1206}
+  #wb-toast.wb-toast-err{background:linear-gradient(135deg,#dc2626,#ef4444)}
+
+  /* v5.92 二次确认弹窗 */
+  .wb-confirm-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+  .wb-confirm-box{width:min(420px,90vw);background:var(--bg2);border:1px solid var(--glass-border);border-radius:14px;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .wb-confirm-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:10px}
+  .wb-confirm-msg{font-size:13px;color:var(--muted2);line-height:1.7;white-space:pre-wrap;margin-bottom:18px}
+  .wb-confirm-actions{display:flex;gap:10px;justify-content:flex-end}
+
+  /* v5.92 数据管理：存储容量条 */
+  .dm-storage{margin-top:12px;padding:12px 14px;border:1px solid var(--glass-border);border-radius:10px;background:var(--bg3)}
+  .dm-storage-head{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted2);font-weight:700;margin-bottom:8px}
+  .dm-storage-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+  .dm-storage-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--gold));transition:width .3s}
+  .dm-storage-bar.warn i{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+  .dm-storage-note{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.6}
+  .dm-storage-note.warn{color:var(--coral);font-weight:700}
+
+  /* v5.92 表单校验：未通过时提交按钮置灰 */
+  .btn.is-disabled,.btn.sm.is-disabled{opacity:.45;filter:grayscale(1);cursor:not-allowed;pointer-events:auto}
+  .jm-field .jm-err{font-size:11px;color:var(--coral);font-weight:700;margin-top:4px;display:none}
+  .jm-field.invalid input,.jm-field.invalid select{border-color:var(--coral)!important;box-shadow:0 0 0 2px rgba(248,113,113,.15)}
+  .jm-field.invalid .jm-err{display:block}
+
+  /* v5.92 空数据统一引导：图标 + 引导文案 + 快捷新增按钮 */
+  .wb-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    padding:32px 20px;text-align:center;background:var(--surface);
+    border:2px dashed var(--glass-border);border-radius:var(--radius);grid-column:1/-1}
+  .wb-empty .wb-empty-icon{font-size:34px;opacity:.55}
+  .wb-empty .wb-empty-text{font-size:14px;font-weight:800;color:var(--ink2)}
+  .wb-empty .wb-empty-sub{font-size:12px;font-weight:500;color:var(--muted);max-width:440px;line-height:1.75}
 
   /* 侧边栏底部 */
   .sidebar-footer{padding:10px 14px;border-top:1px solid var(--glass-border);margin-top:auto}
@@ -1679,6 +1722,11 @@
   /* 摄影+成长统一8卡网格 */
   .pg-grid{grid-template-columns:repeat(4,1fr)}
   .pg-grid .ov-card{padding:18px 16px;min-height:120px}
+  /* v5.92 三卡分区（摄影学习 / 接单交付 / 个人成长） */
+  .ov-grid.grid-3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:834px){.ov-grid.grid-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.ov-grid.grid-3{grid-template-columns:1fr 1fr}}
+  .ov-grid.grid-3 .ov-card{padding:16px 16px;min-height:116px}
 
   /* 新版卡片：紧凑、无进入按钮、左侧色条 */
   .ov-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);
@@ -4293,6 +4341,18 @@ window.QRCode = {
         <span class="nav-icon" style="background:linear-gradient(135deg,rgba(212,165,116,.18),rgba(251,191,36,.12));color:var(--gold)" data-page-node-id="ZPK8gfHKER5dsxHCcSlysd">🐟</span>
         <span data-page-node-id="62ECbf8OIeTUdJO1QgBrvb">首页</span>
       </li>
+
+      <!-- v5.92 全局常驻功能区：最高频的两个通用入口，1 次点击直达 -->
+      <div class="nav-label nav-label-global" data-page-node-id="v592GlobalLbl">⚡ 全局常驻</div>
+      <li class="nav-item nav-global" data-nav="job" onclick="switchTab('job')" data-page-node-id="v592GlobalJob">
+        <span class="nav-icon" style="background:rgba(96,165,250,.14);color:var(--blue)" data-page-node-id="v592GlobalJobIcon">📋</span>
+        <span data-page-node-id="v592GlobalJobLbl">事务管理</span>
+      </li>
+      <li class="nav-item nav-global" data-nav="schedule" onclick="switchTab('schedule')" data-page-node-id="v592GlobalSch">
+        <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="v592GlobalSchIcon">📅</span>
+        <span data-page-node-id="v592GlobalSchLbl">排程日历</span>
+      </li>
+
       <div class="nav-label" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 富淮城运营</div>
       <li class="nav-item" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
         <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
@@ -4331,10 +4391,6 @@ window.QRCode = {
       <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')" data-page-node-id="gGJbns4dGyvCfWU01X8Z4R">
         <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff" data-page-node-id="rm9HmhaHklHZ2CxPyeTQJO">📩</span>
         <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
-      </li>
-      <li class="nav-item" data-nav="job" onclick="switchTab('job')" data-page-node-id="VevhHCl34o2gXEOj9lNjrp">
-        <span class="nav-icon" style="background:rgba(96,165,250,.12);color:var(--blue)" data-page-node-id="FjVkYehqgOgGtjzEuIsnrL">🗂</span>
-        <span data-page-node-id="6JissmAfzQLUmY1Y4CTVC2">事务管理</span>
       </li>
 
       <div class="nav-label" data-page-node-id="XEPCsx5cOk1d9MpIAMD29Q">🌱 个人成长</div>
@@ -4400,22 +4456,40 @@ window.QRCode = {
         <div class="home-layout" data-page-node-id="2jqOV5Nl7ge0EDmUHUIki7">
           <!-- 左侧：卡片区 -->
           <div class="home-main" data-page-node-id="lwBXFgLqqOU0qGbuNQreVq">
+            <!-- ⚡ 全局常驻（v5.92）：与侧边栏顶部常驻区一一对应 -->
+            <div class="dash-section" id="dash-gl-section" data-page-node-id="v592DashGl">
+              <div class="dash-sect-label" data-page-node-id="v592DashGlLbl">⚡ 全局常驻</div>
+              <div class="ov-grid biz-row" id="ov-grid-gl" data-page-node-id="v592GridGl"></div>
+            </div>
+
             <!-- 💼 富淮城运营 -->
             <div class="dash-section" id="dash-biz-section" data-page-node-id="rqDVOurq4OYodVAEZ7YGKx">
               <div class="dash-sect-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 富淮城运营</div>
               <div class="ov-grid biz-row" id="ov-grid-biz" data-page-node-id="WTcJrSVsDiNs9Ef4eq9dW2"></div>
             </div>
 
+            <!-- 📸 摄影学习 -->
+            <div class="dash-section" id="dash-lrn-section" data-page-node-id="v592DashLrn">
+              <div class="dash-sect-label" data-page-node-id="v592DashLrnLbl">📸 摄影学习</div>
+              <div class="ov-grid grid-3" id="ov-grid-lrn" data-page-node-id="v592GridLrn"></div>
+            </div>
+
+            <!-- 🎨 摄影创作 -->
+            <div class="dash-section" id="dash-cre-section" data-page-node-id="v592DashCre">
+              <div class="dash-sect-label" data-page-node-id="v592DashCreLbl">🎨 摄影创作</div>
+              <div class="ov-grid biz-row" id="ov-grid-cre" data-page-node-id="v592GridCre"></div>
+            </div>
+
             <!-- 🎬 接单交付 -->
             <div class="dash-section" id="dash-dlv-section" data-page-node-id="dlvSectAb0001">
               <div class="dash-sect-label" data-page-node-id="dlvSectLbl01">🎬 接单交付</div>
-              <div class="ov-grid biz-row" id="ov-grid-dlv" data-page-node-id="dlvGridAb00002"></div>
+              <div class="ov-grid grid-3" id="ov-grid-dlv" data-page-node-id="dlvGridAb00002"></div>
             </div>
 
-            <!-- 📸🎨🌱 摄影与成长 -->
-            <div class="dash-section" id="dash-pg-section" data-page-node-id="Ejc1v71aLre7ZSWFQZOzYx">
-              <div class="dash-sect-label" data-page-node-id="pgSectLbl001">📸 摄影与成长</div>
-              <div class="ov-grid pg-grid" id="ov-grid-pg" data-page-node-id="1OLPWDqnScYwkOW0U3bFir"></div>
+            <!-- 🌱 个人成长 -->
+            <div class="dash-section" id="dash-gro-section" data-page-node-id="v592DashGro">
+              <div class="dash-sect-label" data-page-node-id="v592DashGroLbl">🌱 个人成长</div>
+              <div class="ov-grid grid-3" id="ov-grid-gro" data-page-node-id="v592GridGro"></div>
             </div>
 
           </div>          <!-- 右侧栏：日历 + 今日行程 -->
@@ -4589,19 +4663,19 @@ window.QRCode = {
           <div class="job-modal" data-page-node-id="7bwXD9RcUP9ffT2PeejRvC">
             <div class="jm-head" data-page-node-id="25I8krQ9zjXGaBerycyRo4"><span id="jm-title" data-page-node-id="hxKe5FRQofnlpK9dcPzNOE">新增工作单</span><span class="jm-close" onclick="closeJobModal()" data-page-node-id="VZbQRFJJnTRfjIgpsaCrkA">✕</span></div>
             <div class="jm-body" data-page-node-id="e8ypqD17vAQU3GKOOP97Bh">
-              <div class="jm-field" data-page-node-id="3o4PRkHqTXkhDiTGv7Mw1e"><label data-page-node-id="dc8TaqXKLGJjLjufIRpF2y">👤 客户名称 *</label><input id="jm-client" list="client-datalist" placeholder="输入客户名…" autocomplete="off" data-page-node-id="RCaF528ZA0ert0ZoTKyGpm"/></div>
+              <div class="jm-field" data-page-node-id="3o4PRkHqTXkhDiTGv7Mw1e"><label data-page-node-id="dc8TaqXKLGJjLjufIRpF2y">👤 客户名称 *</label><input id="jm-client" list="client-datalist" placeholder="输入客户名…" autocomplete="off" data-page-node-id="RCaF528ZA0ert0ZoTKyGpm"/><div class="jm-err" data-page-node-id="v592JmClientErr">客户名称为必填</div></div>
               <div class="jm-field" data-page-node-id="7GMpOEfvT0qulGpnLaAfEN"><label data-page-node-id="QkM9f93PkEEcoahSldADdd">📅 约定日期</label><input id="jm-date" type="date" placeholder="留空=待定" data-page-node-id="HxJwLZUiMtnODrzc8cAZfy"/></div>
               <div class="jm-row3" data-page-node-id="4BXNDcAAMQJg0Nyfvbir5j">
-                <div class="jm-field" data-page-node-id="OSc1w1huqdr0f3gBjMIEWh"><label data-page-node-id="tyjjckioQu4ugmAFAkX8ub">💰 报价（元）</label><input id="jm-price" type="number" placeholder="总价" min="0" data-page-node-id="OTduQebRDBv9qol7bdVxW0"/></div>
-                <div class="jm-field" data-page-node-id="nHrhsCyHJDmUAZ9KCOgKHj"><label data-page-node-id="ignJmAskKEA9MRZpX0OGvR">🪙 定金（元）</label><input id="jm-deposit" type="number" placeholder="选填" min="0" data-page-node-id="7phfBo2ZIhffgEkmg0ITeU"/></div>
-                <div class="jm-field" data-page-node-id="GvD9xWVUfVpBMehUBe33We"><label data-page-node-id="8dqPn7aozhPCmiWcPbzB8m">💵 尾款（元）</label><input id="jm-final" type="number" placeholder="选填" min="0" data-page-node-id="iZkdvjPxcrzy406W5VEJ0c"/></div>
+                <div class="jm-field" data-page-node-id="OSc1w1huqdr0f3gBjMIEWh"><label data-page-node-id="tyjjckioQu4ugmAFAkX8ub">💰 报价（元）</label><input id="jm-price" type="number" placeholder="总价" min="0" inputmode="numeric" oninput="numOnly(this)" data-page-node-id="OTduQebRDBv9qol7bdVxW0"/></div>
+                <div class="jm-field" data-page-node-id="nHrhsCyHJDmUAZ9KCOgKHj"><label data-page-node-id="ignJmAskKEA9MRZpX0OGvR">🪙 定金（元）</label><input id="jm-deposit" type="number" placeholder="选填" min="0" inputmode="numeric" oninput="numOnly(this)" data-page-node-id="7phfBo2ZIhffgEkmg0ITeU"/></div>
+                <div class="jm-field" data-page-node-id="GvD9xWVUfVpBMehUBe33We"><label data-page-node-id="8dqPn7aozhPCmiWcPbzB8m">💵 尾款（元）</label><input id="jm-final" type="number" placeholder="选填" min="0" inputmode="numeric" oninput="numOnly(this)" data-page-node-id="iZkdvjPxcrzy406W5VEJ0c"/></div>
               </div>
               <div class="jm-field" data-page-node-id="eBmekvzqQYf1rx2nDOX0DX"><label data-page-node-id="ZCGORvqdB0OGxjmsKqq9VW">📋 服务类型</label><select id="jm-type" data-page-node-id="8HUKG55SY2xAzMWjnRJcv5"></select></div>
               <div class="jm-field" data-page-node-id="xKrAk1zacy9Q2ZPImwKPHk">
                 <label data-page-node-id="AnrKUldxXW7fAAG3FZKKHj">🤝 对接</label>
                 <div class="jm-row2" style="gap:8px" data-page-node-id="Eo7k0Ug2YV5uYCDJAijBs0">
                   <select id="jm-dept-group" onchange="onJobDeptGroupChange()" data-page-node-id="UIe2UpB849N2HcvTy19W3I"></select>
-                  <select id="jm-dept-sub" onchange="onJobDeptSubChange()" data-page-node-id="4kgagHrXWk87g9H5jAJT4B"></select>
+                  <select id="jm-dept-sub" onchange="onJobDeptSubChange()" title="切换上级对接后子项会清空，请重新选择" data-page-node-id="4kgagHrXWk87g9H5jAJT4B"></select>
                 </div>
               </div>
               <div class="jm-field" data-page-node-id="P6a4KSQckayOup6ThearaW"><label data-page-node-id="BFiEXHDuyJBzfY6OGg2a4Z">📊 进度</label><select id="jm-status" data-page-node-id="HKWj8ecVzJNzykOvSPyYNy"></select></div>
@@ -4683,7 +4757,7 @@ window.QRCode = {
           <div class="job-modal" data-page-node-id="31HMgeCqUcIMwXOAHM6zEb">
             <div class="jm-head" data-page-node-id="BZbB1w36437iZ0Gx52CrlF"><span id="gm-title" data-page-node-id="RayfNr87xoWC2DGSnFW2hQ">新增器材</span><span class="jm-close" onclick="closeGearModal()" data-page-node-id="YbHcequ8GK0b4nMTjNP245">✕</span></div>
             <div class="jm-body" data-page-node-id="bAmpH1tX4IIHMXCmzotAne">
-              <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9"/></div>
+              <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9"/><div class="jm-err" data-page-node-id="v592GmNameErr">器材名称为必填</div></div>
               <div class="jm-row2" data-page-node-id="mYzPMnZoVBVACr81YRC48U">
                 <div class="jm-field" data-page-node-id="jjtqO0MMqe4srgG8BVnAIK"><label data-page-node-id="uc2RRScQ5xuySk2WvIuMCQ">🏷 类别</label><select id="gm-category" data-page-node-id="UK5O6cruLwjIg7pmLoj0vP"></select></div>
                 <div class="jm-field" data-page-node-id="0gF4LyYtbr8ck2zbydCGkt"><label data-page-node-id="pVtsXIT1AGD2BU1nmFNoHo">📊 状态</label><select id="gm-status" data-page-node-id="lODG0sQkEdgj7eqcqsyTDn"><option value="active" data-page-node-id="ov6FkPLx5gzzaIziDsZadm">✅ 在用</option><option value="repair" data-page-node-id="OEC49nGZhNsiza98QI7ceW">🔧 维修中</option><option value="retired" data-page-node-id="mmsiEQLw8ZigCGmD79WSAb">📦 已退役</option></select></div>
@@ -4694,13 +4768,13 @@ window.QRCode = {
               </div>
               <div class="jm-row2" data-page-node-id="mwPimDZXPL7pNq1HjhQlag">
                 <div class="jm-field" data-page-node-id="HKkEWnGpzHSC3rD6sRy129"><label data-page-node-id="160WtyaK6yCVq5ZBDite2u">📅 购入日期</label><input id="gm-buyDate" type="date" data-page-node-id="clAlODsxEwJCYUIsMvcyEA"/></div>
-                <div class="jm-field" data-page-node-id="RSTTHGAjKNiP0CubRONaKe"><label data-page-node-id="dWgvVOcMLVrInIuEWyyEGs">💰 价格（元）</label><input id="gm-price" type="number" placeholder="0" min="0" data-page-node-id="aAnJWoZ6CnHh78Ekn1Yo1b"/></div>
+                <div class="jm-field" data-page-node-id="RSTTHGAjKNiP0CubRONaKe"><label data-page-node-id="dWgvVOcMLVrInIuEWyyEGs">💰 价格（元）</label><input id="gm-price" type="number" placeholder="0" min="0" inputmode="numeric" oninput="numOnly(this)" data-page-node-id="aAnJWoZ6CnHh78Ekn1Yo1b"/></div>
               </div>
               <div class="jm-field" data-page-node-id="MlGZMbLbnlon0TMrhBHHc9"><label data-page-node-id="pfGeMNmVJCq6SyMesndMN7">📝 维护备注</label><textarea id="gm-maintNote" rows="2" placeholder="选填…"></textarea></div>
             </div>
             <div class="jm-foot" data-page-node-id="ynTCf9OBTaEua3BImTJDe7">
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeGearModal()" data-page-node-id="QBnMVVz3kG9oBjXCl24U77">取消</button>
-              <button class="btn sm job" onclick="saveGearModal()" data-page-node-id="pVprjyrQvxkuNYCUCAtxsh">💾 保存</button>
+              <button class="btn sm job" id="gm-save-btn" onclick="saveGearModal()" data-page-node-id="pVprjyrQvxkuNYCUCAtxsh">💾 保存</button>
             </div>
           </div>
         </div>
@@ -4735,7 +4809,7 @@ window.QRCode = {
       <!-- ==================== 日历行程 v5.26 ==================== -->
       <section id="panel-schedule" style="display:none" data-page-node-id="5Rw6rzQwGj7GF1tIpmfJ3G">
         <div class="sec-head" data-page-node-id="DU8bKe68NUy4shjTAp73fp">
-          <h2 data-page-node-id="1lFMoPoFL8YOLRGNZN0P1q">📅 日历行程</h2>
+          <h2 data-page-node-id="1lFMoPoFL8YOLRGNZN0P1q">📅 排程日历</h2>
           <div class="sec-actions" data-page-node-id="FxuhzwhbBTyleN5WVz16TK">
             <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()" data-page-node-id="4oGVd9DbfaTmfNT2FTD9sN"/>
             <div class="cal-date-picker" data-page-node-id="P3x9XETGkvtLREY3KPp9xg">
@@ -4826,6 +4900,8 @@ window.QRCode = {
         </span>
       </div>
       <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="doImport(this)" data-page-node-id="rVCnvGWWauXQFYigeFCR30"/>
+      <!-- v5.92 数据管理：全量备份导入通道（独立于旧的单模块导入） -->
+      <input type="file" id="backup-file" accept="application/json,.json" style="display:none" onchange="doImportBackup(this)" data-page-node-id="v592BackupFile"/>
 
       <!-- 云同步设置弹窗 -->
       <div class="modal" id="sync-modal" style="display:none" data-page-node-id="gh2c8v00ZCevxdf4vr5V6K">
@@ -4923,6 +4999,36 @@ window.QRCode = {
               </div>
             </div>
 
+            <!-- 🗂 数据管理（v5.92）：全量备份 / 恢复 / 容量预警 -->
+            <div class="sett-sect" id="v592DataSect" data-page-node-id="v592DataSect">
+              <h4 data-page-node-id="v592DataH"><span class="sect-icon" data-page-node-id="v592DataIcon">🗂</span> 数据管理</h4>
+              <div class="sett-grid" data-page-node-id="v592DataGrid">
+                <div class="sett-action" onclick="exportBackup()" data-page-node-id="v592ExportBtn">
+                  <span class="sa-icon" data-page-node-id="v592ExportIcon">⬇</span>
+                  <span class="sa-label" data-page-node-id="v592ExportLbl">全量备份导出</span>
+                  <span class="sa-desc" data-page-node-id="v592ExportDesc">一键导出全部模块 JSON</span>
+                </div>
+                <div class="sett-action" onclick="document.getElementById('backup-file').click()" data-page-node-id="v592ImportBtn">
+                  <span class="sa-icon" data-page-node-id="v592ImportIcon">⬆</span>
+                  <span class="sa-label" data-page-node-id="v592ImportLbl">备份文件恢复</span>
+                  <span class="sa-desc" data-page-node-id="v592ImportDesc">导入 JSON 覆盖当前数据</span>
+                </div>
+                <div class="sett-action warn" onclick="cleanupSnapshots()" data-page-node-id="v592SnapBtn">
+                  <span class="sa-icon" data-page-node-id="v592SnapIcon">🧹</span>
+                  <span class="sa-label" data-page-node-id="v592SnapLbl">清理历史快照</span>
+                  <span class="sa-desc" data-page-node-id="v592SnapDesc">删除导入前自动留存的旧快照</span>
+                </div>
+              </div>
+              <div class="dm-storage" id="dm-storage" data-page-node-id="v592Storage">
+                <div class="dm-storage-head" data-page-node-id="v592StorageHead">
+                  <span data-page-node-id="v592StorageLbl">本地存储占用</span>
+                  <span id="dm-storage-val" data-page-node-id="v592StorageVal">—</span>
+                </div>
+                <div class="dm-storage-bar" id="dm-storage-bar" data-page-node-id="v592StorageBar"><i id="dm-storage-fill" style="width:0%" data-page-node-id="v592StorageFill"></i></div>
+                <div class="dm-storage-note" id="dm-storage-note" data-page-node-id="v592StorageNote">容量充足</div>
+              </div>
+            </div>
+
             <!-- ☁ 云端账号 -->
             <div class="sett-sect" data-page-node-id="3UzMdoEyHjBXrjydCPE6NJ">
               <h4 data-page-node-id="QN0LBxXGOED26GxAK505ps"><span class="sect-icon" data-page-node-id="uO1CYhmac0mbvRNrch46Kf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="QxT7aFwpAKeAuXEfDrsqMG"><path d="M7 18a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 0117 18H7z" data-page-node-id="KAoEvHPYG2LhuSXCPwbAly"/></svg></span> 云端账号</h4>
@@ -4988,7 +5094,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.91</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.92</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5061,7 +5167,7 @@ window.QRCode = {
           </div>
           <div class="modal-actions" data-page-node-id="HuTTk8EyQx88C6tJAi7IBD">
             <button class="btn ghost" onclick="closeEvtModal()" data-page-node-id="eNMFAd3XCaQGo50YbjuHbG">取消</button>
-            <button class="btn" onclick="saveEvtModal()" style="background:linear-gradient(135deg,var(--coral),#ef4444)" data-page-node-id="442lwxV530qnXTlo3gglni">保存行程</button>
+            <button class="btn" id="evf-save-btn" onclick="saveEvtModal()" style="background:linear-gradient(135deg,var(--coral),#ef4444)" data-page-node-id="442lwxV530qnXTlo3gglni">保存行程</button>
           </div>
         </div>
       </div>
@@ -5456,7 +5562,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.91";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.92";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -5503,7 +5609,19 @@ function morphDB(d){
 
 let DB=load();
 function load(){
-  try{const r=localStorage.getItem(KEY);if(r){const d=morphDB(JSON.parse(r));if(d)return d;}}catch(e){}
+  try{
+    const r=localStorage.getItem(KEY);
+    if(r){
+      try{
+        const d=morphDB(JSON.parse(r));
+        if(d)return d;
+      }catch(e){}
+      /* v5.92：走到这里说明本地数据已损坏（JSON 解析失败或结构异常）。
+         先把现场另存一份「损坏快照」，绝不直接丢弃，再由启动恢复流程给用户 重置 / 导入备份 的选择。 */
+      try{localStorage.setItem(KEY+"_corrupt_"+Date.now(),r);}catch(_){}
+      window.__dbCorrupt=true;
+    }
+  }catch(e){}
   return morphDB(JSON.parse(JSON.stringify(SEED)));
 }
 function save(){
@@ -5517,19 +5635,133 @@ function save(){
   if(cloudMode&&ghUser&&ghToken)scheduleCloudPush();
 }
 
+/* ==================== v5.92 数据管理：全量备份 / 恢复 / 容量预警 / 损坏兜底 ==================== */
+/* 本地存储占用统计（localStorage 按 UTF-16 计，1 字符 ≈ 2 字节；主流浏览器配额约 5MB） */
+function storageUsage(){
+  var chars=0;
+  try{
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k==null)continue;
+      chars+=(localStorage.getItem(k)||"").length+k.length;
+    }
+  }catch(e){}
+  var bytes=chars*2, quota=5*1024*1024;
+  var pct=Math.round(bytes/quota*1000)/10;
+  if(pct>100)pct=100;
+  return {bytes:bytes,kb:Math.round(bytes/1024*10)/10,mb:Math.round(bytes/1048576*100)/100,pct:pct,warn:pct>=80};
+}
+function updateStorageBar(){
+  var u=storageUsage();
+  var val=document.getElementById("dm-storage-val");
+  var fill=document.getElementById("dm-storage-fill");
+  var bar=document.getElementById("dm-storage-bar");
+  var note=document.getElementById("dm-storage-note");
+  if(val)val.textContent=(u.mb>=1?u.mb+" MB":u.kb+" KB")+" / 约 5 MB · "+u.pct+"%";
+  if(fill)fill.style.width=u.pct+"%";
+  if(bar)bar.classList.toggle("warn",!!u.warn);
+  if(note){
+    note.classList.toggle("warn",!!u.warn);
+    note.textContent=u.warn
+      ? "⚠ 本地存储已用 "+u.pct+"%，接近上限 — 建议立即导出备份，并清理历史快照"
+      : "容量充足 · 建议每周导出一次全量备份，避免清理浏览器缓存时丢失数据";
+  }
+  return u;
+}
+/* 全量备份导出：带 app/ver/ts 元信息，导入时自动兼容裸 DB 结构 */
+function exportBackup(){
+  try{
+    var payload={app:"xiaoyu_workbench",ver:APP_VER,ts:Date.now(),exportedAt:new Date().toLocaleString("zh-CN"),db:DB};
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+    var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+    a.download="小鱼工作台_全量备份_"+localDateStr()+".json";
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){try{document.body.removeChild(a);}catch(e){}},0);
+    toast("已导出全量备份 ✓","ok");
+  }catch(e){toast("导出失败："+e.message,"err");}
+}
+/* 备份文件恢复 */
+function doImportBackup(input){
+  var f=input.files&&input.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var j=JSON.parse(r.result);
+      var raw=(j&&j.db)?j.db:j;
+      var m=morphDB(raw);
+      if(!m||(!m.rows&&!m.jobs&&!m.courses)){toast("备份文件内容不是工作台数据","err");input.value="";return;}
+      wbConfirm("导入会用备份文件覆盖当前全部数据。\n建议先点「⬇ 全量备份导出」保存一份当前数据。\n确定继续导入？",function(){
+        try{
+          var snap=localStorage.getItem(KEY);
+          if(snap)localStorage.setItem(KEY+"_rollback_"+Date.now(),snap);
+        }catch(_){}
+        DB=m;save();renderAll();updateStorageBar();
+        toast("已从备份文件完整恢复 ✓","ok");
+      });
+    }catch(e){toast("解析失败："+e.message,"err");}
+    input.value="";
+  };
+  r.readAsText(f);
+}
+/* 清理导入前自动留存的历史快照（损坏快照一并清理） */
+function cleanupSnapshots(){
+  var keys=[];
+  try{
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k&&(k.indexOf(KEY+"_rollback_")===0||k.indexOf(KEY+"_corrupt_")===0))keys.push(k);
+    }
+  }catch(e){}
+  if(!keys.length){toast("没有可清理的历史快照");return;}
+  wbConfirm("将删除 "+keys.length+" 份历史快照（导入前留存 / 损坏留存），当前使用中的数据不受影响。确定清理？",function(){
+    keys.forEach(function(k){try{localStorage.removeItem(k);}catch(e){}});
+    updateStorageBar();
+    toast("已清理 "+keys.length+" 份快照 ✓","ok");
+  },{okText:"清理"});
+}
+/* 启动检测：本地数据损坏时提供「重置 / 恢复」选择 */
+function showDataRescue(){
+  if(!window.__dbCorrupt)return;
+  var ov=document.getElementById("wb-rescue");
+  if(!ov){
+    ov=document.createElement("div");ov.id="wb-rescue";ov.className="wb-confirm-overlay";
+    ov.innerHTML='<div class="wb-confirm-box">'+
+      '<div class="wb-confirm-title">🛟 检测到本地数据异常</div>'+
+      '<div class="wb-confirm-msg">本机保存的工作台数据无法解析（可能是存储损坏或被其他程序改写）。\n已自动把原始内容另存为一份损坏快照，不会直接丢弃。\n请选择处理方式：</div>'+
+      '<div class="wb-confirm-actions">'+
+        '<button class="btn sm" id="wb-rescue-ignore" style="background:var(--bg3);color:var(--muted)">先忽略</button>'+
+        '<button class="btn sm" id="wb-rescue-reset" style="background:linear-gradient(135deg,var(--coral),#ef4444);color:#fff">重置为默认</button>'+
+        '<button class="btn sm" id="wb-rescue-restore" style="background:linear-gradient(135deg,var(--brand),var(--gold));color:#1a1a2e">导入备份恢复</button>'+
+      '</div></div>';
+    document.body.appendChild(ov);
+    document.getElementById("wb-rescue-ignore").onclick=function(){ov.style.display="none";};
+    document.getElementById("wb-rescue-reset").onclick=function(){
+      wbConfirm("重置会清空当前无法解析的数据，恢复到初始示例数据。确定重置？",function(){
+        try{localStorage.removeItem(KEY);}catch(e){}
+        location.reload();
+      },{okText:"重置"});
+    };
+    document.getElementById("wb-rescue-restore").onclick=function(){
+      var f=document.getElementById("backup-file");
+      if(f)f.click();
+    };
+  }
+  ov.style.display="flex";
+}
+
 let curTab="home";
 const TAB_TITLES={
   home:{title:"🐟 首页",sub:"工作台总览 · 一屏掌握所有进展"},
   plan:{title:"📋 策划工作",sub:"富淮城运营 · 推广策划与任务进度管理"},
   course:{title:"📷 摄影课程",sub:"摄影学习 · 从基础到实战，系统化提升"},
   hot:{title:"🔥 摄影热点",sub:"摄影学习 · 追踪平台热门趋势，保持敏感度"},
-  job:{title:"🗂 事务管理",sub:"接单交付 · 服务事项 · 拍摄计划 · 收款跟进"},
+  job:{title:"📋 事务管理",sub:"全局常驻 · 服务事项 · 拍摄计划 · 收款跟进"},
   read:{title:"📖 读书计划",sub:"个人成长 · 持续阅读，构建知识体系"},
   okr:{title:"🎯 目标与OKR",sub:"个人成长 · 季度目标拆解 · 关键结果追踪"},
   gear:{title:"🔧 器材管理",sub:"摄影学习 · 器材清单 · 价值统计 · 维护提醒"},
   review:{title:"📝 复盘周记",sub:"个人成长 · 每周回顾 · 数据沉淀 · 持续改进"},
   idea:{title:"💡 灵感收集",sub:"摄影创作 · 创意素材库 · 构图参考 · 配色方案"},
-  schedule:{title:"📅 日历行程",sub:"拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
+  schedule:{title:"📅 排程日历",sub:"全局常驻 · 拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
   works:{title:"📷 我的作品",sub:"摄影创作 · 上传作品 · 标记客片 · 同步客户画廊"},
   bookings:{title:"📩 客户预约",sub:"接单交付 · 客户在客户端提交跟拍预约 · 统一处理"},
   estate:{title:"🏘 行业报告库",sub:"富淮城运营 · 828新政 · 政策库 · 数据源 · 土拍"}
@@ -5604,24 +5836,29 @@ function renderOverview(){
      big:estatePolicies+estateReports,sub:`政策 ${estatePolicies} · 报告 ${estateReports}`,
      pct:(estatePolicies+estateReports)?Math.min(100,(estatePolicies+estateReports)*2):0}
   ];
-  const deliverCards=[
-    {nav:"bookings",icon:"📩",color:"#4f9dff",title:"客户预约",
-     big:0,sub:`客户提交后在此统一处理`,pct:0,remote:true},
-    {nav:"job",icon:"🗂",color:"var(--blue)",title:"事务管理",
+  /* v5.92 全局常驻区：与侧边栏顶部常驻入口一一对应（事务管理 / 排程日历） */
+  const globalCards=[
+    {nav:"job",icon:"📋",color:"var(--blue)",title:"事务管理",
      big:jobs.length,sub:`进行中 ${jDoing} · 已完成 ${jDone}`,
-     pct:jobs.length?Math.round(jDone/jobs.length*100):0}
-  ];
-  const photoCards=[
+     pct:jobs.length?Math.round(jDone/jobs.length*100):0},
     {nav:"schedule",icon:"📅",color:"var(--coral)",title:"日历行程",
      big:evts.length,sub:`今日 ${eToday} 项`,
-     pct:evts.length?Math.round(evts.filter(e=>e.done).length/evts.length*100):0},
+     pct:evts.length?Math.round(evts.filter(e=>e.done).length/evts.length*100):0}
+  ];
+  const deliverCards=[
+    {nav:"bookings",icon:"📩",color:"#4f9dff",title:"客户预约",
+     big:0,sub:`客户提交后在此统一处理`,pct:0,remote:true}
+  ];
+  const learnCards=[
     {nav:"hot",icon:"🔥",color:"var(--coral)",title:"摄影热点",
      big:hotTotal,sub:`已跟进 ${hotDone} 条`,pct:hotTotal?Math.round(hotDone/hotTotal*100):0},
     {nav:"course",icon:"📷",color:"var(--amber)",title:"摄影课程",
      big:coursePct+"%",sub:`${doneL}/${totalL} 课时`,pct:coursePct},
     {nav:"gear",icon:"🔧",color:"var(--muted2)",title:"器材管理",
      big:gears.length,sub:`在用 ${gActive} · ¥${(gVal/10000).toFixed(1)}万`,
-     pct:gears.length?Math.round(gActive/gears.length*100):0},
+     pct:gears.length?Math.round(gActive/gears.length*100):0}
+  ];
+  const createCards=[
     {nav:"idea",icon:"💡",color:"#a855f7",title:"灵感收集",
      big:ideas.length,sub:`条灵感素材`,pct:ideas.length?Math.min(100,ideas.length*10):0},
     {nav:"works",icon:"📷",color:"#ef4444",title:"我的作品",
@@ -5650,10 +5887,16 @@ function renderOverview(){
       <div class="ov-bar"><i style="width:${c.pct}%"></i></div>
     </div>`;
   };
-  document.getElementById("ov-grid-biz").innerHTML=bizCards.map(mkCard).join("");
-  const dlvHost=document.getElementById("ov-grid-dlv");
-  if(dlvHost)dlvHost.innerHTML=deliverCards.map(mkCard).join("");
-  document.getElementById("ov-grid-pg").innerHTML=[...photoCards,...growCards].map(mkCard).join("");
+  /* v5.92：首页分区与侧边栏分组 1:1 对应 —— 全局常驻 / 富淮城运营 / 摄影学习 / 摄影创作 / 接单交付 / 个人成长 */
+  const mountCards=(id,cards)=>{const host=document.getElementById(id);if(host)host.innerHTML=cards.map(mkCard).join("");};
+  mountCards("ov-grid-gl",globalCards);
+  mountCards("ov-grid-biz",bizCards);
+  mountCards("ov-grid-lrn",learnCards);
+  mountCards("ov-grid-cre",createCards);
+  mountCards("ov-grid-dlv",deliverCards);
+  mountCards("ov-grid-gro",growCards);
+  const pgHost=document.getElementById("ov-grid-pg");
+  if(pgHost)pgHost.innerHTML=[...learnCards,...createCards,...growCards].map(mkCard).join("");
 
   /* 首页日历行程 */
   renderHomeCal();
@@ -5722,7 +5965,7 @@ function renderPlan(){
           onchange="onBoardChange(${r._i},this.value)">
           ${(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("")}
         </select></td>
-        <td><input class="cell-input" data-op="plan" data-i="${r._i}" data-f="t" value="${esc(r.t)}"/></td>
+        <td><input class="cell-input" data-op="plan" data-i="${r._i}" data-f="t" value="${esc(r.t)}" onblur="onPlanTitleBlur(${r._i},this)"/></td>
         <td>${renderDeptCell(r.d,r._i)}</td>
         <td><select class="cell-input cell-status ${statusClass(r.s)}" data-op="plan" data-i="${r._i}" data-f="s"
           onchange="DB.rows[${r._i}].s=this.value;save();this.className='cell-input cell-status '+statusClass(this.value)">
@@ -6118,23 +6361,37 @@ function dupRow(i){
   DB.rows.splice(i+1,0,copy);
   save();renderPlan();
 }
+/* v5.92 P1-1：新增保留筛选环境 —— 不再强制清空筛选/搜索/板块，避免批量录入时反复重置条件 */
+let PLAN_BLANK_I=-1;   /* 刚新增、尚未填写的空白行索引（失焦自动清理用） */
 function addRowPlan(){
   const dt=new Date();dt.setDate(dt.getDate()+7);
   DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:localDateStr(dt),m:"",key:0});
   const ni=DB.rows.length-1;
-  // 确保新行不会被当前筛选/搜索条件隐藏（否则用户看不到刚新增的行）
-  const fstat=document.getElementById("fstat-plan");if(fstat)fstat.value="";
-  const search=document.getElementById("search-plan");if(search)search.value="";
-  const fban=document.getElementById("fban-plan");if(fban&&fban.value&&fban.value!==lastBoard)fban.value="";
-  quickView="all";
-  document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v==="all"));
-  document.querySelectorAll(".ps-card").forEach(c=>c.classList.remove("active"));
   save();
   markPlanFresh(ni);
+  PLAN_BLANK_I=ni;
   renderPlan();
-  focusPlanRow(ni);
+  const tr=document.querySelector('#body-plan tr[data-i="'+ni+'"]');
+  const card=document.getElementById("pm-card-"+ni);
+  if(tr||card){
+    focusPlanRow(ni);                 /* 新行可见：滚入视野并聚焦「事项」输入框 */
+  }else{
+    markPlanFresh(-1);
+    PLAN_BLANK_I=-1;
+    toast("已新增任务 ✓ 但当前筛选/搜索条件下不可见，清空筛选即可看到","warn");
+  }
 }
-function delRowPlan(i){DB.rows.splice(i,1);save();renderPlan();}
+/* v5.92：空白行失焦自动清理 —— 新增后没填事项也没填备注，失焦即移除，避免空行污染统计 */
+function onPlanTitleBlur(i,el){
+  if(i!==PLAN_BLANK_I)return;          /* 只处理刚新增的空白行，绝不误删已有数据 */
+  const r=DB.rows[i];if(!r)return;
+  const t=String((el&&el.value)||"").trim();
+  if(t){PLAN_BLANK_I=-1;return;}       /* 已填事项：正常保留 */
+  if(String(r.m||"").trim()){PLAN_BLANK_I=-1;return;}  /* 填了备注：视为有意保留 */
+  DB.rows.splice(i,1);PLAN_BLANK_I=-1;save();renderPlan();
+  toast("未填写事项，空白行已自动清理","warn");
+}
+function delRowPlan(i){DB.rows.splice(i,1);if(PLAN_BLANK_I===i)PLAN_BLANK_I=-1;save();renderPlan();}
 /* 星标等级：0~5 颗（兼容旧版 true/false —— true 视为 1 颗） */
 function keyLevel(r){
   const v=r&&r.key;
@@ -6511,13 +6768,16 @@ function fillJobStatusSelect(dept,current){
   sel.innerHTML=list.map(x=>`<option ${x===current?"selected":""}>${x}</option>`).join("");
   if(list.length && !list.includes(current)) sel.value=list[0]||"";
 }
+/* v5.92：切换上级对接时，子项强制清空（不再默认选中第一个，避免留下与上级不匹配的脏数据） */
 function onJobDeptGroupChange(){
   const group=document.getElementById("jm-dept-group").value||"";
   const subs=DEPT_TREE[group]||[];
-  const sub=subs[0]||"";
-  const dept=sub?group+" - "+sub:group;
-  document.getElementById("jm-dept-sub").innerHTML=subs.length?buildJobDeptSubOptions(dept):`<option value="">—</option>`;
-  fillJobStatusSelect(dept,document.getElementById("jm-status").value||"");
+  const subSel=document.getElementById("jm-dept-sub");
+  subSel.innerHTML=subs.length
+    ? '<option value="">— 请选择 —</option>'+subs.map(x=>`<option>${x}</option>`).join("")
+    : '<option value="">—</option>';
+  subSel.value="";                        /* 子项清空，避免与上级不匹配的脏数据 */
+  fillJobStatusSelect(group,"");          /* 进度下拉同步为「上级」对应的状态列表 */
 }
 function onJobDeptSubChange(){
   const group=document.getElementById("jm-dept-group").value||"";
@@ -6788,32 +7048,54 @@ function openJobModal(idx){
     document.getElementById("jm-save-btn").textContent="保存工作单";
   }
   modal.style.display="flex";
+  guardRequired("jm-client","jm-save-btn","客户名称为必填");   /* v5.92：必填守卫，空值即置灰保存按钮 */
   setTimeout(()=>document.getElementById("jm-client").focus(),100);
 }
 function closeJobModal(){document.getElementById("job-modal").style.display="none";}
 function saveJobModal(){
+  runGuard("jm-client");                                      /* v5.92：先刷新一次置灰状态 */
   const client=(document.getElementById("jm-client").value||"").trim();
-  if(!client){alert("请输入客户名称");return;}
+  if(!client){formErr("客户名称不能为空");return;}
   const group=document.getElementById("jm-dept-group").value||"";
   const sub=document.getElementById("jm-dept-sub").value||"";
   const dept=sub?group+" - "+sub:group;
+  /* v5.92：金额统一走 numOnly —— 负数、字母一律归零，杜绝脏数据进入统计 */
+  const price=nonNegNum(document.getElementById("jm-price"));
+  const deposit=nonNegNum(document.getElementById("jm-deposit"));
+  const finalPay=nonNegNum(document.getElementById("jm-final"));
+  if(deposit+finalPay>price&&price>0){
+    formErr("定金 + 尾款 不能大于报价，请检查金额");return;
+  }
   const data={
     client:client,
     date:document.getElementById("jm-date").value||"",
-    price:parseInt(document.getElementById("jm-price").value)||0,
-    deposit:parseInt(document.getElementById("jm-deposit").value)||0,
-    finalPay:parseInt(document.getElementById("jm-final").value)||0,
+    price:price,
+    deposit:deposit,
+    finalPay:finalPay,
     type:document.getElementById("jm-type").value||JOB_TYPES[0],
     dept:dept,
     status:document.getElementById("jm-status").value||"pending",
     plan:(document.getElementById("jm-plan").value||"").trim()
   };
-  if(_jobEditIdx>=0){
-    Object.assign(DB.jobs[_jobEditIdx],data);
-  }else{
+  const isNew=(_jobEditIdx<0);
+  if(isNew){
     DB.jobs.push(data);
+  }else{
+    Object.assign(DB.jobs[_jobEditIdx],data);
   }
   save();closeJobModal();renderJobs();
+  /* v5.92 P1-1：新增保留筛选环境 —— 不清空筛选/搜索，新行滚入视野；被筛选隐藏则轻量提示 */
+  if(isNew){
+    const ni=DB.jobs.length-1;
+    const row=document.querySelector('.job-row[data-idx="'+ni+'"]');
+    if(row){safeScrollIntoView(row);toast("已新增工作单 ✓","ok");}
+    else{
+      const filtering=(_jobFilter&&_jobFilter!=="")||((document.getElementById("search-job").value||"")!=="");
+      toast(filtering?"已保存 ✓ 但当前筛选/搜索条件下不显示，清空筛选即可看到":"已新增工作单 ✓",filtering?"warn":"ok");
+    }
+  }else{
+    toast("已保存修改 ✓","ok");
+  }
 }
 
 /* ---- 快捷操作 ---- */
@@ -6869,7 +7151,9 @@ function renderRead(){
 
   const grid=document.getElementById("book-grid");
   if(books.length===0){
-    grid.innerHTML=`<div class="add-book" onclick="addBook()">📖 添加第一本书，开始你的阅读之旅</div>`;return;
+    grid.innerHTML=emptyState({icon:"📖",text:"还没有加入任何书籍",
+      sub:"粘贴京东 / 当当 / 豆瓣链接可自动识别书名与作者，也可以直接手动添加",
+      btn:"📖 添加第一本书",action:"addBook()"});return;
   }
   grid.innerHTML=books.map((b,i)=>{
     const st=b.status==="reading"?"bs-reading":b.status==="done"?"bs-done":"bs-toread";
@@ -7077,7 +7361,9 @@ function saveBookModal(){
 function renderOKRs(){
   const grid=document.getElementById("okr-grid");
   const list=DB.okrs||[];
-  if(!list.length){grid.innerHTML=`<div class="add-okr" onclick="addOkr()">🎯 设定你的第一个OKR目标</div>`;return;}
+  if(!list.length){grid.innerHTML=emptyState({icon:"🎯",text:"还没有设定任何目标",
+    sub:"先定一个季度目标，再拆成 2~4 条可衡量的关键结果，进度会自动统计",
+    btn:"🎯 设定第一个目标",action:"addOkr()"});return;}
   grid.innerHTML=list.map((o,oi)=>{
     o._i=oi;
     const doneKrs=o.krs?o.krs.filter(k=>k.done).length:0;
@@ -7100,7 +7386,7 @@ function renderOKRs(){
   let totalPct=0,cnt=0;all.forEach(o=>{if(o.krs&&o.krs.length){const d=o.krs.filter(k=>k.done).length;totalPct+=Math.round(d/o.krs.length*100);cnt++;}});
   document.getElementById("os-avg").textContent=cnt?Math.round(totalPct/cnt)+"%":"0%";
 }
-function addOkr(){const title=prompt("目标标题（如：Q3 摄影技能提升）：");if(!title)return;const cycle=prompt("周期（如：2026 Q3）：")||"";DB.okrs=DB.okrs||[];DB.okrs.push({title:title,cycle:cycle,status:"active",krs:[{text:"点击编辑添加关键结果",done:false}]});save();renderOKRs();}
+function addOkr(){const title=(prompt("目标标题（如：Q3 摄影技能提升）：")||"").trim();if(!title){formErr("目标标题不能为空");return;}const cycle=(prompt("周期（如：2026 Q3）：")||"").trim();DB.okrs=DB.okrs||[];DB.okrs.push({title:title,cycle:cycle,status:"active",krs:[{text:"点击编辑添加关键结果",done:false}]});save();renderOKRs();toast("已新增目标 ✓","ok");}
 function editOkr(i){const o=DB.okrs[i];const title=prompt("编辑目标标题：",o.title)||o.title;const cycle=prompt("编辑周期：",o.cycle)||o.cycle;o.title=title;o.cycle=cycle;save();renderOKRs();}
 function delOkr(i){if(confirm("删除该目标？")){DB.okrs.splice(i,1);save();renderOKRs();}}
 function toggleKR(oi,ki){const o=DB.okrs[oi];if(o&&o.krs&&o.krs[ki]){o.krs[ki].done=!o.krs[ki].done;save();renderOKRs();}}
@@ -7140,7 +7426,13 @@ function renderGears(){
   });
   fbar.innerHTML=chips;
 
-  if(!list.length){grid.innerHTML=`<div class="add-gear" onclick="openGearModal()">🔧 ${q||_gearFilter?'没有匹配的器材':'添加第一件器材'}</div>`;updateGearStats();return;}
+  /* v5.92：空数据统一引导 —— 无数据给「快捷新增」，被筛选隐藏给「清空筛选」 */
+  if(!list.length){
+    grid.innerHTML=(q||_gearFilter)
+      ? emptyState({icon:"🔧",text:"没有匹配的器材",sub:"换个关键词，或清空筛选条件再看看",btn:"清空筛选",action:"clearGearFilter()"})
+      : emptyState({icon:"🔧",text:"还没有登记任何器材",sub:"把相机、镜头、灯光都录进来，可自动统计总价值与在用数量",btn:"＋ 新增器材",action:"openGearModal()"});
+    updateGearStats();return;
+  }
 
   /* 按类别分组 */
   var groups=[];
@@ -7218,12 +7510,14 @@ function openGearModal(idx){
     document.getElementById("gm-maintNote").value="";
   }
   modal.style.display="flex";
+  guardRequired("gm-name","gm-save-btn","器材名称为必填");   /* v5.92 必填守卫 */
   setTimeout(function(){document.getElementById("gm-name").focus()},100);
 }
 function closeGearModal(){document.getElementById("gear-modal").style.display="none";}
 function saveGearModal(){
+  runGuard("gm-name");
   var name=(document.getElementById("gm-name").value||"").trim();
-  if(!name){alert("请输入器材名称");return;}
+  if(!name){formErr("器材名称不能为空");return;}
   var data={
     name:name,
     category:document.getElementById("gm-category").value||"配件",
@@ -7231,23 +7525,34 @@ function saveGearModal(){
     brand:(document.getElementById("gm-brand").value||"").trim(),
     model:(document.getElementById("gm-model").value||"").trim(),
     buyDate:document.getElementById("gm-buyDate").value||"",
-    price:parseInt(document.getElementById("gm-price").value)||0,
+    price:nonNegNum(document.getElementById("gm-price")),
     maintNote:(document.getElementById("gm-maintNote").value||"").trim()
   };
-  if(_gearEditIdx>=0){
+  var isNew=(_gearEditIdx<0);
+  if(!isNew){
     Object.assign(DB.gears[_gearEditIdx],data);
   }else{
     DB.gears.push(data);
   }
   save();closeGearModal();renderGears();
+  toast(isNew?"已新增器材 ✓":"已保存修改 ✓","ok");
 }
-function delGear(i){if(confirm("删除该器材？")){DB.gears.splice(i,1);save();renderGears();}}
+function delGear(i){if(confirm("删除该器材？")){DB.gears.splice(i,1);save();renderGears();toast("已删除器材");}}
+/* v5.92：一键清空器材筛选，空状态里的「清空筛选」按钮用 */
+function clearGearFilter(){
+  _gearFilter="";
+  var s=document.getElementById("gear-search");if(s)s.value="";
+  var f=document.getElementById("gear-filters");if(f)f.querySelectorAll(".gf-chip").forEach(function(c){c.classList.remove("active");});
+  renderGears();
+}
 
 /* ==================== 复盘周记 ==================== */
 function renderReviews(){
   const list=document.getElementById("review-list");
   const arr=DB.reviews||[];
-  if(!arr.length){list.innerHTML=`<div class="add-review" onclick="addReview()">📝 写下你的第一篇复盘周记</div>`;return;}
+  if(!arr.length){list.innerHTML=emptyState({icon:"📝",text:"还没有写过复盘周记",
+    sub:"每周花 5 分钟记录「完成 / 计划 / 心得」，沉淀下来就是可复用的经验",
+    btn:"📝 写第一篇周记",action:"addReview()"});return;}
   list.innerHTML=arr.map((r,ri)=>{r._i=ri;
     const d=r.data||{};
     return `<div class="review-card" style="position:relative">
@@ -7260,7 +7565,7 @@ function renderReviews(){
     </div>`;
   }).join("");
 }
-function addReview(){const week=prompt("周次（如：2026年第32周 8.3-8.9）：");if(!week)return;const date=localDateStr();const done=prompt("本周完成了什么？（逐行写）:")||"";const plan=prompt("下周计划？")||"";const insight=prompt("心得与洞察？")||"";DB.reviews=DB.reviews||[];DB.reviews.unshift({week:week,date:date,done:done,plan:plan,insight:insight,data:{}});save();renderReviews();}
+function addReview(){const week=(prompt("周次（如：2026年第32周 8.3-8.9）：")||"").trim();if(!week){formErr("周次不能为空");return;}const date=localDateStr();const done=prompt("本周完成了什么？（逐行写）:")||"";const plan=prompt("下周计划？")||"";const insight=prompt("心得与洞察？")||"";DB.reviews=DB.reviews||[];DB.reviews.unshift({week:week,date:date,done:done,plan:plan,insight:insight,data:{}});save();renderReviews();toast("已新增复盘周记 ✓","ok");}
 function editReview(i){const r=DB.reviews[i];r.week=prompt("周次：",r.week)||r.week;r.done=prompt("本周完成：",r.done)||r.done;r.plan=prompt("下周计划：",r.plan)||r.plan;r.insight=prompt("心得洞察：",r.insight)||r.insight;save();renderReviews();}
 function delReview(i){if(confirm("删除该周记？")){DB.reviews.splice(i,1);save();renderReviews();}}
 
@@ -7277,7 +7582,13 @@ function renderIdeas(){
     const tags=[...new Set((DB.ideas||[]).flatMap(i=>i.tags||[]))].sort();
     const cur=sel.value;sel.innerHTML='<option value="">全部标签</option>'+tags.map(t=>`<option value="${t}"${t===cur?' selected':''}>${t}</option>`).join("");sel.value=tf;
   }
-  if(!list.length){grid.innerHTML=`<div class="add-idea" onclick="addIdea()">✨ 记录第一个灵感</div>`;return;}
+  /* v5.92：区分「真没有数据」与「被筛选隐藏」，给出不同的引导动作 */
+  if(!list.length){
+    grid.innerHTML=(q||tf)
+      ? emptyState({icon:"💡",text:"没有匹配的灵感",sub:"换个关键词，或把标签筛选切回「全部标签」",btn:"清空筛选",action:"clearIdeaFilter()"})
+      : emptyState({icon:"💡",text:"还没有收集任何灵感",sub:"看到好的构图、配色、光影随手记下来，拍摄前就有了现成的参考",btn:"✨ 记录第一个灵感",action:"addIdea()"});
+    return;
+  }
   grid.innerHTML=list.map((id,idi)=>{id._i=idi;
     return `<div class="idea-card">
       <div class="idea-img-wrap">${id.img?`<img src="${esc(id.img)}" onerror="this.style.display='none'">`:`<span class="idea-img-placeholder">💡</span>`}
@@ -7292,9 +7603,15 @@ function renderIdeas(){
     </div>`;
   }).join("");
 }
-function addIdea(){const title=prompt("灵感标题：");if(!title)return;const desc=prompt("描述这个灵感：")||"";const tagsStr=prompt("标签（逗号分隔，如：人像,夜景,配色）：")||"";const source=prompt("来源（小红书/Behance/自己...）：")||"";const img=prompt("图片链接（可选，留空则无图）：")||"";DB.ideas=DB.ideas||[];DB.ideas.unshift({title:title,desc:desc,tags:tagsStr?tagsStr.split(/[,，]/).map(s=>s.trim()).filter(Boolean):[],source:source,img:img,created:localDateStr()});save();renderIdeas();}
+function addIdea(){const title=(prompt("灵感标题：")||"").trim();if(!title){formErr("灵感标题不能为空");return;}const desc=prompt("描述这个灵感：")||"";const tagsStr=prompt("标签（逗号分隔，如：人像,夜景,配色）：")||"";const source=prompt("来源（小红书/Behance/自己...）：")||"";const img=prompt("图片链接（可选，留空则无图）：")||"";DB.ideas=DB.ideas||[];DB.ideas.unshift({title:title,desc:desc,tags:tagsStr?tagsStr.split(/[,，]/).map(s=>s.trim()).filter(Boolean):[],source:source,img:img,created:localDateStr()});save();renderIdeas();toast("已记录灵感 ✓","ok");}
 function editIdea(i){const id=DB.ideas[i];id.title=prompt("标题：",id.title)||id.title;id.desc=prompt("描述：",id.desc)||id.id;const tagsStr=(id.tags||[]).join(", ");const nt=prompt("标签（逗号分隔）：",tagsStr)||"";id.tags=nt?nt.split(/[,，]/).map(s=>s.trim()).filter(Boolean):id.tags;id.source=prompt("来源：",id.source)||id.source;id.img=prompt("图片链接：",id.img)||id.img;save();renderIdeas();}
-function delIdea(i){if(confirm("删除该灵感？")){DB.ideas.splice(i,1);save();renderIdeas();}}
+function delIdea(i){if(confirm("删除该灵感？")){DB.ideas.splice(i,1);save();renderIdeas();toast("已删除灵感");}}
+/* v5.92：一键清空灵感筛选（空状态「清空筛选」按钮用） */
+function clearIdeaFilter(){
+  var s=document.getElementById("idea-search");if(s)s.value="";
+  var t=document.getElementById("idea-tag-filter");if(t)t.value="";
+  renderIdeas();
+}
 
 /* ==================== 我的作品 / 客片 ==================== */
 const KEP_REPO="xiaoyusansui/workbench", KEP_DIR="kepian";
@@ -7368,7 +7685,100 @@ async function uploadWorksImage(input){
     renderWorks(); toast("已上传");
   }catch(e){ alert("上传失败："+e.message); }
 }
-function toast(msg){ const t=document.createElement("div"); t.textContent=msg; t.style.cssText="position:fixed;left:50%;top:20px;transform:translateX(-50%);background:rgba(20,24,32,.95);color:#fff;padding:8px 16px;border-radius:8px;z-index:9999;font-size:13px"; document.body.appendChild(t); setTimeout(()=>t.remove(),1600); }
+/* v5.92 全局 Toast：复用同一个节点，增删改统一 2 秒自动反馈；type = ok / warn / err */
+function toast(msg,type){
+  var t=document.getElementById("wb-toast");
+  if(!t){
+    if(!document.body)return;
+    t=document.createElement("div");t.id="wb-toast";document.body.appendChild(t);
+  }
+  t.className=(type==="ok"?"wb-toast-ok":type==="warn"?"wb-toast-warn":type==="err"?"wb-toast-err":"");
+  t.textContent=msg;
+  t.style.display="block";
+  if(t._tm)clearTimeout(t._tm);
+  t._tm=setTimeout(function(){t.style.display="none";},2000);
+}
+/* v5.92 二次确认弹窗：删除 / 重置 / 覆盖导入等高危操作统一走这里 */
+function wbConfirm(msg,onOk,opt){
+  opt=opt||{};
+  var ov=document.getElementById("wb-confirm");
+  if(!ov){
+    if(!document.body){if(window.confirm(msg))onOk&&onOk();return;}
+    ov=document.createElement("div");ov.id="wb-confirm";ov.className="wb-confirm-overlay";
+    ov.innerHTML='<div class="wb-confirm-box">'+
+      '<div class="wb-confirm-title" id="wb-confirm-title">⚠ 请确认</div>'+
+      '<div class="wb-confirm-msg" id="wb-confirm-msg"></div>'+
+      '<div class="wb-confirm-actions">'+
+        '<button class="btn sm" id="wb-confirm-no" style="background:var(--bg3);color:var(--muted)">取消</button>'+
+        '<button class="btn sm" id="wb-confirm-yes" style="background:linear-gradient(135deg,var(--coral),#ef4444);color:#fff">确定</button>'+
+      '</div></div>';
+    document.body.appendChild(ov);
+    ov.addEventListener("click",function(e){if(e.target===ov)wbCloseConfirm();});
+  }
+  document.getElementById("wb-confirm-title").textContent=opt.title||"⚠ 请确认";
+  document.getElementById("wb-confirm-msg").textContent=msg;
+  var yes=document.getElementById("wb-confirm-yes");
+  yes.textContent=opt.okText||"确定";
+  yes.style.background=opt.danger===false?"linear-gradient(135deg,var(--brand),var(--gold))":"linear-gradient(135deg,var(--coral),#ef4444)";
+  yes.onclick=function(){wbCloseConfirm();try{onOk&&onOk();}catch(e){}};
+  document.getElementById("wb-confirm-no").onclick=function(){wbCloseConfirm();};
+  ov.style.display="flex";
+}
+function wbCloseConfirm(){var ov=document.getElementById("wb-confirm");if(ov)ov.style.display="none";}
+
+/* ==================== v5.92 全模块表单校验体系 ==================== */
+/* 1) 数字字段：只允许非负数字，输入即过滤掉字母、负号、多余小数点 */
+function numOnly(el){
+  if(!el)return "";
+  var v=String(el.value||"").replace(/[^0-9.]/g,"");
+  var p=v.split(".");
+  if(p.length>1)v=p[0]+"."+p.slice(1).join("");   /* 只保留第一个小数点 */
+  if(v.charAt(0)===".")v="0"+v;
+  if(v!==el.value)el.value=v;
+  return v;
+}
+/* 2) 读取非负数字（非法一律归 0） */
+function nonNegNum(el){
+  var n=parseFloat(numOnly(el));
+  if(!isFinite(n)||n<0)return 0;
+  return Math.round(n);
+}
+/* 3) 必填守卫：标题/名称为空时提交按钮置灰 + 字段标红 */
+var _wbGuards={};
+function guardRequired(inputId,btnId,msg){
+  var inp=document.getElementById(inputId),btn=document.getElementById(btnId);
+  if(!inp||!btn)return;
+  var check=function(){
+    var ok=String(inp.value||"").trim().length>0;
+    btn.classList.toggle("is-disabled",!ok);
+    btn.disabled=!ok;
+    var field=(inp.closest?inp.closest(".jm-field"):null)||inp.parentElement;
+    if(field){
+      field.classList.toggle("invalid",!ok);
+      var err=field.querySelector?field.querySelector(".jm-err"):null;
+      if(err)err.textContent=ok?"":(msg||"此项为必填");
+    }
+    return ok;
+  };
+  inp.addEventListener("input",check);
+  inp.addEventListener("change",check);
+  inp.addEventListener("blur",check);
+  _wbGuards[inputId]=check;
+  check();
+}
+function runGuard(inputId){var f=_wbGuards[inputId];return f?f():true;}
+/* 4) 校验失败提示（统一走 Toast，不再用 alert 打断操作） */
+function formErr(msg){toast(msg,"err");}
+/* 5) 空数据统一引导：图标 + 文案 + 快捷新增按钮（v5.92 P1-2） */
+function emptyState(o){
+  o=o||{};
+  return '<div class="wb-empty">'+
+    '<div class="wb-empty-icon">'+(o.icon||"📭")+'</div>'+
+    '<div class="wb-empty-text">'+esc(o.text||"暂无数据")+'</div>'+
+    (o.sub?'<div class="wb-empty-sub">'+esc(o.sub)+'</div>':'')+
+    (o.btn?'<button class="btn sm" style="margin-top:4px" onclick="'+o.action+'">'+esc(o.btn)+'</button>':'')+
+    '</div>';
+}
 
 /* ==================== 客户预约 ==================== */
 async function loadBookingsWeb(){
@@ -7669,12 +8079,14 @@ function openEvtModal(idx){
   /* reset tag selection */
   document.querySelectorAll(".evf-tag").forEach(t=>t.classList.toggle("selected",e&&t.dataset.v===e.tag));
   modal.style.display="flex";
+  guardRequired("evf-title","evf-save-btn","行程标题为必填");   /* v5.92 必填守卫 */
 }
 function closeEvtModal(){document.getElementById("evt-modal").style.display="none";}
 function pickEvtTag(v){document.querySelectorAll(".evf-tag").forEach(t=>t.classList.toggle("selected",t.dataset.v===v));}
 function saveEvtModal(){
+  runGuard("evf-title");
   const title=document.getElementById("evf-title").value.trim();
-  if(!title){alert("请输入行程标题");return;}
+  if(!title){formErr("行程标题不能为空");return;}
   const date=document.getElementById("evf-date").value;
   const time=document.getElementById("evf-time").value.trim();
   const desc=document.getElementById("evf-desc").value.trim();
@@ -7689,6 +8101,7 @@ function saveEvtModal(){
     if(realEvt){const idx=evts.indexOf(realEvt);if(idx>=0){evt.id=realEvt.id;evt.done=realEvt.done;evts[idx]=evt;}}
   }else{evt.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);evts.push(evt);}
   save();closeEvtModal();renderSchedule();
+  toast(editingEvtIdx>=0?"已保存行程 ✓":"已添加行程 ✓","ok");
 }
 function toggleEvt(realIdx,dateStr){
   const evts=DB.events||[];
@@ -7697,7 +8110,7 @@ function toggleEvt(realIdx,dateStr){
 function deleteEvt(realIdx,dateStr){
   if(!confirm("确定删除这条行程？"))return;
   const evts=DB.events||[];
-  if(realIdx>=0 && realIdx<evts.length){evts.splice(realIdx,1);save();renderSchedule();}
+  if(realIdx>=0 && realIdx<evts.length){evts.splice(realIdx,1);save();renderSchedule();toast("已删除行程");}
 }
 function escHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
@@ -7936,6 +8349,7 @@ function closeSyncSetup(){document.getElementById("sync-modal").style.display="n
 function openSettings(){
   const sel=document.getElementById("cloud-sync-interval");
   if(sel)sel.value=localStorage.getItem(CLOUD_KEY_PREFIX+"sync_interval")||"60";
+  updateStorageBar();   /* v5.92：打开设置即刷新存储容量条与预警 */
   document.getElementById("settings-modal").style.display="flex";
 }
 function closeSettings(){document.getElementById("settings-modal").style.display="none";}
@@ -8795,6 +9209,14 @@ fillBanPlan();
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
 checkVersionUpdate();
+/* v5.92：启动时做一次数据体检 —— 容量预警 + 损坏兜底 */
+(function(){
+  try{
+    const u=updateStorageBar();
+    if(u&&u.warn)toast("本地存储已用 "+u.pct+"%，建议导出备份","warn");
+  }catch(e){}
+  try{showDataRescue();}catch(e){}
+})();
 // 稳健事件委托：概览「直达入口」卡片改用真实 button + data-go，触屏/任意设备点击均可靠响应（不再依赖内联 onclick）
 (function(){
   document.addEventListener("click", function(e){
