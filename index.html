@@ -98,6 +98,10 @@
   .est-kpi{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:14px 16px;box-shadow:var(--card-shadow)}
   .est-kpi .n{font-size:26px;font-weight:900;color:var(--gold);line-height:1.1}
   .est-kpi .l{font-size:12px;color:var(--muted);margin-top:4px}
+  .est-kpi.click{cursor:pointer;transition:.15s}
+  .est-kpi.click:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .est-more{font-size:12px;color:var(--gold);font-weight:700;cursor:pointer;margin-left:6px}
+  .est-more:hover{text-decoration:underline}
   .est-sec{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px;box-shadow:var(--card-shadow)}
   .est-sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:14px;font-weight:800;color:var(--ink)}
   .est-sec-hd .sub{font-size:11px;color:var(--muted);font-weight:600}
@@ -979,6 +983,17 @@
   .add-hot{background:var(--surface);border:2px dashed rgba(167,139,250,.2);border-radius:var(--radius);padding:20px;text-align:center;
     color:var(--purple);font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
   .add-hot:hover{background:rgba(167,139,250,.04);border-color:var(--purple)}
+  /* 热点卡片可点击直达平台（v5.84） */
+  .hotcard.clickable{cursor:pointer}
+  .hotcard.clickable:hover .hc-title{color:var(--gold)}
+  .hc-src{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-bottom:10px;
+    padding-top:9px;border-top:1px dashed var(--line);min-width:0}
+  .hc-src .u{color:var(--gold);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62%}
+  .hc-btn-go{flex:1.15;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1206}
+  .hc-btn-go:hover{opacity:.88}
+  html[data-theme="light"] .hc-btn-go{color:#fff}
+  .hc-btn-mini{flex:0 0 46px;background:var(--bg3);color:var(--muted2);font-size:14px}
+  .hc-btn-mini:hover{background:var(--surface-hover);color:var(--ink2)}
 
   /* 底部格言横幅 */
   .motto-banner{margin-top:18px;background:var(--surface);border:1px solid var(--glass-border);
@@ -4916,7 +4931,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.83</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.84</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5003,6 +5018,9 @@ window.QRCode = {
             <button class="etab active" data-et="overview" onclick="estateTab('overview')">概览</button>
             <button class="etab" data-et="pol828" onclick="estateTab('pol828')">828新政</button>
             <button class="etab" data-et="policies" onclick="estateTab('policies')">政策库</button>
+            <button class="etab" data-et="board" onclick="estateTab('board')">政策看板</button>
+            <button class="etab" data-et="reports" onclick="estateTab('reports')">数据报告</button>
+            <button class="etab" data-et="land" onclick="estateTab('land')">土拍</button>
             <button class="etab" data-et="sources" onclick="estateTab('sources')">数据源</button>
             <button class="etab" data-et="search" onclick="openQueryPanel()">🔍 检索委托</button>
           </div>
@@ -5232,21 +5250,21 @@ const SEED={
   ],
   hots:[
     {pf:"xhs",title:"「氛围感人像」怎么拍？3个关键点爆火",desc:"近期小红书摄影区最火的氛围感人像教程。重点：自然光线运用 + 不看镜头抓拍 + 低饱和度调色。",
-     tags:["热门","人像","调色"],url:"",done:false},
+     tags:["热门","人像","调色"],url:"",kw:"氛围感人像 拍摄技巧",done:false},
     {pf:"xhs",title:"手机摄影也能出大片？这5个隐藏功能你一定不知道",desc:"挖掘手机相机的专业模式、长曝光、星空模式等隐藏功能。",
-     tags:["新知","手机摄影","工具"],url:"",done:false},
+     tags:["新知","手机摄影","工具"],url:"",kw:"手机摄影 隐藏功能",done:false},
     {pf:"dy",title:"2026年短视频拍摄趋势：竖屏电影感成主流",desc:"抖音摄影博主分析今年短视频审美走向——竖屏 9:16 电影级运镜、ASMR 环境音。",
-     tags:["趋势","短视频","运镜"],url:"",done:false},
+     tags:["趋势","短视频","运镜"],url:"",kw:"短视频 竖屏电影感 运镜",done:false},
     {pf:"dy",title:"AI一键修图工具横评：美图云 / PS AI / 醒图谁最强？",desc:"多款AI修图工具实测对比，涵盖一键换天、智能抠图、画质增强等功能。",
-     tags:["工具","AI","效率"],url:"",done:false},
+     tags:["工具","AI","效率"],url:"",kw:"AI修图工具 横评",done:false},
     {pf:"bz",title:"【摄影器材】2026年中无反相机选购指南（完整版）",desc:"B站UP主深度评测当前市面上主流无反相机，从入门到专业全覆盖。",
-     tags:["器材","选购","指南"],url:"",done:false},
+     tags:["器材","选购","指南"],url:"",kw:"无反相机 选购指南",done:false},
     {pf:"bz",title:"从零开始学达芬奇调色 —— 30集免费教程合集",desc:"B站上最系统的DaVinci Resolve中文免费教程，覆盖节点编辑、一级/二级调色。",
-     tags:["教程","调色","达芬奇"],url:"",done:false},
+     tags:["教程","调色","达芬奇"],url:"",kw:"达芬奇调色 教程",done:false},
     {pf:"xhs",title:"接单报价怎么算？自由摄影师定价公式公开",desc:"资深商业摄影师分享自己的一套报价体系：按天 / 按张 / 按项目三种模式。",
-     tags:["接单","商业","经验"],url:"",done:false},
+     tags:["接单","商业","经验"],url:"",kw:"摄影师 接单报价",done:false},
     {pf:"dy",title:"胶片模拟调色LR预设包分享（附安装教程）",desc:"复刻柯达 Portra 400 / 富士 Pro 400H / Cinestill 800T 等经典胶片色彩的 LR 预设。",
-     tags:["预设","胶片风","资源"],url:"",done:false}
+     tags:["预设","胶片风","资源"],url:"",kw:"胶片模拟 LR预设",done:false}
   ],
   jobs:[
     {client:"张女士",date:"2026-08-09",type:"人像写真",price:588,deposit:200,finalPay:388,plan:"周末下午 · 城市公园外拍，自然光人像，需带反光板和三脚架。风格偏日系清新，参考之前小红书样片。",status:"confirmed"},
@@ -5374,6 +5392,13 @@ function morphDB(d){
   if(!d.estatePolicies)d.estatePolicies=JSON.parse(JSON.stringify(SEED.estatePolicies));
   if(!d.estateLandPub)d.estateLandPub=[];
   if(!d.estateLandDeals)d.estateLandDeals=[];
+  /* 热点补链（v5.84）：老数据没有 kw/url 时，按标题从内置样例补齐搜索词，
+     保证「点开热点 → 跳转对应平台观看」对所有老用户同样可用 */
+  (d.hots||[]).forEach(function(h){
+    if(!h||h.url||h.kw)return;
+    var s=(SEED.hots||[]).filter(function(x){return x.title===h.title;})[0];
+    if(s&&s.kw)h.kw=s.kw;
+  });
   (d.rows||[]).forEach(rw=>{
     if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];
     if(rw)rw.key=keyLevel(rw);   /* 星标统一为 0~5 的数字（兼容旧版 true/false） */
@@ -6208,17 +6233,50 @@ function filterHot(pf,el){
   hotFilter=pf;document.querySelectorAll(".platform-tabs .pf").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderHotCards();
 }
 function renderHot(){renderHotCards();}
+/* —— v5.84 热点直达平台：点卡片/点「去观看」→ 在新标签打开对应平台 ——
+   有真实帖子链接走 url；否则用关键词在平台内搜索（小红书/抖音/B站均可直接搜到） */
+function hotPfName(pf){return pf==="xhs"?"小红书":pf==="dy"?"抖音":pf==="bz"?"B站":"平台";}
+function hotKw(h){
+  if(h&&h.kw&&String(h.kw).trim())return String(h.kw).trim();
+  return String((h&&h.title)||"").replace(/[「」《》【】（）()？！?：:，,。.、\s]+/g," ").trim().slice(0,16);
+}
+function hotUrl(h){
+  if(!h)return "";
+  if(h.url&&/^https?:\/\//i.test(h.url))return h.url;
+  var kw=hotKw(h);if(!kw)return "";
+  var q=encodeURIComponent(kw);
+  if(h.pf==="xhs")return "https://www.xiaohongshu.com/search_result?keyword="+q;
+  if(h.pf==="dy")return "https://www.douyin.com/search/"+q;
+  return "https://search.bilibili.com/all?keyword="+q;
+}
+function hotHost(u){return String(u||"").replace(/^https?:\/\//i,"").split(/[/?#]/)[0];}
+function openHot(i){
+  var h=DB.hots[i];if(!h)return;
+  var u=hotUrl(h);
+  if(!u){editHot(i);return;}
+  var w=window.open(u,"_blank","noopener");
+  try{if(w)w.opener=null;}catch(e){}
+  estToast("正在打开 "+(hotHost(u)||hotPfName(h.pf))+" ✓");
+}
+function applyHotLink(h,v){
+  v=String(v==null?"":v).trim();
+  if(/^https?:\/\//i.test(v)){h.url=v;h.kw="";}
+  else{h.url="";h.kw=v;}
+}
 function renderHotCards(){
   const list=DB.hots.filter(h=>hotFilter==="all"||h.pf===hotFilter);
   const grid=document.getElementById("hot-grid");
+  if(!grid)return;
   grid.innerHTML=list.map((h,i)=>{
-    const origIdx=DB.hots.indexOf(h),pfClass=h.pf,pfLabel=h.pf==="xhs"?"小红书":h.pf==="dy"?"抖音":"B站";
+    const origIdx=DB.hots.indexOf(h),pfClass=h.pf,pfLabel=hotPfName(h.pf);
     const icon=h.pf==="xhs"?"📕":h.pf==="dy"?"🎵":"📺";
     const tagHtml=h.tags.map(t=>{
       const cls=t==="热门"?"htag-hot":t==="新知"||t==="趋势"?"htag-new":t==="工具"||t==="教程"||t==="资源"||t==="器材"||t==="预设"||t==="指南"||t==="接单"||t==="经验"||t==="调色"||t==="达芬奇"||t==="胶片风"||t==="运镜"||t==="AI"||t==="效率"||t==="人像"||t==="手机摄影"?"htag-tool":"htag";
       return `<span class="htag ${cls}">#${t}</span>`;
     }).join("");
-    return `<div class="hotcard ${h.done?'done-card':''}" id="hc-${origIdx}">
+    const u=hotUrl(h);
+    const dest=u?(h.url?hotHost(u):"站内搜「"+esc(hotKw(h))+"」"):"未设链接 · 点 ✎ 补上";
+    return `<div class="hotcard clickable ${h.done?'done-card':''}" id="hc-${origIdx}" onclick="openHot(${origIdx})" title="点击在${pfLabel}打开观看">
       <div class="hc-head">
         <div class="hc-icon ${pfClass}">${icon}</div><div><div class="hc-title">${esc(h.title)}</div></div>
         <span class="hc-p-${pfClass}">${pfLabel}</span>
@@ -6226,9 +6284,11 @@ function renderHotCards(){
       <div class="hc-body">
         <div class="hc-desc">${esc(h.desc)}</div>
         <div class="hc-tags">${tagHtml}</div>
+        <div class="hc-src">${icon} ${pfLabel} · <span class="u">${dest}</span></div>
         <div class="hc-actions">
-          <button class="hc-btn hc-btn-primary" onclick="toggleHot(${origIdx})">${h.done?"↩ 已追踪":"✓ 追踪此热点"}</button>
-          ${h.url?`<a class="hc-btn hc-btn-outline" href="${esc(h.url)}" target="_blank">查看原文 ↗</a>`:`<button class="hc-btn hc-btn-outline" onclick="editHot(${origIdx})">编辑</button>`}
+          <button class="hc-btn hc-btn-primary" onclick="event.stopPropagation();toggleHot(${origIdx})">${h.done?"↩ 已追踪":"✓ 追踪此热点"}</button>
+          <button class="hc-btn hc-btn-go" onclick="event.stopPropagation();openHot(${origIdx})">▶ 去观看 ↗</button>
+          <button class="hc-btn hc-btn-mini" onclick="event.stopPropagation();editHot(${origIdx})" title="编辑标题/描述/链接">✎</button>
         </div>
       </div>
       <div class="hc-done">已追踪</div>
@@ -6238,11 +6298,24 @@ function renderHotCards(){
 function toggleHot(i){DB.hots[i].done=!DB.hots[i].done;save();renderHotCards();}
 function addHot(){
   const title=prompt("热点标题：");if(!title)return;
-  const pf=prompt("平台（xhs/dy/bz）：")||"xhs";
+  const pf=prompt("平台（xhs=小红书 / dy=抖音 / bz=B站）：")||"xhs";
   const desc=prompt("简要描述：")||"";
-  DB.hots.push({pf,title,desc,tags:[],url:"",done:false});save();renderHotCards();
+  const tagsRaw=prompt("标签（空格分隔，可留空）：")||"";
+  const link=prompt("原文链接或平台搜索关键词（留空=按标题自动搜索）：")||"";
+  const h={pf:(pf==="dy"||pf==="bz")?pf:"xhs",title:title,desc:desc,
+    tags:tagsRaw.split(/[\s,，]+/).filter(Boolean),url:"",kw:"",done:false};
+  applyHotLink(h,link);
+  DB.hots.push(h);save();renderHotCards();
+  estToast("已添加 · 点卡片即可跳转观看 ✓");
 }
-function editHot(i){const h=DB.hots[i];const title=prompt("编辑标题：",h.title)||h.title;const desc=prompt("编辑描述：",h.desc)||h.desc;h.title=title;h.desc=desc;save();renderHotCards();}
+function editHot(i){
+  const h=DB.hots[i];if(!h)return;
+  const title=prompt("编辑标题：",h.title);if(title!=null)h.title=title.trim()||h.title;
+  const desc=prompt("编辑描述：",h.desc);if(desc!=null)h.desc=desc.trim();
+  const link=prompt("原文链接或平台搜索关键词（留空=按标题自动搜索）：",h.url||h.kw||"");
+  if(link!=null)applyHotLink(h,link);
+  save();renderHotCards();
+}
 
 /* ==================== 个人事务 ==================== */
 const JOB_STATUS_LABELS={pending:"待确认",confirmed:"已确认",doing:"进行中",done:"已完成"};
@@ -7981,7 +8054,7 @@ function toggleTheme(){
 applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
 
 /* ==================== 行业报告库模块（v5.80 移植自资料库蓝图） ==================== */
-var ESTATE_STATE={tab:"overview",polKw:"",polLv:"全部",srcKw:"",srcCat:"全部"};
+var ESTATE_STATE={tab:"overview",polKw:"",polLv:"全部",srcKw:"",srcCat:"全部",repKw:"",repCat:"全部",landTab:"pub",landProv:"全部",landKw:"",landDay:"全部"};
 var _estateEdit=null;
 function estEsc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function estNormDay(s){var m=String(s||"").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);return m?(m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2)):"";}
@@ -8094,32 +8167,79 @@ var EXT_SITES=[
 
 /* 编辑字段 schema：[标签, 键, 是否多行] */
 var ESTATE_FIELDS={
-  policies:[["政策名称","政策名称"],["层级","层级"],["发布日","发布日"],["政策速览","政策速览",true],["来源与链接","来源与链接"]]
+  policies:[["政策名称","政策名称"],["层级","层级"],["发布日","发布日"],["政策速览","政策速览",true],["来源与链接","来源与链接"]],
+  reports:[["板块","板块"],["期数","期数"],["发布日","发布日"],["指标名称","指标名称"],["核心结论","核心结论",true],["数据速览","数据速览",true],["来源与链接","来源与链接"]],
+  landPub:[["省份","省份"],["城市","城市"],["地块位置","地块位置"],["用地性质","用地性质"],["出让面积","出让面积"],["起始价","起始价"],["公告日","公告日"],["备注","备注",true]],
+  landDeals:[["城市","城市"],["竞得人","竞得人"],["地块位置","地块位置"],["用地性质","用地性质"],["成交日","成交日"],["成交价","成交价"],["溢价率","溢价率"],["楼面价","楼面价"],["备注","备注",true]]
 };
 
 /* ---------- 切换与渲染入口 ---------- */
 function estateTab(t){ESTATE_STATE.tab=t;var bs=document.querySelectorAll("#estate-tabs .etab");bs.forEach(function(b){b.classList.toggle("active",b.dataset.et===t);});renderEstate();}
 function renderEstate(){
   var tab=ESTATE_STATE.tab,body=document.getElementById("estate-body"),addBtn=document.getElementById("estate-add-btn");
-  addBtn.style.display=(tab==="policies")?"":"none";
+  var addable=(tab==="policies"||tab==="reports"||(tab==="land"&&(ESTATE_STATE.landTab==="pub"||ESTATE_STATE.landTab==="deal")));
+  addBtn.style.display=addable?"":"none";
+  addBtn.textContent=(tab==="policies")?"＋ 加政策":(tab==="reports")?"＋ 加报告":(tab==="land")?"＋ 加土拍":"＋ 新增";
   if(tab==="overview")body.innerHTML=estOverview();
   else if(tab==="pol828")body.innerHTML=estPol828();
   else if(tab==="policies")body.innerHTML=estPolicies();
+  else if(tab==="board")body.innerHTML=estBoard();
+  else if(tab==="reports")body.innerHTML=estReports();
+  else if(tab==="land")body.innerHTML=estLand();
   else if(tab==="sources")body.innerHTML=estSources();
 }
 function kpi(n,l){return '<div class="est-kpi"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
+/* 可点击 KPI（v5.84）：点数字直达对应标签页 */
+function kpi2(n,l,act){return '<div class="est-kpi click" onclick="'+act+'"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
 function chipsRow(cats,cur,act){return '<div class="est-chips">'+cats.map(function(c){return '<span class="est-chip'+(c===cur?" on":"")+'" onclick="'+act+'(\''+estEsc(c)+'\')">'+estEsc(c)+'</span>';}).join("")+'</div>';}
 
 function estOverview(){
-  var pols=DB.estatePolicies||[];
-  var k='<div class="est-kpis">'+kpi(pols.length,"政策库")+kpi(SRC_DATA.length,"数据源")+kpi(POL828_DIMS.length,"828维度")+kpi(EXT_SITES.length,"权威源")+'</div>';
-  var tl='<div class="est-sec"><div class="est-sec-hd">直达入口</div><div class="est-quick">';
-  tl+='<button type="button" class="est-qcard" data-go="pol828"><div class="qt">828新政</div><div class="qd">现房优先·新老划断，和你二批次去化直接相关</div></button>';
-  tl+='<button type="button" class="est-qcard" data-go="policies"><div class="qt">政策库</div><div class="qd">已内置 828，可补充项目相关政策</div></button>';
-  tl+='<button type="button" class="est-qcard" data-go="sources"><div class="qt">数据源</div><div class="qd">24 个官方/机构一手源，点击直达</div></button>';
-  tl+='<button type="button" class="est-qcard" data-go="query"><div class="qt">检索委托</div><div class="qd">权威源直达 + 复制检索模板</div></button>';
-  tl+='</div></div>';
-  return k+tl;
+  var polAll=DB.estatePolicies||[];
+  var repAll=DB.estateReports||[];
+  var landCnt=(DB.estateLandPub||[]).length+(DB.estateLandDeals||[]).length;
+  var pols=polAll.filter(function(p){return estNormDay(p.发布日);}).sort(estByDateDesc);
+  var reps=repAll.slice().sort(estByDateDesc);
+  /* KPI 可点击 → 直达对应标签页 */
+  var k='<div class="est-kpis">'
+    +kpi2(polAll.length,"政策库",'estateTab(\'policies\')')
+    +kpi2(repAll.length,"数据报告",'estateTab(\'reports\')')
+    +kpi2(landCnt,"土拍记录",'estateTab(\'land\')')
+    +kpi2(SRC_DATA.length,"数据源",'estateTab(\'sources\')')
+    +'</div>';
+  /* 最新政策 · 按月分组时间轴（前 5） */
+  var tl='<div class="est-sec"><div class="est-sec-hd"><span>最新政策 <span class="sub">按发布日倒序 · 前 5 条</span></span><span class="est-more" onclick="estateTab(\'policies\')">全部 →</span></div>';
+  if(!pols.length){
+    tl+='<div class="est-empty">暂无带日期的政策。去「政策库」点右上角「＋ 加政策」，填上「发布日」就会出现在这里。</div>';
+  }else{
+    tl+='<div class="est-timeline">';var cur="";
+    pols.slice(0,5).forEach(function(p){
+      var m=estNormDay(p.发布日).slice(0,7);
+      if(m!==cur){cur=m;tl+='<div class="est-month">'+m+'</div>';}
+      var i=polAll.indexOf(p);
+      tl+='<div class="est-tl-row" onclick="openEstateDetail(\'policies\','+i+')"><div class="date">'+estEsc(p.发布日)+'</div><div class="nm">'+estEsc(p.政策名称||"(未命名)")+'</div></div>';
+    });
+    tl+='</div>';
+  }
+  tl+='</div>';
+  /* 最新数据报告（前 3） */
+  var rp='<div class="est-sec"><div class="est-sec-hd"><span>最新数据报告 <span class="sub">前 3 条</span></span><span class="est-more" onclick="estateTab(\'reports\')">全部 →</span></div>';
+  if(!reps.length){
+    rp+='<div class="est-empty">暂无数据报告。去「数据报告」点「＋ 加报告」录入；或用「检索委托」复制模板，粘贴到任意 AI 助手成稿后回填。</div>';
+  }else{
+    rp+='<div class="est-grid c2">';
+    reps.slice(0,3).forEach(function(r){
+      var i=repAll.indexOf(r);
+      rp+='<div class="est-card" onclick="openEstateDetail(\'reports\','+i+')"><div style="margin-bottom:6px"><span class="est-pill p-blue">'+estEsc(r.板块||"未分类")+'</span><span class="est-pill p-gray">'+estEsc(r.期数||"")+'</span></div><div class="t">'+estEsc(r.指标名称||"(未命名)")+'</div><div class="m">'+estEsc(r.核心结论||"")+'</div></div>';
+    });
+    rp+='</div>';
+  }
+  rp+='</div>';
+  /* 直达（仅保留最常用的两个） */
+  var q='<div class="est-sec"><div class="est-sec-hd">直达</div><div class="est-quick">';
+  q+='<button type="button" class="est-qcard" data-go="pol828"><div class="qt">828新政</div><div class="qd">现房优先·新老划断，和你二批次去化直接相关</div></button>';
+  q+='<button type="button" class="est-qcard" data-go="query"><div class="qt">检索委托</div><div class="qd">权威源直达 + 复制检索模板</div></button>';
+  q+='</div></div>';
+  return k+tl+rp+q;
 }
 function estReports(){
   var all=DB.estateReports||[];
@@ -8257,8 +8377,12 @@ function estListHtml(kind){
 
 /* ---------- 编辑器 ---------- */
 function openEstateAdd(){
-  if(ESTATE_STATE.tab!=="policies")return;
-  _estateEdit={kind:"policies",idx:-1};estBuildForm("policies",{});
+  var t=ESTATE_STATE.tab,kind=null;
+  if(t==="policies")kind="policies";
+  else if(t==="reports")kind="reports";
+  else if(t==="land")kind=(ESTATE_STATE.landTab==="deal")?"landDeals":"landPub";
+  else return;
+  _estateEdit={kind:kind,idx:-1};estBuildForm(kind,{});
 }
 function openEstateEdit(kind,idx){_estateEdit={kind:kind,idx:idx};estBuildForm(kind,estArr(kind)[idx]||{});}
 function estBuildForm(kind,obj){
@@ -8327,6 +8451,9 @@ function runQuery(q){
 function estHit(kind,idx){
   if(kind==="src"){var u=estSrcUrl(SRC_DATA[idx]);if(u)window.open(u,"_blank","noopener");closeQueryPanel();return;}
   closeQueryPanel();switchTab("estate");
+  if(kind==="reports"){ESTATE_STATE.tab="reports";estateTab("reports");openEstateDetail("reports",idx);return;}
+  if(kind==="landPub"){ESTATE_STATE.tab="land";ESTATE_STATE.landTab="pub";estateTab("land");openEstateDetail("landPub",idx);return;}
+  if(kind==="landDeals"){ESTATE_STATE.tab="land";ESTATE_STATE.landTab="deal";estateTab("land");openEstateDetail("landDeals",idx);return;}
   if(kind==="policies")ESTATE_STATE.tab="policies";
   else ESTATE_STATE.tab="pol828";
   estateTab(ESTATE_STATE.tab);
