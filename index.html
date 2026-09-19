@@ -1840,6 +1840,15 @@
   .gc-cat{display:inline-block;padding:2px 9px;border-radius:5px;font-weight:700;font-size:11px;background:var(--bg3);color:var(--muted2)}
   .gc-price{font-weight:900;color:var(--gold)}
   .gc-actions{display:flex;gap:7px}
+  /* 器材 · 购物链接智能识别（v5.94） */
+  .gm-fetch{display:flex;gap:8px;align-items:stretch}
+  .gm-fetch input{flex:1}
+  .gm-fetch button{flex:none;white-space:nowrap;background:linear-gradient(135deg,var(--purple),#8b5cf6);color:#fff;
+    border:none;border-radius:10px;padding:0 14px;font-size:12.5px;font-weight:800;font-family:inherit;cursor:pointer;transition:.18s}
+  .gm-fetch button:hover{filter:brightness(1.08)}
+  .gm-fetch button:disabled{opacity:.55;cursor:default}
+  .gc-link{color:var(--brand);font-weight:700;text-decoration:none;border-bottom:1px dashed rgba(45,212,191,.5)}
+  .gc-link:hover{color:var(--gold);border-bottom-color:var(--gold)}
 
   /* 分类筛选栏 */
   .gear-filter-bar{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
@@ -4782,6 +4791,13 @@ window.QRCode = {
           <div class="job-modal" data-page-node-id="31HMgeCqUcIMwXOAHM6zEb">
             <div class="jm-head" data-page-node-id="BZbB1w36437iZ0Gx52CrlF"><span id="gm-title" data-page-node-id="RayfNr87xoWC2DGSnFW2hQ">新增器材</span><span class="jm-close" onclick="closeGearModal()" data-page-node-id="YbHcequ8GK0b4nMTjNP245">✕</span></div>
             <div class="jm-body" data-page-node-id="bAmpH1tX4IIHMXCmzotAne">
+              <div class="jm-field" data-page-node-id="v594GmUrlField"><label data-page-node-id="v594GmUrlLabel">🔗 购物链接（自动识别品牌 / 型号 / 价格）</label>
+                <div class="gm-fetch">
+                  <input type="text" id="gm-url" placeholder="粘贴 京东 / 天猫 / 淘宝 / 官网 商品链接" autocomplete="off"/>
+                  <button type="button" id="gm-fetch-btn" onclick="smartFillGear()">🔍 智能识别</button>
+                </div>
+                <div class="book-fetch-msg" id="gm-fetch-msg">粘贴商品链接，自动识别品牌 / 型号 / 价格；识别不到可直接手动填写下方字段。</div>
+              </div>
               <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9"/><div class="jm-err" data-page-node-id="v592GmNameErr">器材名称为必填</div></div>
               <div class="jm-row2" data-page-node-id="mYzPMnZoVBVACr81YRC48U">
                 <div class="jm-field" data-page-node-id="jjtqO0MMqe4srgG8BVnAIK"><label data-page-node-id="uc2RRScQ5xuySk2WvIuMCQ">🏷 类别</label><select id="gm-category" data-page-node-id="UK5O6cruLwjIg7pmLoj0vP"></select></div>
@@ -5119,7 +5135,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.93</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.94</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5603,7 +5619,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.93";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.94";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7290,8 +7306,9 @@ function parseBookText(txt,url){
   if(mr)out.rating=mr[1];
   return out;
 }
-/* 多通道抓取：先试 Jina Reader（返回 markdown），再试 allorigins 原始 HTML */
-function fetchBookInfo(url){
+/* 多通道抓取（共用）：先试 Jina Reader（返回 markdown），再试 allorigins 原始 HTML。
+   parseFn(txt,url) 返回对象则 resolve，返回 null/假值则切下一通道。 */
+function fetchViaReaders(url,parseFn){
   var readers=[
     function(u){return "https://r.jina.ai/"+u;},
     function(u){return "https://api.allorigins.win/raw?url="+encodeURIComponent(u);}
@@ -7308,12 +7325,15 @@ function fetchBookInfo(url){
         if(!r.ok)throw new Error("HTTP "+r.status);
         return r.text();
       }).then(function(txt){
-        var info=parseBookText(txt,url);
-        if(info&&info.title)resolve(info);else tryNext();
+        var info=null;try{info=parseFn(txt,url);}catch(e){info=null;}
+        if(info)resolve(info);else tryNext();
       }).catch(function(){clearTimeout(timer);tryNext();});
     }
     tryNext();
   });
+}
+function fetchBookInfo(url){
+  return fetchViaReaders(url,function(txt,u){var i=parseBookText(txt,u);return (i&&i.title)?i:null;});
 }
 async function smartFillBook(){
   var urlEl=document.getElementById("bkf-url"),msg=document.getElementById("bkf-msg"),
@@ -7503,6 +7523,7 @@ function renderGears(){
           '<div class="gc-row"><span class="gc-label">购入日期</span><span class="gc-val">'+(g.buyDate||"—")+'</span></div>'+
           '<div class="gc-row"><span class="gc-label">价格</span><span class="gc-val gc-price">¥'+(g.price||0).toLocaleString()+'</span></div>'+
           (g.maintNote?'<div class="gc-row"><span class="gc-label">备注</span><span class="gc-val" style="color:var(--amber)">'+esc(g.maintNote)+'</span></div>':'')+
+          (g.srcUrl?'<div class="gc-row"><span class="gc-label">来源</span><span class="gc-val"><a class="gc-link" href="'+esc(g.srcUrl)+'" target="_blank" rel="noopener">商品页 ↗</a></span></div>':'')+
         '</div>'+
         '<div class="gc-actions"><button class="gc-btn gc-btn-primary" onclick="openGearModal('+g._i+')">编辑</button><button class="gc-btn gc-btn-outline" style="color:var(--coral);background:rgba(248,113,113,.08)" onclick="delGear('+g._i+')">删除</button></div>'+
       '</div>';
@@ -7519,6 +7540,142 @@ function updateGearStats(){
   document.getElementById("gs-repair").textContent=all.filter(function(g){return g.status==="repair"}).length;
   var totalVal=all.reduce(function(s,g){return s+(g.price||0)},0);
   document.getElementById("gs-val").textContent="¥"+totalVal.toLocaleString();
+}
+
+/* ---- v5.94 购物链接智能识别（品牌 / 型号 / 价格） ---- */
+var GEAR_BRANDS=[["Sony","索尼"],["Canon","佳能"],["Nikon","尼康"],["Fujifilm","富士"],["Panasonic","松下"],
+  ["Leica","徕卡"],["DJI","大疆"],["Sigma","适马"],["Tamron","腾龙"],["Godox","神牛"],
+  ["Manfrotto","曼富图"],["Benro","百诺"],["Rode","罗德"],["Zhiyun","智云"],["Insta360","影石"],
+  ["GoPro","GoPro"],["SmallRig","斯莫格"],["Peak Design","巅峰设计"],["SanDisk","闪迪"],
+  ["Lexar","雷克沙"],["BenQ","明基"],["Eizo","艺卓"],["Apple","苹果"],["Sennheiser","森海塞尔"]];
+
+/* 清洗商品标题：去促销前缀/站点后缀/营销词 */
+function cleanGearTitle(t){
+  t=String(t||"").replace(/\s+/g," ").trim();
+  t=t.replace(/^[【\[（(][^】\])）]{0,20}[】\])）]\s*/,"");
+  t=t.replace(/\s*[-|｜_·—]\s*(京东|京东商城|天猫|淘宝|天猫商城|苏宁易购|苏宁|拼多多|亚马逊|Amazon|中关村在线|ZOL|什么值得买|SMZDM)[^]*$/i,"");
+  t=t.replace(/^\s*(?:京东|天猫|淘宝|苏宁|拼多多)\s*[-|｜]\s*/,"");
+  t=t.replace(/(?:自营|正品|官方旗舰店|旗舰店|专卖店|包邮|顺丰|全新|现货|国行|行货|官方授权|官方直营|全国联保|下单立减|领券|赠品)/g," ");
+  t=t.replace(/\s{2,}/g," ").trim();
+  return t.slice(0,80);
+}
+/* 从标题识别品牌，返回英文品牌名（与 brand 字段习惯一致） */
+function extractGearBrand(t){
+  var s=String(t||"");
+  for(var i=0;i<GEAR_BRANDS.length;i++){
+    var en=GEAR_BRANDS[i][0],cn=GEAR_BRANDS[i][1];
+    if(new RegExp("\\b"+en.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i").test(s))return en;
+    if(cn&&s.indexOf(cn)>=0)return en;
+  }
+  return "";
+}
+function tidyGearModel(s){
+  return String(s||"").replace(/\s+/g," ").replace(/^[\s\-–—:：]+|[\s\-–—:：]+$/g,"").slice(0,32);
+}
+/* 从标题提取型号：① 镜头焦段规格 ② 机身/无人机/灯等型号代号 ③ 含字母数字的兜底核心串 */
+function extractGearModel(t){
+  var s=" "+String(t||"")+" ";
+  var m=s.match(/(\d{1,3}\s?[-–—]\s?\d{1,3}\s?mm\s?(?:F|f\/|T)\s?\d(?:\.\d)?(?:\s?(?:GM|G|OSS|IS|USM|STM|VC|DG|DN|HSM|Art|ART|Macro|MACRO|II|III)){0,4})/);
+  if(m)return tidyGearModel(m[1]);
+  var m2=s.match(/(\d{1,3}\s?mm\s?(?:F|f\/)\s?\d(?:\.\d)?(?:\s?(?:GM|G|OSS|IS|USM|STM|VC|DG|DN|HSM|Art|ART|Macro|MACRO|II|III)){0,4})/);
+  if(m2)return tidyGearModel(m2[1]);
+  var m3=s.match(/\b(ILCE-\d+[A-Za-z0-9]*|ILCA-\d+[A-Za-z0-9]*|DSC-[A-Z0-9]+|SEL\d+[A-Z0-9]*|EOS\s?R\s?\d?[A-Za-z]{0,2}|EOS\s?\d+D[A-Za-z]{0,2}|Lumix\s?[A-Z0-9]+|X-T\d+[A-Za-z]*|X-H\d+[A-Za-z]*|X-S\d+[A-Za-z]*|X-E\d+[A-Za-z]*|GFX\s?\d+[A-Za-z]*|Z\s?[5-9]{1,2}\b|A[0-9]{1,2}[A-Za-z]?[0-9]?\s?(?:IV|III|II|V|I)?\b|Mini\s?\d+\s?(?:Pro|Classic|Plus)?|Mavic\s?\d+\s?[A-Za-z]*|Air\s?\d+\s?S?|Avata\s?\d?|RS\s?\d+\s?(?:Pro|Mini)?|Osmo\s?[A-Za-z]*\s?\d?|Pocket\s?\d|Action\s?\d|AD\s?\d{2,4}\s?(?:Pro|II|III)?|TT\s?\d{2,4}\s?(?:Pro|II|III)?|V\d{4}[A-Za-z]*\s?(?:Pro|II|III)?)\b/i);
+  if(m3)return tidyGearModel(m3[1]);
+  var core=cleanGearTitle(t).replace(/[【】\[\]()（）]/g," ").replace(/\s{2,}/g," ").trim();
+  var m4=core.match(/([A-Za-z]{1,6}[- ]?\d{1,5}[A-Za-z0-9\- ]{0,10})/);
+  if(m4)return tidyGearModel(m4[1]);
+  return "";
+}
+/* 提取价格：优先带标签/JSON 字段，其次 ¥ 符号；限定 10~999999 元避免误取参数数字 */
+function extractGearPrice(t){
+  var s=String(t||"");
+  var pats=[
+    /"(?:price|lowestPrice|jdPrice|pPrice|salePrice|currentPrice|skuPrice)"\s*:\s*"?([0-9]{1,7}(?:\.[0-9]{1,2})?)/i,
+    /(?:到手价|券后价|促销价|活动价|专享价|京东价|参考价|售价|现价|价格)\s*[:：]?\s*[¥￥]?\s*([0-9]{1,7}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/,
+    /(?:class|id)=["'][^"']{0,20}price[^"']{0,20}["'][^>]{0,60}>\s*[¥￥]?\s*([0-9]{1,7}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/i,
+    /[¥￥]\s*([0-9]{1,7}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/,
+    /(?:RMB|CNY)\s*([0-9]{1,7}(?:\.[0-9]{1,2})?)/i
+  ];
+  for(var i=0;i<pats.length;i++){
+    var m=s.match(pats[i]);
+    if(m){var v=parseFloat(String(m[1]).replace(/,/g,""));if(!isNaN(v)&&v>=10&&v<=999999)return Math.round(v);}
+  }
+  return 0;
+}
+/* 依据标题关键词猜测类别（镜头判据最明确，优先） */
+function guessGearCategory(t){
+  var s=String(t||"").toLowerCase();
+  if(/镜头|lens/.test(s)||/\d{1,3}\s?[-–—]\s?\d{1,3}\s?mm/.test(s))return "镜头";
+  var keys=[
+    ["航拍",["无人机","航拍","mavic","avata","air 2","air 3","mini 3","mini 4","mini 2","action 3","action 4","gopro","insta360","pocket","遥控飞机"]],
+    ["灯光",["闪光灯","补光灯","柔光箱","灯架","反光板","softbox","speedlite","ttl","hss","神牛","godox","led灯","led 灯","摄影灯","太阳灯"]],
+    ["相机",["微单","单反","机身","相机","摄影机","ilce","ilca","eos","lumix","x-t","x-h","gfx","z6","z7","z8","z9","z30","z50"]],
+    ["配件",["三脚架","云台","稳定器","背包","电池","存储卡","内存卡","滤镜","麦克风","转接环","快门线","清洁套装","充电器","读卡器"]]
+  ];
+  for(var i=0;i<keys.length;i++){var kw=keys[i][1];for(var j=0;j<kw.length;j++){if(s.indexOf(kw[j])>=0)return keys[i][0];}}
+  return "";
+}
+/* 解析抓取到的商品页文本（Jina markdown 或原始 HTML） */
+function parseGearText(txt,url){
+  var t=String(txt||""),raw="";
+  var mT=t.match(/(?:^|\n)\s*Title:\s*(.+?)\s*(?:\n|$)/i);if(mT)raw=mT[1];
+  if(!raw){var mt=t.match(/<title[^>]*>([\s\S]*?)<\/title>/i);if(mt)raw=mt[1];}
+  if(!raw){var mo=t.match(/<meta[^>]+(?:property|name)=["']og:title["'][^>]+content=["']([^"']+)["']/i);if(mo)raw=mo[1];}
+  if(!raw){var mh=t.match(/(?:^|\n)#{1,2}\s+(.+?)\s*(?:\n|$)/);if(mh)raw=mh[1];}
+  raw=String(raw||"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&nbsp;/g," ").replace(/&#\d+;/g,"").replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim();
+  var src=raw||cleanGearTitle(t);
+  var title=cleanGearTitle(src);
+  var brand=extractGearBrand(src);
+  var model=extractGearModel(src);
+  var price=extractGearPrice(t);
+  var category=guessGearCategory(src);
+  var name=(brand&&model)?(brand+" "+model):(title||(brand+" "+model)).slice(0,50);
+  return {name:name,brand:brand,model:model,price:price,category:category,title:title};
+}
+function fetchGearInfo(url){
+  return fetchViaReaders(url,function(txt,u){
+    var i=parseGearText(txt,u);
+    return (i&&(i.model||i.price||i.name))?i:null;
+  });
+}
+/* 智能识别按钮：粘贴链接 → 自动填品牌/型号/价格（非链接则当关键词填名称） */
+async function smartFillGear(){
+  var urlEl=document.getElementById("gm-url"),msg=document.getElementById("gm-fetch-msg"),btn=document.getElementById("gm-fetch-btn");
+  if(!urlEl||!msg||!btn)return;
+  var raw=String(urlEl.value||"").trim();
+  if(!raw){msg.className="book-fetch-msg err";msg.textContent="请先粘贴一个商品 / 购物链接。";return;}
+  if(!/^https?:\/\//i.test(raw)){
+    document.getElementById("gm-name").value=raw;
+    msg.className="book-fetch-msg ok";
+    msg.textContent="已按关键词填入器材名称，可继续补充品牌 / 型号 / 价格。";
+    return;
+  }
+  btn.disabled=true;var old=btn.textContent;btn.textContent="识别中…";
+  msg.className="book-fetch-msg";msg.textContent="正在抓取商品页，请稍候…";
+  try{
+    var info=await fetchGearInfo(raw);
+    if(info.name)document.getElementById("gm-name").value=info.name;
+    if(info.brand)document.getElementById("gm-brand").value=info.brand;
+    if(info.model)document.getElementById("gm-model").value=info.model;
+    if(info.price)document.getElementById("gm-price").value=info.price;
+    if(info.category){var cEl=document.getElementById("gm-category");if(cEl&&(!cEl.value||cEl.value==="配件"))cEl.value=info.category;}
+    var got=[];
+    if(info.brand)got.push("品牌 "+info.brand);
+    if(info.model)got.push("型号 "+info.model);
+    if(info.price)got.push("价格 ¥"+info.price.toLocaleString());
+    if(!got.length&&!info.name){
+      msg.className="book-fetch-msg err";
+      msg.textContent="没能识别出型号或价格，请手动填写下方字段。";
+    }else{
+      msg.className="book-fetch-msg ok";
+      msg.textContent="✓ 已识别 "+(got.length?got.join(" · "):"名称")+(info.category?"，类别建议「"+info.category+"」":"")+"，可修改后保存。";
+    }
+  }catch(e){
+    msg.className="book-fetch-msg err";
+    msg.textContent="抓取失败（网络或站点限制），请手动填写品牌 / 型号 / 价格。";
+  }finally{
+    btn.disabled=false;btn.textContent=old;
+  }
 }
 
 /* ---- 模态表单 ---- */
@@ -7539,6 +7696,10 @@ function openGearModal(idx){
     document.getElementById("gm-buyDate").value=g.buyDate||"";
     document.getElementById("gm-price").value=g.price||"";
     document.getElementById("gm-maintNote").value=g.maintNote||"";
+    document.getElementById("gm-url").value=g.srcUrl||"";
+    var m1=document.getElementById("gm-fetch-msg");
+    m1.className="book-fetch-msg";
+    m1.textContent=g.srcUrl?"已保存来源链接，可重新粘贴识别覆盖：":"粘贴商品链接，自动识别品牌 / 型号 / 价格；识别不到可直接手动填写下方字段。";
   }else{
     titleEl.textContent="＋ 新增器材";
     document.getElementById("gm-name").value="";
@@ -7549,6 +7710,10 @@ function openGearModal(idx){
     document.getElementById("gm-buyDate").value="";
     document.getElementById("gm-price").value="";
     document.getElementById("gm-maintNote").value="";
+    document.getElementById("gm-url").value="";
+    var m2=document.getElementById("gm-fetch-msg");
+    m2.className="book-fetch-msg";
+    m2.textContent="粘贴商品链接，自动识别品牌 / 型号 / 价格；识别不到可直接手动填写下方字段。";
   }
   modal.style.display="flex";
   guardRequired("gm-name","gm-save-btn","器材名称为必填");   /* v5.92 必填守卫 */
@@ -7567,7 +7732,8 @@ function saveGearModal(){
     model:(document.getElementById("gm-model").value||"").trim(),
     buyDate:document.getElementById("gm-buyDate").value||"",
     price:nonNegNum(document.getElementById("gm-price")),
-    maintNote:(document.getElementById("gm-maintNote").value||"").trim()
+    maintNote:(document.getElementById("gm-maintNote").value||"").trim(),
+    srcUrl:(document.getElementById("gm-url").value||"").trim()
   };
   var isNew=(_gearEditIdx<0);
   if(!isNew){
