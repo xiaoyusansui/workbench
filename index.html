@@ -1112,6 +1112,30 @@
   .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
   .modal-msg{font-size:12px;margin-top:10px;min-height:16px}
 
+  /* ====== v5.93 表格长图导出（预览弹窗，宽度放开以容纳长图）====== */
+  .img-modal{z-index:120;padding:12px}
+  .img-modal-box{background:var(--bg2);border:1px solid var(--glass-border);border-radius:18px;width:100%;max-width:1180px;
+    max-height:92vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden}
+  .img-modal-head{display:flex;align-items:center;gap:10px;padding:16px 20px 12px;border-bottom:1px solid var(--line)}
+  .img-modal-head h3{font-size:15px;font-weight:900;color:var(--ink);margin:0;display:flex;align-items:center;gap:8px;min-width:0}
+  .img-modal-meta{font-size:11.5px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .img-modal-x{margin-left:auto;flex:none;width:30px;height:30px;border-radius:9px;border:1px solid var(--glass-border);
+    background:var(--bg3);color:var(--ink2);font-size:17px;line-height:1;cursor:pointer;font-family:inherit}
+  .img-modal-x:hover{border-color:var(--gold);color:var(--gold)}
+  .img-modal-body{flex:1;overflow:auto;padding:16px 20px;background:var(--bg3);text-align:center;
+    -webkit-overflow-scrolling:touch}
+  .img-modal-body img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.45);display:block;margin:0 auto}
+  .img-modal-actions{display:flex;align-items:center;gap:10px;padding:12px 20px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .img-modal-hint{font-size:11.5px;color:var(--muted);line-height:1.5;flex:1;min-width:180px}
+  @media (max-width:640px){
+    .img-modal{padding:0}
+    .img-modal-box{max-height:100vh;height:100%;border-radius:0;border:none}
+    .img-modal-body{padding:10px}
+    .img-modal-actions{justify-content:stretch}
+    .img-modal-actions .btn{flex:1}
+    .img-modal-hint{flex:1 0 100%;min-width:0}
+  }
+
   /* 滚动条美化 */
   ::-webkit-scrollbar{width:6px;height:6px}
   ::-webkit-scrollbar-track{background:transparent}
@@ -4557,6 +4581,7 @@ window.QRCode = {
           </div>
           <button class="btn ghost" onclick="sortByTime()" data-page-node-id="6mg0SZw7vhTq8DzgNUk39x">⏱ 排序</button>
           <div class="spacer" data-page-node-id="UfnzQgBuaTIXdJxsRhOCot"></div>
+          <button class="btn ghost" id="v593ImgBtn" onclick="exportPlanImage()" title="把全部工作事项导出为一张清晰的竖版长图（可直接发微信、贴进 PPT）" data-page-node-id="v593ImgBtn">🖼 导出图片</button>
           <button class="btn ghost" onclick="exportCSV('plan')" data-page-node-id="vEtytEF2VTpNBGsBJszEsS">⬇ 导出</button>
           <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步" data-page-node-id="tRkTG544G4v1Ua50jD2KZq">💾 保存</button>
           <button class="btn" onclick="addRowPlan()" data-page-node-id="WgLonM2Ay3oecDCXxjognI">＋ 新增</button>
@@ -5094,7 +5119,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.92</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.93</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5204,6 +5229,22 @@ window.QRCode = {
           <div class="modal-actions">
             <button class="btn ghost" onclick="closeBookModal()">取消</button>
             <button class="btn" onclick="saveBookModal()" style="background:linear-gradient(135deg,var(--purple),#8b5cf6)">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- v5.93 策划工作：导出长图预览 -->
+      <div class="modal img-modal" id="plan-img-modal" style="display:none" onclick="if(event.target===this)closePlanImage()">
+        <div class="img-modal-box">
+          <div class="img-modal-head">
+            <h3>🖼 工作事项长图 <span class="img-modal-meta" id="pim-meta">—</span></h3>
+            <button class="img-modal-x" onclick="closePlanImage()" title="关闭" data-page-node-id="v593ImgClose">×</button>
+          </div>
+          <div class="img-modal-body"><img id="pim-img" alt="策划工作事项长图" data-page-node-id="v593ImgTag"/></div>
+          <div class="img-modal-actions">
+            <span class="img-modal-hint">💡 手机上长按图片即可保存到相册；电脑端点「⬇ 保存 PNG」下载。</span>
+            <button class="btn ghost" onclick="closePlanImage()">关闭</button>
+            <button class="btn" onclick="downloadPlanImage()" data-page-node-id="v593ImgSave">⬇ 保存 PNG</button>
           </div>
         </div>
       </div>
@@ -5562,7 +5603,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.92";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.93";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7856,6 +7897,243 @@ function exportCSV(){
   });
   const blob=new Blob(["﻿"+lines.join("\n")],{type:"text/csv;charset=utf-8"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="策划工作_对接进度.csv";a.click();
+}
+
+/* ==================== v5.93 策划工作：导出全部事项长图（高清 PNG，可发微信 / 贴 PPT / 打印）==================== */
+let PLAN_IMG_DATA="";
+/* 长图固定用浅色「纸张」风格：不跟随深浅主题，发到微信/贴进 PPT/打印都清晰 */
+const PLAN_IMG_C={
+  bg:"#ffffff",ink:"#1f2b25",ink2:"#40524a",mute:"#7c8b83",brand:"#123a2b",
+  gold:"#c8871a",goldSoft:"#fdf7ea",head:"#eef3ef",line:"#dbe4de",zebra:"#fafbfa",
+  star:"#d9cdb4",red:"#c0392b",redBg:"#fdecea"
+};
+const PLAN_IMG_ST={
+  "st-done":["#1a7f45","#e7f6ec"],"st-doing":["#1a63c9","#e9f1fe"],
+  "st-flow":["#6b3fd4","#f2ecfe"],"st-todo":["#b5720d","#fdf2e3"],"st-none":["#7b8a82","#f1f3f2"]
+};
+
+/* 画布换行：支持 \n 硬换行；中英文按字符宽度累加判断（无需分词，中文场景更稳） */
+function wrapCanvasText(ctx,text,maxW){
+  const out=[];
+  String(text==null?"":text).split(/\r?\n/).forEach(para=>{
+    if(!para){out.push("");return;}
+    let line="";
+    for(const ch of para){
+      const t=line+ch;
+      if(line && ctx.measureText(t).width>maxW){out.push(line);line=ch;}
+      else line=t;
+    }
+    out.push(line);
+  });
+  return out.length?out:[""];
+}
+
+/* 整理长图数据：全部事项（不受筛选影响），完成态沉底 + 星数降序，与界面/CSV 顺序一致 */
+function planImageRows(){
+  const t0=new Date();t0.setHours(0,0,0,0);
+  const list=DB.rows.map(r=>({...r})).sort((a,b)=>{
+    const da=statusGroup(a.s)==="done",db=statusGroup(b.s)==="done";
+    if(da!==db)return da?1:-1;
+    return keyLevel(b)-keyLevel(a);
+  });
+  const items=list.map((r,i)=>{
+    const p=parseDept(r.d);
+    const dept=p.sub?(p.group?p.group+" · "+p.sub:p.sub):(p.group||"");
+    const done=statusGroup(r.s)==="done";
+    return {
+      no:i+1, star:keyLevel(r), board:r.b||"—", title:r.t||"",
+      dept:dept||"—", status:r.s||"—", stCls:statusClass(r.s),
+      date:(r.dt||"").slice(0,10)||"—",
+      overdue:!!(r.dt && !done && new Date(r.dt)<t0),
+      note:r.m||"", key:keyLevel(r)>0, done:done
+    };
+  });
+  const stat={total:items.length,done:items.filter(x=>x.done).length,
+    doing:items.filter(x=>statusGroup(x.status)==="doing").length,
+    over:items.filter(x=>x.overdue).length,key:items.filter(x=>x.key).length};
+  return {items,stat};
+}
+
+/* 把全部事项画进 canvas（自适应缩放，保证长图清晰且不超浏览器画布上限） */
+function buildPlanImage(){
+  const {items,stat}=planImageRows();
+  const cv=document.createElement("canvas");
+  const ctx=cv.getContext?cv.getContext("2d"):null;
+  if(!ctx) throw new Error("当前环境不支持画布绘图");
+  const FAM="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans CJK SC',system-ui,sans-serif";
+  const setF=(px,w)=>{ctx.font=(w?w+" ":"")+px+"px "+FAM;};
+  const PAD=30;
+  const cols=[
+    {k:"no",    t:"#",     w:46},
+    {k:"star",  t:"★ 重点",w:92},
+    {k:"board", t:"板块",  w:104},
+    {k:"title", t:"事项",  w:296},
+    {k:"dept",  t:"对接",  w:136},
+    {k:"status",t:"进度",  w:96},
+    {k:"date",  t:"预计完成",w:106},
+    {k:"note",  t:"备注",  w:312}
+  ];
+  const TW=cols.reduce((s,c)=>s+c.w,0)+PAD*2;
+
+  /* 1) 先量算每行高度（事项 / 对接 / 备注 自动换行，全部内容不截断） */
+  const LINE=20,VPAD=9;
+  setF(13);
+  const measured=items.map(it=>{
+    const tl=wrapCanvasText(ctx,it.title,cols[3].w-14);
+    const dl=wrapCanvasText(ctx,it.dept,cols[4].w-14);
+    const nl=it.note?wrapCanvasText(ctx,it.note,cols[7].w-14):[""];
+    const lines=Math.max(tl.length,dl.length,nl.length,1);
+    return {it,tl,dl,nl,h:lines*LINE+VPAD*2+2};
+  });
+  const titleH=96,headH=38,footH=36;
+  const bodyH=measured.reduce((s,m)=>s+m.h,0);
+  const TH=titleH+headH+bodyH+footH+10;
+
+  /* 2) 选缩放：2x 视网膜清晰；面积/高度超限时自动降到 1.5/1，避免 iOS 出空白图 */
+  let SC=2;
+  while(SC>1 && (TW*SC)*(TH*SC)>15000000) SC-=0.25;
+  while(SC>0.5 && TH*SC>30000) SC-=0.25;
+  cv.width=Math.round(TW*SC);cv.height=Math.round(TH*SC);
+  ctx.setTransform(SC,0,0,SC,0,0);
+  ctx.textBaseline="alphabetic";
+
+  const C=PLAN_IMG_C;
+  ctx.fillStyle=C.bg;ctx.fillRect(0,0,TW,TH);
+  const grad=ctx.createLinearGradient(0,0,TW,0);grad.addColorStop(0,C.brand);grad.addColorStop(.55,"#2f6b4f");grad.addColorStop(1,C.gold);
+  ctx.fillStyle=grad;ctx.fillRect(0,0,TW,6);
+
+  /* 3) 标题区 */
+  ctx.fillStyle=C.gold;ctx.fillRect(PAD,24,4,26);
+  setF(24,900);ctx.fillStyle=C.brand;ctx.fillText("策划工作 · 对接进度",PAD+14,46);
+  const now=new Date(),p2=n=>String(n).padStart(2,"0");
+  const stamp=`${now.getFullYear()}-${p2(now.getMonth()+1)}-${p2(now.getDate())} ${p2(now.getHours())}:${p2(now.getMinutes())}`;
+  setF(12.5,400);ctx.fillStyle=C.mute;ctx.textAlign="right";
+  ctx.fillText("导出时间 "+stamp,TW-PAD,30);
+  ctx.fillText(`共 ${stat.total} 项 · 全部事项`,TW-PAD,50);
+  ctx.textAlign="left";
+  setF(13,700);ctx.fillStyle=C.ink2;
+  ctx.fillText(`共 ${stat.total} 项　已完成 ${stat.done}　进行中 ${stat.doing}　⭐重点 ${stat.key}　⚠逾期 ${stat.over}`,PAD+14,80);
+
+  /* 4) 表头 */
+  ctx.fillStyle=C.head;ctx.fillRect(0,titleH,TW,headH);
+  ctx.fillStyle=C.line;ctx.fillRect(0,titleH+headH-1,TW,1);
+  setF(12.5,800);ctx.fillStyle=C.brand;
+  let hx=PAD;
+  cols.forEach(c=>{ctx.fillText(c.t,hx+8,titleH+headH/2+4.5);hx+=c.w;});
+
+  /* 5) 数据行 */
+  let y=titleH+headH;
+  measured.forEach((m,idx)=>{
+    const it=m.it;
+    if(idx%2===1){ctx.fillStyle=C.zebra;ctx.fillRect(0,y,TW,m.h);}
+    if(it.key&&!it.done){ctx.fillStyle=C.goldSoft;ctx.fillRect(0,y,TW,m.h);ctx.fillStyle=C.gold;ctx.fillRect(0,y,4,m.h);}
+    ctx.fillStyle=C.line;ctx.fillRect(0,y+m.h-1,TW,1);
+    const mid=y+m.h/2;
+    let x=PAD;
+    const ink=it.done?C.mute:C.ink, ink2=it.done?C.mute:C.ink2;
+
+    /* # */
+    setF(12.5,700);ctx.fillStyle=C.mute;ctx.textAlign="center";
+    ctx.fillText(String(it.no),x+cols[0].w/2,y+VPAD+14);
+    ctx.textAlign="left";x+=cols[0].w;
+
+    /* ★ */
+    setF(14,400);
+    for(let k=1;k<=5;k++){
+      ctx.fillStyle=k<=it.star?C.gold:C.star;
+      ctx.fillText(k<=it.star?"★":"☆",x+8+(k-1)*15,mid+5);
+    }
+    x+=cols[1].w;
+
+    /* 板块 */
+    setF(12.5,600);ctx.fillStyle=ink2;
+    ctx.fillText(it.board,x+8,y+VPAD+13);
+    x+=cols[2].w;
+
+    /* 事项（多行，顶对齐） */
+    setF(13,it.key&&!it.done?700:500);ctx.fillStyle=ink;
+    m.tl.forEach((ln,i)=>ctx.fillText(ln,x+8,y+VPAD+13+i*LINE));
+    x+=cols[3].w;
+
+    /* 对接 */
+    setF(12.5,400);ctx.fillStyle=ink2;
+    m.dl.forEach((ln,i)=>ctx.fillText(ln,x+8,y+VPAD+13+i*LINE));
+    x+=cols[4].w;
+
+    /* 进度徽章 */
+    setF(12,700);
+    const sc=PLAN_IMG_ST[it.stCls]||PLAN_IMG_ST["st-none"];
+    const bw=ctx.measureText(it.status).width+20,bh=22;
+    const bx=x+8,by=mid-bh/2;
+    ctx.beginPath();
+    const rr=6;
+    ctx.moveTo(bx+rr,by);ctx.lineTo(bx+bw-rr,by);ctx.quadraticCurveTo(bx+bw,by,bx+bw,by+rr);
+    ctx.lineTo(bx+bw,by+bh-rr);ctx.quadraticCurveTo(bx+bw,by+bh,bx+bw-rr,by+bh);
+    ctx.lineTo(bx+rr,by+bh);ctx.quadraticCurveTo(bx,by+bh,bx,by+bh-rr);
+    ctx.lineTo(bx,by+rr);ctx.quadraticCurveTo(bx,by,bx+rr,by);ctx.closePath();
+    ctx.fillStyle=sc[1];ctx.fill();
+    ctx.fillStyle=sc[0];ctx.fillText(it.status,bx+10,mid+4.5);
+    x+=cols[5].w;
+
+    /* 预计完成 */
+    setF(12.5,it.overdue?700:500);ctx.fillStyle=it.overdue?C.red:ink2;
+    const dw=ctx.measureText(it.date).width;
+    ctx.fillText(it.date,x+8,y+VPAD+13);
+    if(it.overdue){
+      const tx=x+16+dw,tw=ctx.measureText("逾期").width+10;
+      ctx.fillStyle=C.redBg;ctx.fillRect(tx,mid-10,tw,20);
+      setF(11,700);ctx.fillStyle=C.red;ctx.fillText("逾期",tx+5,mid+4);
+    }
+    x+=cols[6].w;
+
+    /* 备注（多行，顶对齐） */
+    setF(12,400);ctx.fillStyle=ink2;
+    m.nl.forEach((ln,i)=>ctx.fillText(ln,x+8,y+VPAD+13+i*LINE));
+
+    y+=m.h;
+  });
+
+  /* 6) 页脚 */
+  ctx.fillStyle=C.line;ctx.fillRect(0,y+8,TW,1);
+  setF(11,400);ctx.fillStyle=C.mute;
+  ctx.fillText("xiaoyusansui.github.io/workbench",PAD,PAD+y+22);
+  ctx.textAlign="right";ctx.fillText(`小鱼工作台 v${APP_VER}`,TW-PAD,PAD+y+22);
+  ctx.textAlign="left";
+
+  return {dataUrl:cv.toDataURL("image/png"),w:cv.width,h:cv.height,count:items.length,scale:SC,
+    /* 布局几何（供自动化测试断言「不串列/不截断」，无浏览器也能验证排版） */
+    contentW:TW,padding:PAD,colW:cols.map(c=>c.w),headH:headH,titleH:titleH,footH:footH,
+    rowsH:measured.map(m=>m.h),rowsLines:measured.map(m=>Math.max(m.tl.length,m.dl.length,m.nl.length))};
+}
+
+/* 导出长图：生成 → 弹预览（手机可长按保存，电脑可下载 PNG） */
+function exportPlanImage(){
+  if(!DB.rows.length){toast("还没有工作事项，先新增一条再导出","warn");return;}
+  let out;
+  try{out=buildPlanImage();}
+  catch(e){toast("当前环境不支持生成图片，请用电脑浏览器打开后再导出","err");return;}
+  PLAN_IMG_DATA=out.dataUrl;
+  const img=document.getElementById("pim-img");
+  if(img)img.src=out.dataUrl;
+  const meta=document.getElementById("pim-meta");
+  if(meta)meta.textContent=`全部 ${out.count} 项 · ${out.w}×${out.h}px · 高清 PNG`;
+  const modal=document.getElementById("plan-img-modal");
+  if(modal)modal.style.display="flex";
+  const filtered=(document.getElementById("search-plan").value||"")||document.getElementById("fban-plan").value||document.getElementById("fstat-plan").value||quickView!=="all";
+  toast(filtered?`已生成全部 ${out.count} 项长图 ✓（不受当前筛选影响，保证不遗漏）`:`已生成全部 ${out.count} 项长图 ✓`,"ok");
+}
+function downloadPlanImage(){
+  if(!PLAN_IMG_DATA){toast("请先点「导出图片」生成长图","warn");return;}
+  const a=document.createElement("a");
+  a.href=PLAN_IMG_DATA;a.download="策划工作_对接进度_"+localDateStr()+".png";
+  document.body.appendChild(a);a.click();a.remove();
+  toast("图片已保存 ✓","ok");
+}
+function closePlanImage(){
+  const modal=document.getElementById("plan-img-modal");
+  if(modal)modal.style.display="none";
+  const img=document.getElementById("pim-img");
+  if(img)img.src="";
 }
 
 /* 时钟 */
