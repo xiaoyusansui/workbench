@@ -5135,7 +5135,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.94</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.95</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5619,7 +5619,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.94";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.95";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7270,7 +7270,10 @@ function openBookReview(i,kind){
 function cleanBookTitle(t){
   t=String(t||"").trim();
   t=t.replace(/^[【\[（(][^】\])）]{0,18}[】\])）]\s*/,"");
-  t=t.replace(/\s*[|｜_·\-—]\s*(京东图书|京东|当当网|当当|淘宝|天猫|亚马逊|Amazon|豆瓣读书|豆瓣|孔夫子旧书网|孔夫子|拼多多|苏宁)[^]*$/i,"");
+  /* v5.95：抖音 / 直播带货分享里的 #话题标签 与引导语先清掉 */
+  t=t.replace(/#[^\s#]{1,24}/g," ");
+  t=t.replace(/\s*[|｜_·\-—]\s*(京东图书|京东|当当网|当当|淘宝|天猫|亚马逊|Amazon|豆瓣读书|豆瓣|孔夫子旧书网|孔夫子|拼多多|苏宁|抖音商城|抖音|今日头条)[^]*$/i,"");
+  t=t.replace(/(?:直播中|正在直播|点击购物车|加入购物车|立即购买|橱窗|小店|同款|拍下|下单|快来抢购)/g," ");
   t=t.replace(/\s*[（(]\s*豆瓣\s*[)）]\s*$/,"");
   t=t.replace(/\s*[-|｜_]\s*图书\s*$/,"");
   t=t.replace(/\s{2,}/g," ").trim();
@@ -7335,21 +7338,49 @@ function fetchViaReaders(url,parseFn){
 function fetchBookInfo(url){
   return fetchViaReaders(url,function(txt,u){var i=parseBookText(txt,u);return (i&&i.title)?i:null;});
 }
+/* v5.95：从任意粘贴文本里抽出第一个 http(s) 链接。
+   抖音 / 小红书 的「分享口令」会把链接混在引导语中间（"…复制此链接打开抖音 https://v.douyin.com/x/ 复制本条信息…"），
+   只判断"是否以 http 开头"会漏掉，导致整段文案被当成名称填进去。 */
+function extractFirstUrl(text){
+  var s=String(text||"");
+  var m=s.match(/https?:\/\/[^\s"'，。；！？、）)\]】]+/i);
+  if(!m)return "";
+  return m[0].replace(/[，。；！？、）)\]】\.]+$/,"");
+}
+/* v5.95：站点壳子页——抖音 / 直播间商品页常需登录，抓取代理只能拿到通用壳（"抖音 - 记录美好生活"），
+   这类结果必须判为「未识别」，不能把壳子标题当成商品名填进去。 */
+function isSiteShell(t){
+  var s=String(t||"").replace(/\s+/g,"");
+  if(!s)return true;
+  /* 注意：标题已过 cleanGearTitle/cleanBookTitle，"抖音 - 记录美好生活" 的站点前缀可能已被剥掉，
+     所以壳子残留（"记录美好生活"）也要单独认出来，否则会被当成有效商品名填进表单。 */
+  return /^(抖音-记录美好生活|抖音—记录美好生活|记录美好生活|抖音商城|抖音|小红书|京东|淘宝网|天猫|拼多多)$/.test(s)||
+         /^(抖音|小红书|[抖快][音手])[-—]\s*(记录美好生活|首页|商城|发现|搜索)$/.test(String(t||"").trim())||
+         /^.{0,5}(登录|验证|安全验证|滑动验证|请在App内打开|请在客户端打开)/.test(s);
+}
+/* v5.95：抖音系域名（商品页成功率低，需要给用户明确预期，别让"识别失败"显得像 bug） */
+function isDouyinUrl(u){
+  return /(^|\.)(douyin\.com|iesdouyin\.com|jinritemai\.com|haohuo\.jinritemai\.com|snssdk1128)/i.test(String(u||""));
+}
 async function smartFillBook(){
   var urlEl=document.getElementById("bkf-url"),msg=document.getElementById("bkf-msg"),
       btn=document.getElementById("bkf-btn");
   var raw=String(urlEl.value||"").trim();
   if(!raw){msg.className="book-fetch-msg err";msg.textContent="请先粘贴一个图书 / 商品链接。";return;}
-  if(!/^https?:\/\//i.test(raw)){
-    document.getElementById("bkf-title").value=raw;
+  var url=extractFirstUrl(raw);   /* v5.95：兼容抖音口令——从整段分享文案里抽出链接 */
+  if(!url){
+    document.getElementById("bkf-title").value=cleanBookTitle(raw)||raw.slice(0,60);
     msg.className="book-fetch-msg ok";
-    msg.textContent="已按关键词填入书名，请补充作者 / 简介后保存。";
+    msg.textContent="没检测到链接，已按关键词填入书名；要自动识别请粘贴完整商品链接。";
     return;
   }
   btn.disabled=true;var old=btn.textContent;btn.textContent="识别中…";
-  msg.className="book-fetch-msg";msg.textContent="正在抓取链接内容，请稍候…";
+  msg.className="book-fetch-msg";
+  msg.textContent=isDouyinUrl(url)?"正在抓取抖音链接（抖音常需登录，识别不到请手动补充）…":"正在抓取链接内容，请稍候…";
   try{
-    var info=await fetchBookInfo(raw);
+    var info=await fetchBookInfo(url);
+    var shell=isSiteShell(info.title);
+    if(shell)info={title:"",author:"",desc:"",rating:""};
     if(info.title)document.getElementById("bkf-title").value=info.title;
     var aEl=document.getElementById("bkf-author");
     if(info.author&&!String(aEl.value||"").trim())aEl.value=info.author;
@@ -7357,7 +7388,9 @@ async function smartFillBook(){
     if(info.rating)bookFetchedRating=info.rating;
     if(!info.title){
       msg.className="book-fetch-msg err";
-      msg.textContent="没能识别出书名，请手动填写下方字段（至少填书名）。";
+      msg.textContent=isDouyinUrl(url)
+        ? "抖音 / 直播间链接通常抓不到书名（页面需登录或内容由脚本生成），请手动填写书名。"
+        : "没能识别出书名，请手动填写下方字段（至少填书名）。";
     }else{
       msg.className="book-fetch-msg ok";
       msg.textContent="✓ 已识别书名"+(info.author?"、作者 "+(info.author||"")+"":"")+(info.desc?"，并自动填入简介":"")+(info.rating?"，豆瓣评分 "+info.rating:"")+"，可继续修改后保存。";
@@ -7553,9 +7586,11 @@ var GEAR_BRANDS=[["Sony","索尼"],["Canon","佳能"],["Nikon","尼康"],["Fujif
 function cleanGearTitle(t){
   t=String(t||"").replace(/\s+/g," ").trim();
   t=t.replace(/^[【\[（(][^】\])）]{0,20}[】\])）]\s*/,"");
-  t=t.replace(/\s*[-|｜_·—]\s*(京东|京东商城|天猫|淘宝|天猫商城|苏宁易购|苏宁|拼多多|亚马逊|Amazon|中关村在线|ZOL|什么值得买|SMZDM)[^]*$/i,"");
-  t=t.replace(/^\s*(?:京东|天猫|淘宝|苏宁|拼多多)\s*[-|｜]\s*/,"");
-  t=t.replace(/(?:自营|正品|官方旗舰店|旗舰店|专卖店|包邮|顺丰|全新|现货|国行|行货|官方授权|官方直营|全国联保|下单立减|领券|赠品)/g," ");
+  /* v5.95：抖音 / 直播带货标题里的 #话题标签 与引导语要先清掉 */
+  t=t.replace(/#[^\s#]{1,24}/g," ");
+  t=t.replace(/\s*[-|｜_·—]\s*(京东|京东商城|天猫|淘宝|天猫商城|苏宁易购|苏宁|拼多多|亚马逊|Amazon|中关村在线|ZOL|什么值得买|SMZDM|抖音商城|抖音|今日头条|西瓜视频)[^]*$/i,"");
+  t=t.replace(/^\s*(?:京东|天猫|淘宝|苏宁|拼多多|抖音|抖音商城)\s*[-|｜]\s*/,"");
+  t=t.replace(/(?:自营|正品|官方旗舰店|旗舰店|专卖店|包邮|顺丰|全新|现货|国行|行货|官方授权|官方直营|全国联保|下单立减|领券|赠品|直播中|正在直播|点击购物车|加入购物车|立即购买|橱窗|小店|同款|拍下|下单|快来抢购)/g," ");
   t=t.replace(/\s{2,}/g," ").trim();
   return t.slice(0,80);
 }
@@ -7644,16 +7679,20 @@ async function smartFillGear(){
   if(!urlEl||!msg||!btn)return;
   var raw=String(urlEl.value||"").trim();
   if(!raw){msg.className="book-fetch-msg err";msg.textContent="请先粘贴一个商品 / 购物链接。";return;}
-  if(!/^https?:\/\//i.test(raw)){
-    document.getElementById("gm-name").value=raw;
+  var url=extractFirstUrl(raw);   /* v5.95：兼容抖音口令——从整段分享文案里抽出链接 */
+  if(!url){
+    document.getElementById("gm-name").value=cleanGearTitle(raw).slice(0,50)||raw.slice(0,50);
     msg.className="book-fetch-msg ok";
-    msg.textContent="已按关键词填入器材名称，可继续补充品牌 / 型号 / 价格。";
+    msg.textContent="没检测到链接，已按关键词填入器材名称；要自动识别请粘贴完整商品链接。";
     return;
   }
   btn.disabled=true;var old=btn.textContent;btn.textContent="识别中…";
-  msg.className="book-fetch-msg";msg.textContent="正在抓取商品页，请稍候…";
+  msg.className="book-fetch-msg";
+  msg.textContent=isDouyinUrl(url)?"正在抓取抖音商品页（抖音常需登录，识别不到请手动补充）…":"正在抓取商品页，请稍候…";
   try{
-    var info=await fetchGearInfo(raw);
+    var info=await fetchGearInfo(url);
+    var shell=isSiteShell(info.title);          /* v5.95：抖音壳子页不算识别成功 */
+    if(shell)info={name:"",brand:"",model:"",price:0,category:"",title:""};
     if(info.name)document.getElementById("gm-name").value=info.name;
     if(info.brand)document.getElementById("gm-brand").value=info.brand;
     if(info.model)document.getElementById("gm-model").value=info.model;
@@ -7663,16 +7702,20 @@ async function smartFillGear(){
     if(info.brand)got.push("品牌 "+info.brand);
     if(info.model)got.push("型号 "+info.model);
     if(info.price)got.push("价格 ¥"+info.price.toLocaleString());
-    if(!got.length&&!info.name){
+    if(!got.length){
       msg.className="book-fetch-msg err";
-      msg.textContent="没能识别出型号或价格，请手动填写下方字段。";
+      msg.textContent=isDouyinUrl(url)
+        ? "抖音 / 直播间链接通常抓不到商品信息（页面需登录或内容由脚本生成），请手动填写品牌 / 型号 / 价格。"
+        : "没能识别出型号或价格，请手动填写品牌 / 型号 / 价格。";
     }else{
       msg.className="book-fetch-msg ok";
       msg.textContent="✓ 已识别 "+(got.length?got.join(" · "):"名称")+(info.category?"，类别建议「"+info.category+"」":"")+"，可修改后保存。";
     }
   }catch(e){
     msg.className="book-fetch-msg err";
-    msg.textContent="抓取失败（网络或站点限制），请手动填写品牌 / 型号 / 价格。";
+    msg.textContent=isDouyinUrl(url)
+      ? "抖音链接抓取失败（需登录或站点限制），请手动填写品牌 / 型号 / 价格。"
+      : "抓取失败（网络或站点限制），请手动填写品牌 / 型号 / 价格。";
   }finally{
     btn.disabled=false;btn.textContent=old;
   }
