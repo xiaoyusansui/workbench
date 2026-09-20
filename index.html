@@ -395,6 +395,13 @@
   .btn.hot{background:linear-gradient(135deg,var(--purple),#8b5cf6)}
   .btn.ghost{background:var(--bg3);color:var(--muted2);border:1px solid var(--glass-border)}.spacer{flex:1}
   .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+  /* v6.04 UI 美化/便捷专项：统一的「按下微反馈」+ 禁用态视觉 + 键盘可达焦点环
+     —— 纯样式增量，不改动任何布局与交互逻辑 */
+  .btn:active:not(:disabled){transform:translateY(1px) scale(.985)}
+  .btn:disabled{cursor:not-allowed;opacity:.55;filter:saturate(.7)}
+  .pf:active{transform:translateY(1px)}
+  .hc-btn:active{transform:translateY(1px)}
+  .btn:focus-visible,.pf:focus-visible,.hc-btn:focus-visible,.del:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   /* v5.97 语音速记 · v5.99「琥珀声场」 · v6.00 豆包式输入条 · v6.01 手机端贴底输入条 · v6.02 审计修复（重入守卫/幂等停止/状态归一化/dt 转义）：绿玉麦克风 + 琥珀声波，弃用红色警报感 */
   .btn.voice-btn{background:linear-gradient(135deg,var(--amber),var(--gold));color:#161f2e;
     border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 12px var(--gold-glow)}
@@ -5265,7 +5272,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.03</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.04</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5784,7 +5791,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.03";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.04";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6584,6 +6591,13 @@ function dupRow(i){
 /* v5.92 P1-1：新增保留筛选环境 —— 不再强制清空筛选/搜索/板块，避免批量录入时反复重置条件 */
 let PLAN_BLANK_I=-1;   /* 刚新增、尚未填写的空白行索引（失焦自动清理用） */
 function addRowPlan(){
+  /* v6.04 修：连点「＋ 新增」会不断 push 空白行，而失焦自动清理只认 PLAN_BLANK_I（最后一条），
+     导致前面若干条空行永久残留、污染统计与逾期判断。新增前先回收上一条「仍为空」的待填写行。 */
+  if(PLAN_BLANK_I>=0){
+    const pb=DB.rows[PLAN_BLANK_I];
+    if(pb&&!String(pb.t||"").trim()&&!String(pb.m||"").trim())DB.rows.splice(PLAN_BLANK_I,1);
+    PLAN_BLANK_I=-1;
+  }
   const dt=new Date();dt.setDate(dt.getDate()+7);
   DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:localDateStr(dt),m:"",key:0});
   const ni=DB.rows.length-1;
@@ -6595,6 +6609,7 @@ function addRowPlan(){
   const card=document.getElementById("pm-card-"+ni);
   if(tr||card){
     focusPlanRow(ni);                 /* 新行可见：滚入视野并聚焦「事项」输入框 */
+    toast("已新增一行，填写「事项」后自动保存 ✓","ok");   /* v6.04：补齐可见新增的成功反馈（原先静默） */
   }else{
     markPlanFresh(-1);
     PLAN_BLANK_I=-1;
@@ -6611,7 +6626,7 @@ function onPlanTitleBlur(i,el){
   DB.rows.splice(i,1);PLAN_BLANK_I=-1;save();renderPlan();
   toast("未填写事项，空白行已自动清理","warn");
 }
-function delRowPlan(i){DB.rows.splice(i,1);if(PLAN_BLANK_I===i)PLAN_BLANK_I=-1;save();renderPlan();}
+function delRowPlan(i){if(!confirm("删除该事项？"))return;DB.rows.splice(i,1);if(PLAN_BLANK_I===i)PLAN_BLANK_I=-1;save();renderPlan();toast("已删除事项","ok");}
 
 /* ==================== v5.97 语音速记 ==================== */
 const AI_VOICE_KEY="xiaoyu_aivoice_cfg";
@@ -6821,6 +6836,21 @@ function parseVoiceToTasks(text){
 /* v6.02：合法状态白名单（AI 返回的 status 属不可信输入，必须归一化后再入库） */
 const STATUS_OK=["未启动","待处理","等待中","进行中","已完成"];
 
+/* v6.04 加固：模型返回可能是 顶层数组 / {tasks:[]} / markdown 围栏 / 前后夹带说明文字 —— 逐一兼容。
+   旧实现只认 {tasks:[]}，遇到裸数组（[{...}]）会把 "[{" 前的字符和 "}]" 后的字符裁掉后解析失败，
+   最终 return null，导致「模型明明给了结果却被丢弃」的 AI 翻车。 */
+function tryJSON(s){try{return JSON.parse(s);}catch(e){return undefined;}}
+function parseLooseJSON(s){
+  if(s==null)return null;
+  var t=String(s).trim();
+  t=t.replace(/^```[a-zA-Z]*\s*/,"").replace(/```\s*$/,"").trim();   /* 去 markdown 代码围栏 */
+  var v=tryJSON(t);if(v!==undefined)return v;
+  var i1=t.indexOf("{"),i2=t.indexOf("["),st=(i1<0?i2:(i2<0?i1:Math.min(i1,i2)));
+  var j1=t.lastIndexOf("}"),j2=t.lastIndexOf("]"),en=Math.max(j1,j2);
+  if(st>=0&&en>st){v=tryJSON(t.slice(st,en+1));if(v!==undefined)return v;}
+  t=t.replace(/^[^{[]*/,"").replace(/[^}\]]*$/,"");                  /* 兜底：裁掉首尾非 JSON 字符 */
+  v=tryJSON(t);return v===undefined?null:v;
+}
 /* 可选：调用大模型做结构化提取（失败回退本地） */
 async function aiExtractTasks(text){
   const cfg=loadAIVoiceCfg();
@@ -6836,8 +6866,8 @@ async function aiExtractTasks(text){
     const j=await res.json();
     const content=j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;
     if(!content)return null;
-    const obj=JSON.parse(content.replace(/^[^{]*/,"").replace(/[^}]*$/,""));
-    const arr=Array.isArray(obj)?obj:(obj.tasks||obj.items||[]);
+    const obj=parseLooseJSON(content);
+    const arr=Array.isArray(obj)?obj:((obj&&(obj.tasks||obj.items||obj.list))||[]);
     if(!arr||!arr.length)return null;
     return arr.map(function(o){
       var b=String(o.board==null?"":o.board);if(BANKUAI_PLAN.indexOf(b)<0)b="策划方案";
@@ -7114,7 +7144,9 @@ function addLesson(e,mi){
   setTimeout(function(){toggleMod(mi,true)},30);
 }
 function addModule(){
-  var name=prompt("新模块名称：");if(!name)return;
+  /* v6.04 边界修复：拦截「全空格」模块名，避免生成空白模块卡片 */
+  var name=prompt("新模块名称：");if(!name||!String(name).trim()){toast("未填写模块名称，已取消","warn");return;}
+  name=String(name).trim();
   DB.courses.push({name:name,badge:"自定义",color:bkColor(name),
     goal:"",targetDate:"",duration:"",
     assignments:[],lessons:[{t:"第一课",done:false,diff:"easy",note:""}]});
@@ -7154,7 +7186,12 @@ function setLessonLink(mi,li){
 /* ==================== 热点 ==================== */
 let hotFilter="all";
 function filterHot(pf,el){
-  hotFilter=pf;document.querySelectorAll(".platform-tabs .pf").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderHotCards();
+  hotFilter=pf;
+  document.querySelectorAll(".platform-tabs .pf").forEach(x=>x.classList.remove("active"));
+  /* v6.04 健壮性：el 可能为 null（程序化调用 / 空态兜底），旧写法 el.classList 会抛 TypeError 中断渲染 */
+  if(!el||!el.classList){try{el=document.querySelector('.platform-tabs .pf[onclick*="filterHot(\''+pf+'\'"]');}catch(e){}}
+  if(el&&el.classList)el.classList.add("active");
+  renderHotCards();
 }
 function renderHot(){renderHotCards();}
 /* —— v5.84 热点直达平台：点卡片/点「去观看」→ 在新标签打开对应平台 ——
@@ -7191,6 +7228,12 @@ function renderHotCards(){
   const list=DB.hots.filter(h=>hotFilter==="all"||h.pf===hotFilter);
   const grid=document.getElementById("hot-grid");
   if(!grid)return;
+  /* v6.04 空态引导：无热点时给出「还没有…」文案 + 一键添加按钮（与灵感 / 器材等模块视觉统一，
+     旧实现只显示平台筛选条，新手不知道下一步该做什么） */
+  if(!DB.hots.length){
+    grid.innerHTML=emptyState({icon:"🔥",text:"还没有采集任何热点",sub:"把刷到的爆款选题 / 竞品动态存下来，拍摄与选题前就有现成的参考",btn:"＋ 手动添加热点",action:"addHot()"});
+    return;
+  }
   grid.innerHTML=list.map((h,i)=>{
     const origIdx=DB.hots.indexOf(h),pfClass=h.pf,pfLabel=hotPfName(h.pf);
     const icon=h.pf==="xhs"?"📕":h.pf==="dy"?"🎵":"📺";
@@ -7221,12 +7264,13 @@ function renderHotCards(){
 }
 function toggleHot(i){DB.hots[i].done=!DB.hots[i].done;save();renderHotCards();}
 function addHot(){
-  const title=prompt("热点标题：");if(!title)return;
+  /* v6.04 边界修复：旧写法 if(!title) 无法拦截「全空格」标题，会把空白标题写进数据（列表出现空卡片） */
+  const title=prompt("热点标题：");if(!title||!String(title).trim()){estToast("未填写标题，已取消添加");return;}
   const pf=prompt("平台（xhs=小红书 / dy=抖音 / bz=B站）：")||"xhs";
   const desc=prompt("简要描述：")||"";
   const tagsRaw=prompt("标签（空格分隔，可留空）：")||"";
   const link=prompt("原文链接或平台搜索关键词（留空=按标题自动搜索）：")||"";
-  const h={pf:(pf==="dy"||pf==="bz")?pf:"xhs",title:title,desc:desc,
+  const h={pf:(pf==="dy"||pf==="bz")?pf:"xhs",title:String(title).trim(),desc:desc,
     tags:tagsRaw.split(/[\s,，]+/).filter(Boolean),url:"",kw:"",done:false};
   applyHotLink(h,link);
   DB.hots.push(h);save();renderHotCards();
@@ -7840,6 +7884,31 @@ function isSiteShell(t){
 function isDouyinUrl(u){
   return /(^|\.)(douyin\.com|iesdouyin\.com|jinritemai\.com|haohuo\.jinritemai\.com|snssdk1128)/i.test(String(u||""));
 }
+/* v6.04 书籍侧「本地兜底」：与器材侧对齐 —— 线上抓取失败时，直接从用户粘贴的整段分享文案里
+   本地提取书名/作者（零网络），避免「明明文案里就有书名，却要求用户再粘一次」的二次操作。 */
+function bookLocalFallback(raw){
+  try{
+    var src=String(raw||"").replace(/https?:\/\/\S+/g," ");
+    /* v6.04 脏数据护栏：抖音「口令 + 营销话术」整段里根本没有书名，拿它当书名就是脏数据 ——
+       这类文本一律不填，只走「提示手动填写」分支（与器材侧 gearSafeName 的护栏对齐）。 */
+    if(/(复制此链接|复制本条信息|打开抖音|打开抖音搜索|直接观看视频|看看[^。]{0,12}的作品|直播间|正在直播|点击购物车|加入购物车|立即购买|抖店|橱窗|快来抢购)/.test(src))return "";
+    var lb=parseBookText("Title: "+src,"");
+    var title=(lb&&lb.title)||cleanBookTitle(src)||"";
+    title=String(title)
+      .replace(/[￥¥]\s*[\d.]+/g,"")                                   /* 去价格 */
+      .replace(/\s+[A-Za-z][A-Za-z.\s·]{1,30}\s*(著|编著|主编|译)\s*$/,"")  /* 去英文作者 + 著/译 */
+      .replace(/\s{2,}/g," ").trim();
+    if(title.length>40)title=title.slice(0,40);
+    if(title.length<2)return "";                                       /* 太短/空 → 视为没识别到，不填 */
+    var tEl=document.getElementById("bkf-title");
+    if(title&&tEl&&!String(tEl.value||"").trim())tEl.value=title;
+    var aEl=document.getElementById("bkf-author");
+    if(lb&&lb.author&&aEl&&!String(aEl.value||"").trim())aEl.value=lb.author;
+    var dEl=document.getElementById("bkf-desc");
+    if(lb&&lb.desc&&dEl&&!String(dEl.value||"").trim())dEl.value=lb.desc;
+    return title;
+  }catch(e){return "";}
+}
 async function smartFillBook(){
   var urlEl=document.getElementById("bkf-url"),msg=document.getElementById("bkf-msg"),
       btn=document.getElementById("bkf-btn");
@@ -7871,20 +7940,24 @@ async function smartFillBook(){
     if(info.rating)bookFetchedRating=info.rating;
     if(!info.title){
       msg.className="book-fetch-msg err";
+      var lt=bookLocalFallback(raw);   /* v6.04：抓不到先本地兜底，免二次粘贴 */
       msg.textContent=(isDouyinUrl(url)
         ? "抖音 / 直播间链接通常抓不到书名（页面需登录或内容由脚本生成）。"
         : "抓取失败：该页面需要登录或禁止抓取。")
-        + "💡 可直接把书名 / 商品标题文字粘到上面的输入框再点一次「智能识别」，本地也能识别。";
+        + "💡 可直接把书名 / 商品标题文字粘到上面的输入框再点一次「智能识别」，本地也能识别。"
+        + (lt?"（已从你粘贴的文字里自动识别出：「"+lt+"」）":"");
     }else{
       msg.className="book-fetch-msg ok";
       msg.textContent="✓ 已识别书名"+(info.author?"、作者 "+(info.author||"")+"":"")+(info.desc?"，并自动填入简介":"")+(info.rating?"，豆瓣评分 "+info.rating:"")+"，可继续修改后保存。";
     }
   }catch(e){
     msg.className="book-fetch-msg err";
+    var lt2=bookLocalFallback(raw);   /* v6.04：网络异常时同样本地兜底 */
     msg.textContent=(isDouyinUrl(url)
       ? "抖音 / 直播间链接通常抓不到书名（页面需登录或内容由脚本生成）。"
       : "抓取失败（页面需登录 / 网络或站点限制）。")
-      + "💡 可直接把书名 / 商品标题文字粘到上面的输入框再点一次「智能识别」，本地也能识别。";
+      + "💡 可直接把书名 / 商品标题文字粘到上面的输入框再点一次「智能识别」，本地也能识别。"
+      + (lt2?"（已从你粘贴的文字里自动识别出：「"+lt2+"」）":"");
   }finally{
     btn.disabled=false;btn.textContent=old;
   }
