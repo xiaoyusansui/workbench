@@ -395,41 +395,62 @@
   .btn.hot{background:linear-gradient(135deg,var(--purple),#8b5cf6)}
   .btn.ghost{background:var(--bg3);color:var(--muted2);border:1px solid var(--glass-border)}.spacer{flex:1}
   .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
-  /* v5.97 语音速记 · v5.99 视觉重做「琥珀声场」：绿玉麦克风 + 琥珀声波，弃用红色警报感 */
+  /* v5.97 语音速记 · v5.99「琥珀声场」 · v6.00 豆包式输入条：绿玉麦克风 + 琥珀声波，弃用红色警报感 */
   .btn.voice-btn{background:linear-gradient(135deg,var(--amber),var(--gold));color:#161f2e;
     border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 12px var(--gold-glow)}
   .btn.voice-btn:hover{filter:brightness(1.06);box-shadow:0 4px 18px var(--gold-glow)}
-  .voice-hold{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;
-    margin:12px 0 4px;padding:18px 14px 14px;border-radius:18px;border:1px solid var(--glass-border);
-    background:radial-gradient(130% 100% at 50% 0%,var(--gold-glow),transparent 58%)}
-  .voice-mic{position:relative;width:104px;height:104px;flex:none;padding:0;border-radius:50%;cursor:pointer;
+  /* 输入胶囊条（仿豆包「发消息或按住说话」）：左方形图标 + 文本域 + 声波 + 麦克风圆钮 + 发送圆钮 */
+  .voice-hold{position:relative;display:flex;align-items:center;gap:7px;
+    margin:12px 0 4px;padding:7px 8px 7px 9px;border-radius:23px;border:1px solid var(--glass-border);
+    background:radial-gradient(130% 170% at 10% 0%,var(--gold-glow),transparent 60%),var(--bg3);transition:.15s}
+  .voice-hold:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+  .vc-ico{flex:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--glass-border);
+    background:var(--surface);color:var(--muted2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
+  .vc-ico:hover{color:var(--gold2);border-color:var(--gold);background:var(--surface-hover)}
+  .vc-ico svg{width:19px;height:19px}
+  .vc-field{flex:1;min-width:0;display:flex}
+  .voice-text{width:100%;min-height:38px;max-height:120px;resize:none;border:none;background:transparent;
+    color:var(--ink);padding:9px 3px;font-size:14px;line-height:1.45;box-sizing:border-box;font-family:inherit;
+    outline:none;overflow-y:auto}
+  .voice-text:focus{outline:none;box-shadow:none}
+  .voice-text::placeholder{color:var(--muted3)}
+  /* 麦克风圆钮：待命绿玉 / 录制琥珀金 */
+  .voice-mic{position:relative;width:42px;height:42px;flex:none;padding:0;border-radius:50%;cursor:pointer;
     display:flex;align-items:center;justify-content:center;color:#fff;border:1.5px solid var(--mic-ring);
     background:linear-gradient(150deg,var(--brand2) 0%,var(--brand) 48%,var(--teal) 100%);
-    box-shadow:0 10px 28px var(--mic-glow),inset 0 1px 0 rgba(255,255,255,.28),inset 0 -10px 20px rgba(0,0,0,.13);
+    box-shadow:0 4px 14px var(--mic-glow),inset 0 1px 0 rgba(255,255,255,.28);
     transition:transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .2s,background .2s;
     user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
-  .voice-mic svg{width:42px;height:42px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.22))}
-  .voice-mic::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1px dashed rgba(255,255,255,.26);pointer-events:none}
+  .voice-mic svg{width:20px;height:20px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+  .voice-mic::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(255,255,255,.26);pointer-events:none}
   .voice-mic::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--amber);opacity:0;pointer-events:none}
-  .voice-mic:hover{box-shadow:0 12px 32px var(--mic-glow),inset 0 1px 0 rgba(255,255,255,.3),0 0 0 6px var(--gold-glow)}
-  .voice-mic:active,.voice-mic.active{transform:scale(.945)}
+  .voice-mic:hover{box-shadow:0 6px 18px var(--mic-glow),inset 0 1px 0 rgba(255,255,255,.3),0 0 0 5px var(--gold-glow)}
+  .voice-mic:active,.voice-mic.active{transform:scale(.94)}
   .voice-mic.listening{background:linear-gradient(150deg,var(--amber) 0%,#f0a52a 46%,var(--gold) 100%);
-    border-color:var(--amber);box-shadow:0 10px 32px var(--mic-glow2),inset 0 1px 0 rgba(255,255,255,.34)}
+    border-color:var(--amber);box-shadow:0 6px 20px var(--mic-glow2),inset 0 1px 0 rgba(255,255,255,.34)}
   .voice-mic.listening::before{border-color:rgba(255,255,255,.5)}
   .voice-mic.listening::after{animation:vmicRipple 1.7s ease-out infinite}
-  @keyframes vmicRipple{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(1.52)}}
-  .voice-wave{display:flex;align-items:center;justify-content:center;gap:5px;height:24px}
-  .voice-wave i{display:block;width:4px;height:7px;border-radius:99px;background:var(--gold);opacity:.3}
+  @keyframes vmicRipple{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+  /* 琥珀声波条（紧随麦克风之后，兄弟选择器驱动，零 JS） */
+  .voice-wave{display:flex;align-items:center;justify-content:center;gap:3px;height:22px;flex:none}
+  .voice-wave i{display:block;width:3px;height:6px;border-radius:99px;background:var(--gold);opacity:.28}
   .voice-mic.listening ~ .voice-wave i{opacity:1;animation:vwave .95s ease-in-out infinite}
   .voice-mic.listening ~ .voice-wave i:nth-child(2){animation-delay:.12s}
   .voice-mic.listening ~ .voice-wave i:nth-child(3){animation-delay:.24s}
   .voice-mic.listening ~ .voice-wave i:nth-child(4){animation-delay:.36s}
   .voice-mic.listening ~ .voice-wave i:nth-child(5){animation-delay:.48s}
-  @keyframes vwave{0%,100%{height:7px}50%{height:22px}}
+  @keyframes vwave{0%,100%{height:6px}50%{height:20px}}
+  /* 发送圆钮（解析为工作事项） */
+  .vc-send{flex:none;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;color:#161f2e;
+    background:linear-gradient(135deg,var(--amber),var(--gold));display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 10px var(--gold-glow);transition:.15s}
+  .vc-send:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .vc-send:active{transform:translateY(0) scale(.95)}
+  .vc-send svg{width:20px;height:20px}
   .voice-tip{font-size:12px;color:var(--muted2);text-align:left;line-height:1.7;margin:10px 0 4px;
     background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:9px 12px}
-  .voice-status{font-size:12.5px;font-weight:700;min-height:20px;text-align:center;color:var(--gold2);
-    display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:99px;
+  .voice-status{font-size:12.5px;font-weight:700;min-height:20px;color:var(--gold2);
+    display:inline-flex;align-items:center;gap:6px;margin-top:9px;padding:5px 14px;border-radius:99px;
     background:var(--gold-glow);border:1px solid var(--mic-ring)}
   .voice-status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8;flex:none}
   .voice-status.err{color:var(--coral);background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3)}
@@ -440,11 +461,12 @@
   .voice-title-ic{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;flex:none;
     border-radius:8px;background:var(--gold-glow);border:1px solid var(--mic-ring);color:var(--gold2)}
   .voice-title-ic svg{width:14px;height:14px}
-  .voice-text{width:100%;min-height:96px;resize:vertical;border-radius:14px;border:1px solid var(--glass-border);
-    background:var(--bg3);color:var(--ink);padding:12px 14px;font-size:14px;line-height:1.65;box-sizing:border-box;
-    font-family:inherit;outline:none;transition:.15s}
-  .voice-text:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
-  .voice-text::placeholder{color:var(--muted3)}
+  /* 手机端：语音弹窗吸附屏幕底部，更像豆包输入条 */
+  @media(max-width:640px){
+    #voice-plan-modal{align-items:flex-end}
+    #voice-plan-modal .voice-box{margin:0;max-width:100%;width:100%;border-radius:20px 20px 0 0;
+      max-height:92vh;overflow-y:auto;padding-bottom:22px}
+  }
   .voice-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
   .voice-actions .btn{flex:1;min-width:120px}
   #voice-preview-wrap{margin-top:14px;display:none}
@@ -5236,7 +5258,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.99</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.00</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5253,19 +5275,20 @@ window.QRCode = {
         </div>
       </div>
 
-      <!-- 🎤 语音速记弹窗 v5.97（v5.99 视觉重做：琥珀声场） -->
+      <!-- 🎤 语音速记弹窗 v5.97（v6.00 视觉重做：豆包式输入条） -->
       <div class="modal" id="voice-plan-modal" style="display:none" data-page-node-id="v597VoiceModal">
         <div class="modal-box voice-box" data-page-node-id="v597VoiceBox">
           <h3 data-page-node-id="v597VoiceTitle"><span class="voice-title-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3.5"/><path d="M8.5 21.5h7"/></svg></span>语音速记</h3>
-          <div class="voice-tip" data-page-node-id="v597VoiceHint">按住下方麦克风说话，说完松手即可停止；松开后点「解析」自动生成工作事项。<br>支持 Chrome / Edge（含手机端）。Firefox / Safari 暂不支持，会提示手动输入。</div>
+          <div class="voice-tip" data-page-node-id="v597VoiceHint">按住胶囊里的麦克风说话，说完松手即停；再点右侧金色箭头，自动生成工作事项。<br>支持 Chrome / Edge（含手机端）。Firefox / Safari 暂不支持，可点左侧键盘图标直接打字。示例：「明天联系供应商把物料款付了，这个很重要；下周做个开盘活动方案」。</div>
 
           <div class="voice-hold" data-page-node-id="v597VoiceHold">
+            <button class="vc-ico" id="voice-kbd" type="button" onclick="voiceKbdFocus()" title="键盘输入" aria-label="切换到键盘输入"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M6.5 13.5h11"/></svg></button>
+            <div class="vc-field"><textarea class="voice-text" id="voice-text" rows="1" placeholder="按住说话，或输入任务…" oninput="voiceGrow(this)" data-page-node-id="v597VoiceText"></textarea></div>
             <button class="voice-mic" id="voice-mic" title="按住说话" aria-label="按住说话，松手停止"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3.5"/><path d="M8.5 21.5h7"/></svg></button>
             <div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="voice-status" id="voice-status" data-page-node-id="v597VoiceStatus">准备就绪</div>
+            <button class="vc-send" id="voice-send" type="button" onclick="parseVoiceNow()" title="解析为工作事项" aria-label="解析为工作事项"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5.5"/><path d="M6 11.5 12 5.5l6 6"/></svg></button>
           </div>
-
-          <textarea class="voice-text" id="voice-text" placeholder="语音转写会实时显示在这里；不支持语音时也可直接手动输入，再点「解析」。&#10;示例：明天联系供应商把物料款付了，这个很重要；下周做个开盘活动方案，还有样板间面积要确认。" data-page-node-id="v597VoiceText"></textarea>
+          <div class="voice-status" id="voice-status" data-page-node-id="v597VoiceStatus">准备就绪</div>
 
           <div class="voice-actions" data-page-node-id="v597VoiceActions">
             <button class="btn ghost" onclick="voiceToggleMode()" id="voice-toggle" data-page-node-id="v597VoiceToggle">🔁 连续模式：关</button>
@@ -5754,7 +5777,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.99";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.00";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6621,7 +6644,7 @@ function refreshAIVoiceUI(){
 /* 打开 / 关闭语音弹窗 */
 function openVoicePlan(){
   document.getElementById("voice-plan-modal").style.display="flex";
-  const ta=document.getElementById("voice-text");if(ta)ta.value="";
+  const ta=document.getElementById("voice-text");if(ta){ta.value="";ta.style.height="";}
   const pw=document.getElementById("voice-preview-wrap");if(pw)pw.style.display="none";
   vpTasks=[];
   updateVoiceStatus("准备就绪");
@@ -6630,6 +6653,15 @@ function openVoicePlan(){
 function closeVoicePlan(){
   voiceStop();
   document.getElementById("voice-plan-modal").style.display="none";
+}
+/* v6.00 豆包式输入条：左侧键盘图标聚焦文本域；文本域随内容自适应高度（带守卫，jsdom 下不生效也不报错） */
+function voiceKbdFocus(){
+  const t=document.getElementById("voice-text");if(t)t.focus();
+}
+function voiceGrow(el){
+  if(!el||!el.scrollHeight)return;
+  el.style.height="auto";
+  el.style.height=Math.min(el.scrollHeight,120)+"px";
 }
 
 /* Web Speech API 封装 */
@@ -6647,7 +6679,7 @@ function voiceInit(){
       else interim+=res[0].transcript;
     }
     const ta=document.getElementById("voice-text");
-    if(ta)ta.value=voiceFinal+(interim?interim:"");
+    if(ta){ta.value=voiceFinal+(interim?interim:"");voiceGrow(ta);}
   };
   r.onerror=function(e){
     const err=e&&e.error?e.error:"";
