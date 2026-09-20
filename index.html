@@ -4828,12 +4828,12 @@ window.QRCode = {
             <div class="jm-body" data-page-node-id="bAmpH1tX4IIHMXCmzotAne">
               <div class="jm-field" data-page-node-id="v594GmUrlField"><label data-page-node-id="v594GmUrlLabel">🔗 购物链接（自动识别品牌 / 型号 / 价格）</label>
                 <div class="gm-fetch">
-                  <input type="text" id="gm-url" placeholder="粘贴 京东 / 天猫 / 淘宝 / 官网 商品链接" autocomplete="off"/>
+                  <input type="text" id="gm-url" placeholder="粘贴 京东 / 天猫 / 淘宝 / 官网 商品链接（粘贴即识别）" autocomplete="off" onpaste="gearUrlPaste()"/>
                   <button type="button" id="gm-fetch-btn" onclick="smartFillGear()">🔍 智能识别</button>
                 </div>
                 <div class="book-fetch-msg" id="gm-fetch-msg">粘贴商品链接自动识别；链接抓不到也没关系 —— 直接粘贴商品<b>标题文字</b>，本地也能识别出品牌 / 型号 / 价格。</div>
               </div>
-              <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9"/><div class="jm-err" data-page-node-id="v592GmNameErr">器材名称为必填</div></div>
+              <div class="jm-field" data-page-node-id="cb7cBEpzaVxzkusfEllYsf"><label data-page-node-id="BJsiRJX6uN3QNnSc4Nf0nl">📷 器材名称 *</label><input id="gm-name" placeholder="如：Sony A7M4" data-page-node-id="r8dT8nmgLSFIkhwMADAPF9" onpaste="gearNamePaste()"/><div class="jm-err" data-page-node-id="v592GmNameErr">器材名称为必填</div></div>
               <div class="jm-row2" data-page-node-id="mYzPMnZoVBVACr81YRC48U">
                 <div class="jm-field" data-page-node-id="jjtqO0MMqe4srgG8BVnAIK"><label data-page-node-id="uc2RRScQ5xuySk2WvIuMCQ">🏷 类别</label><select id="gm-category" data-page-node-id="UK5O6cruLwjIg7pmLoj0vP"></select></div>
                 <div class="jm-field" data-page-node-id="0gF4LyYtbr8ck2zbydCGkt"><label data-page-node-id="pVtsXIT1AGD2BU1nmFNoHo">📊 状态</label><select id="gm-status" data-page-node-id="lODG0sQkEdgj7eqcqsyTDn"><option value="active" data-page-node-id="ov6FkPLx5gzzaIziDsZadm">✅ 在用</option><option value="repair" data-page-node-id="OEC49nGZhNsiza98QI7ceW">🔧 维修中</option><option value="retired" data-page-node-id="mmsiEQLw8ZigCGmD79WSAb">📦 已退役</option></select></div>
@@ -5198,7 +5198,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.97</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v5.98</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5715,7 +5715,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="5.97";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="5.98";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -8079,50 +8079,144 @@ function applyGearFill(info){
   if(info.category){var cEl=document.getElementById("gm-category");if(cEl&&(!cEl.value||cEl.value==="配件"))cEl.value=info.category;}
   return got;
 }
-/* 智能识别按钮：粘贴链接 → 抓取识别；粘贴标题文字 → 本地离线识别（不依赖任何网络） */
+/* v5.98：智能识别——核心改进「粘贴即识别 + 链接抓取失败时本地离线兜底」。
+   用户复制的京东 / 淘宝 / 抖音分享文案往往已含「品牌 型号 价格」，但旧逻辑一旦抽到了链接就走「线上抓取」分支，
+   而免费抓取代理已基本停服、京东直连也不稳定 → 抓取失败 → 提示用户「再粘贴一次标题文字」，
+   等于让用户做第二次粘贴 + 第二次点击，这就是「捕捉起来很困难，并不便捷」的根因。
+   新逻辑：本地离线识别永远先跑（从粘贴原文直接抽品牌/型号/价格），线上抓取只作为「增强」去补齐 / 覆盖；
+   任一路径拿到结果即回填，绝不要求用户二次粘贴。 */
+/* 由本地离线识别结果推导一个"安全"的器材名称：品牌+型号优先；
+   ⚠️ 绝不能把裸链接 / 域名当成名称填进表单（仅粘链接且抓取失败时会走到这里，
+   旧逻辑会把 "https://item.jd.com/100012043978.html" 直接填成器材名——典型脏数据）。 */
+/* allowTitle=false（默认）：只认「品牌+型号」，绝不拿整段分享文案 / 裸链接当名称。
+   只有「粘贴的是纯标题文字（无链接）」这条路径才允许用标题兜底名称（allowTitle=true）。 */
+/* 去掉标题里已出现的品牌词（中英文都去），避免拼成「Rode Rode 无线麦克风」 */
+function gearTitleNoBrand(t,en){
+  var s=String(t||"");
+  if(en){
+    s=s.replace(new RegExp(en.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"ig")," ");
+    for(var i=0;i<GEAR_BRANDS.length;i++){if(GEAR_BRANDS[i][0]===en&&GEAR_BRANDS[i][1])s=s.split(GEAR_BRANDS[i][1]).join(" ");}
+  }
+  return s.replace(/\s{2,}/g," ").replace(/^[\s\-–—:：,，、]+|[\s\-–—:：,，、]+$/g,"").trim();
+}
+function gearSafeName(loc,allowTitle){
+  var b=(loc&&loc.brand)||"",m=(loc&&loc.model)||"";
+  var t=String((loc&&loc.title)||"").trim();
+  /* 脏数据守卫：裸链接 / 域名 / 分享文案一律不作为名称来源 */
+  var tOk=!!t && !/^https?:\/\//i.test(t)
+    && !/^[a-z0-9.-]{2,40}\.(com|cn|net|org|io|xyz|jd|tmall)(\/|:|$)/i.test(t)
+    && !/复制此(条)?(信息|链接)|打开(抖音|淘宝|京东)|长按复制|￥?\d+(\.\d+)?\s*复制/i.test(t);
+  if(b&&m)return b+" "+m;
+  if(b){
+    /* 只识别出品牌、没有型号时，保留品牌+品类名（如「Rode 无线麦克风」），别退化成光秃秃的品牌 */
+    if(allowTitle&&tOk){var rest=gearTitleNoBrand(t,b);if(rest)return (b+" "+rest).slice(0,50);}
+    return b;
+  }
+  if(m)return m;
+  if(!allowTitle||!tOk)return "";
+  return t.slice(0,50);
+}
+/* 线上优先、本地兜底地挑名称 */
+function gearPickName(info,loc){
+  if(info&&info.name){
+    var nm=String(info.name).trim();
+    if(nm&&!/^https?:\/\//i.test(nm))return nm;
+  }
+  return gearSafeName(loc,false);
+}
 async function smartFillGear(){
   var urlEl=document.getElementById("gm-url"),msg=document.getElementById("gm-fetch-msg"),btn=document.getElementById("gm-fetch-btn");
   if(!urlEl||!msg||!btn)return;
   var raw=String(urlEl.value||"").trim();
   if(!raw){msg.className="book-fetch-msg err";msg.textContent="请粘贴商品链接，或直接粘贴商品标题文字。";return;}
+  /* 本地离线识别永远先跑：从整段粘贴原文（含分享文案里的品牌/型号/价格）直接提取，零网络依赖 */
+  var loc=parseGearText("Title: "+raw,"");
   var url=extractFirstUrl(raw);   /* v5.95：兼容抖音口令——从整段分享文案里抽出链接 */
   if(!url){
-    /* v5.96 离线识别：直接粘贴商品标题（京东 App 长按标题即可复制）也能提取品牌/型号/价格，
-       不依赖任何抓取通道 —— 免费 reader 代理大面积停服时的保底路径。 */
-    var loc=parseGearText("Title: "+raw,"");
-    var gotLoc=applyGearFill(loc);
+    /* 没有链接：纯标题文字 → 离线识别（已有能力，零网络） */
+    var gotLoc=applyGearFill({name:gearSafeName(loc,true),brand:loc.brand||"",model:loc.model||"",price:loc.price||0,category:loc.category||""});
     msg.className="book-fetch-msg "+(gotLoc.length?"ok":"");
     msg.textContent=gotLoc.length
       ? "✓ 已从标题本地识别 "+gotLoc.join(" · ")+(loc.category?"，类别建议「"+loc.category+"」":"")+"，可修改后保存。"
-      : "没检测到链接，已按关键词填入名称；也可直接粘贴商品标题文字来自动识别。";
+      : "已按关键词填入名称；也可补充品牌 / 型号 / 价格后保存。";
     return;
   }
   btn.disabled=true;var old=btn.textContent;btn.textContent="识别中…";
   msg.className="book-fetch-msg";
-  msg.textContent=isDouyinUrl(url)?"正在抓取抖音商品页（抖音常需登录，识别不到请手动补充）…":"正在抓取商品页，请稍候…";
+  msg.textContent=isDouyinUrl(url)?"正在抓取抖音商品页（抖音常需登录，识别不到会自动用本地识别）…":"正在抓取商品页，请稍候…";
   try{
     var info=await fetchGearInfo(url);
-    if(isSiteShell(info.title))info={name:"",brand:"",model:"",price:0,category:"",title:""};
-    var got=applyGearFill(info);
+    var shell=info&&isSiteShell(info.title);
+    var onLine=!!(info&&!shell);
+    /* 合并：线上优先，缺失字段用本地离线识别补齐（不覆盖已识别出的字段） */
+    var finalInfo={
+      name:gearPickName(info,loc),
+      brand:(info&&info.brand)||loc.brand||"",
+      model:(info&&info.model)||loc.model||"",
+      price:(info&&info.price)||loc.price||0,
+      category:(info&&info.category)||loc.category||""
+    };
+    var got=applyGearFill(finalInfo);
     if(!got.length){
       msg.className="book-fetch-msg err";
-      msg.textContent=(isDouyinUrl(url)
-        ? "抖音 / 直播间链接通常抓不到商品信息（页面需登录或内容由脚本生成）。"
-        : "抓取失败：该商品页需要登录或禁止抓取，抓取通道暂时不可用。")
-        + "💡 可直接把商品标题文字粘到上面的输入框，再点一次「智能识别」——本地也能识别出品牌 / 型号 / 价格。";
+      msg.textContent=(shell||isDouyinUrl(url)
+        ? "抖音 / 直播间链接通常需要登录才能看到商品信息。"
+        : "链接抓取通道暂时不可用（页面需登录或站点限制）。")
+        + "已尝试本地识别但未提取到品牌 / 型号 / 价格；💡 也可直接粘贴商品标题文字，本地识别无需联网。";
     }else{
       msg.className="book-fetch-msg ok";
-      msg.textContent="✓ 已识别 "+got.join(" · ")+(info.category?"，类别建议「"+info.category+"」":"")+"，可修改后保存。";
+      var note=onLine?"":"（线上抓取不可用，已自动改用本地识别，信息可能不全）";
+      msg.textContent="✓ 已识别 "+got.join(" · ")+(finalInfo.category?"，类别建议「"+finalInfo.category+"」":"")+note+"，可修改后保存。";
     }
   }catch(e){
-    msg.className="book-fetch-msg err";
-    msg.textContent=(isDouyinUrl(url)
-      ? "抖音链接抓取失败（需登录或站点限制）。"
-      : "抓取失败（商品页需登录 / 网络或站点限制）。")
-      + "💡 可直接把商品标题文字粘到上面的输入框，再点一次「智能识别」——本地也能识别出品牌 / 型号 / 价格。";
+    /* 抓取异常：同样回退本地离线识别，绝不要求用户二次粘贴 */
+    var loc2=parseGearText("Title: "+raw,"");
+    var got2=applyGearFill({name:gearSafeName(loc2),brand:loc2.brand||"",model:loc2.model||"",price:loc2.price||0,category:loc2.category||""});
+    if(got2.length){
+      msg.className="book-fetch-msg ok";
+      msg.textContent="✓ 链接抓取不可用，已自动改用本地识别 "+got2.join(" · ")+(loc2.category?"，类别建议「"+loc2.category+"」":"")+"，可修改后保存。";
+    }else{
+      msg.className="book-fetch-msg err";
+      /* 本地也没抓到 → 明确告知原因，并引导「粘贴商品标题文字」（本地识别无需联网，是保底捷径） */
+      msg.textContent=(isDouyinUrl(url)
+        ? "抖音 / 直播间链接通常需要登录才能看到商品信息。"
+        : "链接抓取失败（商品页需登录 / 网络或站点限制）。")
+        + "💡 也可直接把商品标题文字粘到上面的输入框 —— 本地识别无需联网，同样能识别出品牌 / 型号 / 价格。";
+    }
   }finally{
     btn.disabled=false;btn.textContent=old;
   }
+}
+/* v5.98：粘贴即识别——免去「粘贴后再点按钮」的额外一步 */
+function gearUrlPaste(){ setTimeout(function(){ try{smartFillGear();}catch(e){} }, 60); }
+/* v5.98：把链接误粘进「名称」框也能用；纯标题文字粘进名称框则自动补全品牌/型号/价格 */
+function gearNamePaste(){
+  setTimeout(function(){
+    try{
+      var nameEl=document.getElementById("gm-name");
+      var raw=String(nameEl.value||"").trim();
+      if(!raw)return;
+      var url=extractFirstUrl(raw);
+      if(url){ /* 用户把整段链接/分享文案粘进了名称框 → 移到链接框并自动识别 */
+        document.getElementById("gm-url").value=raw;
+        nameEl.value="";
+        smartFillGear();
+        return;
+      }
+      /* 名称框里是标题文字：离线识别品牌/型号/价格，不覆盖用户已写的名称 */
+      var loc=parseGearText("Title: "+raw,"");
+      var b=document.getElementById("gm-brand"),m=document.getElementById("gm-model"),p=document.getElementById("gm-price"),c=document.getElementById("gm-category");
+      if(loc.brand&&b&&!b.value)b.value=loc.brand;
+      if(loc.model&&m&&!m.value)m.value=loc.model;
+      if(loc.price&&p&&!p.value)p.value=loc.price;
+      if(loc.category&&c&&(!c.value||c.value==="配件"))c.value=loc.category;
+      var msg=document.getElementById("gm-fetch-msg");
+      if(loc.brand||loc.model||loc.price){
+        msg.className="book-fetch-msg ok";
+        msg.textContent="已从名称识别"+(loc.brand?(" 品牌 "+loc.brand):"")+(loc.model?(" 型号 "+loc.model):"")+(loc.price?(" 价格 ¥"+loc.price.toLocaleString()):"")+"，可继续填写或保存。";
+      }
+    }catch(e){}
+  },60);
 }
 
 /* ---- 模态表单 ---- */
