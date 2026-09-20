@@ -2148,6 +2148,161 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   /* 日历统计两列足够 */
   .cal-stats{grid-template-columns:repeat(4,1fr)}
 }
+  /* ==========================================================================
+     v6.05 成品级质感精修层（纯样式增量 · 零逻辑 · 零功能改动）
+     设计语言：统一圆角梯度 / 四级阴影 / 五层明暗分层 / 统一动效曲线 / 主题感知
+     实现方式：全部规则位于样式表末尾，以「同等特异性 · 靠后覆盖」达成全站统一，
+               不修改任何既有规则、不新增 id、不动 data-page-node-id 与脚本逻辑。
+     ========================================================================== */
+
+  /* ---- ① 设计令牌：圆角梯度 · 间距栅格 · 阴影四级 · 动效曲线 · 主题感知状态色 ---- */
+  :root{
+    /* 圆角梯度（全站仅此 5 档） */
+    --r-card:16px; --r-sub:12px; --r-ctl:10px; --r-xs:8px; --r-chip:999px;
+    --radius-s:12px;            /* 补全历史未定义变量：此前引用它的元素圆角静默失效 */
+    /* 间距栅格（4 的倍数） */
+    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+    /* 阴影四级：功能层 sh-1 / 卡片层 sh-2 / 弹窗层 sh-3 / 悬浮层 sh-4 */
+    --sh-1:0 1px 2px rgba(0,0,0,.26),0 1px 1px rgba(0,0,0,.16);
+    --sh-2:0 6px 20px rgba(0,0,0,.30),0 2px 6px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.04);
+    --sh-3:0 18px 48px rgba(0,0,0,.48),0 6px 16px rgba(0,0,0,.30);
+    --sh-4:0 28px 72px rgba(0,0,0,.56),0 10px 26px rgba(0,0,0,.34);
+    --card-shadow:var(--sh-2);  /* 全站 34 处卡片统一升级到「卡片层」阴影 */
+    /* 动效曲线与时长（替代散落的 .1s/.12s/.13s/.15s/.18s/.2s 混用） */
+    --dur-1:.12s; --dur-2:.18s; --dur-3:.28s;
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+    --t-all:color var(--dur-2) var(--ease),background-color var(--dur-2) var(--ease),
+      border-color var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease),
+      transform var(--dur-2) var(--ease),opacity var(--dur-2) var(--ease);
+    --ring:0 0 0 2px var(--gold-glow);
+    --scrim:rgba(0,0,0,.62);
+    /* 次级文字色：三档「单调递减」层级（原 muted2 比 muted 更深，视觉层级倒置） */
+    --muted:#94a3b8; --muted2:#7c8ba0; --muted3:#8e9cb0;
+  }
+  html[data-theme="light"]{
+    --sh-1:0 1px 2px rgba(15,23,42,.06);
+    --sh-2:0 6px 18px rgba(15,23,42,.08),0 2px 6px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.75);
+    --sh-3:0 18px 44px rgba(15,23,42,.16),0 6px 14px rgba(15,23,42,.08);
+    --sh-4:0 28px 68px rgba(15,23,42,.20),0 10px 22px rgba(15,23,42,.10);
+    --card-shadow:var(--sh-2);
+    --ring:0 0 0 2px rgba(176,122,46,.30);
+    --scrim:rgba(15,23,42,.42);
+    --muted:#5b6b82; --muted2:#75849a; --muted3:#8a97ac;
+  }
+
+  /* ---- ② 渲染基础：字体渲染 / 选区 / 滚动条 / 触摸反馈 / 滚动边界 ---- */
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+  *{-webkit-tap-highlight-color:transparent}
+  ::selection{background:var(--gold-glow);color:var(--ink)}
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:var(--line-strong);border:2px solid transparent;
+    background-clip:content-box;border-radius:var(--r-chip)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--muted2);background-clip:content-box}
+  ::-webkit-scrollbar-corner{background:transparent}
+  .sidebar,.main-content,.q-body,.modal-box,.img-modal-body,.est-body,.nav-list,.est-tabs{
+    scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;overscroll-behavior:contain}
+
+  /* ---- ③ 五层明暗与阴影层级 ---- */
+  /* L2 卡片层（一级容器） */
+  .g-card,.monthly,.sidebar-cal,.topbar,.stat-card,.read-stat,.est-kpi,.est-sec,.hotcard,.book-card{
+    border-radius:var(--r-card);box-shadow:var(--sh-2)}
+  /* L3 功能层（子卡片 / 列表项 / 工具块） */
+  .est-card,.est-src-card,.est-taxo-card,.est-qcard,.est-tl-row,.est-banner,.est-apply,.focus-key,.bc,
+  .wb-empty,.dm-storage,.q-hit,.q-src,.q-tpl{border-radius:var(--r-sub);box-shadow:var(--sh-1)}
+  /* L4 弹窗层（不触碰语音弹窗的专属圆角） */
+  .modal-box:not(.voice-box),.img-modal-box,.wb-confirm-box,.modal-card{
+    border-radius:var(--r-card);box-shadow:var(--sh-3)}
+  /* L5 悬浮层 */
+  .qdrawer{box-shadow:var(--sh-4)}
+  #wb-toast,.pm-fab{box-shadow:var(--sh-4)}
+  /* 弹窗遮罩统一为主题感知色（浅色模式不再用纯黑压屏） */
+  .modal,.wb-confirm-overlay,.qmask{background:var(--scrim)}
+
+  /* ---- ④ 组件圆角统一（控件 10px / 中件 12px / 胶囊全圆） ---- */
+  .btn,.btn.sm,.modal-box:not(.voice-box) input,.modal-box:not(.voice-box) select,.modal-box:not(.voice-box) textarea,.toolbar input,.toolbar select,
+  .est-toolbar input,.est-toolbar select,.est-editor input,.est-editor select,.est-editor textarea,
+  .q-input,.q-close,.img-modal-x,.sc-nav,.sct,.act-btn,.star-btn,.del,.est-row-acts button,.dm-storage,
+  .nav-icon,.hc-icon,.sb-avatar,.q-src .ic{border-radius:var(--r-ctl)}
+  .tab,.pf,.est-land-tabs button{border-radius:var(--r-sub)}
+  .etab,.est-chip,.est-pill,.htag,.hc-platform,.ki .kchip,.book-card .btag{border-radius:var(--r-chip)}
+  .img-modal-body img{border-radius:var(--r-ctl)}
+
+  /* ---- ⑤ 排版层级：字重收敛 · 数字等宽 · 小字统一 ---- */
+  .title-group h1{font-weight:800;letter-spacing:.2px}
+  .g-card h3,.monthly h3,.est-sec-hd,.q-hd,.modal-hd,.wb-confirm-title,.sidebar-brand .sb-name,
+  .sc-title{font-weight:700}
+  #clock,.stat-num,.est-kpi .n,.read-stat .rs-info .big,.est-tl-row .date{font-variant-numeric:tabular-nums}
+  .htag,.hc-platform,.book-card .btag,.ki .kchip,.est-pill{font-size:11px;line-height:1.5}
+  .nav-label{letter-spacing:1.2px}
+  .title-group .subtitle{font-weight:500;letter-spacing:.2px}
+
+  /* ---- ⑥ 交互统一：过渡曲线 / 悬浮抬升 / 按下反馈 / 禁用 / 焦点环 ---- */
+  .btn,.tab,.pf,.etab,.est-chip,.est-card,.est-src-card,.est-taxo-card,.est-qcard,.est-kpi.click,
+  .est-tl-row,.q-hit,.q-src,.nav-item,.nav-icon,.sc-nav,.sct,.chip,.gf-chip,.jra-btn,.jc-btn,.bc-btn,
+  .act-btn,.star-btn,.del,.hc-btn,.img-modal-x,.q-close,.est-row-acts button,.sf-sync,.sf-settings,
+  .book-card .bc-btn,input,select,textarea{transition:var(--t-all)}
+  .stat-card:hover,.read-stat:hover,.est-card:hover,.est-src-card:hover,.est-taxo-card:hover,
+  .est-qcard:hover,.est-kpi.click:hover,.book-card:hover,.hotcard:hover{transform:translateY(-2px)}
+  .q-hit:hover,.q-src:hover,.est-tl-row:hover{transform:translateY(-1px)}
+  /* 悬浮描边改用主题感知变量（原 rgba(255,255,255,.12) 在浅色模式下几乎不可见） */
+  .stat-card:hover,.book-card:hover,.est-card:hover,.est-src-card:hover,.est-taxo-card:hover,
+  .est-qcard:hover,.hotcard:hover{border-color:var(--line-strong)}
+  .hotcard:hover{box-shadow:var(--sh-3)}
+  .btn:active:not(:disabled),.tab:active,.pf:active,.hc-btn:active,.chip:active,.etab:active,
+  .est-chip:active,.est-qcard:active,.act-btn:active,.star-btn:active,.q-close:active,
+  .img-modal-x:active,.sc-nav:active,.sct:active{transform:translateY(1px) scale(.985)}
+  .btn:disabled,.pf:disabled,input:disabled,select:disabled,textarea:disabled{
+    cursor:not-allowed;opacity:.5;filter:saturate(.6)}
+  input:disabled,select:disabled,textarea:disabled{background:var(--bg3);color:var(--muted2)}
+  a:focus-visible,button:focus-visible,.btn:focus-visible,.tab:focus-visible,.pf:focus-visible,
+  .etab:focus-visible,.est-chip:focus-visible,.nav-item:focus-visible,.q-close:focus-visible,
+  .img-modal-x:focus-visible,.sc-nav:focus-visible,.sct:focus-visible,.del:focus-visible,
+  .hc-btn:focus-visible,.act-btn:focus-visible,.star-btn:focus-visible{
+    outline:2px solid var(--gold);outline-offset:2px}
+  /* 输入控件已有金色描边焦点态，避免叠加双环 */
+  input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
+
+  /* ---- ⑦ 状态与悬浮层动效：弹窗 / 抽屉 / Toast 入场 ---- */
+  @keyframes wb605Pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes wb605Fade{from{opacity:0}to{opacity:1}}
+  @keyframes wb605Toast{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}
+  .modal-box,.img-modal-box,.wb-confirm-box,.modal-card{animation:wb605Pop var(--dur-3) var(--ease-out)}
+  .modal,.wb-confirm-overlay{animation:wb605Fade var(--dur-2) var(--ease)}
+  .qdrawer{transition:transform var(--dur-3) var(--ease-out)}
+  #wb-toast{border-radius:var(--r-sub);animation:wb605Toast var(--dur-3) var(--ease-out)}
+  .modal-box h3,.img-modal-head h3{font-weight:800}
+
+  /* ---- ⑧ 细节精修：空态 / 进度条 / 图标瓦片 / 分割线 ---- */
+  .wb-empty{border-style:dashed}
+  .wb-empty .wb-empty-icon{opacity:.5}
+  .dm-storage-bar{height:8px;border-radius:var(--r-chip)}
+  .dm-storage-bar i{transition:width var(--dur-3) var(--ease-out)}
+  .stat-icon,.read-stat .rs-icon{border-radius:var(--r-sub)}
+  .kbd,hr{border-color:var(--line)}
+  /* 浅色模式下平台图标色不再使用近白（原本在亮底上不可辨） */
+  html[data-theme="light"] .hc-icon.dy{color:var(--ink2);background:rgba(148,163,184,.18)}
+
+  /* ---- ⑨ 响应式与触摸目标：小屏放大可点区域，杜绝挤压与误触 ---- */
+  @media(max-width:640px){
+    .act-btn,.star-btn,.q-close,.img-modal-x,.sc-nav,.sct{min-height:36px;min-width:36px}
+    .est-row-acts button,.book-card .bc-btn,.etab,.est-chip,.pf{padding-top:8px;padding-bottom:8px}
+    .modal-box:not(.voice-box){padding:20px 18px}
+    .hot-grid,.book-grid,.stat-cards{gap:var(--sp-4)}
+  }
+  @media(max-width:520px){
+    .title-group h1{font-size:26px}
+  }
+  /* 宽屏留白栅格统一（超大屏不与侧栏抢空间） */
+
+  /* ---- ⑩ 无障碍：尊重系统「减少动态效果」 ---- */
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important;scroll-behavior:auto!important}
+  }
+
 </style>
 <script>
   /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
@@ -5272,7 +5427,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.04</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.05</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5791,7 +5946,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.04";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.05";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
