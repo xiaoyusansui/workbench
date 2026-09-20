@@ -5265,7 +5265,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.02</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.03</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5784,7 +5784,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.02";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.03";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6117,8 +6117,6 @@ function renderOverview(){
   mountCards("ov-grid-cre",createCards);
   mountCards("ov-grid-dlv",deliverCards);
   mountCards("ov-grid-gro",growCards);
-  const pgHost=document.getElementById("ov-grid-pg");
-  if(pgHost)pgHost.innerHTML=[...learnCards,...createCards,...growCards].map(mkCard).join("");
 
   /* 首页日历行程 */
   renderHomeCal();
@@ -6185,7 +6183,7 @@ function renderPlan(){
         <td style="text-align:center">${starRateCell(r)}</td>
         <td><select class="cell-input" data-op="plan" data-i="${r._i}" data-f="b"
           onchange="onBoardChange(${r._i},this.value)">
-          ${(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("")}
+          ${(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${esc(b)}</option>`).join("")}
         </select></td>
         <td><input class="cell-input" data-op="plan" data-i="${r._i}" data-f="t" value="${esc(r.t)}" onblur="onPlanTitleBlur(${r._i},this)"/></td>
         <td>${renderDeptCell(r.d,r._i)}</td>
@@ -6215,7 +6213,7 @@ function renderPlanMobileCard(r,today,disp){
   const done=statusGroup(r.s)==="done";
   const stList=getStatuses(r.d);
   const rowCls="pm-card "+((r.key&&!done?"key-row ":"")+(done?"row-done pm-status-done ":"")+(r._i===PLAN_FRESH_I?"row-fresh":"")+(r._i===PLAN_JUMP_I?"row-jump":""));
-  const bOptions=(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${b}</option>`).join("");
+  const bOptions=(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${esc(b)}</option>`).join("");
   const sOptions=stList.map(s=>`<option ${s===r.s?"selected":""}>${s}</option>`).join("");
   const {group,sub}=parseDept(r.d||"");
   const subs=DEPT_TREE[group]||[];
@@ -7001,6 +6999,8 @@ function sortByTime(){
 }
 
 /* ==================== 课程 ==================== */
+/* v6.03：课程渲染安全化 —— 颜色白名单（防止 style 注入）+ 文本转义 */
+function modColor(m){var c=String((m&&m.color)||"");return /^#[0-9a-fA-F]{3,8}$/.test(c)?c:"#8b5cf6";}
 function renderCourse(){
   /* 总进度 */
   var totalL=0,doneL=0;
@@ -7028,11 +7028,11 @@ function renderCourse(){
     var statusIcon=isFinished?"✅":isCurrent?"🔥":"⏳";
     rmHtml+='<div class="roadmap-phase '+statusClass+(isFinished?' done':'')+'" data-rm="'+mi+'" onclick="toggleMod('+mi+')">'+
       '<span class="rm-status '+statusClass+'">'+statusIcon+'</span>'+
-      '<div class="rm-icon">'+mod.name.substring(0,3)+'</div>'+
+      '<div class="rm-icon">'+esc(mod.name.substring(0,3))+'</div>'+
       '<div class="rm-name">'+esc(mod.name.substring(mod.name.indexOf('·')+2))+'</div>'+
-      '<span class="rm-badge" style="background:'+mod.color+'20;color:'+mod.color+'">'+mod.badge+'</span>'+
-      '<div class="rm-progress" style="color:'+mod.color+'">'+mPct+'<span class="rm-pct">%</span></div>'+
-      (hasTarget?'<div class="rm-date'+(isOverdue?' style="color:var(--coral)"':'')+'">📅 '+mod.targetDate+(mod.duration?' · '+mod.duration:'')+'</div>':'')+
+      '<span class="rm-badge" style="background:'+modColor(mod)+'20;color:'+modColor(mod)+'">'+esc(mod.badge)+'</span>'+
+      '<div class="rm-progress" style="color:'+modColor(mod)+'">'+mPct+'<span class="rm-pct">%</span></div>'+
+      (hasTarget?'<div class="rm-date'+(isOverdue?' style="color:var(--coral)"':'')+'">📅 '+esc(mod.targetDate)+(mod.duration?' · '+esc(mod.duration):'')+'</div>':'')+
     '</div>';
   });
   roadmap.innerHTML=rmHtml;
@@ -7045,8 +7045,8 @@ function renderCourse(){
     return '<div class="module" id="mod-'+mi+'">'+
       '<div class="module-head" onclick="toggleMod('+mi+')">'+
         '<div>'+
-          '<span class="mod-title" style="color:'+mod.color+'">'+esc(mod.name)+'</span>'+
-          '<span class="mod-badge" style="background:'+mod.color+'">'+mod.badge+'</span>'+
+          '<span class="mod-title" style="color:'+modColor(mod)+'">'+esc(mod.name)+'</span>'+
+          '<span class="mod-badge" style="background:'+modColor(mod)+'">'+esc(mod.badge)+'</span>'+
           '<span style="font-size:11.5px;color:var(--muted);margin-left:7px">'+mDone+'/'+mTotal+'课时 · '+mPct+'%'+
           (aTotal?' · 📝'+aDone+'/'+aTotal+'作业':'')+
           '</span>'+
@@ -7060,8 +7060,8 @@ function renderCourse(){
         (function(){
           if(!mod.targetDate&&!mod.duration) return '';
           var html='<div class="mod-meta-row">';
-          if(mod.targetDate) html+='<span class="mod-meta-item">📅 计划完成 '+mod.targetDate+'</span>';
-          if(mod.duration) html+='<span class="mod-meta-item">⏱ 周期 '+mod.duration+'</span>';
+          if(mod.targetDate) html+='<span class="mod-meta-item">📅 计划完成 '+esc(mod.targetDate)+'</span>';
+          if(mod.duration) html+='<span class="mod-meta-item">⏱ 周期 '+esc(mod.duration)+'</span>';
           html+='</div>';
           return html;
         })()+
@@ -7196,7 +7196,7 @@ function renderHotCards(){
     const icon=h.pf==="xhs"?"📕":h.pf==="dy"?"🎵":"📺";
     const tagHtml=h.tags.map(t=>{
       const cls=t==="热门"?"htag-hot":t==="新知"||t==="趋势"?"htag-new":t==="工具"||t==="教程"||t==="资源"||t==="器材"||t==="预设"||t==="指南"||t==="接单"||t==="经验"||t==="调色"||t==="达芬奇"||t==="胶片风"||t==="运镜"||t==="AI"||t==="效率"||t==="人像"||t==="手机摄影"?"htag-tool":"htag";
-      return `<span class="htag ${cls}">#${t}</span>`;
+      return `<span class="htag ${cls}">#${esc(t)}</span>`;
     }).join("");
     const u=hotUrl(h);
     const dest=u?(h.url?hotHost(u):"站内搜「"+esc(hotKw(h))+"」"):"未设链接 · 点 ✎ 补上";
@@ -7676,7 +7676,7 @@ function renderRead(){
   grid.innerHTML=books.map((b,i)=>{
     const st=b.status==="reading"?"bs-reading":b.status==="done"?"bs-done":"bs-toread";
     const stLabel=b.status==="reading"?"在读中":b.status==="done"?"已读完":"待阅读";
-    const tagHtml=(b.tags||[]).map(t=>`<span class="btag">#${t}</span>`).join("");
+    const tagHtml=(b.tags||[]).map(t=>`<span class="btag">#${esc(t)}</span>`).join("");
     const srcRow=(b.srcUrl&&/^https?:\/\//i.test(b.srcUrl))?`<div class="bc-src">🔗 <a href="${esc(b.srcUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(bookHost(b.srcUrl))}</a></div>`:"";
     const rateTxt=b.rating?` ⭐${b.rating}`:"";
     return `<div class="book-card">
@@ -8361,7 +8361,7 @@ function openGearModal(idx){
   guardRequired("gm-name","gm-save-btn","器材名称为必填");   /* v5.92 必填守卫 */
   setTimeout(function(){document.getElementById("gm-name").focus()},100);
 }
-function closeGearModal(){document.getElementById("gear-modal").style.display="none";}
+function closeGearModal(){document.getElementById("gear-modal").style.display="none";_gearEditIdx=-1;}
 function saveGearModal(){
   runGuard("gm-name");
   var name=(document.getElementById("gm-name").value||"").trim();
@@ -8377,7 +8377,9 @@ function saveGearModal(){
     maintNote:(document.getElementById("gm-maintNote").value||"").trim(),
     srcUrl:(document.getElementById("gm-url").value||"").trim()
   };
+  /* v6.03：索引可能因删除/云端同步而失效，失效则按「新增」处理，避免未捕获 TypeError */
   var isNew=(_gearEditIdx<0);
+  if(!isNew && !DB.gears[_gearEditIdx]){ isNew=true; _gearEditIdx=-1; }
   if(!isNew){
     Object.assign(DB.gears[_gearEditIdx],data);
   }else{
@@ -8429,7 +8431,7 @@ function renderIdeas(){
   /* populate tag filter options */
   const sel=document.getElementById("idea-tag-filter");if(sel){
     const tags=[...new Set((DB.ideas||[]).flatMap(i=>i.tags||[]))].sort();
-    const cur=sel.value;sel.innerHTML='<option value="">全部标签</option>'+tags.map(t=>`<option value="${t}"${t===cur?' selected':''}>${t}</option>`).join("");sel.value=tf;
+    const cur=sel.value;sel.innerHTML='<option value="">全部标签</option>'+tags.map(t=>`<option value="${esc(t)}"${t===cur?' selected':''}>${esc(t)}</option>`).join("");sel.value=tf;
   }
   /* v5.92：区分「真没有数据」与「被筛选隐藏」，给出不同的引导动作 */
   if(!list.length){
@@ -8446,7 +8448,7 @@ function renderIdeas(){
       <div class="idea-body">
         <div class="idea-title">${esc(id.title)}</div>
         <div class="idea-desc">${esc(id.desc)}</div>
-        <div class="idea-meta"><span class="idea-source">📍 ${esc(id.source)}</span><span class="idea-date">${id.created||""}</span></div>
+        <div class="idea-meta"><span class="idea-source">📍 ${esc(id.source)}</span><span class="idea-date">${esc(id.created||"")}</span></div>
       </div>
       <div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea(${idi})">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea(${idi})">删除</button></div>
     </div>`;
@@ -9120,11 +9122,11 @@ function renderTimeline(){
   if(evts.length===0){body.innerHTML=`<div style="padding:24px;text-align:center;color:var(--muted);font-size:13px">📭 当天暂无行程，点击右上角「＋添加」安排</div>`;return;}
   body.innerHTML=evts.map((e,i)=>{
     const tc=TAG_CLASS[e.tag]||"tl-plan";
-    const tg=e.tag?`<span class="tl-tag tt-${e.tag}">${TAG_MAP[e.tag]||e.tag}</span>`:"";
+    const tg=e.tag?`<span class="tl-tag tt-${esc(e.tag)}">${esc(TAG_MAP[e.tag]||e.tag)}</span>`:"";
     const doneCls=e.done?" tl-done":"";
-    const descHtml=e.desc?`<div class="tl-desc">${e.desc}</div>`:"";
+    const descHtml=e.desc?`<div class="tl-desc">${esc(e.desc)}</div>`:"";
     return `<div class="tl-item ${tc}${doneCls}">
-      <span class="tl-time">${e.time||"全天"}</span>
+      <span class="tl-time">${esc(e.time||"全天")}</span>
       <div class="tl-body"><div class="tl-title">${escHtml(e.title)}${tg}</div>${descHtml}</div>
       <div class="tl-actions">
         <button class="tl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${DB.events.indexOf(e)},'${ds}')">${e.done?"✓":"☐"}</button>
@@ -9141,7 +9143,7 @@ function renderUpcoming(){
   if(evts.length===0){ul.innerHTML=`<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">暂无即将到来的行程</div>`;return;}
   ul.innerHTML=evts.map(e=>`<div class="up-item">
     <div class="up-date">${e.date.slice(5)}</div>
-    <div class="up-info"><div class="up-title">${escHtml(e.title)}</div><div class="up-time">${e.time||"全天"} · ${TAG_MAP[e.tag]||""}</div></div>
+    <div class="up-info"><div class="up-title">${escHtml(e.title)}</div><div class="up-time">${esc(e.time||"全天")} · ${esc(TAG_MAP[e.tag]||"")}</div></div>
   </div>`).join("");
 }
 
@@ -9285,11 +9287,11 @@ function renderHomeTimeline(){
   }
   body.innerHTML=evts.map((e,i)=>{
     const tc="htl-"+(e.tag||"plan");
-    const tg=e.tag?`<span class="htl-tag tt-${e.tag}">${TAG_MAP[e.tag]||e.tag}</span>`:"";
+    const tg=e.tag?`<span class="htl-tag tt-${esc(e.tag)}">${esc(TAG_MAP[e.tag]||e.tag)}</span>`:"";
     const doneCls=e.done?" htl-done":"";
     const descHtml=e.desc?`<div class="htl-desc">${escHtml(e.desc)}</div>`:"";
     return `<div class="htl-item ${tc}${doneCls}">
-      <span class="htl-time">${e.time||"全天"}</span>
+      <span class="htl-time">${esc(e.time||"全天")}</span>
       <div class="htl-body"><div class="htl-title">${escHtml(e.title)}${tg}</div>${descHtml}</div>
       <div class="htl-actions">
         <button class="htl-check" title="${e.done?'取消完成':'标记完成'}" onclick="toggleEvt(${DB.events.indexOf(e)},'${todayStr}');renderHomeCal()">${e.done?"✓":"☐"}</button>
