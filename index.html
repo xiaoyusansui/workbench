@@ -395,7 +395,7 @@
   .btn.hot{background:linear-gradient(135deg,var(--purple),#8b5cf6)}
   .btn.ghost{background:var(--bg3);color:var(--muted2);border:1px solid var(--glass-border)}.spacer{flex:1}
   .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
-  /* v5.97 语音速记 · v5.99「琥珀声场」 · v6.00 豆包式输入条：绿玉麦克风 + 琥珀声波，弃用红色警报感 */
+  /* v5.97 语音速记 · v5.99「琥珀声场」 · v6.00 豆包式输入条 · v6.01 手机端贴底输入条：绿玉麦克风 + 琥珀声波，弃用红色警报感 */
   .btn.voice-btn{background:linear-gradient(135deg,var(--amber),var(--gold));color:#161f2e;
     border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 12px var(--gold-glow)}
   .btn.voice-btn:hover{filter:brightness(1.06);box-shadow:0 4px 18px var(--gold-glow)}
@@ -461,11 +461,18 @@
   .voice-title-ic{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;flex:none;
     border-radius:8px;background:var(--gold-glow);border:1px solid var(--mic-ring);color:var(--gold2)}
   .voice-title-ic svg{width:14px;height:14px}
-  /* 手机端：语音弹窗吸附屏幕底部，更像豆包输入条 */
+  /* 手机端（v6.01）：语音弹窗改成紧贴屏幕底部的输入条——整宽、只圆上角、隐去大标题与长提示，输入胶囊排到最底一行 */
   @media(max-width:640px){
-    #voice-plan-modal{align-items:flex-end}
-    #voice-plan-modal .voice-box{margin:0;max-width:100%;width:100%;border-radius:20px 20px 0 0;
-      max-height:92vh;overflow-y:auto;padding-bottom:22px}
+    #voice-plan-modal{align-items:flex-end;padding:0}
+    #voice-plan-modal .voice-box{display:flex;flex-direction:column;margin:0;width:100%;max-width:100%;
+      border-radius:20px 20px 0 0;max-height:94vh;overflow-y:auto;padding:14px 16px 18px;
+      padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+    #voice-plan-modal h3,#voice-plan-modal .voice-tip{display:none}
+    #voice-plan-modal #voice-preview-wrap{order:1}
+    #voice-plan-modal .voice-actions{order:2}
+    #voice-plan-modal .modal-actions{order:3}
+    #voice-plan-modal .voice-status{order:4;align-self:flex-start}
+    #voice-plan-modal .voice-hold{order:5}
   }
   .voice-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
   .voice-actions .btn{flex:1;min-width:120px}
@@ -5258,7 +5265,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.00</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.01</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5275,7 +5282,7 @@ window.QRCode = {
         </div>
       </div>
 
-      <!-- 🎤 语音速记弹窗 v5.97（v6.00 视觉重做：豆包式输入条） -->
+      <!-- 🎤 语音速记弹窗 v5.97（v6.00 豆包式输入条 / v6.01 手机端贴底） -->
       <div class="modal" id="voice-plan-modal" style="display:none" data-page-node-id="v597VoiceModal">
         <div class="modal-box voice-box" data-page-node-id="v597VoiceBox">
           <h3 data-page-node-id="v597VoiceTitle"><span class="voice-title-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3.5"/><path d="M8.5 21.5h7"/></svg></span>语音速记</h3>
@@ -5777,7 +5784,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.00";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.01";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
