@@ -381,7 +381,57 @@
   .ki .ktxt{flex:1;font-weight:600;color:var(--ink2)}
   .ki .kchip{padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:700;white-space:nowrap}
   .ki .del{width:22px;height:22px;font-size:12px}
+  .ki .ki-date{font-size:10.5px;color:var(--muted2);font-weight:700;background:var(--bg3);padding:2px 8px;border-radius:99px;white-space:nowrap}
   .empty-k{font-size:12px;color:var(--muted);padding:3px 0}
+
+  /* v6.10 周期导航（策划工作 模数改造） */
+  .period-box{background:var(--surface);border:1px solid var(--glass-border);border-left:4px solid var(--brand);
+    border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;box-shadow:var(--card-shadow);backdrop-filter:blur(16px)}
+  .pb-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .pb-mode button{min-width:38px}
+  .pb-nav{display:inline-flex;align-items:center;gap:6px}
+  .pb-arrow{border:1px solid var(--glass-border);background:var(--bg3);color:var(--muted2);border-radius:var(--radius-xs);
+    width:30px;height:30px;cursor:pointer;font-size:11px;line-height:1;transition:.12s}
+  .pb-arrow:hover{border-color:var(--gold);color:var(--gold)}
+  .pb-cur{font-size:14px;font-weight:800;color:var(--ink);min-width:150px;text-align:center;letter-spacing:.3px}
+  .pb-today{border:1px solid var(--glass-border);background:transparent;color:var(--brand);border-radius:var(--radius-xs);
+    padding:5px 10px;font-size:12px;font-weight:800;cursor:pointer;transition:.12s}
+  .pb-today:hover{background:rgba(34,197,94,.1);border-color:var(--brand)}
+  .pb-sum{font-size:12px;color:var(--muted2);font-weight:600;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .pb-sum b{color:var(--ink2)}
+  .pb-sum .ps-warn{color:var(--coral)}
+  .pb-strip{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:thin}
+  .pb-strip::-webkit-scrollbar{height:6px}
+  .pb-strip::-webkit-scrollbar-thumb{background:var(--glass-border);border-radius:99px}
+  .pb-cell{flex:0 0 auto;min-width:74px;border:1px solid var(--glass-border);background:var(--bg3);border-radius:10px;
+    padding:7px 10px;cursor:pointer;transition:.13s;text-align:center;position:relative}
+  .pb-cell:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .pb-cell .pc-t{font-size:11.5px;font-weight:800;color:var(--ink2);white-space:nowrap}
+  .pb-cell .pc-s{font-size:10.5px;color:var(--muted2);margin-top:3px;white-space:nowrap}
+  .pb-cell .pc-s em{font-style:normal;color:var(--coral);font-weight:800}
+  .pb-cell.cur{border-color:var(--brand);background:rgba(34,197,94,.07)}
+  .pb-cell.cur .pc-t{color:var(--brand)}
+  .pb-cell.on{border-color:var(--gold);background:rgba(212,165,116,.12);box-shadow:0 0 0 2px var(--gold-glow)}
+  .pb-cell.empty{opacity:.5}
+  .pb-focus{margin-top:2px}
+  .pb-focus .pf-title{font-size:12px;font-weight:800;color:var(--muted);margin:2px 0 4px;display:flex;align-items:center;gap:6px}
+  .pb-focus .pf-title i{font-style:normal;color:var(--amber)}
+
+  /* v6.10 已完成折叠区 */
+  #done-fold{padding:10px 16px}
+  .df-head{cursor:pointer;user-select:none;margin-bottom:0!important;display:flex;align-items:center;gap:7px}
+  .df-head:hover{color:var(--brand)}
+  .df-caret{display:inline-block;transition:transform .18s;font-size:11px}
+  .df-head.open .df-caret{transform:rotate(90deg)}
+  .df-count{background:var(--brand);color:#fff;border-radius:99px;padding:1px 8px;font-size:11px}
+  .df-hint{margin-left:auto;font-size:11px;font-weight:600;color:var(--muted2)}
+  .df-items{display:none;margin-top:6px}
+  .df-items.open{display:block}
+  .df-items .ki{border-bottom:1px dashed var(--glass-border)}
+  .df-items .ki:last-child{border-bottom:none}
+  .row-group-sep td{background:var(--bg3);color:var(--muted2);font-size:10.5px;font-weight:800;
+    letter-spacing:.6px;padding:6px 10px!important;text-transform:uppercase}
+  .row-group-sep.done-sep td{color:var(--brand)}
 
   /* 工具栏 */
   .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
@@ -656,6 +706,14 @@
     background:linear-gradient(135deg,var(--brand),#16a34a);color:#fff;border:none;font-size:26px;font-weight:300;
     display:none;place-items:center;box-shadow:0 4px 18px rgba(34,197,94,.35);z-index:90;cursor:pointer}
   @media(max-width:834px){
+    /* v6.10 周期导航移动端：整宽、期格子更紧凑 */
+    .period-box{padding:10px 12px}
+    .pb-cur{min-width:0;font-size:13px;flex:1;text-align:left}
+    .pb-head{gap:8px}
+    .pb-sum{width:100%;font-size:11px;gap:8px}
+    .pb-sum span:nth-child(4){display:none}
+    .pb-cell{min-width:66px;padding:6px 8px}
+    .pb-cell .pc-t{font-size:11px}
     #plan-table-wrap{display:none}
     .plan-mobile-list{display:flex}
     .focus-key{padding:12px 14px}
@@ -4911,9 +4969,32 @@ window.QRCode = {
 
       <!-- ==================== 策划工作 ==================== -->
       <section id="panel-plan" style="display:none" data-page-node-id="ru3ciqiCYgW1aI1kbvgFWf">
-        <div class="focus-key" data-page-node-id="ppBypqpeaG3aawlVfle5UK">
-          <h4 data-page-node-id="3zDZZ8HHa8xnXEhfbHmXru">⭐ 本周重点事项（自动汇总 · 共 <span id="key-count" data-page-node-id="rEgW3y9sjfA9hOJynXCWmN">0</span> 项）</h4>
-          <div id="key-items" data-page-node-id="L7oVgbNFBmCfKxULBuxknd"></div>
+        <!-- v6.10 周期导航：月/周切换 + 可点击各期 + 未完成优先 + 上期已完成自动折叠 -->
+        <div class="period-box" id="period-box" data-page-node-id="v610PeriodBox">
+          <div class="pb-head">
+            <div class="pb-mode qview" id="pb-mode">
+              <button data-m="week" class="active" onclick="setPeriodMode('week')" title="按周汇总">周</button>
+              <button data-m="month" onclick="setPeriodMode('month')" title="按月汇总">月</button>
+            </div>
+            <div class="pb-nav">
+              <button class="pb-arrow" onclick="shiftPeriod(-1)" title="上一期">◀</button>
+              <div class="pb-cur" id="pb-cur">—</div>
+              <button class="pb-arrow" onclick="shiftPeriod(1)" title="下一期">▶</button>
+              <button class="pb-today" onclick="goPeriodNow()" title="回到本期">本期</button>
+            </div>
+            <div class="spacer"></div>
+            <div class="pb-sum" id="pb-sum"></div>
+          </div>
+          <div class="pb-strip" id="pb-strip"></div>
+          <div class="pb-focus" id="key-items"></div>
+        </div>
+        <div class="focus-key" id="done-fold" style="display:none">
+          <h4 class="df-head" onclick="toggleDoneFold()" data-page-node-id="v610DoneFold">
+            <span class="df-caret" id="df-caret">▸</span> ✅ <span id="df-label">本期已完成</span>
+            <span class="df-count" id="df-count">0</span>
+            <span class="df-hint" id="df-hint">点击展开 / 收起</span>
+          </h4>
+          <div id="df-items" class="df-items"></div>
         </div>
 
         <div class="toolbar" data-page-node-id="C14TdY9FuTdUePh6Zp1l2s">
@@ -5505,7 +5586,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.09</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.10</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6112,7 +6193,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.09";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.10";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6453,35 +6534,244 @@ function renderOverview(){
 }
 
 /* ==================== 策划工作 ==================== */
+/* ---------- v6.10 周期（模数）核心：周 / 月 切期、汇总、折叠 ---------- */
+let PERIOD_MODE='week';          /* week | month */
+let PERIOD_ANCHOR=null;          /* 当前选定期的锚点日期（YYYY-MM-DD） */
+let PERIOD_EXPAND_DONE=false;    /* 已完成折叠区是否展开 */
+
+function parseYmd(s){
+  if(!s) return null;
+  const m=String(s).match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(!m) return null;
+  const d=new Date(Number(m[1]),Number(m[2])-1,Number(m[3]));
+  return isNaN(d.getTime())?null:d;
+}
+function ymd(d){
+  if(!d) return "";
+  const y=d.getFullYear(),m=("0"+(d.getMonth()+1)).slice(-2),a=("0"+d.getDate()).slice(-2);
+  return y+"-"+m+"-"+a;
+}
+function startOfWeek(d){
+  const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  const wd=x.getDay();                 /* 0=周日 → 视作本周第 7 天，周一为起始 */
+  const off=(wd===0?6:wd-1);
+  x.setDate(x.getDate()-off);
+  return x;
+}
+function addDays(d,n){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()+n);return x;}
+
+/* 纯函数：给定一个日期，返回它所在周期（周/月）的区间 —— 不读写任何全局状态 */
+function rangeForAnchor(b){
+  const base=b||new Date();
+  if(PERIOD_MODE==='month'){
+    const s=new Date(base.getFullYear(),base.getMonth(),1);
+    const e=new Date(base.getFullYear(),base.getMonth()+1,0,23,59,59,999);
+    return {start:s,end:e,label:base.getFullYear()+" 年 "+(base.getMonth()+1)+" 月",key:ymd(s).slice(0,7),
+            sub:"本月",startStr:ymd(s),endStr:ymd(e)};
+  }
+  const s=startOfWeek(base), e=addDays(s,6); e.setHours(23,59,59,999);
+  return {start:s,end:e,label:(s.getMonth()+1)+" 月 "+s.getDate()+" 日 – "+(e.getMonth()+1)+" 月 "+e.getDate()+" 日",
+          key:ymd(s),sub:"本周",startStr:ymd(s),endStr:ymd(e)};
+}
+/* 返回「当前所选期」的区间；anchor 为空时按今天算 */
+function periodRange(anchor){
+  const base=anchor?parseYmd(anchor):new Date();
+  return rangeForAnchor(base||new Date());
+}
+function periodOf(beginStr,endStr){
+  return {start:parseYmd(beginStr),end:(function(){const e=parseYmd(endStr);if(e)e.setHours(23,59,59,999);return e;})()};
+}
+/* 把一行归入哪个周期：优先「预计完成」，无则按创建（无字段视为当前期） */
+function rowPeriodKey(r,mode){
+  const d=parseYmd(r&&r.dt);
+  if(!d) return null;                 /* 无日期 → 未排期，任何期都列出（避免漏掉待办） */
+  if(mode==='month') return ymd(d).slice(0,7);
+  return ymd(startOfWeek(d));
+}
+function isInPeriod(r,range){
+  const d=parseYmd(r&&r.dt);
+  if(!d) return true;                 /* 无日期的事项始终显示在当前期（待排期） */
+  return d>=range.start && d<=range.end;
+}
+
+function setPeriodMode(m){
+  if(m===PERIOD_MODE) return;
+  PERIOD_MODE=m;
+  PERIOD_ANCHOR=null;                 /* 回到本期 */
+  PERIOD_EXPAND_DONE=false;
+  document.querySelectorAll("#pb-mode button").forEach(b=>b.classList.toggle("active",b.dataset.m===m));
+  renderPlan();
+}
+function shiftPeriod(dir){
+  const r=periodRange(PERIOD_ANCHOR);
+  const d=PERIOD_MODE==='month'
+    ? new Date(r.start.getFullYear(),r.start.getMonth()+dir,1)
+    : addDays(r.start,dir*7);
+  PERIOD_ANCHOR=ymd(d);
+  PERIOD_EXPAND_DONE=false;
+  renderPlan();
+}
+function goPeriodNow(){
+  PERIOD_ANCHOR=null; PERIOD_EXPAND_DONE=false;
+  const items=document.getElementById("df-items");if(items)items.classList.remove("open");
+  const head=document.querySelector(".df-head");if(head)head.classList.remove("open");
+  renderPlan();
+}
+function toggleDoneFold(){
+  PERIOD_EXPAND_DONE=!PERIOD_EXPAND_DONE;
+  const items=document.getElementById("df-items");
+  const head=document.querySelector(".df-head");
+  if(items) items.classList.toggle("open",PERIOD_EXPAND_DONE);
+  if(head) head.classList.toggle("open",PERIOD_EXPAND_DONE);
+  renderDoneFold();
+}
+
+/* 生成若干期（前 N 期 ~ 后 M 期），每期带统计，供可点击的期格子使用。
+   v6.10 修正：区间直接由日期算，不再临时改动全局 PERIOD_ANCHOR（避免污染当前所选期）。 */
+function periodCells(){
+  const now=new Date();
+  const list=[];
+  const back=PERIOD_MODE==='month'?6:8, fwd=PERIOD_MODE==='month'?2:3;
+  for(let k=-back;k<=fwd;k++){
+    let d;
+    if(PERIOD_MODE==='month') d=new Date(now.getFullYear(),now.getMonth()+k,1);
+    else d=addDays(startOfWeek(now),k*7);
+    const r=rangeForAnchor(d);
+    const rows=DB.rows.filter(x=>{
+      const dd=parseYmd(x.dt);
+      return dd && dd>=r.start && dd<=r.end;
+    });
+    const undone=rows.filter(x=>statusGroup(x.s)!=="done").length;
+    const done=rows.length-undone;
+    const t=PERIOD_MODE==='month'
+      ? (d.getMonth()===0?d.getFullYear()+"年1月":(d.getMonth()+1)+"月")
+      : (d.getMonth()+1)+"/"+d.getDate();
+    const isCur = (r.key===(function(){const cr=periodRange(null);return cr.key;})());
+    list.push({anchor:ymd(d),key:r.key,label:t,undone,done,total:rows.length,isCur});
+  }
+  return list;
+}
+
+function renderPeriodBar(){
+  const box=document.getElementById("period-box"); if(!box) return;
+  const r=periodRange(PERIOD_ANCHOR);
+  const cur=document.getElementById("pb-cur");
+  if(cur) cur.textContent=r.label+(PERIOD_ANCHOR?"":" · 本期");
+
+  /* 期格子 */
+  const strip=document.getElementById("pb-strip");
+  if(strip){
+    strip.innerHTML=periodCells().map(c=>{
+      const on=(c.anchor===(PERIOD_ANCHOR||ymd(r.start)));
+      return '<div class="pb-cell'+(c.isCur?" cur":"")+(on?" on":"")+(c.total?"":" empty")+'" onclick="pickPeriod(\''+c.anchor+'\')" title="'+c.label+' · 未完成 '+c.undone+' / 已完成 '+c.done+'">'
+        +'<div class="pc-t">'+c.label+'</div>'
+        +'<div class="pc-s">'+(c.undone?('<em>'+c.undone+'</em> 未完成'):(c.total?'全部完成':'—'))+'</div></div>';
+    }).join("");
+    /* 选中项滚入可见 */
+    const sel=strip.querySelector(".pb-cell.on");
+    if(sel&&strip.scrollWidth>strip.clientWidth){
+      try{strip.scrollLeft=Math.max(0,sel.offsetLeft-strip.clientWidth/2+sel.offsetWidth/2);}catch(e){}
+    }
+  }
+
+  /* 汇总 */
+  const sum=document.getElementById("pb-sum");
+  if(sum){
+    const rows=DB.rows.filter(x=>isInPeriod(x,r));
+    const undone=rows.filter(x=>statusGroup(x.s)!=="done");
+    const over=undone.filter(x=>{const d=parseYmd(x.dt);return d&&d<new Date(new Date().setHours(0,0,0,0));}).length;
+    const noDate=rows.filter(x=>!parseYmd(x.dt)).length;
+    sum.innerHTML='<span>共 <b>'+rows.length+'</b> 项</span>'
+      +'<span>未完成 <b>'+undone.length+'</b></span>'
+      +(over?'<span class="ps-warn">逾期 '+over+'</span>':'')
+      +(noDate?'<span>未排期 '+noDate+'</span>':'')
+      +'<span style="color:var(--muted2)">无日期事项始终显示在本期</span>';
+  }
+}
+function pickPeriod(anchor){
+  PERIOD_ANCHOR=anchor; PERIOD_EXPAND_DONE=false;
+  const items=document.getElementById("df-items");if(items)items.classList.remove("open");
+  const head=document.querySelector(".df-head");if(head)head.classList.remove("open");
+  renderPlan();
+}
+function initPeriodBar(){
+  document.querySelectorAll("#pb-mode button").forEach(b=>b.classList.toggle("active",b.dataset.m===PERIOD_MODE));
+  renderPeriodBar();
+}
+
+/* ---------- 滤出「本期」的行（主表/卡片共用），未完成优先、已完成下沉 ---------- */
+function currentPeriodRows(){
+  const r=periodRange(PERIOD_ANCHOR);
+  const q=(document.getElementById("search-plan").value||"").toLowerCase();
+  const fb=document.getElementById("fban-plan").value;
+  const fs=document.getElementById("fstat-plan").value;
+  const lvMain=quickView;
+  let rows=DB.rows.map((x,i)=>({...x,_i:i}));
+  /* ① 周期过滤：默认只看本期；「全部进度=全部」且未显式切期时才放开非当前期 */
+  rows=rows.filter(x=>{
+    if(!isInPeriod(x,r)) return false;
+    if(fb && x.b!==fb) return false;
+    if(fs && statusGroup(x.s)!==fs) return false;
+    if(q && !((x.t||"")+(x.m||"")+(x.d||"").replace(/ - /g,"")+(x.b||"")).toLowerCase().includes(q)) return false;
+    if(lvMain==="key" && !keyLevel(x)) return false;
+    if(lvMain==="due"){
+      if(statusGroup(x.s)==="done") return false;
+      const due=parseYmd(x.dt); const hz=new Date(); hz.setHours(0,0,0,0); hz.setDate(hz.getDate()+7);
+      if(!(due&&due<=hz)) return false;
+    }
+    return true;
+  });
+  rows.sort((a,b)=>{
+    const da=statusGroup(a.s)==="done", db=statusGroup(b.s)==="done";
+    if(da!==db) return da?1:-1;
+    if(da&&db) return 0;
+    return keyLevel(b)-keyLevel(a);
+  });
+  return rows;
+}
+function toggleExpandDone(){toggleDoneFold();}
+
+/* ---------- 已完成折叠区渲染 ---------- */
+function renderDoneFold(){
+  const box=document.getElementById("done-fold");
+  if(!box) return;
+  const r=periodRange(PERIOD_ANCHOR);
+  const done=DB.rows.filter(x=>isInPeriod(x,r)&&statusGroup(x.s)==="done")
+    .sort((a,b)=>{const da=parseYmd(a.dt),db=parseYmd(b.dt);
+      if(!da&&!db)return 0; if(!da)return 1; if(!db)return -1; return db-da;});
+  const cnt=document.getElementById("df-count");
+  const label=document.getElementById("df-label");
+  const items=document.getElementById("df-items");
+  if(label) label.textContent=(PERIOD_ANCHOR?"所选期":"本期")+"已完成";
+  if(cnt) cnt.textContent=done.length;
+  const isNow=!PERIOD_ANCHOR;
+  const hint=document.getElementById("df-hint");
+  if(hint) hint.textContent = done.length ? (isNow?"默认折叠 · 点此展开查看":"上期已完成 · 点此展开") : "本期暂无已完成";
+  box.style.display = done.length ? "block" : "none";
+  if(items){
+    items.innerHTML=done.map(x=>{
+      const c=bkColor(x.b);
+      return '<div class="ki">'
+        +'<span class="kchip" style="background:'+c+'22;color:'+c+';border:1px solid '+c+'55">'+esc(x.b)+'</span>'
+        +'<span class="ktxt" style="opacity:.8">'+esc(x.t||"（未命名）")+'</span>'
+        +'<span class="ki-date">'+(fmtDateShort(x.dt)||"—")+'</span>'
+        +'<span class="st '+statusClass(x.s)+'">'+esc(x.s)+'</span></div>';
+    }).join("");
+  }
+}
+/* ==================== 策划工作 ==================== */
 function fillBanPlan(){
   const sel=document.getElementById("fban-plan"); const cur=sel.value;
   sel.innerHTML='<option value="">全部板块</option>'+BANKUAI_PLAN.map(b=>`<option ${b===cur?"selected":""}>${b}</option>`).join("");
 }
 function renderPlan(){
-  const q=(document.getElementById("search-plan").value||"").toLowerCase();
-  const fb=document.getElementById("fban-plan").value;
-  const fs=document.getElementById("fstat-plan").value;
   const today=new Date();today.setHours(0,0,0,0);
-
-  const rows=DB.rows.map((r,i)=>({...r,_i:i}))
-    .filter(r=>{
-      if(fb && r.b!==fb) return false;
-      if(fs && statusGroup(r.s)!==fs) return false;
-      if(q && !((r.t||"")+(r.m||"")+(r.d||"").replace(/ - /g,"")+(r.b||"")).toLowerCase().includes(q)) return false;
-      if(quickView==="key" && !r.key) return false;
-      if(quickView==="due"){
-        if(statusGroup(r.s)==="done") return false;
-        const due=r.dt?new Date(r.dt):null;
-        const horizon=new Date();horizon.setHours(0,0,0,0);horizon.setDate(horizon.getDate()+7);
-        if(!(due && due<=horizon)) return false;
-      }
-      return true;
-    })
-    .sort((a,b)=>{
-      const da=statusGroup(a.s)==="done",db=statusGroup(b.s)==="done";
-      if(da!==db)return da?1:-1;          /* 完成态一律沉底（星标也不例外） */
-      return keyLevel(b)-keyLevel(a);      /* 未完成行：星数多的靠前（多颗星=更重要的优先） */
-    });
+  const periodR=periodRange(PERIOD_ANCHOR);
+  /* v6.10：主表默认只显示「本期未完成」；已完成进折叠区，不占主表视线 */
+  const showDone=(document.getElementById("fstat-plan").value==="done"&&quickView==="all")||PERIOD_EXPAND_DONE;
+  const rowsAll=currentPeriodRows();
+  const rows=rowsAll.filter(r=>statusGroup(r.s)!=="done"||showDone);
+  renderPeriodBar();
 
   /* 序号按「当前排列顺序」自动重排（v5.83）：过滤+排序后的第几条就显示几 */
   PLAN_DISP={};
@@ -6489,13 +6779,18 @@ function renderPlan(){
 
   const body=document.getElementById("body-plan");
   const mobileBody=document.getElementById("plan-mobile-list");
+  /* v6.10：重点区已呈现的「本期重点未完成」在主表中做弱化标注（不隐藏，保证可编辑，只加 class） */
   if(rows.length===0){
+    const _prTxt=(PERIOD_ANCHOR?"所选期":"本期");
+    const _hasPeriod=DB.rows.some(x=>isInPeriod(x,periodRange(PERIOD_ANCHOR)));
     const emptyHtml=DB.rows.length===0
       ?`<div class="plan-empty"><div class="pe-emoji">📋</div><div class="pe-text">还没有任何任务</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增第一个任务</button></div>`
-      :`<div class="empty">没有匹配的任务</div>`;
+      :(_hasPeriod?`<div class="empty">没有匹配的任务</div>`
+        :`<div class="plan-empty"><div class="pe-emoji">🗓</div><div class="pe-text">${_prTxt}没有未完成的工作</div><div style="font-size:12px;color:var(--muted2);margin-bottom:12px">已完成项已折叠到上方「已完成」区；也可点上方 ◀ ▶ 或期格子查看其它周期</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增到本期</button></div>`);
     const mobileEmpty=DB.rows.length===0
       ?`<div class="pm-empty"><div class="pe-emoji">📋</div><div class="pe-text">还没有任何任务</div><button class="btn sm job" onclick="addRowPlan()">＋ 新增第一个任务</button></div>`
-      :`<div class="pm-empty">没有匹配的任务</div>`;
+      :(_hasPeriod?`<div class="pm-empty">没有匹配的任务</div>`
+        :`<div class="pm-empty"><div class="pe-emoji">🗓</div><div class="pe-text">${_prTxt}没有未完成的工作</div><div style="font-size:12px;color:var(--muted2);margin-bottom:14px">已完成项已折叠；可点上方 ◀ ▶ 或期格子切换周期</div></div>`);
     body.innerHTML=`<tr><td colspan="9" class="empty">${emptyHtml}</td></tr>`;
     if(mobileBody) mobileBody.innerHTML=mobileEmpty;
   }
@@ -6533,7 +6828,7 @@ function renderPlan(){
     if(mobileBody) mobileBody.innerHTML=rows.map(r=>renderPlanMobileCard(r,today,PLAN_DISP[r._i])).join("");
   }
 
-  renderPlanStats();renderKeyItems();
+  renderPlanStats();renderKeyItems();renderDoneFold();
   requestAnimationFrame(()=>{document.querySelectorAll(".cell-note").forEach(t=>{t.style.height="auto";t.style.height=t.scrollHeight+"px";});});
 }
 
@@ -6668,7 +6963,9 @@ function onMobileDeptSubInput(i,sub){
 }
 
 function renderPlanStats(){
-  const all=DB.rows;const total=all.length;
+  /* v6.10：统计口径跟随当前所选周期（周/月），与主表一致 */
+  const _pr=periodRange(PERIOD_ANCHOR);
+  const all=DB.rows.filter(x=>isInPeriod(x,_pr));const total=all.length;
   const done=all.filter(r=>statusGroup(r.s)==="done").length,
     doing=all.filter(r=>statusGroup(r.s)==="doing").length,
     todo=all.filter(r=>statusGroup(r.s)==="todo").length;
@@ -6684,7 +6981,8 @@ function renderPlanStats(){
   setTxt("sc-done",done);
   setTxt("sc-doing",doing);
   setTxt("sc-over",over);
-  setTxt("sc-total-sub",total?`${wkd}项本周到期`:"—");
+  const _ptxt=(PERIOD_ANCHOR?"所选期":"本期")+(PERIOD_MODE==="month"?"（月）":"（周）");
+  setTxt("sc-total-sub",total?`${_ptxt} · ${wkd}项临期`:"—");
   setTxt("sc-done-sub",total?`占比 ${pct}%`:"—");
   setTxt("sc-doing-sub",todo>0?`${todo}项待处理`:"全部已启动");
   setTxt("sc-over-sub",over?"需立即处理":"暂无逾期");
@@ -6833,6 +7131,14 @@ function setQuickView(v,el){
   document.querySelectorAll(".ps-card").forEach(c=>c.classList.remove("active"));
   renderPlan();
 }
+/* v6.10：点统计卡「已完成」时自动展开已完成折叠区，便于核对 */
+function ensureDoneVisible(){
+  if(!PERIOD_EXPAND_DONE){
+    PERIOD_EXPAND_DONE=true;
+    const items=document.getElementById("df-items");if(items)items.classList.add("open");
+    const head=document.querySelector(".df-head");if(head)head.classList.add("open");
+  }
+}
 function filterPlanBy(v){
   const fban=document.getElementById("fban-plan");
   const fstat=document.getElementById("fstat-plan");
@@ -6846,6 +7152,7 @@ function filterPlanBy(v){
   }else if(v==="done"||v==="doing"){
     if(fstat) fstat.value=v;
     quickView="all";
+    if(v==="done") ensureDoneVisible();     /* v6.10：已完成卡 → 自动展开折叠区 */
   }else if(v==="due"){
     if(fstat) fstat.value="";
     quickView="due";
@@ -6921,7 +7228,11 @@ function addRowPlan(){
     if(pb&&!String(pb.t||"").trim()&&!String(pb.m||"").trim())DB.rows.splice(PLAN_BLANK_I,1);
     PLAN_BLANK_I=-1;
   }
-  const dt=new Date();dt.setDate(dt.getDate()+7);
+  /* v6.10：默认日期改为「当前所选周期」的最后一天，保证新增的行立刻可见、不会被周期过滤挡掉。
+     （旧行为是 today+7，在按周视图下新行会直接落到下一周而"凭空消失"。）
+     若用户已切到某个历史周期，就归入该周期；否则归入本周。 */
+  const _pr=periodRange(PERIOD_ANCHOR);
+  const dt=_pr.end?new Date(_pr.end.getFullYear(),_pr.end.getMonth(),_pr.end.getDate()):new Date();
   DB.rows.push({b:lastBoard,t:"",s:"未启动",d:"",dt:localDateStr(dt),m:"",key:0});
   const ni=DB.rows.length-1;
   save();
@@ -7292,23 +7603,31 @@ function toggleKey(i){
   setKeyLevel(i,keyLevel(DB.rows[i])>0?0:1);
 }
 function renderKeyItems(){
+  /* v6.10：重点区只列「本期未完成」的重点，已完成的重点自动落到下方折叠区 */
   const box=document.getElementById("key-items");if(!box)return;
-  const items=DB.rows.filter(r=>keyLevel(r)>0).sort((a,b)=>keyLevel(b)-keyLevel(a));
-  document.getElementById("key-count").textContent=items.length;
+  const r=periodRange(PERIOD_ANCHOR);
+  const inP=DB.rows.filter(x=>isInPeriod(x,r));
+  const items=inP.filter(x=>keyLevel(x)>0&&statusGroup(x.s)!=="done").sort((a,b)=>keyLevel(b)-keyLevel(a));
+  const openUndone=inP.filter(x=>statusGroup(x.s)!=="done"&&keyLevel(x)===0);
+  const periodTxt=(PERIOD_ANCHOR?"所选期":"本期");
+  let head='<div class="pf-title">⭐ '+periodTxt+'重点未完成 <i>'+items.length+'</i> 项'
+    +(openUndone.length?('　·　其余未完成 '+openUndone.length+' 项见下表'):'')
+    +'</div>';
   if(items.length===0){
-    box.innerHTML=`<div class="empty-k">暂无标记 · 点左侧星标即可加入本周重点（1~5 颗，越多越靠前）</div>`;return;
+    box.innerHTML=head+'<div class="empty-k">'+periodTxt+'暂无重点未完成 · 给下表的星标点 1~5 颗即加入重点</div>';
+  }else{
+    box.innerHTML=head+items.map(x=>{
+      const idx=DB.rows.indexOf(x),c=bkColor(x.b),lv=keyLevel(x);
+      return '<div class="ki">'
+        +'<span style="color:#f1c40f;font-size:14px;letter-spacing:1px">'+("★".repeat(lv))+'</span>'
+        +'<span class="kchip" style="background:'+c+'22;color:'+c+';border:1px solid '+c+'55">'+esc(x.b)+'</span>'
+        +'<span class="ktxt">'+esc(x.t||"（未命名）")+'</span>'
+        +'<span class="ki-date">'+(fmtDateShort(x.dt)||"未排期")+'</span>'
+        +'<span class="st '+statusClass(x.s)+'">'+esc(x.s)+'</span>'
+        +'<button class="del" title="取消标记" onclick="toggleKey('+idx+')">×</button></div>';
+    }).join("");
   }
-  box.innerHTML=items.map(r=>{
-    const idx=DB.rows.indexOf(r),c=bkColor(r.b),lv=keyLevel(r);
-    const stars="★".repeat(lv);
-    return `<div class="ki">
-      <span style="color:#f1c40f;font-size:14px;letter-spacing:1px">${stars}</span>
-      <span class="kchip" style="background:${c}22;color:${c};border:1px solid ${c}55">${esc(r.b)}</span>
-      <span class="ktxt">${esc(r.t)||"（未命名）"}</span>
-      <span class="st ${statusClass(r.s)}">${esc(r.s)}</span>
-      <button class="del" title="取消标记" onclick="toggleKey(${idx})">×</button>
-    </div>`;
-  }).join("");
+  renderDoneFold();
 }
 function renderBoardBars(){
   const box=document.getElementById("board-bars");if(!box)return;
@@ -9876,7 +10195,7 @@ async function applySync(){
 /* 全量重渲染（同步后调用）*/
 function renderAll(){
   fillBanPlan();
-  if(curTab==="home")renderOverview();else if(curTab==="plan")renderPlan();else if(curTab==="course")renderCourse();else if(curTab==="hot")renderHot();else if(curTab==="job")renderJobs();else if(curTab==="read")renderRead();
+  if(curTab==="home")renderOverview();else if(curTab==="plan"){renderPeriodBar();renderPlan();}else if(curTab==="course")renderCourse();else if(curTab==="hot")renderHot();else if(curTab==="job")renderJobs();else if(curTab==="read")renderRead();
   else if(curTab==="okr")renderOKRs();else if(curTab==="gear")renderGears();else if(curTab==="review")renderReviews();else if(curTab==="idea")renderIdeas();
   else if(curTab==="schedule")renderSchedule();
   else if(curTab==="estate")renderEstate();
@@ -10691,6 +11010,7 @@ function checkVersionUpdate(){
 }
 
 fillBanPlan();
+initPeriodBar();          /* v6.10 周期导航初始化 */
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
 checkVersionUpdate();
