@@ -571,13 +571,14 @@
   .ps-card.active{background:rgba(251,191,36,.14);border-color:var(--amber)}
 
   /* 板块条 */
-  .board-bars{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-  .mini-board{display:flex;align-items:center;gap:8px;font-size:11.5px;background:var(--surface);border:1px solid var(--glass-border);
-    border-radius:var(--radius-xs);padding:8px 14px;backdrop-filter:blur(8px);flex:1;min-width:140px}
-  .mini-board .mb-name{width:58px;color:var(--ink2);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mini-board .mb-track{flex:1;height:6px;border-radius:var(--r-pill);background:var(--bg3);overflow:hidden}
+  /* v6.13：板块增至 7 个，单行排不下会折成两行、视觉变乱 → 固定一行，进度条弹性压缩 */
+  .board-bars{display:flex;gap:8px;margin-bottom:14px;flex-wrap:nowrap}
+  .mini-board{display:flex;align-items:center;gap:6px;font-size:11.5px;background:var(--surface);border:1px solid var(--glass-border);
+    border-radius:var(--radius-xs);padding:8px 11px;backdrop-filter:blur(8px);flex:1 1 0;min-width:0}
+  .mini-board .mb-name{width:auto;color:var(--ink2);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mini-board .mb-track{flex:1;min-width:18px;height:6px;border-radius:var(--r-pill);background:var(--bg3);overflow:hidden}
   .mini-board .mb-track i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--teal));transition:width .35s;border-radius:var(--r-pill)}
-  .mini-board .mb-num{width:34px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:700}
+  .mini-board .mb-num{width:30px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-weight:700}
 
   /* 模块页头（标题 + 操作按钮） */
   .sec-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
@@ -731,8 +732,11 @@
     .toolbar .btn,.toolbar .btn.ghost{flex:1;padding:10px 8px;font-size:12px}
     .qview{width:100%}
     .qview button{flex:1;padding:9px 0}
-    .board-bars{gap:6px}
-    .mini-board{padding:7px 10px}
+    /* v6.13：7 个板块在手机上单行会挤爆 → 改为可横向滑动的一行，保留全部板块 */
+    .board-bars{gap:6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+    .board-bars::-webkit-scrollbar{display:none}
+    .mini-board{padding:7px 10px;flex:0 0 auto}
+    .mini-board .mb-name{width:auto}
     .pm-fab{display:grid}
   }
   /* 星标分级（v5.82）：一行 5 颗可点小星 —— 点第几颗就给几颗，点当前最后一颗清零；★ 实心=已给，☆ 空心=未给 */
@@ -5596,7 +5600,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.12</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.13</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5917,7 +5921,12 @@ window.QRCode = {
 /* ==================== 公共工具 ==================== */
 const esc=s=>(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39"}[c]));
 const PAL=["#60a5fa","#22c55e","#a78bfa","#fbbf24","#f87171","#2dd4bf","#fb923c","#38bdf8","#f472b6","#a3e635"];
-function bkColor(b){let h=0;for(const c of(b||""))h=(h*31+c.charCodeAt(0))>>>0;return PAL[h%PAL.length]}
+/* v6.13：板块数已达 7，哈希取色会撞色 → 给正式板块钉死专属色，新增板块走哈希兜底 */
+const BK_FIXED={
+  "策划方案":"#60a5fa","包装物料":"#fbbf24","推广传播":"#a78bfa","活动执行":"#fb923c",
+  "工程协同":"#2dd4bf","采购综合":"#38bdf8","付款会签":"#22c55e"
+};
+function bkColor(b){ if(BK_FIXED[b])return BK_FIXED[b]; let h=0;for(const c of(b||""))h=(h*31+c.charCodeAt(0))>>>0;return PAL[h%PAL.length]}
 
 /* ====== 动态状态 ====== */
 const STATUS_MAP={
@@ -5938,6 +5947,8 @@ const STATUS_MAP={
   "制作-安装工":["未启动","待进场","安装中","待验收","已完成"],
   // 公司（含子类）
   "公司-财务":["未启动","请款中","审批中","已付款","已驳回"],
+  "公司-付款会签":["待提交","会签中","财务复核","已会签","已付款","已驳回"],
+  "付款会签-付款会签":["待提交","会签中","财务复核","已会签","已付款","已驳回"],
   "公司-采购":["待采购","采购中","待入库","已入库"],
   "公司-行政":["未启动","走流程","已签批"],
   "公司-工程":["未启动","已提资","待确认","已协同"],
@@ -5973,7 +5984,8 @@ const DEPT_TREE={
   "推广":["策划","设计","视频","文案","媒介","模特","化妆师","摄影师","设计师"],
   "制作":["安装师傅","设计员","制作主管","安装工","印刷厂"],
   "策划":["策划专员简强","推广策划"],
-  "活动":["场地","媒体"]
+  "活动":["场地","媒体"],
+  "付款会签":["付款会签"]
 };
 const DEPT_LEGACY_MAP={"推广公司":"推广","制作公司":"制作","活动公司":"活动"};
 const GENERIC_STATUSES=["未启动","进行中","已完成","待确认","走流程","已下单",
@@ -5995,21 +6007,24 @@ function getStatuses(dept){
 
 function statusClass(s){
   s=(s||"").trim();
-  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已结案","已发布","已收货","已协同"].includes(s)) return "st-done";
-  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "st-doing";
+  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "st-done";
+  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "st-doing";
   if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "st-flow";
   if(s==="-"||s==="") return "st-none";
   return "st-todo";
 }
 function statusGroup(s){
   s=(s||"").trim();
-  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已结案","已发布","已收货","已协同"].includes(s)) return "done";
-  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "doing";
+  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "done";
+  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "doing";
   if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "flow";
   return "todo";
 }
 
-const BANKUAI_PLAN=["策划方案","包装物料","推广传播","活动执行","工程协同","采购综合"];
+/* v6.13：新增「付款会签」板块（付款/请款/审批/会签类事项的独立归口） */
+const BANKUAI_PLAN=["策划方案","包装物料","推广传播","活动执行","工程协同","采购综合","付款会签"];
+/* 板块归属判定顺序：从「更专属」到「更泛化」，避免泛化关键词抢走专属事项 */
+const BANKUAI_ORDER=["付款会签","策划方案","包装物料","推广传播","活动执行","工程协同","采购综合"];
 
 const SEED={
   rows:[
@@ -6197,13 +6212,16 @@ const BANKUAI_REMAP={
   "广告投放":"推广传播","投放":"推广传播",
   "活动":"活动执行","婚庆广场":"活动执行","圈层活动":"活动执行","公益活动":"活动执行","活动执行":"活动执行",
   "工程":"工程协同","工程确认":"工程协同","工程协同":"工程协同",
-  "采购":"采购综合","行政采购":"采购综合","付款":"采购综合","费用报销":"采购综合","采购付款":"采购综合",
+  "采购":"采购综合","行政采购":"采购综合","合同":"采购综合",
+  "付款会签":"付款会签","会签":"付款会签","付款":"付款会签","请款":"付款会签","付款申请":"付款会签",
+  "付款审批":"付款会签","款项":"付款会签","用款":"付款会签","打款":"付款会签","报销":"付款会签","费用报销":"付款会签",
+  "审批":"付款会签","呈批":"付款会签","用款申请":"付款会签","付款单":"付款会签",
   "对接":"采购综合","品牌合作":"采购综合","社区配套":"采购综合","算价方式":"采购综合",
   "询价":"采购综合","图纸":"采购综合","流程":"采购综合","其它":"采购综合","综合事务":"采购综合"
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.12";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.13";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7185,6 +7203,7 @@ function doneState(dept){
   if(key==="推广-视频")return "已交片";
   if(key==="推广-文案")return "已发布";
   if(key==="推广-媒介")return "已结案";
+  if(key==="公司-付款会签"||key==="付款会签-付款会签")return "已会签";
   if(group==="制作"){
     if(sub==="印刷厂")return "已收货";
     return "已完成";
@@ -7439,7 +7458,8 @@ function parseVoiceToTasks(text){
   function fmt(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
   const WEEK={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"日":7,"天":7};
   const KW_BOARD=[
-    {b:"采购综合",kw:["采购","付款","请款","报销","合同","供应商","财务","下单","结算","开票","造价","制作费","物料款"]},
+    {b:"付款会签",kw:["付款会签","会签","付款","请款","付款申请","付款审批","费用审批","报销","用款","打款","付款单","呈批","签批付款","走签","签字","审批流","款项"]},
+    {b:"采购综合",kw:["采购","合同","供应商","财务","下单","结算","开票","造价","制作费","物料款"]},
     {b:"包装物料",kw:["物料","吊旗","海报","展板","包装","画面","折页","画册","形象照","道旗","围挡","喷绘","展架","桁架","背景板","横幅","门头"]},
     {b:"推广传播",kw:["推广","传播","抖音","小红书","视频","软文","公众号","朋友圈","宣发","媒体","直播","推文","投流","信息流","线上"]},
     {b:"活动执行",kw:["活动","暖场","执行","沙龙","发布会","拓客","巡展","市集","答谢","开盘","节点","晚会","快闪","地推"]},
