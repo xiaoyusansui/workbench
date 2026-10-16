@@ -5600,7 +5600,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.13</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.14</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5984,9 +5984,20 @@ const DEPT_TREE={
   "推广":["策划","设计","视频","文案","媒介","模特","化妆师","摄影师","设计师"],
   "制作":["安装师傅","设计员","制作主管","安装工","印刷厂"],
   "策划":["策划专员简强","推广策划"],
-  "活动":["场地","媒体"],
-  "付款会签":["付款会签"]
+  "活动":["场地","媒体"]
 };
+/* v6.14：「付款会签」专属对接流程（环节 → 具体节点）。
+ * 只在「付款会签」板块下出现，其它板块看不到这些选项，避免污染日常对接下拉。 */
+const PAY_FLOW={
+  "拟定中":["待开发票","待内部签字"],
+  "会签中":["采购部","财务部","常务会长","会长"],
+  "待打款":[],
+  "已打款":[]
+};
+const PAY_FLOW_GROUPS=Object.keys(PAY_FLOW);
+/* 付款会签在这套流程下的进度（与环节呼应：先拟定、再逐级会签、最后打款） */
+const PAY_FLOW_STATUSES=["拟定中","会签中","待打款","已打款","已驳回"];
+const PAY_FLOW_DEFAULT="拟定中 - 待开发票";
 const DEPT_LEGACY_MAP={"推广公司":"推广","制作公司":"制作","活动公司":"活动"};
 const GENERIC_STATUSES=["未启动","进行中","已完成","待确认","走流程","已下单",
   "待开始","待沟通","已确认","修改中","制作中","设计中","待定稿","待安装","待设计",
@@ -6000,6 +6011,8 @@ function getStatuses(dept){
   dept=(dept||"").trim();
   let {group,sub}=parseDept(dept);
   group=DEPT_LEGACY_MAP[group]||group;
+  /* v6.14：付款会签走专属流程进度（拟定 → 会签 → 打款），与「对接」节点呼应 */
+  if(PAY_FLOW[group]||group==="付款会签") return PAY_FLOW_STATUSES.slice();
   if(sub && STATUS_MAP[group+"-"+sub]) return STATUS_MAP[group+"-"+sub];
   if(sub && STATUS_MAP[sub]) return STATUS_MAP[sub];
   return STATUS_MAP[group]||GENERIC_STATUSES;
@@ -6007,17 +6020,17 @@ function getStatuses(dept){
 
 function statusClass(s){
   s=(s||"").trim();
-  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "st-done";
-  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "st-doing";
-  if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "st-flow";
+  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已打款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "st-done";
+  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","拟定中","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "st-doing";
+  if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","待打款","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "st-flow";
   if(s==="-"||s==="") return "st-none";
   return "st-todo";
 }
 function statusGroup(s){
   s=(s||"").trim();
-  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "done";
-  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "doing";
-  if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "flow";
+  if(["已完成","已定稿","已签批","已入库","已验收","已确定","已付款","已打款","已会签","已结案","已发布","已收货","已协同"].includes(s)) return "done";
+  if(["进行中","制作中","设计中","修改中","采购中","签批中","策划中","撰稿中","剪辑中","拍摄中","安装中","审核中","请款中","审批中","会签中","财务复核","拟定中","已提资","排期中","已下单","需求沟通","方案撰写"].includes(s)) return "doing";
+  if(["走流程","待定稿","待审核","待采购","待制作","待验收","待修改","待安装","待设计","待入库","待打款","已提交","待进场","待确认","待沟通","待邀约","待安排","待询价","已派单"," briefing","briefing","待开始","待呈报"].includes(s)) return "flow";
   return "todo";
 }
 
@@ -6221,7 +6234,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.13";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.14";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6261,6 +6274,14 @@ function morphDB(d){
   (d.rows||[]).forEach(rw=>{
     if(rw&&BANKUAI_REMAP[rw.b])rw.b=BANKUAI_REMAP[rw.b];
     if(rw)rw.key=keyLevel(rw);   /* 星标统一为 0~5 的数字（兼容旧版 true/false） */
+    /* v6.14：「付款会签」改用「环节 - 节点」流程，把旧文案（付款会签 - 付款会签）平滑迁到流程首节点，
+       进度若不在会签流程内也一并归位，避免下拉里出现无效选项。
+       注意：只在「填了内容但不是流程节点」时迁移，空值一律保留（不覆盖用户的有意留空）。 */
+    if(rw&&rw.b==="付款会签"){
+      const g=parseDept(rw.d||"").group;
+      if(g && !PAY_FLOW[g]) rw.d=PAY_FLOW_DEFAULT;
+      if(rw.s && PAY_FLOW_STATUSES.indexOf(rw.s)<0) rw.s=PAY_FLOW_STATUSES[0];
+    }
   });
   if(!d._ts)d._ts=Date.now();
   return d;
@@ -6869,9 +6890,9 @@ function renderPlanMobileCard(r,today,disp){
   const bOptions=(BANKUAI_PLAN.includes(r.b)?BANKUAI_PLAN:[...BANKUAI_PLAN,r.b]).map(b=>`<option ${b===r.b?"selected":""}>${esc(b)}</option>`).join("");
   const sOptions=stList.map(s=>`<option ${s===r.s?"selected":""}>${s}</option>`).join("");
   const {group,sub}=parseDept(r.d||"");
-  const subs=DEPT_TREE[group]||[];
+  const subs=PAY_FLOW[group]||DEPT_TREE[group]||[];
   const hasSubs=subs.length>0;
-  const gOptions=buildDeptGroupOptions(group);
+  const gOptions=buildDeptGroupOptions(group, r.b);
   const statusPillClass=statusClass(r.s);
   const statusLabel=r.s||"未设置";
   let subHtml="";
@@ -6935,7 +6956,10 @@ function togglePmCard(i){
 }
 function onMobilePlanField(i,field,value){
   if(!DB.rows[i])return;
-  DB.rows[i][field]=value;save();
+  DB.rows[i][field]=value;
+  /* v6.14：手机端切换板块同样要让「对接 / 进度」归位 */
+  if(field==='b') applyPayFlow(i,value);
+  save();
   const card=document.getElementById("pm-card-"+i);
   if(card){
     if(field==='t'){
@@ -6945,6 +6969,8 @@ function onMobilePlanField(i,field,value){
     if(field==='b'){
       const board=card.querySelector(".pm-board");
       if(board) board.textContent=value||"未分类";
+      const today=new Date();today.setHours(0,0,0,0);
+      card.outerHTML=renderPlanMobileCard({...DB.rows[i],_i:i},today,PLAN_DISP[i]);
     }
   }
   renderPlanStats();renderKeyItems();
@@ -6957,7 +6983,7 @@ function onMobilePlanStatusChange(i,value,sel){
 }
 function onMobileDeptGroupChange(i,group){
   if(!DB.rows[i])return;
-  const subs=DEPT_TREE[group]||[];
+  const subs=PAY_FLOW[group]||DEPT_TREE[group]||[];
   const sub=subs[0]||"";
   const d=sub?group+" - "+sub:group;
   DB.rows[i].d=d;
@@ -7030,23 +7056,25 @@ function renderPlanStats(){
   }
 }
 
-function buildDeptGroupOptions(group){
-  const groups=Object.keys(DEPT_TREE);
+/* v6.14：对接大类列表按板块过滤 —— 「付款会签」只给会签流程节点，其它板块只给日常对接大类，
+   两边互不干扰（历史数据里出现过的值仍以兜底选项保留，不会被吃掉）。 */
+function buildDeptGroupOptions(group, board){
   const g=(group||"").trim();
-  // 兼容旧数据中不在 DEPT_TREE 的大类（如旧版 "——"），以普通选项形式兜底保留
+  // 「付款会签」板块 → 只给会签流程环节；其它板块 → 只给日常对接大类
+  const groups = board === "付款会签" ? PAY_FLOW_GROUPS.slice() : Object.keys(DEPT_TREE);
   return `<option value="">—</option>`+groups.map(x=>`<option ${x===g?"selected":""}>${x}</option>`).join("")+(g&&!groups.includes(g)?`<option selected value="${esc(g)}">${esc(g)}</option>`:"");
 }
 function buildDeptSubOptions(d){
   const {group,sub}=parseDept(d);
-  const subs=DEPT_TREE[group]||[];
+  const subs=PAY_FLOW[group]||DEPT_TREE[group]||[];
   if(subs.length===0) return `<option value="">—</option>`;
   return subs.map(x=>`<option ${x===sub?"selected":""}>${x}</option>`).join("");
 }
 function renderDeptCell(d,i){
   const {group,sub}=parseDept(d);
-  const subs=DEPT_TREE[group]||[];
+  const subs=PAY_FLOW[group]||DEPT_TREE[group]||[];
   const hasSubs=subs.length>0;
-  const gHtml=buildDeptGroupOptions(group);
+  const gHtml=buildDeptGroupOptions(group, (DB.rows[i]||{}).b);
   if(!hasSubs){
     // 无子类的大类：小类用 input，让用户输入具体客户名/场地名/模特名等
     return `<div class="cell-dept-wrap">
@@ -7065,11 +7093,11 @@ function renderDeptCell(d,i){
   </div>`;
 }
 function subPlaceholder(group){
-  const map={"客户":"客户名"};
+  const map={"客户":"客户名","待打款":"打款说明（金额/账户）","已打款":"打款凭证 / 流水号"};
   return map[group]||"具体名称";
 }
 function onDeptGroupChange(i,group){
-  const subs=DEPT_TREE[group]||[];
+  const subs=PAY_FLOW[group]||DEPT_TREE[group]||[];
   // 有大类默认子类则自动选第一个；无子类则小类留空等用户输入
   const sub=subs[0]||"";
   const d=sub?group+" - "+sub:group;
@@ -7192,7 +7220,25 @@ function onBoardChange(i,b){
   DB.rows[i].b=b; lastBoard=b;
   /* v6.12：改过板块视为「有意填写」，撤销空白行清理标记，避免选完板块后行被回收 */
   if(i===PLAN_BLANK_I){cancelPlanBlankCleanup();PLAN_BLANK_I=-1;}
+  /* v6.14：切到「付款会签」时，对接自动落到流程首节点，进度跟着切到会签流程；
+     从付款会签切走时，把流程节点清掉，避免残留无意义选项。 */
+  applyPayFlow(i,b);
   save();renderPlan();
+}
+/* v6.14：付款会签板块的「对接 / 进度」自动归位 */
+function isPayNode(d){
+  const g=parseDept(d||"").group;
+  return !!(g&&PAY_FLOW[g]);
+}
+function applyPayFlow(i,b){
+  const r=DB.rows[i]; if(!r) return;
+  if(b==="付款会签"){
+    if(!isPayNode(r.d)) r.d=PAY_FLOW_DEFAULT;
+    if(PAY_FLOW_STATUSES.indexOf(r.s)<0) r.s=PAY_FLOW_STATUSES[0];
+  }else if(isPayNode(r.d)){
+    r.d="";
+    if(PAY_FLOW_STATUSES.indexOf(r.s)>=0) r.s="未启动";
+  }
 }
 function doneState(dept){
   dept=(dept||"").trim();
