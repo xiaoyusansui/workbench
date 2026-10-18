@@ -1146,7 +1146,33 @@
   .about-footer{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted2);text-align:center;line-height:1.6}
 
   /* 弹窗 */
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:99;padding:16px}
+  /* v6.23：设置面板内容有 1600+ px，而 .modal-box 既没设 max-height 也没设 overflow，
+     加上 .modal 用 align-items:center 居中 —— 结果上下两头一起被切到屏幕外，
+     连滚动条都不出现（实测 900px 屏幕切掉上下各 387px，"模型名""保存配置"根本看不到）。
+     这里给设置弹窗单独的滚动容器，头尾按钮始终可见。 */
+  #settings-modal .modal-box{display:flex;flex-direction:column;max-height:calc(100vh - 32px);overflow:hidden}
+  /* 手机上 100vh 含地址栏，弹窗会顶到底；dvh 跟随真实可视高度 */
+  @supports (height:100dvh){#settings-modal .modal-box{max-height:calc(100dvh - 32px)}}
+  #settings-modal .modal-box>h3{flex:0 0 auto}
+  #settings-modal .settings-sections{overflow-y:auto;overflow-x:hidden;min-height:0;flex:1 1 auto;
+    padding-right:6px;margin-right:-6px;scrollbar-gutter:stable}
+  #settings-modal .settings-sections::-webkit-scrollbar{width:8px}
+  #settings-modal .settings-sections::-webkit-scrollbar-track{background:transparent}
+  /* 滚动条本身要看得见：--line2 是边框色，太淡；改用 muted3 并在 hover 时加深 */
+  #settings-modal .settings-sections::-webkit-scrollbar-thumb{background:var(--muted3);border-radius:4px;
+    border:1px solid transparent;background-clip:padding-box}
+  #settings-modal .settings-sections::-webkit-scrollbar-thumb:hover{background:var(--ink2)}
+  /* 火狐 */
+  #settings-modal .settings-sections{scrollbar-width:thin;scrollbar-color:var(--muted3) transparent}
+  /* 上下渐隐：滚动区边缘被切一半的内容会"淡出"，一眼看出还有更多（而不是像被裁掉了） */
+  #settings-modal .modal-box{position:relative}
+  #settings-modal .settings-sections{
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
+  /* 窄屏（手机）时内边距收紧，避免可滚动区域过窄。
+     ⚠ 该规则必须写在下方移动端 .modal-box{max-height:none} 之后，
+     否则手机上 max-height 被覆盖、设置面板重新溢出到屏幕外。见 v6.23 修复块。 */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:99;padding:16px;overflow-y:auto}
   .modal-box{background:var(--bg2);border:1px solid var(--glass-border);border-radius:18px;padding:24px 26px;max-width:480px;width:100%;
     box-shadow:0 30px 80px rgba(0,0,0,.6)}
   .modal-box h3{font-size:17px;font-weight:900;margin-bottom:8px;color:var(--ink)}
@@ -1380,6 +1406,10 @@
     .jm-body{padding:14px 16px}
     .jm-foot{padding:12px 16px}
     .job-modal-overlay{align-items:flex-start;padding:8px 0 24px}
+    /* v6.23：上面 .modal-box{max-height:none} 会把设置面板的限制顶掉，
+       导致手机上设置又溢出屏幕。这里必须重新压回去（选择器更具体）。 */
+    #settings-modal .modal-box{padding:16px 18px;max-height:calc(100vh - 48px)}
+    @supports (height:100dvh){#settings-modal .modal-box{max-height:calc(100dvh - 48px)}}
     /* 同步托盘：手机端精简，避免与顶部 chip 重复拥挤 */
     .synctray{justify-content:flex-start;gap:6px;padding:0;margin:0 0 10px}
     .synctray .btn.ghost{padding:8px 12px;font-size:12px}
@@ -5698,7 +5728,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.22</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.23</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6199,7 +6229,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.22";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.23";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
