@@ -1955,6 +1955,8 @@
   .idea-img-wrap{width:100%;height:160px;background:var(--bg3);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
   .idea-img-wrap img{width:100%;height:100%;object-fit:cover}
   .idea-img-placeholder{font-size:36px;opacity:.3}
+  .idea-cover-ph{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:26px;opacity:.55}
+  .idea-cover-ph i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.4px;color:var(--muted3)}
   .idea-tags{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
   .idea-tag{font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:700;background:rgba(168,85,247,.85);color:#fff;backdrop-filter:blur(4px)}
   .idea-body{padding:14px}
@@ -2054,6 +2056,62 @@
     .igc b{max-width:174px}
   }
   .add-idea:hover{background:rgba(168,85,247,.04);border-color:#a855f7}
+  /* ===== v6.18 灵感采集弹窗 ===== */
+  .job-modal.ifm{max-width:720px;width:min(94vw,720px)}
+  /* 采集框属于灵感模块，视觉身份跟随灵感的紫色（其余弹窗保持蓝色不变） */
+  .job-modal.ifm .jm-head{background:linear-gradient(135deg,#a855f7,#7c3aed)}
+  .job-modal.ifm .btn.job{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;border:none}
+  .ifm-go{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;font-weight:800;border:none}
+  .ifm-tip{font-size:12.5px;line-height:1.65;color:var(--muted2);background:var(--bg3);
+    border-left:3px solid var(--gold);border-radius:var(--r-xs);padding:10px 12px;margin-bottom:14px}
+  .ifm-tip b{color:var(--gold);font-weight:800}
+  .ifm-bar{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .ifm-go:hover{filter:brightness(1.06)}
+  .ifm-note{font-size:11.5px;color:var(--muted3);margin-left:auto}
+  .ifm-list{display:flex;flex-direction:column;gap:9px;max-height:340px;overflow-y:auto;padding-right:2px}
+  .ifm-empty{font-size:12.5px;color:var(--muted3);text-align:center;padding:22px 0}
+  .ifm-item{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:var(--r-sub);
+    background:var(--surface);border:1px solid var(--glass-border);transition:.15s}
+  .ifm-item:hover{border-color:rgba(176,122,46,.4)}
+  .ifm-item.off{opacity:.45}
+  .ifm-chk{padding-top:1px}
+  .ifm-chk input{width:15px;height:15px;accent-color:var(--gold);cursor:pointer}
+  .ifm-main{flex:1;min-width:0}
+  .ifm-hd{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+  .ifm-plat{font-size:10.5px;font-weight:800;color:var(--ink2);background:var(--bg3);
+    padding:2px 8px;border-radius:var(--r-pill)}
+  .ifm-author{font-size:10.5px;color:var(--muted3)}
+  .ifm-title{font-size:13px;font-weight:800;color:var(--ink);line-height:1.45;margin-bottom:4px;
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .ifm-desc{font-size:11.5px;color:var(--muted2);line-height:1.55;margin-bottom:6px;
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .ifm-tags{display:flex;gap:5px;flex-wrap:wrap}
+  .ifm-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--r-pill);white-space:nowrap}
+  .ifm-scene{background:rgba(168,85,247,.12);color:#9333ea}
+  .ifm-gear{background:rgba(96,165,250,.12);color:#2563eb}
+  .ifm-miss{background:rgba(251,191,36,.16);color:#b45309}
+  .ifm-ok{background:rgba(34,197,94,.12);color:#16a34a}
+  .ifm-noscene{background:var(--bg3);color:var(--muted3)}
+  .ifm-kw{background:var(--bg3);color:var(--muted2);font-weight:600}
+  .ifm-dup{background:rgba(148,163,184,.18);color:var(--muted2)}
+  .ifm-new{background:rgba(34,197,94,.1);color:#16a34a}
+  .ifm-open{flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+    border-radius:50%;background:var(--bg3);color:var(--muted2);font-size:12px;text-decoration:none;font-weight:800}
+  .ifm-open:hover{background:var(--gold);color:#1b1b1b}
+  html[data-theme="dark"] .ifm-scene{background:rgba(168,85,247,.2);color:#d8b4fe}
+  html[data-theme="dark"] .ifm-gear{background:rgba(96,165,250,.2);color:#93c5fd}
+  html[data-theme="dark"] .ifm-ok{background:rgba(34,197,94,.18);color:#86efac}
+  html[data-theme="dark"] .ifm-miss{background:rgba(251,191,36,.18);color:#fcd34d}
+  @media(max-width:640px){
+    .job-modal.ifm{max-width:100%;width:calc(100vw - 20px)}
+    .ifm-list{max-height:44vh}
+    .ifm-note{margin-left:0;width:100%}
+  }
+  /* 灵感卡片上的来源平台徽章 */
+  .idea-plat{font-size:10px;font-weight:800;color:var(--muted3);background:var(--bg3);
+    padding:2px 7px;border-radius:var(--r-pill);white-space:nowrap}
+  .idea-link{color:var(--gold);text-decoration:none;font-weight:800;margin-left:4px}
+  .idea-link:hover{text-decoration:underline}
 /* ===== 账号登录墙 + 扫码同步 ===== */
 .auth-gate{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#16315a,#070b14 72%);}
 .auth-card{width:360px;max-width:92vw;background:var(--surface);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);border:1px solid var(--glass-border);border-radius:24px;padding:36px 30px;text-align:center;box-shadow:0 34px 100px rgba(0,0,0,.55);}
@@ -5141,6 +5199,7 @@ window.QRCode = {
               <option value="" data-page-node-id="kNDIW01RwEDHMZCSaEu9LG">全部标签</option>
             </select>
             <span class="pf-count" id="idea-count" data-page-node-id="v611IdeaCount"></span>
+            <button class="btn sm" onclick="openIdeaFetch()" data-page-node-id="v618FetchBtn" title="粘贴抖音/小红书分享文案或链接，自动识别并按你的器材匹配">📥 采集</button>
             <button class="btn sm" onclick="addIdea()" data-page-node-id="ZVxWJdGP0KtqYTTfplDJJW">✨ 记灵感</button>
           </div>
         </div>
@@ -5194,6 +5253,35 @@ window.QRCode = {
             <div class="jm-foot">
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaModal()">取消</button>
               <button class="btn sm job" onclick="saveIdeaModal()">💾 保存</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== v6.18 灵感采集：粘贴平台分享文案/链接 → 自动解析 → 按器材匹配 ==================== -->
+        <div class="job-modal-overlay" id="idea-fetch-modal" style="display:none" onclick="if(event.target===this)closeIdeaFetch()" data-page-node-id="v618FetchModal">
+          <div class="job-modal ifm" data-page-node-id="v618FetchBox">
+            <div class="jm-head"><span>📥 采集灵感</span><span class="jm-close" onclick="closeIdeaFetch()">✕</span></div>
+            <div class="jm-body">
+              <div class="ifm-tip" data-page-node-id="v618FetchTip">
+                把 <b>抖音 / 小红书 / B站</b> 的分享文案或链接直接粘进来，支持一次多条（每行一条）。
+                会读出标题、作者、话题，并按你的器材匹配到对应婚礼场景。
+              </div>
+              <div class="jm-field">
+                <label>📋 粘贴分享文案 / 链接</label>
+                <textarea id="ifm-input" rows="4" placeholder="例：婚礼跟拍机位全攻略 #婚礼跟拍# https://v.douyin.com/xxxx/ 复制此链接，打开抖音搜索…" oninput="ifmOnInput()" data-page-node-id="v618FetchInput"></textarea>
+                <div class="ifm-bar">
+                  <button class="btn sm ifm-go" onclick="ifmParse()" data-page-node-id="v618FetchParse">🔍 解析</button>
+                  <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="ifmPasteFromClipboard()" data-page-node-id="v618FetchClip">📋 读剪贴板</button>
+                  <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="ifmClear()" data-page-node-id="v618FetchClear">清空</button>
+                  <span class="ifm-note" id="ifm-note" data-page-node-id="v618FetchNote"></span>
+                </div>
+              </div>
+              <div class="ifm-list" id="ifm-list" data-page-node-id="v618FetchList"></div>
+            </div>
+            <div class="jm-foot">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaFetch()">取消</button>
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="ifmRefetch()" id="ifm-refetch" data-page-node-id="v618FetchRefetch">🔄 刷新抓取</button>
+              <button class="btn sm job" onclick="ifmSaveAll()" data-page-node-id="v618FetchSave">📥 全部入库</button>
             </div>
           </div>
         </div>
@@ -5515,7 +5603,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.17</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.18</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6016,7 +6104,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.17";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.18";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9091,6 +9179,438 @@ function ideaSceneBiz(k){
   var sc=IDEA_SCENES.filter(x=>x.k===k)[0];
   return sc?sc.biz:'';
 }
+/* v6.18 灵感采集引擎：从「分享文案 / 链接」解析出可入库的灵感，并按我的器材自动匹配。
+   现实约束（2026-10 实测，别自欺）：
+   - 抖音搜索页直连返回的是反爬 JS 虚拟机壳（<body> 为空 + _$jsvmprt），纯前端拿不到内容；
+   - 小红书 explore/search 直连 302 到登录墙；免费 CORS 代理大半停服。
+   所以这里走「三级通道」：① 分享文案本地解析（零网络、最可靠，标题/作者/话题/正文往往都在文案里）
+                      ② 直连 + 代理兜底，抓 OpenGraph / ld+json / og:title 描述
+                      ③ 已配置 AI（DeepSeek 等）时，让模型把标题润色成可执行的拍摄要点
+   抓不到内容也不算失败：至少拿到平台 + 标题 + 链接，标记「待补充」，绝不编造。 */
+
+const IDEA_PLATFORMS=[
+  {key:"小红书",icon:"📕",host:/xiaohongshu\.com|xhslink\.com/i},
+  {key:"抖音",  icon:"🎵",host:/(^|\.)douyin\.com|iesdouyin\.com|v\.douyin/i},
+  {key:"B站",  icon:"📺",host:/bilibili\.com|b23\.tv/i},
+  {key:"微博",  icon:"🅦",host:/weibo\.(com|cn)|t\.cn/i},
+  {key:"公众号",icon:"💬",host:/mp\.weixin\.qq\.com/i},
+  {key:"视频号",icon:"▶",host:/channels\.weixin|finder\.video\.qq/i},
+  {key:"Instagram",icon:"📷",host:/instagram\.com|instagr\.am/i},
+  {key:"Pinterest",icon:"📌",host:/pinterest\./i}
+];
+/* 从一段文本里识别平台（先看域名，再看平台名/口令特征） */
+function ideaDetectPlatform(text){
+  var s=String(text||"");
+  var u=extractFirstUrl(s);
+  if(u){
+    for(var i=0;i<IDEA_PLATFORMS.length;i++){
+      if(IDEA_PLATFORMS[i].host.test(u))return IDEA_PLATFORMS[i];
+    }
+  }
+  if(/小红书|红书|RED\b|xhslink/i.test(s))return IDEA_PLATFORMS[0];
+  if(/抖音|抖一抖|douyin/i.test(s))return IDEA_PLATFORMS[1];
+  if(/哔哩哔哩|B站|bilibili/i.test(s))return IDEA_PLATFORMS[2];
+  if(/微博|weibo/i.test(s))return IDEA_PLATFORMS[3];
+  if(/公众号|微信公众平台/i.test(s))return IDEA_PLATFORMS[4];
+  if(/instagram/i.test(s))return IDEA_PLATFORMS[6];
+  if(/pinterest/i.test(s))return IDEA_PLATFORMS[7];
+  return null;
+}
+/* 把平台分享文案拆成结构化灵感。分享文案的典型形态：
+   「标题文案…… 😆 xxxxx 😆 https://v.douyin.com/xxxx/ 复制此链接，打开Dou音搜索，直接观看视频！」
+   「57 【标题 - 作者 | 小红书 - 你的生活指南】 😆 abc 😆 https://www.xiaohongshu.com/explore/xxx 」
+   规则：砍掉口令尾巴、抽 #话题#、抽作者、剩下的正文取首句当标题。 */
+function ideaParseShare(text){
+  var raw=String(text||"").trim();
+  if(!raw)return null;
+  var url=extractFirstUrl(raw);
+  var s=raw;
+  if(url)s=s.split(url).join(" ");
+
+  /* 1) 话题：#xxx# 或 #xxx（到空格/标点） */
+  var tags=[];
+  var re=/#([^#\s，。；！？、]{1,20})#?/g,m;
+  while((m=re.exec(s))){ if(m[1]&&tags.indexOf(m[1])<0)tags.push(m[1]); }
+  s=s.replace(/#[^#\s，。；！？、]{1,20}#?/g," ");
+
+  /* 2) 口令尾巴：复制此链接/打开抖音/直接观看/复制本条信息 等 */
+  s=s.replace(/复制此链接[^。！!]*/g," ")
+     .replace(/复制本条信息[^。！!]*/g," ")
+     .replace(/打开\s*(Dou音|抖音|小红书|红书|快手)[^。！!]*/g," ")
+     .replace(/直接观看视频[^。！!]*/g," ")
+     .replace(/看看\s*【[^】]*】\s*(的作品|的笔记)?/g," ")
+     .replace(/[，,]?\s*(打开|进入)?\s*(App|APP)\s*[^。！!]*/g," ")
+     .replace(/😆|😀|😂|🤣|✨|👉|👇|🔗|【\s*】/g," ")
+     .replace(/\s{2,}/g," ").trim();
+
+  /* 3) 作者：「- 作者 | 小红书」或「@某人」 */
+  var author="";
+  var ma=s.match(/[-—]\s*([^|\-—\n]{1,18}?)\s*[|｜]\s*(小红书|抖音|B站|哔哩哔哩)/);
+  if(ma)author=ma[1].trim();
+  if(!author){ var mb=s.match(/@([\w\u4e00-\u9fa5._-]{1,20})/); if(mb)author=mb[1]; }
+
+  /* 4) 去掉序号前缀（"57 【"）与方括号壳 */
+  s=s.replace(/^\s*\d{1,6}\s*/,"").replace(/[【】\[\]]/g," ");
+  /* 4.2) 「- 作者 | 平台 - 你的生活指南」整段装饰：作者已在上一步抽出，这里连同平台尾巴一起删干净。
+     先删「| 平台 …」整段（更宽，能吃掉后缀），再兜底删单独的「- 平台」残余。 */
+  s=s.replace(/\s*[-—|｜]\s*[^|｜\-—\n]{1,18}?\s*[|｜]\s*(小红书|抖音|B站|哔哩哔哩|微博|快手)\s*(?:[-—|｜]\s*[^\n]{0,20})?/g," ")
+     .replace(/\s*[-—|｜]\s*(小红书|抖音|B站|哔哩哔哩|微博|快手)\b(?:[-—|｜]\s*[^\n]{0,20})?/g," ")
+     .replace(/(你的生活指南|记录美好生活|百度一下|仅供参考)/g," ");
+  /* 4.5) 清掉残留 emoji / 音符 / 箭头等装饰符号，以及被切碎后留下的孤立标点 */
+  s=s.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}\uFE0F]/gu," ");
+  s=s.replace(/\s*[!！,，、:：;；·]\s*$/,"").replace(/\s{2,}/g," ").trim();
+
+  /* 5) 标题 = 首句（按句号/换行/竖线切），过长则截断；正文 = 剩余 */
+  var chunks=s.split(/[。\n|｜]/).map(function(x){return x.trim();}).filter(Boolean);
+  var title=(chunks[0]||"").trim();
+  if(title.length>46)title=title.slice(0,46)+"…";
+  var desc=chunks.slice(1).join(" · ").slice(0,220);
+
+  if(!title && !url)return null;
+  return {
+    title:title||(url?"待补充标题":"未命名灵感"),
+    desc:desc,
+    author:author,
+    tags:tags,
+    url:url,
+    raw:raw,
+    platform:(ideaDetectPlatform(raw)||{key:"手动",icon:"✏"}).key,
+    platformIcon:(ideaDetectPlatform(raw)||{key:"手动",icon:"✏"}).icon
+  };
+}
+/* 一次粘贴多条：按行切，每行含链接或 #话题# 才算一条；同一链接去重 */
+function ideaParseBatch(text){
+  var lines=String(text||"").split(/\n+/).map(function(x){return x.trim();}).filter(Boolean);
+  var out=[], seen={};
+  lines.forEach(function(ln){
+    /* 一行里可能塞了多条口令（少见）：按 http 出现的次数再拆 */
+    var urls=ln.match(/https?:\/\/[^\s"'，。；！？、）)\]】]+/gi)||[];
+    var parts=urls.length>1?ln.split(/(?=https?:\/\/)/):[ln];
+    parts.forEach(function(p){
+      var it=ideaParseShare(p);
+      if(!it)return;
+      var v=String(p||"").trim();
+      /* 没链接又没话题的碎行（比如"复制成功""赞"）跳过 */
+      if(!it.url && !it.tags.length && it.title.length<4)return;
+      /* v6.18：UI 提示语本身也要过滤 —— 平台复制时会把"复制成功""已复制"一起带进来 */
+      if(!it.url && /^(复制成功|已复制|复制失败|分享成功|赞|关注|收藏|评论|转发|打开 App|查看)$/.test(v))return;
+      if(!it.url && it.tags.length===0 && it.title.length<6)return;
+      var k=it.url||("t:"+it.title);
+      if(seen[k])return; seen[k]=1;
+      out.push(it);
+    });
+  });
+  return out;
+}
+/* 从抓到的 HTML 里抽 OpenGraph / ld+json / title —— 兼容抓不到的情况（返回 null） */
+function ideaParseHtml(html,url){
+  var t=String(html||"");
+  if(!t||t.length<50)return null;
+  function og(p){
+    var re=new RegExp('<meta[^>]+(?:property|name)=["\']'+p+'["\'][^>]*content=["\']([^"\']*)["\']','i');
+    var m=t.match(re); if(m)return m[1];
+    var re2=new RegExp('<meta[^>]+content=["\']([^"\']*)["\'][^>]*(?:property|name)=["\']'+p+'["\']','i');
+    var m2=t.match(re2); return m2?m2[1]:'';
+  }
+  var title=og('og:title')||og('twitter:title')||((t.match(/<title[^>]*>([^<]*)<\/title>/i)||[])[1]||'');
+  var desc=og('og:description')||og('description')||'';
+  var img=og('og:image')||'';
+  title=decodeHtmlEntities(title).trim();
+  desc=decodeHtmlEntities(desc).trim();
+  if(!title||isSiteShell(title))return null;
+  /* 标题里常带「 - 小红书」后缀 */
+  title=title.replace(/\s*[-—|｜]\s*(小红书|抖音|哔哩哔哩|B站).*$/,'').trim();
+  return {title:title,desc:desc,img:img,url:url};
+}
+function decodeHtmlEntities(s){
+  var d=document.createElement("textarea");
+  d.innerHTML=String(s||"");
+  return d.value;
+}
+/* 来源名 → 平台图标（卡片上的来源徽章用；未知来源给 📍，保持原样） */
+function ideaPlatIcon(name){
+  var s=String(name||"");
+  for(var i=0;i<IDEA_PLATFORMS.length;i++){ if(s.indexOf(IDEA_PLATFORMS[i].key)>=0)return IDEA_PLATFORMS[i].icon; }
+  if(/手动|自己|随手/.test(s))return "✏";
+  return "📍";
+}
+/* 没有封面图时的占位：采集来的用平台图标 + 平台色块，手记的仍是灯泡。
+   一个 36px 的大灯泡在一整片卡片里太抢视线，换成平台标识更像"这是从哪抄来的活儿"。 */
+function ideaNoCover(id){
+  var plat=(id&&id.source)||"";
+  var isPlat=/小红书|抖音|B站|微博|公众号|视频号|Instagram|Pinterest/.test(plat);
+  if(!isPlat)return '<span class="idea-img-placeholder">💡</span>';
+  return '<span class="idea-cover-ph">'+ideaPlatIcon(plat)+'<i>'+esc(plat)+'</i></span>';
+}
+/* 单条抓取：直连 → CORS 代理。每通道 5s 超时（三通道最坏 15s，再长用户就以为卡死了）；
+   全失败返回 null，绝不抛出，保证批量流程不被一条坏链接堵住。 */
+function ideaFetchOne(url){
+  if(!url||typeof fetch!=="function")return Promise.resolve(null);
+  var channels=[
+    function(u){return u;},
+    function(u){return "https://api.allorigins.win/raw?url="+encodeURIComponent(u);},
+    function(u){return "https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(u);}
+  ];
+  return new Promise(function(resolve){
+    var i=0;
+    function next(){
+      if(i>=channels.length){resolve(null);return;}
+      var ep=channels[i++](url);
+      var ctrl=(typeof AbortController!=="undefined")?new AbortController():null;
+      var timer=setTimeout(function(){try{if(ctrl)ctrl.abort();}catch(e){}},5000);
+      fetch(ep,ctrl?{signal:ctrl.signal}:{}).then(function(r){
+        clearTimeout(timer);
+        if(!r.ok)throw new Error("HTTP "+r.status);
+        return r.text();
+      }).then(function(txt){
+        var info=null;
+        try{info=ideaParseHtml(txt,url);}catch(e){info=null;}
+        if(info)resolve(info);else next();
+      }).catch(function(){clearTimeout(timer);next();});
+    }
+    next();
+  });
+}
+/* 关键词 → 婚礼/人像场景的匹配打分（用于「自动捕捉与器材相符的灵感」） */
+const IDEA_MATCH_WORDS={
+  "婚房准备":["化妆","晨袍","窗光","出门前","准备","布置","喜字","头纱","婚纱挂","新娘妆"],
+  "迎亲接亲":["迎亲","接亲","堵门","开门","背","抱","车队","红包","捧花"],
+  "仪式现场":["仪式","宣誓","交换戒指","进场","入场","司仪","花门","教堂","话筒","机位"],
+  "宴席敬酒":["敬酒","宴席","桌","父母","敬茶","长辈","亲友","主桌"],
+  "合影全家福":["合影","全家福","站队","排位","宾客","合照","大合影"],
+  "酒店走廊":["走廊","通道","逆光","门框","楼梯","电梯","签到"],
+  "外景旅拍":["外景","旅拍","草地","海边","公园","街拍","日落","山","水边"],
+  "婚礼夜景":["夜景","晚上","灯光","烟火","冷焰火","夜幕","星空"],
+  "情绪特写":["特写","情绪","泪","笑","眼神","手","细节情绪","侧脸"],
+  "细节静物":["戒指","婚鞋","请柬","静物","摆件","手捧花","喜糖","桌卡"],
+  "城市霓虹":["霓虹","城市","夜景人像","街灯","赛博"],
+  "逆光人像":["逆光","光斑","太阳","剪影","轮廓光","通透"],
+  "活动签到":["签到","签到处","背景板","活动","展会","开业"],
+  "会场全景":["全景","会场","观众","舞台","大场景"],
+  "白底产品":["白底","棚拍","产品","静物","电商","平铺"],
+  "场景氛围":["氛围","场景图","生活方式","布置","软装"]
+};
+/* 给一段文本打分，返回最可能的场景 key（阈值不足返回空，不硬凑）。
+   打分权重：命中场景名本身 5 分（最强信号），命中专属关键词 2 分，弱关键词 1 分。
+   v6.18 修正：原先「场景名 +2、关键词 +1」会让『仪式现场』仅因文案里有"走廊"就输给『酒店走廊』。 */
+const IDEA_STRONG_WORDS={
+  "外景旅拍":["旅拍","外景","草地","海边","山"],
+  "宴席敬酒":["敬酒","敬茶","主桌"],
+  "婚礼夜景":["夜景","冷焰火","烟火"],
+  "细节静物":["戒指","婚鞋","请柬","手捧花"],
+  "情绪特写":["特写","情绪","眼神","剪影"]
+};
+function ideaGuessScene(text){
+  var s=String(text||"");
+  if(!s.trim())return "";
+  var best="",bestN=0,tie="";
+  Object.keys(IDEA_MATCH_WORDS).forEach(function(k){
+    var n=0;
+    IDEA_MATCH_WORDS[k].forEach(function(w){
+      if(s.indexOf(w)<0)return;
+      n += ((IDEA_STRONG_WORDS[k]||[]).indexOf(w)>=0)?2:1;
+    });
+    /* 场景名本身出现，权重最高 */
+    if(s.indexOf(k)>=0)n+=5;
+    if(n>bestN){bestN=n;best=k;tie="";}
+    else if(n===bestN&&n>0)tie=k;
+  });
+  /* 同分时优先「婚礼纪实」线（跟拍业务的默认语境），再退回首字顺序 */
+  if(tie&&best){
+    var bz1=ideaSceneBiz(best),bz2=ideaSceneBiz(tie);
+    if(bz2==="婚礼纪实"&&bz1!=="婚礼纪实")return tie;
+  }
+  return bestN>=1?best:"";
+}
+/* 一条灵感 → 自动补场景/器材/缺失提示（入库前调用） */
+function ideaAutoBind(item){
+  var sc=item.scene||ideaGuessScene((item.title||"")+" "+(item.desc||"")+" "+(item.tags||[]).join(" "));
+  var scene=IDEA_SCENES.filter(function(x){return x.k===sc;})[0];
+  var fit=scene?ideaGearFit(scene):{own:[],miss:[]};
+  return {
+    scene:scene?scene.k:"",
+    biz:scene?scene.biz:"",
+    gear:(item.gear||(fit.own[0]?fit.own[0].gear.name:"")),
+    own:fit.own.map(function(o){return o.gear.name;}),
+    miss:fit.miss,
+    ready:!!scene&&fit.miss.length===0
+  };
+}
+/* ==================== v6.18 灵感采集：弹窗行为 ==================== */
+let IFM_ITEMS=[];       /* 解析结果（预览态） */
+let IFM_BUSY=false;
+
+function openIdeaFetch(){
+  const m=document.getElementById("idea-fetch-modal");
+  if(!m)return;
+  IFM_ITEMS=[];
+  const list=document.getElementById("ifm-list");
+  if(list)list.innerHTML='';
+  const note=document.getElementById("ifm-note");
+  if(note)note.textContent='';
+  m.style.display="flex";
+  setTimeout(function(){const t=document.getElementById("ifm-input");if(t)t.focus();},60);
+}
+function closeIdeaFetch(){
+  const m=document.getElementById("idea-fetch-modal");
+  if(m)m.style.display="none";
+  IFM_ITEMS=[];IFM_BUSY=false;
+}
+function ifmClear(){
+  const t=document.getElementById("ifm-input");if(t)t.value="";
+  const l=document.getElementById("ifm-list");if(l)l.innerHTML="";
+  const n=document.getElementById("ifm-note");if(n)n.textContent="";
+  IFM_ITEMS=[];
+}
+/* 读剪贴板（浏览器要求用户手势，且 http 下可能不可用，失败要给人话） */
+function ifmPasteFromClipboard(){
+  if(!navigator.clipboard||!navigator.clipboard.readText){
+    toast("当前浏览器不允许直接读剪贴板，请手动粘贴","warn");return;
+  }
+  navigator.clipboard.readText().then(function(txt){
+    if(!txt){toast("剪贴板是空的","warn");return;}
+    const t=document.getElementById("ifm-input");
+    if(t){ t.value=(t.value?t.value+"\n":"")+txt.trim(); }
+    ifmParse();
+  }).catch(function(){toast("读取剪贴板失败，请手动粘贴（Ctrl+V）","warn");});
+}
+function ifmOnInput(){
+  const t=document.getElementById("ifm-input");
+  const n=document.getElementById("ifm-note");
+  if(!t||!n)return;
+  const v=t.value||"";
+  const lines=v.split(/\n+/).filter(function(x){return x.trim();}).length;
+  n.textContent=lines?(lines+" 行待解析"):"";
+}
+/* 解析：先本地拆文案，再对每条尽量补齐标题（抓不到就用文案里的标题，不编造） */
+function ifmParse(){
+  const t=document.getElementById("ifm-input");
+  const raw=t?(t.value||""):"";
+  if(!raw.trim()){toast("先粘贴分享文案或链接","warn");return;}
+  const items=ideaParseBatch(raw);
+  if(!items.length){toast("没解析出有效条目，检查一下是否粘全了","warn");return;}
+  /* 自动绑定场景 + 器材 */
+  items.forEach(function(it){
+    const bind=ideaAutoBind(it);
+    it.scene=bind.scene;it.biz=bind.biz;it.gear=bind.gear;
+    it.own=bind.own;it.miss=bind.miss;it.ready=bind.ready;
+    /* 标签补业务线，方便后续筛选 */
+    if(bind.biz && (it.tags||[]).indexOf(bind.biz)<0)it.tags=(it.tags||[]).concat([bind.biz]);
+    if(bind.scene && (it.tags||[]).indexOf(bind.scene)<0)it.tags=(it.tags||[]).concat([bind.scene]);
+    it.keep=true;
+  });
+  /* 已在库里的同链接标出来，避免重复收 */
+  const exist={};
+  (DB.ideas||[]).forEach(function(x){ if(x.url)exist[x.url]=1; });
+  items.forEach(function(it){ if(it.url&&exist[it.url]){it.dup=true;} });
+  IFM_ITEMS=items;
+  renderIfmList();
+  const note=document.getElementById("ifm-note");
+  if(note)note.textContent="解析出 "+items.length+" 条";
+}
+/* 刷新抓取：对带链接的条目重跑一次网页抓取，补标题/封面；进度条式反馈 */
+function ifmRefetch(){
+  if(IFM_BUSY){toast("还在抓取中…","warn");return;}
+  const withUrl=IFM_ITEMS.filter(function(x){return x.url;});
+  if(!withUrl.length){toast("没有可抓取的链接","warn");return;}
+  IFM_BUSY=true;
+  const note=document.getElementById("ifm-note");
+  const btn=document.getElementById("ifm-refetch");
+  if(btn){btn.textContent="⏳ 抓取中…";btn.style.opacity=".6";btn.style.pointerEvents="none";}
+  let done=0,got=0,settled=false;
+  function finish(){
+    if(settled)return; settled=true;
+    IFM_BUSY=false;
+    if(btn){btn.textContent="🔄 刷新抓取";btn.style.opacity="";btn.style.pointerEvents="";}
+  }
+  /* 兜底：即使某条请求没落定（异常网络/浏览器节流），也保证按钮能恢复，绝不一直灰着 */
+  setTimeout(finish,20000);
+  function tick(){
+    done++;
+    if(note)note.textContent="刷新抓取 "+done+"/"+withUrl.length+"（成功 "+got+"）";
+    if(done>=withUrl.length){
+      finish();
+      renderIfmList();
+      if(note)note.textContent="抓取完成：成功 "+got+"/"+withUrl.length+(got? "":" ｜ 平台可能需登录，已保留原文案");
+      toast(got?("已补全 "+got+" 条详情 ✓"):"平台拦截了抓取，已保留你粘贴的文案",got?"ok":"warn");
+    }
+  }
+  withUrl.forEach(function(it){
+    ideaFetchOne(it.url).then(function(info){
+      if(info){
+        got++;
+        /* 只补空字段，绝不覆盖用户文案里已经更准的标题 */
+        if(!it.title||it.title.indexOf("待补充")>=0||it.title.length<4){ if(info.title)it.title=info.title; }
+        if(!it.desc&&info.desc)it.desc=info.desc;
+        if(!it.img&&info.img)it.img=info.img;
+        it.fetched=true;
+        /* 抓到新标题后重新匹配场景 */
+        const bind=ideaAutoBind(it);
+        it.scene=bind.scene;it.biz=bind.biz;it.gear=bind.gear;
+        it.own=bind.own;it.miss=bind.miss;it.ready=bind.ready;
+      }
+      tick();
+    });
+  });
+}
+/* 渲染预览列表：每条能单独取消 */
+function renderIfmList(){
+  const box=document.getElementById("ifm-list");
+  if(!box)return;
+  if(!IFM_ITEMS.length){box.innerHTML='<div class="ifm-empty">还没有解析结果</div>';return;}
+  box.innerHTML=IFM_ITEMS.map(function(it,i){
+    const sc=it.scene?('<span class="ifm-tag ifm-scene">🎬 '+esc(it.scene)+'</span>'):'<span class="ifm-tag ifm-noscene">未匹配场景</span>';
+    const gear=it.gear?('<span class="ifm-tag ifm-gear">📷 '+esc(it.gear)+'</span>'):'';
+    const miss=it.miss&&it.miss.length?('<span class="ifm-tag ifm-miss">缺 '+esc(it.miss.join(' / '))+'</span>'):(it.scene?'<span class="ifm-tag ifm-ok">✓ 器材齐全</span>':'');
+    const tags=(it.tags||[]).slice(0,5).map(function(t){return '<span class="ifm-tag ifm-kw">#'+esc(t)+'</span>';}).join("");
+    const dup=it.dup?'<span class="ifm-tag ifm-dup">已在库</span>':'';
+    const fetched=it.fetched?'<span class="ifm-tag ifm-new">已抓取详情</span>':'';
+    return '<div class="ifm-item'+(it.keep?'':' off')+'" data-page-node-id="v618Item'+i+'">'+
+      '<label class="ifm-chk"><input type="checkbox" '+(it.keep?'checked':'')+' onchange="ifmToggle('+i+',this.checked)"/></label>'+
+      '<div class="ifm-main">'+
+        '<div class="ifm-hd"><span class="ifm-plat">'+esc(it.platformIcon||'✏')+' '+esc(it.platform||'手动')+'</span>'+
+          (it.author?('<span class="ifm-author">@'+esc(it.author)+'</span>'):'')+fetched+dup+'</div>'+
+        '<div class="ifm-title">'+esc(it.title||'(无标题)')+'</div>'+
+        (it.desc?('<div class="ifm-desc">'+esc(it.desc)+'</div>'):'')+
+        '<div class="ifm-tags">'+sc+gear+miss+tags+'</div>'+
+      '</div>'+
+      (it.url?('<a class="ifm-open" href="'+esc(it.url)+'" target="_blank" rel="noopener" title="打开原链接">↗</a>'):'')+
+    '</div>';
+  }).join("");
+}
+function ifmToggle(i,on){
+  if(IFM_ITEMS[i])IFM_ITEMS[i].keep=!!on;
+  renderIfmList();
+}
+/* 入库：只收勾选的，且跳过重复链接 */
+function ifmSaveAll(){
+  const pick=IFM_ITEMS.filter(function(x){return x.keep;});
+  if(!pick.length){toast("没有勾选任何条目","warn");return;}
+  const exist={};
+  (DB.ideas||[]).forEach(function(x){ if(x.url)exist[x.url]=1; });
+  let added=0,skipped=0;
+  DB.ideas=DB.ideas||[];
+  pick.forEach(function(it){
+    if(it.url&&exist[it.url]){skipped++;return;}
+    exist[it.url||("t:"+it.title)]=1;
+    DB.ideas.unshift({
+      title:(it.title||"").trim()||"未命名灵感",
+      desc:(it.desc||"").trim(),
+      tags:(it.tags||[]).slice(0,8),
+      source:it.platform||"手动",
+      img:it.img||"",
+      url:it.url||"",
+      scene:it.scene||"",
+      gear:it.gear||"",
+      created:localDateStr()
+    });
+    added++;
+  });
+  if(!added){toast("没有新增（都已在库里）","warn");return;}
+  save();closeIdeaFetch();renderIdeas();
+  toast("已采集 "+added+" 条灵感 ✓"+(skipped?("，跳过重复 "+skipped+" 条"):""),"ok");
+}
+
 function renderIdeas(){
   const grid=document.getElementById("idea-grid");
   let all=DB.ideas||[];
@@ -9198,14 +9718,14 @@ function renderIdeas(){
     const sceneChip=sc?('<span class="idea-scene" title="'+esc(sc.biz)+'">'+sc.icon+' '+esc(sc.k)+'</span>'):'';
     const gearChip=id.gear?('<span class="idea-gear">📷 '+esc(id.gear)+'</span>'):'';
     return '<div class="idea-card">'+
-      '<div class="idea-img-wrap">'+(id.img?('<img src="'+esc(id.img)+'" onerror="this.style.display=\'none\'">'):'<span class="idea-img-placeholder">💡</span>')+
+      '<div class="idea-img-wrap">'+(id.img?('<img src="'+esc(id.img)+'" onerror="this.style.display=\'none\'">'):ideaNoCover(id))+
         '<div class="idea-tags">'+(id.tags||[]).map(t=>'<span class="idea-tag">'+esc(t)+'</span>').join("")+'</div>'+
       '</div>'+
       '<div class="idea-body">'+
         '<div class="idea-title">'+esc(id.title)+'</div>'+
         '<div class="idea-desc">'+esc(id.desc)+'</div>'+
         ((sceneChip||gearChip)?('<div class="idea-bind">'+sceneChip+gearChip+'</div>'):'')+
-        '<div class="idea-meta"><span class="idea-source">📍 '+esc(id.source)+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
+        '<div class="idea-meta"><span class="idea-source">'+ideaPlatIcon(id.source)+' '+esc(id.source)+(id.url?('<a class="idea-link" href="'+esc(id.url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="打开原链接">↗</a>'):'')+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
       '</div>'+
       '<div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea('+idi+')">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea('+idi+')">删除</button></div>'+
     '</div>';
@@ -9319,6 +9839,8 @@ function saveIdeaModal(){
     tags:tagsStr?tagsStr.split(/[,，]/).map(function(x){return x.trim();}).filter(Boolean):[],
     source:(document.getElementById("im-source").value||"").trim(),
     img:(document.getElementById("im-img").value||"").trim(),
+    /* v6.18：保留采集来的原链接，编辑时不能丢 */
+    url:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).url||"":""),
     scene:document.getElementById("im-scene").value||"",
     gear:document.getElementById("im-gear").value||""
   };
