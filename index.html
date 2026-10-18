@@ -1970,6 +1970,86 @@
   .ia-btn-del{background:rgba(248,113,113,.08);color:var(--coral)}
   .ia-btn-del:hover{background:rgba(248,113,113,.15)}
   .add-idea{background:var(--surface);border:2px dashed rgba(168,85,247,.2);border-radius:var(--radius);padding:32px;text-align:center;color:#a855f7;font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
+  /* ===== v6.16 灵感：业务线 / 婚礼场景 / 我的器材 三条带 ===== */
+  .idea-bizbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .ibz{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);
+    background:var(--surface);border:1px solid var(--glass-border);color:var(--muted2);cursor:pointer;
+    font-family:inherit;font-size:12.5px;font-weight:700;transition:.15s}
+  .ibz b{color:var(--ink2);font-weight:800}
+  .ibz i{font-style:normal;font-size:11px;opacity:.62}
+  .ibz-ico{font-size:14px;line-height:1}
+  .ibz:hover{border-color:rgba(168,85,247,.35);color:var(--ink2);transform:translateY(-1px)}
+  .ibz.on{background:linear-gradient(135deg,rgba(168,85,247,.9),rgba(139,92,246,.86));border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(168,85,247,.28)}
+  .ibz.on b,.ibz.on i{color:#fff}
+  .ibz.on i{opacity:.82}
+
+  .idea-block-hd{display:flex;align-items:baseline;gap:10px;margin:14px 0 8px;flex-wrap:wrap}
+  .idea-block-hd b{font-size:13px;font-weight:800;color:var(--ink2);letter-spacing:.2px}
+  .idea-block-hd i{font-style:normal;font-size:11.5px;color:var(--muted3);flex:1;min-width:120px}
+  .idea-clear{font-size:11.5px;font-weight:700;color:var(--muted3);cursor:pointer;padding:3px 9px;border-radius:var(--r-pill);
+    border:1px solid transparent;transition:.15s;flex:none}
+  .idea-clear:hover{color:#a855f7;border-color:rgba(168,85,247,.3);background:rgba(168,85,247,.06)}
+
+  /* 场景卡：横向可滑，一条婚礼动线一眼看完 */
+  .idea-scenes{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin;
+    scrollbar-color:var(--line-strong) transparent;overscroll-behavior-x:contain}
+  .idea-scenes::-webkit-scrollbar{height:5px}
+  .idea-scenes::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px}
+  .isc{flex:none;width:206px;display:flex;flex-direction:column;gap:6px;padding:11px 12px;border-radius:var(--r-sub);
+    background:var(--surface);border:1px solid var(--glass-border);box-shadow:var(--sh-1);
+    cursor:pointer;text-align:left;font-family:inherit;transition:.16s;position:relative;overflow:hidden}  .isc:hover{transform:translateY(-2px);border-color:rgba(168,85,247,.35);box-shadow:var(--sh-2)}
+  .isc.on{border-color:#a855f7;background:rgba(168,85,247,.07);box-shadow:0 0 0 1px rgba(168,85,247,.35),var(--sh-2)}
+  .isc.ready::after{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,#22c55e,#16a34a)}
+  .isc-ico{font-size:17px;line-height:1}
+  .isc-txt{display:flex;flex-direction:column;gap:2px}
+  .isc-txt b{font-size:12.5px;font-weight:800;color:var(--ink)}
+  .isc-txt i{font-style:normal;font-size:10.5px;color:var(--muted3);line-height:1.4;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .isc-bot{display:flex;align-items:center;gap:6px;margin-top:2px}
+  .isc-ok{font-size:10px;font-weight:800;color:#16a34a;background:rgba(34,197,94,.12);padding:2px 7px;border-radius:var(--r-pill)}
+  .isc-miss{font-size:10px;font-weight:700;color:#b45309;background:rgba(251,191,36,.16);padding:2px 7px;
+    border-radius:var(--r-pill);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:156px}
+  .isc-n{font-size:10px;font-weight:800;color:var(--muted3);margin-left:auto}
+  .isc-biz{position:absolute;top:10px;right:11px;font-size:9px;font-weight:800;letter-spacing:.4px;
+    color:var(--muted3);opacity:.62;pointer-events:none;
+    max-width:92px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* 器材芯片：真实机身/镜头/灯 */
+  .idea-gearbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .igc{display:flex;flex-direction:column;gap:1px;padding:7px 13px;border-radius:var(--r-ctl);
+    background:var(--surface);border:1px solid var(--glass-border);cursor:pointer;
+    font-family:inherit;text-align:left;transition:.15s;min-width:112px;max-width:230px}
+  .igc b{font-size:11.5px;font-weight:800;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:214px}
+  .igc i{font-style:normal;font-size:10px;color:var(--muted3)}
+  .igc:hover{border-color:rgba(96,165,250,.4);transform:translateY(-1px)}
+  .igc.on{background:rgba(96,165,250,.1);border-color:#60a5fa}
+  .igc.on b{color:#3b82f6}
+  .igc-gap{font-size:11px;color:var(--muted3);display:inline-flex;align-items:center;gap:5px;
+    padding:6px 11px;border-radius:var(--r-ctl);background:rgba(251,191,36,.09);border:1px dashed rgba(251,191,36,.4)}
+  .igc-gap em{font-style:normal;font-weight:800;color:#b45309}
+
+  /* 卡片上的场景 / 器材归属 */
+  .idea-bind{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 8px}
+  .idea-scene{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:var(--r-pill);
+    background:rgba(168,85,247,.12);color:#9333ea}
+  .idea-gear{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--r-pill);
+    background:rgba(96,165,250,.12);color:#2563eb}
+  html[data-theme="dark"] .idea-scene{background:rgba(168,85,247,.2);color:#d8b4fe}
+  html[data-theme="dark"] .idea-gear{background:rgba(96,165,250,.2);color:#93c5fd}
+
+  /* 弹窗里的场景提示 */
+  .imh-miss{color:#b45309;font-weight:700}
+  .imh-miss em{font-style:normal;font-weight:800}
+  #idea-modal .book-fetch-msg{margin-top:6px}
+  @media(max-width:640px){
+    .isc{width:172px}
+    /* 窄屏场景卡只有 172px，业务线标会挤到标题上，直接隐藏（点开筛选条同样能分辨） */
+    .isc-biz{display:none}
+    .ibz{padding:7px 11px;font-size:12px}
+    .idea-block-hd i{display:none}
+    .igc{min-width:82px;max-width:190px}
+    .igc b{max-width:174px}
+  }
   .add-idea:hover{background:rgba(168,85,247,.04);border-color:#a855f7}
 /* ===== 账号登录墙 + 扫码同步 ===== */
 .auth-gate{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#16315a,#070b14 72%);}
@@ -5061,7 +5141,59 @@ window.QRCode = {
             <button class="btn sm" onclick="addIdea()" data-page-node-id="ZVxWJdGP0KtqYTTfplDJJW">✨ 记灵感</button>
           </div>
         </div>
+
+        <!-- v6.16 业务线：灵感按你真正在接的单来收集 -->
+        <div class="idea-bizbar" id="idea-bizbar" data-page-node-id="v616BizBar"></div>
+
+        <!-- v6.16 婚礼跟拍场景带：每个场景自动对照「我的器材」，缺什么一眼看到 -->
+        <div class="idea-block-hd" data-page-node-id="v616SceneHd">
+          <b>婚礼跟拍场景</b>
+          <i id="idea-scene-tip">点场景直接起一条灵感；带 ⚠ 的是器材还不齐的</i>
+          <span class="idea-clear" onclick="ideaPickScene('')" data-page-node-id="v616SceneClear">看全部</span>
+        </div>
+        <div class="idea-scenes" id="idea-scenes" data-page-node-id="v616Scenes"></div>
+
+        <!-- v6.16 器材带：按你手上真实的机身/镜头/灯来筛灵感 -->
+        <div class="idea-block-hd" data-page-node-id="v616GearHd">
+          <b>按我的器材看</b>
+          <i>点一台器材，只看用它拍的灵感；右侧提示你还缺哪几件</i>
+          <span class="idea-clear" onclick="ideaPickGear('')" data-page-node-id="v616GearClear">看全部</span>
+        </div>
+        <div class="idea-gearbar" id="idea-gears" data-page-node-id="v616Gears"></div>
+
         <div class="idea-grid" id="idea-grid" data-page-node-id="2t7P9KSF4Ulaab23kGlACd"></div>
+
+        <!-- v6.16 灵感表单：场景 / 器材 / 业务线都是选项，不用自己记标签 -->
+        <div class="job-modal-overlay" id="idea-modal" style="display:none" onclick="if(event.target===this)closeIdeaModal()" data-page-node-id="v616IdeaModal">
+          <div class="job-modal" data-page-node-id="v616IdeaModalBox">
+            <div class="jm-head"><span id="im-title">✨ 记录灵感</span><span class="jm-close" onclick="closeIdeaModal()">✕</span></div>
+            <div class="jm-body">
+              <div class="jm-field"><label>🎬 拍摄场景</label>
+                <select id="im-scene" onchange="imSceneChange(false)"></select>
+                <div class="book-fetch-msg" id="im-scene-hint"></div>
+              </div>
+              <div class="jm-field"><label>📷 用哪台器材</label><select id="im-gear"></select></div>
+              <div class="jm-field"><label>💡 灵感标题 *</label>
+                <input id="im-title-in" placeholder="如：迎亲堵门用 24-70 贴脸拍情绪"/>
+                <div class="jm-err">灵感标题为必填</div>
+              </div>
+              <div class="jm-field"><label>📝 具体怎么拍</label>
+                <textarea id="im-desc" rows="3" placeholder="机位 / 光线 / 参数 / 后期方向…"></textarea>
+              </div>
+              <div class="jm-field"><label>🏷 标签（逗号分隔，可留空自动补）</label>
+                <input id="im-tags" placeholder="婚礼, 仪式, 情绪"/>
+              </div>
+              <div class="jm-row2">
+                <div class="jm-field"><label>📍 来源</label><input id="im-source" placeholder="小红书 / Behance / 自己"/></div>
+                <div class="jm-field"><label>🖼 图片链接（可选）</label><input id="im-img" placeholder="https://…"/></div>
+              </div>
+            </div>
+            <div class="jm-foot">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaModal()">取消</button>
+              <button class="btn sm job" onclick="saveIdeaModal()">💾 保存</button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ==================== 日历行程 v5.26 ==================== -->
@@ -5380,7 +5512,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.15</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.16</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -5881,7 +6013,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.15";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.16";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6083,7 +6215,7 @@ const TAB_TITLES={
   okr:{title:"🎯 目标与OKR",sub:"个人成长 · 季度目标拆解 · 关键结果追踪"},
   gear:{title:"🔧 器材管理",sub:"摄影学习 · 器材清单 · 价值统计 · 维护提醒"},
   review:{title:"📝 复盘周记",sub:"个人成长 · 每周回顾 · 数据沉淀 · 持续改进"},
-  idea:{title:"💡 灵感收集",sub:"摄影创作 · 创意素材库 · 构图参考 · 配色方案"},
+  idea:{title:"💡 灵感收集",sub:"摄影创作 · 按我的器材 × 婚礼跟拍场景收集 · 拍前现成参考"},
   schedule:{title:"📅 排程日历",sub:"全局常驻 · 拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
   works:{title:"📷 我的作品",sub:"摄影创作 · 上传作品 · 标记客片 · 同步客户画廊"},
   bookings:{title:"📩 客户预约",sub:"接单交付 · 客户在客户端提交跟拍预约 · 统一处理"}
@@ -8880,47 +9012,328 @@ function editReview(i){const r=DB.reviews[i];r.week=prompt("周次：",r.week)||
 function delReview(i){if(confirm("删除该周记？")){DB.reviews.splice(i,1);save();renderReviews();}}
 
 /* ==================== 灵感收集 ==================== */
+/* v6.16：灵感不再是一盘散沙，按「我的器材 × 婚礼跟拍业务」两条主线收集。
+ *  - IDEA_BIZ：接单业务线（取自 事务管理 JOB_TYPES，婚礼纪实为主攻）
+ *  - IDEA_SCENES：每条业务线上的真实拍摄场景，每个场景都绑定「用什么器材」
+ *  - ideaScenes()/ideaGearFit()：把场景与 DB.gears 里的真实器材打通，缺什么一眼看出来
+ */
+const IDEA_BIZ=[
+  {key:"婚礼纪实",icon:"💍",hots:["婚礼","迎亲","仪式","跟拍","新娘","新郎","婚宴","酒席","敬酒","父母","誓词","结婚"]},
+  {key:"人像写真",icon:"👤",hots:["人像","写真","情绪","氛围","少女","肖像","客片","女生"]},
+  {key:"活动跟拍",icon:"🎪",hots:["活动","年会","开场","领导","颁奖","合影","现场","直播"]},
+  {key:"电商产品",icon:"📦",hots:["产品","电商","主图","静物","布光","质感","细节"]},
+  {key:"商业拍摄",icon:"🏢",hots:["商业","案场","空间","房产","装修","宣传片"]}
+];
+/* 婚礼跟拍业务全流程：接亲 → 仪式 → 宴席 → 外景 → 出片。
+ * gear 写成「具体型号优先、类别兜底」，用 / 分隔表示「任一命中即可」。 */
+const IDEA_SCENES=[
+  {k:"婚房准备",biz:"婚礼纪实",icon:"🌅",gear:"灯光/85mm/24-70mm",line:"清晨窗光 · 化妆花絮"},
+  {k:"迎亲接亲",biz:"婚礼纪实",icon:"🚪",gear:"24-70mm/35mm",line:"堵门 · 找鞋 · 抱新娘"},
+  {k:"仪式现场",biz:"婚礼纪实",icon:"💒",gear:"24-70mm/70-200mm",line:"入场 · 交换戒指 · 誓词"},
+  {k:"宴席敬酒",biz:"婚礼纪实",icon:"🥂",gear:"24-70mm/闪光灯",line:"主桌 · 敬酒 · 父母落泪"},
+  {k:"合影全家福",biz:"婚礼纪实",icon:"👨‍👩‍👧",gear:"24-70mm/三脚架/闪光灯",line:"排位 · 站位 · 高机位"},
+  {k:"酒店走廊",biz:"婚礼纪实",icon:"🏨",gear:"85mm/35mm",line:"迎宾 · 走廊光影 · 静物"},
+  {k:"外景旅拍",biz:"婚礼纪实",icon:"🌇",gear:"85mm/航拍/70-200mm",line:"日落 · 草地 · 公路"},
+  {k:"婚礼夜景",biz:"婚礼纪实",icon:"🌃",gear:"灯光/85mm",line:"串灯 · 烟花 · 冷焰火"},
+  {k:"情绪特写",biz:"婚礼纪实",icon:"💧",gear:"85mm/70-200mm",line:"流泪 · 握拳 · 深呼吸"},
+  {k:"细节静物",biz:"婚礼纪实",icon:"💐",gear:"85mm/微距",line:"戒指 · 请柬 · 婚鞋 · 手捧花"},
+  {k:"情绪人像",biz:"人像写真",icon:"🫧",gear:"85mm/35mm",line:"自然光 · 侧脸 · 眼神"},
+  {k:"棚拍布光",biz:"人像写真",icon:"🔦",gear:"灯光/闪光灯",line:"单灯 · 双灯 · 轮廓光"},
+  {k:"年会开场",biz:"活动跟拍",icon:"🎤",gear:"24-70mm/70-200mm",line:"舞台 · 灯光秀 · 大合影"},
+  {k:"颁奖合影",biz:"活动跟拍",icon:"🏆",gear:"24-70mm/闪光灯",line:"握手 · 奖杯 · 队列"},
+  {k:"产品主图",biz:"电商产品",icon:"🛍",gear:"灯光/微距/三脚架",line:"白底 · 倒影 · 质感"},
+  {k:"案场空间",biz:"商业拍摄",icon:"🏠",gear:"24-70mm/三脚架/航拍",line:"样板间 · 沙盘 · 外立面"}
+];
+function ideaBizOf(key){return IDEA_BIZ.filter(b=>b.key===key)[0]||null;}
+/* 器材匹配：把 "灯光/85mm/24-70mm" 拆成若干候选词，逐个去 DB.gears 里找 */
+function ideaFindGear(tok){
+  var gears=(DB.gears||[]).filter(g=>g.status!=='retired');
+  var t=String(tok||"").toLowerCase();
+  var hit=gears.filter(function(g){
+    var s=[g.name,g.model,g.brand,g.category].join(' ').toLowerCase();
+    if(t==='灯光') return g.category==='灯光';
+    if(t==='闪光灯') return g.category==='灯光'||/闪光|ad600|sk400|v860/.test(s);
+    if(t==='三脚架') return /三脚架|脚架|mt055|tripod/.test(s);
+    if(t==='微距') return /微距|macro|90mm|100mm/.test(s);
+    if(t==='航拍') return g.category==='航拍'||/dji|mini|air|mavic/.test(s);
+    return s.indexOf(t)>=0;
+  });
+  return hit[0]||null;
+}
+/* 场景 ↔ 我的器材：返回 {own:已具备[], miss:缺失[]} */
+function ideaGearFit(scene){
+  var toks=String(scene.gear||"").split('/').filter(Boolean);
+  var own=[],miss=[];
+  toks.forEach(function(t){ var g=ideaFindGear(t); if(g) own.push({tok:t,gear:g}); else miss.push(t); });
+  return {own:own,miss:miss};
+}
+/* 缺哪些关键装备 —— 用于「补装备」提示，按出现频次排序 */
+function ideaGearGaps(){
+  var cnt={};
+  IDEA_SCENES.forEach(function(sc){
+    var f=ideaGearFit(sc);
+    f.miss.forEach(function(t){ cnt[t]=(cnt[t]||0)+1; });
+  });
+  return Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a];}).map(function(t){return {tok:t,n:cnt[t]};});
+}
+/* 标签是否属于某业务线（含同义词） */
+function ideaTagInBiz(tag,bizKey){
+  var b=ideaBizOf(bizKey); if(!b) return true;
+  if((b.hots||[]).indexOf(tag)>=0) return true;
+  var hitScene=IDEA_SCENES.filter(x=>x.biz===bizKey&&x.k===tag).length>0;
+  return hitScene;
+}
+/* 场景名反查所属业务线 */
+function ideaSceneBiz(k){
+  var sc=IDEA_SCENES.filter(x=>x.k===k)[0];
+  return sc?sc.biz:'';
+}
 function renderIdeas(){
   const grid=document.getElementById("idea-grid");
-  let list=DB.ideas||[];
+  let all=DB.ideas||[];
   const q=(document.getElementById("idea-search")?.value||"").trim().toLowerCase();
   const tf=document.getElementById("idea-tag-filter")?.value||"";
-  if(q)list=list.filter(id=>(id.title+" "+id.desc+" "+id.tags.join(" ")+id.source).toLowerCase().includes(q));
+  const bf=IDEA_BIZ_FILTER||"";       /* v6.16 业务线筛选（空=全部） */
+  const gf=IDEA_GEAR_FILTER||"";      /* v6.16 器材筛选（空=全部；"缺"=缺该装备的场景） */
+
+  /* ---- v6.16 业务线带 ---- */
+  const bizBar=document.getElementById("idea-bizbar");
+  if(bizBar){
+    const total=(DB.ideas||[]).length;
+    let h='<button class="ibz'+(bf===''?' on':'')+'" onclick="ideaPickBiz(\'\')"><b>全部</b><i>'+total+'</i></button>';
+    h+=IDEA_BIZ.map(function(b){
+      const n=all.filter(i=>ideaTagInBiz(i.scene||"",b.key)||(i.tags||[]).some(t=>ideaTagInBiz(t,b.key))||(i.biz||"")===b.key).length;
+      const scN=IDEA_SCENES.filter(x=>x.biz===b.key).length;
+      return '<button class="ibz'+(bf===b.key?' on':'')+'" onclick="ideaPickBiz(\''+b.key+'\')" title="'+scN+' 个场景">'+
+        '<span class="ibz-ico">'+b.icon+'</span><b>'+esc(b.key)+'</b><i>'+n+' 条</i></button>';
+    }).join("");
+    bizBar.innerHTML=h;
+  }
+
+  /* ---- v6.16 顶部场景条：按业务线 + 器材情况排序 ---- */
+  const sceneBar=document.getElementById("idea-scenes");
+  if(sceneBar){
+    let scenes=IDEA_SCENES.slice();
+    if(bf)scenes=scenes.filter(x=>x.biz===bf);
+    scenes=scenes.map(function(sc){
+      var f=ideaGearFit(sc);
+      var n=all.filter(i=>(i.tags||[]).indexOf(sc.k)>=0 || (i.scene||"")===sc.k).length;
+      return {sc:sc,fit:f,n:n,ready:f.miss.length===0};
+    });
+    /* 保持「婚礼全流程」的叙事顺序：准备 → 迎亲 → 仪式 → 宴席 → 外景 → 夜景 → 特写 → 细节，
+       不做任何按器材齐备度的重排 —— 否则顺序会跳，用户一眼看不懂这条动线。 */
+    sceneBar.innerHTML=scenes.map(function(x){
+      const sc=x.sc;
+      const badge=x.ready
+        ? '<span class="isc-ok">✓ 可拍</span>'
+        : '<span class="isc-miss">缺 '+x.fit.miss.join(' / ')+'</span>';
+      /* 点了某条业务线时不再重复标业务线；看全部时才标，方便区分婚礼/人像/活动 */
+      const bizTag=bf?'':'<span class="isc-biz">'+esc(sc.biz)+'</span>';
+      return '<button class="isc'+(IDEA_SCENE_PICK===sc.k?' on':'')+(x.ready?' ready':'')+'" onclick="ideaPickScene(\''+sc.k+'\')">'+
+        bizTag+
+        '<span class="isc-ico">'+sc.icon+'</span>'+
+        '<span class="isc-txt"><b>'+esc(sc.k)+'</b><i>'+esc(sc.line)+'</i></span>'+
+        '<span class="isc-bot">'+badge+(x.n?('<span class="isc-n">'+x.n+'</span>'):'')+'</span>'+
+      '</button>';
+    }).join("");
+  }
+
+  /* ---- v6.16 器材条：我的机身/镜头/灯，点一下看用它拍过的灵感 ---- */
+  const gearBar=document.getElementById("idea-gears");
+  if(gearBar){
+    const gears=(DB.gears||[]).filter(g=>g.status!=='retired');
+    const gaps=ideaGearGaps().slice(0,3);
+    let html='<button class="igc'+(gf===''?' on':'')+'" onclick="ideaPickGear(\'\')"><b>全部器材</b><i>'+(DB.ideas||[]).length+' 条灵感</i></button>';
+    html+=gears.map(function(g){
+      const n=all.filter(i=>(i.gear||"")===g.name || (i.tags||[]).indexOf(String(g.model||"").split(' ')[0])>=0 || (i.tags||[]).indexOf(String(g.model||""))>=0).length;
+      return '<button class="igc'+(gf===g.name?' on':'')+'" onclick="ideaPickGear(\''+esc(g.name).replace(/'/g,"")+'\')" title="'+esc(g.model||g.name)+'">'+
+        '<b>'+esc(String(g.model||g.name).slice(0,16))+'</b><i>'+esc(g.category)+' · '+n+'</i></button>';
+    }).join("");
+    if(gaps.length){
+      html+='<span class="igc-gap">建议补 '+gaps.map(function(x){return '<em>'+esc(x.tok)+'</em>×'+x.n;}).join(' ')+'</span>';
+    }
+    gearBar.innerHTML=html;
+  }
+
+  /* ---- 列表过滤 ---- */
+  let list=all;
+  if(q)list=list.filter(id=>((id.title||"")+" "+(id.desc||"")+" "+((id.tags||[]).join(" "))+" "+(id.source||"")+" "+(id.scene||"")+" "+(id.gear||"")).toLowerCase().includes(q));
   if(tf)list=list.filter(id=>id.tags&&id.tags.includes(tf));
+  if(bf)list=list.filter(id=>ideaTagInBiz(id.scene||"",bf) || (id.tags||[]).some(t=>ideaTagInBiz(t,bf)) || (id.biz||"")===bf);
+  if(gf==='__gap__'){
+    const gapToks=ideaGearGaps().map(x=>x.tok);
+    list=list.filter(id=>IDEA_SCENES.some(sc=>((id.scene||"")===sc.k||(id.tags||[]).indexOf(sc.k)>=0) && ideaGearFit(sc).miss.some(m=>gapToks.indexOf(m)>=0)));
+  }else if(gf){
+    list=list.filter(id=>(id.gear||"")===gf || (id.tags||[]).some(t=>ideaFindGear(t)&&ideaFindGear(t).name===gf));
+  }
+  if(IDEA_SCENE_PICK)list=list.filter(id=>(id.scene||"")===IDEA_SCENE_PICK || (id.tags||[]).indexOf(IDEA_SCENE_PICK)>=0);
+
   /* v6.11 计数徽章 */
   const cntEl=document.getElementById("idea-count");
-  if(cntEl)cntEl.textContent=(DB.ideas||[]).length?((q||tf)?(list.length+" / "+(DB.ideas||[]).length+" 条"):((DB.ideas||[]).length+" 条")):"";
-  /* populate tag filter options */
+  const filtering=!!(q||tf||bf||gf||IDEA_SCENE_PICK);
+  if(cntEl)cntEl.textContent=all.length?(filtering?(list.length+" / "+all.length+" 条"):(all.length+" 条")):"";
+
+  /* 标签筛选下拉：按业务线收敛，避免一堆无关标签 */
   const sel=document.getElementById("idea-tag-filter");if(sel){
-    const tags=[...new Set((DB.ideas||[]).flatMap(i=>i.tags||[]))].sort();
-    const cur=sel.value;sel.innerHTML='<option value="">全部标签</option>'+tags.map(t=>`<option value="${esc(t)}"${t===cur?' selected':''}>${esc(t)}</option>`).join("");sel.value=tf;
+    const cur=sel.value;
+    let tags=[...new Set(all.flatMap(i=>i.tags||[]))].sort();
+    tags.sort(function(a,b){
+      const sa=IDEA_SCENES.some(x=>x.k===a)?1:0, sb=IDEA_SCENES.some(x=>x.k===b)?1:0;
+      return sb-sa;
+    });
+    sel.innerHTML='<option value="">全部标签</option>'+tags.map(t=>'<option value="'+esc(t)+'"'+(t===cur?' selected':'')+'>'+esc(t)+'</option>').join("");sel.value=tf;
   }
-  /* v5.92：区分「真没有数据」与「被筛选隐藏」，给出不同的引导动作 */
+
   if(!list.length){
-    grid.innerHTML=(q||tf)
-      ? emptyState({icon:"💡",text:"没有匹配的灵感",sub:"换个关键词，或把标签筛选切回「全部标签」",btn:"清空筛选",action:"clearIdeaFilter()"})
-      : emptyState({icon:"💡",text:"还没有收集任何灵感",sub:"看到好的构图、配色、光影随手记下来，拍摄前就有了现成的参考",btn:"✨ 记录第一个灵感",action:"addIdea()"});
+    grid.innerHTML=filtering
+      ? emptyState({icon:"💡",text:"没有匹配的灵感",sub:"换个关键词，或把业务线/器材/标签筛选切回「全部」",btn:"清空筛选",action:"clearIdeaFilter()"})
+      : emptyState({icon:"💡",text:"还没有收集任何灵感",sub:"从「婚房准备」「仪式现场」这些婚礼场景起手，记下你要怎么拍、用哪支镜头",btn:"✨ 记录第一个灵感",action:"addIdea()"});
     return;
   }
   grid.innerHTML=list.map((id,idi)=>{id._i=idi;
-    return `<div class="idea-card">
-      <div class="idea-img-wrap">${id.img?`<img src="${esc(id.img)}" onerror="this.style.display='none'">`:`<span class="idea-img-placeholder">💡</span>`}
-        <div class="idea-tags">${(id.tags||[]).map(t=>`<span class="idea-tag">${esc(t)}</span>`).join("")}</div>
-      </div>
-      <div class="idea-body">
-        <div class="idea-title">${esc(id.title)}</div>
-        <div class="idea-desc">${esc(id.desc)}</div>
-        <div class="idea-meta"><span class="idea-source">📍 ${esc(id.source)}</span><span class="idea-date">${esc(id.created||"")}</span></div>
-      </div>
-      <div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea(${idi})">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea(${idi})">删除</button></div>
-    </div>`;
+    const sc=IDEA_SCENES.filter(x=>x.k===(id.scene||""))[0];
+    const sceneChip=sc?('<span class="idea-scene" title="'+esc(sc.biz)+'">'+sc.icon+' '+esc(sc.k)+'</span>'):'';
+    const gearChip=id.gear?('<span class="idea-gear">📷 '+esc(id.gear)+'</span>'):'';
+    return '<div class="idea-card">'+
+      '<div class="idea-img-wrap">'+(id.img?('<img src="'+esc(id.img)+'" onerror="this.style.display=\'none\'">'):'<span class="idea-img-placeholder">💡</span>')+
+        '<div class="idea-tags">'+(id.tags||[]).map(t=>'<span class="idea-tag">'+esc(t)+'</span>').join("")+'</div>'+
+      '</div>'+
+      '<div class="idea-body">'+
+        '<div class="idea-title">'+esc(id.title)+'</div>'+
+        '<div class="idea-desc">'+esc(id.desc)+'</div>'+
+        ((sceneChip||gearChip)?('<div class="idea-bind">'+sceneChip+gearChip+'</div>'):'')+
+        '<div class="idea-meta"><span class="idea-source">📍 '+esc(id.source)+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
+      '</div>'+
+      '<div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea('+idi+')">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea('+idi+')">删除</button></div>'+
+    '</div>';
   }).join("");
 }
-function addIdea(){const title=(prompt("灵感标题：")||"").trim();if(!title){formErr("灵感标题不能为空");return;}const desc=prompt("描述这个灵感：")||"";const tagsStr=prompt("标签（逗号分隔，如：人像,夜景,配色）：")||"";const source=prompt("来源（小红书/Behance/自己...）：")||"";const img=prompt("图片链接（可选，留空则无图）：")||"";DB.ideas=DB.ideas||[];DB.ideas.unshift({title:title,desc:desc,tags:tagsStr?tagsStr.split(/[,，]/).map(s=>s.trim()).filter(Boolean):[],source:source,img:img,created:localDateStr()});save();renderIdeas();toast("已记录灵感 ✓","ok");}
-function editIdea(i){const id=DB.ideas[i];id.title=prompt("标题：",id.title)||id.title;id.desc=prompt("描述：",id.desc)||id.id;const tagsStr=(id.tags||[]).join(", ");const nt=prompt("标签（逗号分隔）：",tagsStr)||"";id.tags=nt?nt.split(/[,，]/).map(s=>s.trim()).filter(Boolean):id.tags;id.source=prompt("来源：",id.source)||id.source;id.img=prompt("图片链接：",id.img)||id.img;save();renderIdeas();}
+/* v6.16 灵感筛选态：业务线 / 器材 / 场景（记忆在内存，切模块不丢） */
+let IDEA_BIZ_FILTER="";
+let IDEA_GEAR_FILTER="";
+let IDEA_SCENE_PICK="";
+function ideaPickBiz(k){
+  if(IDEA_BIZ_FILTER===k){IDEA_BIZ_FILTER="";IDEA_SCENE_PICK="";}
+  else if(k==="婚礼纪实"){IDEA_BIZ_FILTER=k;}
+  else {IDEA_BIZ_FILTER=k;IDEA_SCENE_PICK="";}
+  renderIdeas();
+}
+function ideaPickGear(name){
+  IDEA_GEAR_FILTER=(IDEA_GEAR_FILTER===name)?"":name;
+  IDEA_SCENE_PICK="";
+  renderIdeas();
+}
+function ideaPickScene(k){
+  IDEA_SCENE_PICK=(IDEA_SCENE_PICK===k)?"":k;
+  if(IDEA_SCENE_PICK){IDEA_BIZ_FILTER=ideaSceneBiz(k);}
+  renderIdeas();
+}
+/* v6.16：点场景直接起一条灵感草稿（场景 + 器材都替你填好） */
+function ideaFromScene(k){
+  const sc=IDEA_SCENES.filter(x=>x.k===k)[0];
+  if(!sc){addIdea();return;}
+  IDEA_SCENE_PICK=k;IDEA_BIZ_FILTER=sc.biz;
+  renderIdeas();addIdea(k);
+}
+/* v6.16：新增/编辑走同一个表单 —— 场景、器材、业务线都是选项，不用记标签 */
+let _ideaEditIdx=-1;
+function openIdeaModal(idx){
+  _ideaEditIdx = (idx>=0?idx:-1);
+  const it = _ideaEditIdx>=0 ? (DB.ideas[_ideaEditIdx]||{}) : {};
+  const modal=document.getElementById("idea-modal");
+  if(!modal){addIdea();return;}
+  document.getElementById("im-title").textContent = _ideaEditIdx>=0 ? "✏ 编辑灵感" : "✨ 记录灵感";
+  /* 场景下拉：按业务线分组 */
+  const scSel=document.getElementById("im-scene");
+  scSel.innerHTML='<option value="">（不绑定场景）</option>'+IDEA_BIZ.map(function(b){
+    const opts=IDEA_SCENES.filter(x=>x.biz===b.key).map(function(sc){
+      const fit=ideaGearFit(sc);
+      const mark=fit.miss.length?(" ⚠ 缺"+fit.miss.join('/')):" ✓";
+      return '<option value="'+esc(sc.k)+'">'+sc.icon+' '+esc(sc.k)+mark+'</option>';
+    }).join("");
+    return opts?('<optgroup label="'+b.icon+' '+esc(b.key)+'">'+opts+'</optgroup>'):"";
+  }).join("");
+  /* 器材下拉：真实器材 + 「其他/无」 */
+  const gSel=document.getElementById("im-gear");
+  const gears=(DB.gears||[]).filter(g=>g.status!=='retired');
+  gSel.innerHTML='<option value="">（不指定器材）</option>'+gears.map(function(g){
+    return '<option value="'+esc(g.name)+'">'+esc(g.name)+'（'+esc(g.category)+'）</option>';
+  }).join("");
+  document.getElementById("im-tags").value=(it.tags||[]).join(", ");
+  document.getElementById("im-title-in").value=it.title||"";
+  document.getElementById("im-desc").value=it.desc||"";
+  document.getElementById("im-source").value=it.source||"";
+  document.getElementById("im-img").value=it.img||"";
+  scSel.value = it.scene||IDEA_SCENE_PICK||"";
+  gSel.value = it.gear||"";
+  /* 场景变了自动补器材与业务线提示 */
+  imSceneChange(true);
+  modal.style.display="flex";
+  setTimeout(function(){document.getElementById("im-title-in").focus();},50);
+}
+function closeIdeaModal(){const m=document.getElementById("idea-modal");if(m)m.style.display="none";_ideaEditIdx=-1;}
+/* 选场景 → 自动带上「推荐器材」与「业务线标签」 */
+function imSceneChange(silent){
+  const k=document.getElementById("im-scene").value;
+  const hint=document.getElementById("im-scene-hint");
+  const gSel=document.getElementById("im-gear");
+  if(!k){if(hint)hint.textContent="";return;}
+  const sc=IDEA_SCENES.filter(x=>x.k===k)[0];if(!sc)return;
+  const fit=ideaGearFit(sc);
+  /* 器材：优先挑一台你真有的、且场景需要的 */
+  if(!gSel.value && fit.own.length){ gSel.value=fit.own[0].gear.name; }
+  if(hint){
+    hint.innerHTML='<b>'+esc(sc.biz)+'</b> · 推荐 '+(fit.own.length?fit.own.map(function(o){return '<em>'+esc(o.gear.name)+'</em>';}).join('、'):'—')+
+      (fit.miss.length?(' ｜ <span class="imh-miss">手头没有：'+fit.miss.map(function(m){return '<em>'+esc(m)+'</em>';}).join('、')+'</span>'):' ｜ ✓ 器材齐全');
+  }
+  /* 标签：场景名 + 业务线关键词，自动补进标签框（不覆盖用户已填的） */
+  const tagEl=document.getElementById("im-tags");
+  if(!silent && tagEl){
+    const cur=tagEl.value.split(/[,，]/).map(function(x){return x.trim();}).filter(Boolean);
+    const add=[sc.k,sc.biz].filter(function(t){return cur.indexOf(t)<0;});
+    if(add.length)tagEl.value=cur.concat(add).join(", ");
+  }
+}
+function addIdea(sceneKey){
+  if(sceneKey)IDEA_SCENE_PICK=sceneKey;
+  openIdeaModal(-1);
+}
+function editIdea(i){
+  /* 列表里传给的是过滤后的下标，需要还原成 DB 真实下标 */
+  const list=DB.ideas||[];
+  const item=list[i];
+  if(!item)return;
+  const real=list.indexOf(item);
+  openIdeaModal(real>=0?real:i);
+}
+function saveIdeaModal(){
+  const title=(document.getElementById("im-title-in").value||"").trim();
+  if(!title){formErr("灵感标题不能为空");toast("请先填写灵感标题","warn");return;}
+  const tagsStr=document.getElementById("im-tags").value||"";
+  const data={
+    title:title,
+    desc:(document.getElementById("im-desc").value||"").trim(),
+    tags:tagsStr?tagsStr.split(/[,，]/).map(function(x){return x.trim();}).filter(Boolean):[],
+    source:(document.getElementById("im-source").value||"").trim(),
+    img:(document.getElementById("im-img").value||"").trim(),
+    scene:document.getElementById("im-scene").value||"",
+    gear:document.getElementById("im-gear").value||""
+  };
+  DB.ideas=DB.ideas||[];
+  if(_ideaEditIdx>=0 && DB.ideas[_ideaEditIdx]){
+    Object.assign(DB.ideas[_ideaEditIdx],data);
+    toast("已更新灵感 ✓","ok");
+  }else{
+    data.created=localDateStr();
+    DB.ideas.unshift(data);
+    toast("已记录灵感 ✓","ok");
+  }
+  save();closeIdeaModal();renderIdeas();
+}
 function delIdea(i){if(confirm("删除该灵感？")){DB.ideas.splice(i,1);save();renderIdeas();toast("已删除灵感");}}
 /* v5.92：一键清空灵感筛选（空状态「清空筛选」按钮用） */
 function clearIdeaFilter(){
+  IDEA_BIZ_FILTER="";IDEA_GEAR_FILTER="";IDEA_SCENE_PICK="";
   var s=document.getElementById("idea-search");if(s)s.value="";
   var t=document.getElementById("idea-tag-filter");if(t)t.value="";
   renderIdeas();
