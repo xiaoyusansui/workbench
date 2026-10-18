@@ -2047,6 +2047,23 @@
   .idm-el b{font-size:10.5px;font-weight:900;color:var(--muted3);letter-spacing:.5px}
   .idm-el span{font-size:12px;line-height:1.6;color:var(--ink2);word-break:break-word}
   .idm-q{font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:9px;word-break:break-all}
+  /* v6.27：抓不到平台图片（小红书/抖音都是反爬+登录墙），但可以把"该找什么样的图"说清楚，
+     照着比对，比盲翻几百张快得多。 */
+  .idm-look{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;line-height:1.7;
+    background:var(--bg3);border-radius:var(--r-xs);padding:8px 10px;margin-bottom:10px;
+    border-left:2px solid rgba(168,85,247,.45)}
+  .idm-look b{flex:none;font-size:10.5px;font-weight:900;color:#9333ea;letter-spacing:.3px}
+  .idm-look span{color:var(--muted2);word-break:break-word}
+  .idm-ask{font-size:10px;font-weight:800;padding:2px 7px;border-radius:var(--r-pill);
+    background:rgba(168,85,247,.14);color:#9333ea;letter-spacing:0}
+  .idm-alt{font-size:11.5px;color:var(--ink2);margin-top:8px;line-height:1.65}
+  .idm-fake{font-size:11px;line-height:1.65;color:var(--amber);margin-top:7px;
+    padding-left:8px;border-left:2px solid rgba(245,158,11,.45)}
+  .idm-shot{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;
+    letter-spacing:.2px;color:var(--ink2)}
+  html[data-theme="dark"] .idm-look{border-left-color:rgba(168,85,247,.6)}
+  html[data-theme="dark"] .idm-look b{color:#d8b4fe}
+  html[data-theme="dark"] .idm-ask{background:rgba(168,85,247,.22);color:#d8b4fe}
   .idm-srcs{display:flex;gap:6px;flex-wrap:wrap}
   .idm-src{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:800;
     padding:6px 12px;border-radius:var(--r-pill);text-decoration:none;
@@ -5861,7 +5878,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.26</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.27</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6362,7 +6379,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.26";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.27";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9651,6 +9668,11 @@ function openIdeaDetail(i){
   const id=(DB.ideas||[])[i];
   if(!id)return;
   IDIA_OPEN=i;
+  /* 顺手清掉历史遗留的编造型号（只跑一次，用 localStorage 打标） */
+  if(ideaPurgeFakeGear()){
+    const cur=(DB.ideas||[])[i]||id;
+    if(!String(cur.gear||""))cur.gear="";
+  }
   const box=document.getElementById("idea-detail-modal");
   const body=document.getElementById("idea-detail-body");
   if(!box||!body)return;
@@ -9665,6 +9687,37 @@ function closeIdeaDetail(){
   IDIA_OPEN=-1;
 }
 /* 老数据没有这些字段：能从 desc / gear / scene 推的就推，推不出就明说"没记"，不编。 */
+/* 老数据里可能存着 AI 当年编的器材（如 "V1"）。v6.27 起入库会拦，
+   但已经存下来的得清掉 —— 否则详情页永远显示一个你根本没有的型号。 */
+const IDEA_GEAR_FIX_KEY="xiaoyu_idea_gearfixed_v627";
+function ideaPurgeFakeGear(){
+  try{ if(localStorage.getItem(IDEA_GEAR_FIX_KEY)==="1")return 0; }catch(e){}
+  const mine=(DB.gears||[]).filter(function(g){return g.status!=="retired";});
+  const real={};
+  mine.forEach(function(g){ [g.model,g.name].forEach(function(v){ const s=String(v||"").trim().toLowerCase(); if(s)real[s]=1; }); });
+  const isReal=function(v){
+    const s=String(v||"").trim().toLowerCase();
+    if(!s)return false;
+    if(real[s])return true;
+    /* 允许 "24-70" 这种片段命中真实型号 */
+    return s.length>=3 && mine.some(function(g){
+      const m=String(g.model||g.name||"").toLowerCase();
+      return m&&(m.indexOf(s)>=0||(m.length>=4&&s.indexOf(m)>=0));
+    });
+  };
+  let fixed=0;
+  (DB.ideas||[]).forEach(function(it){
+    const bad=String(it.gear||"");
+    if(bad&&!isReal(bad)){ it.gear=""; fixed++; }
+    if(Array.isArray(it.gears)){
+      const keep=it.gears.filter(isReal);
+      if(keep.length!==it.gears.length){ it.gears=keep; fixed++; }
+    }
+  });
+  try{ localStorage.setItem(IDEA_GEAR_FIX_KEY,"1"); }catch(e){}
+  if(fixed){ try{ save(); }catch(e){} }
+  return fixed;
+}
 function ideaDetailHTML(id){
   const sc=IDEA_SCENES.filter(function(x){return x.k===id.scene;})[0]||null;
   const kind=ideaGuessKind(id);
@@ -9672,13 +9725,26 @@ function ideaDetailHTML(id){
   /* 设备：优先 gears 数组，其次单件，再次场景推荐（要标明是推荐不是已选） */
   let gears=Array.isArray(id.gears)?id.gears.filter(Boolean):[];
   if(!gears.length&&id.gear)gears=[id.gear];
+  /* 使用设备：没有器材时不能只留一句"没记"，要给出"用你现有的哪支顶" */
   const gearIsRec=!gears.length&&!!sc;
-  if(gearIsRec)gears=String((sc&&sc.gear)||"").split("/").filter(Boolean);
-  /* 缺件提示：只对真实器材清单算 */
+  if(gearIsRec){
+    /* v6.27：推荐位必须是"你真有的那件"，不是场景表里写的名字。
+       场景表写的是「85mm/35mm」这种通用焦段，直接显示会让人以为自己在用 35mm。 */
+    const fit=ideaGearFit(sc);
+    gears=fit.own.map(function(o){return String(o.gear.model||o.gear.name||"");}).filter(Boolean);
+  }
+  /* 缺件提示：v6.27 修 —— 原来传的是 sc.k（字符串），ideaGearFit 读的是 .gear，恒返回空数组，
+     所以"这个场景还缺 XX"从来没显示过。
+     另外：已经有镜头顶上了就不要再报警，否则每条都挂个黄条，反而变成噪音。 */
   const miss=(function(){
     if(!sc)return [];
-    const fit=ideaGearFit(sc.k);
-    return (fit.miss||[]).slice(0,3);
+    const f=ideaGearFit(sc);
+    const hasLens=gears.some(function(g){
+      const hit=(DB.gears||[]).filter(function(x){return String(x.model||x.name||"")===g;})[0];
+      return hit&&hit.category==="镜头";
+    });
+    if(hasLens)return [];
+    return (f.miss||[]).slice(0,3);
   })();
   const el=id.elements||{};
   const esc_text=function(s){return esc(s);};
@@ -9687,14 +9753,46 @@ function ideaDetailHTML(id){
     '<div class="idm-ht"><div class="idm-title">'+esc(id.title||"(无标题)")+
     (id.ai?'<span class="idea-ai" title="AI 按你的器材生成的">🤖 AI</span>':'')+'</div>'+
     '<div class="idm-sub">'+(sc?(sc.icon+" "+esc(sc.k)):"未归场景")+' · '+esc(id.created||"")+' · '+esc(kindTxt)+'</div></div></div>');
-  /* 一句话拍法 */
-  rows.push('<div class="idm-sec"><div class="idm-h">🎯 怎么拍</div><div class="idm-p">'+esc(id.desc||"（没写具体拍法）")+'</div></div>');
+  /* 一句话拍法：老数据正文里可能还留着 AI 编的器材（"放V1打轮廓光"），
+     跟下面真实设备对不上会让人困惑 —— 能认出来的就当场标出来。 */
+  const descTxt=String(id.desc||"");
+  const fakeInDesc=(function(){
+    if(!descTxt)return [];
+    const mine=(DB.gears||[]).filter(function(g){return g.status!=='retired';});
+    const toks=descTxt.match(/[A-Za-z]{1,6}\d{0,4}[A-Za-z0-9\-]*|\d{2,3}\s*mm/gi)||[];
+    const bad=[];
+    toks.forEach(function(t){
+      const s=t.trim(); if(s.length<2)return;
+      const hit=mine.some(function(g){
+        const m=String(g.model||g.name||"").toLowerCase();
+        return m&&m.indexOf(s.toLowerCase())>=0;
+      });
+      /* 只挑"看起来像器材"却不在库里的：带型号特征的（含数字或 ≥3 位大写字母） */
+      if(!hit && /\d/.test(s) && bad.indexOf(s)<0)bad.push(s);
+    });
+    return bad.slice(0,3);
+  })();
+  rows.push('<div class="idm-sec"><div class="idm-h">🎯 怎么拍</div><div class="idm-p">'+esc(descTxt||"（没写具体拍法）")+'</div>'+
+    (fakeInDesc.length?('<div class="idm-fake">⚠ 这段里提到的 '+esc(fakeInDesc.join(" / "))+' 不在你的器材清单里，可能是早前生成的。看下面的真实设备。</div>'):'')+'</div>');
   /* 使用设备 */
+  /* 使用设备：没有器材时不能只留一句"没记"，要给出"用你现有的哪支顶" */
+  const alt=(function(){
+    if(gears.length||!sc)return "";
+    const fit=ideaGearFit(sc);
+    if(fit.own.length)return "";
+    const mine=(DB.gears||[]).filter(function(g){return g.status!=='retired';});
+    const cam=mine.filter(function(g){return g.category==='相机';})[0];
+    const lens=mine.filter(function(g){return g.category==='镜头';});
+    if(!cam&&!lens.length)return "";
+    return "手上这套也能拍："+[cam, lens[0]].filter(Boolean).map(function(g){return g.model||g.name;}).join(" + ");
+  })();
   rows.push('<div class="idm-sec"><div class="idm-h">📷 使用设备'+(gearIsRec?'<span class="idm-tagrec">场景推荐·你库里有</span>':'')+'</div>'+
     (gears.length?('<div class="idm-gears">'+gears.map(function(g){
       return '<span class="idm-gear">'+esc(g)+'</span>';
     }).join("")+'</div>'):'<div class="idm-p idm-dim">这条还没指定器材</div>')+
-    (miss.length?('<div class="idm-miss">⚠ 这个场景还缺：'+esc(miss.join(" / "))+'</div>'):'')+
+    (alt?('<div class="idm-alt">💡 '+esc(alt)+'</div>'):'')+
+    (miss.length?('<div class="idm-miss">⚠ 这个场景缺 '+esc(miss.join(" / "))+' —— '+
+      (gears.length?'用你手上的器材替代：85mm 退两步，24-70mm 拧到对应焦段':'先用你现有的镜头顶上，或按需补一支')+'</div>'):'')+
     '</div>');
   /* 三大元素 */
   rows.push('<div class="idm-sec"><div class="idm-h">🧩 三大元素</div><div class="idm-3">'+
@@ -9705,6 +9803,8 @@ function ideaDetailHTML(id){
   /* 打光方式 */
   rows.push('<div class="idm-sec"><div class="idm-h">💡 打光方式</div>'+
     (id.lights?('<div class="idm-p">'+esc(id.lights)+'</div>'):'<div class="idm-p idm-dim">没记打光方式 —— 这条偏自然光抓拍</div>')+'</div>');
+  /* 拍摄参数（机位/焦段/光圈） */
+  if(id.shot)rows.push('<div class="idm-sec"><div class="idm-h">⚙️ 拍摄参数</div><div class="idm-p idm-shot">'+esc(id.shot)+'</div></div>');
   /* 拍摄重点 */
   rows.push('<div class="idm-sec"><div class="idm-h">🎬 拍摄重点</div>'+
     (id.key?('<div class="idm-p">'+esc(id.key)+'</div>'):'<div class="idm-p idm-dim">没记要点，看上面「怎么拍」</div>')+'</div>');
@@ -9714,8 +9814,11 @@ function ideaDetailHTML(id){
   if(id.tips)rows.push('<div class="idm-sec"><div class="idm-h">⚠ 容易翻车</div><div class="idm-p idm-warn">'+esc(id.tips)+'</div></div>');
   /* 找真实参考：v6.26 起用 order:-1 提到首屏 */
   const q=ideaSearchTerm(id);
-  rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 去看真实素材</div>'+
+  const kindWord={"图集":"对照图","视频":"参考视频","教程":"教程"}[kind];
+  rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 去看真实素材'+
+      '<span class="idm-ask">要找：'+esc(kindWord)+'</span></div>'+
     '<div class="idm-q">搜「'+esc(q)+'」</div>'+
+    (id.look?('<div class="idm-look"><b>画面长这样</b><span>'+esc(id.look)+'</span></div>'):'')+
     '<div class="idm-srcs">'+IDEA_SEARCH.map(function(p){
       return '<a class="idm-src" href="'+esc(p.build(q))+'" target="_blank" rel="noopener">'+p.icon+' 在'+esc(p.key)+'找</a>';
     }).join("")+'</div></div>');
@@ -9947,12 +10050,23 @@ function ideaBuildPrompt(opt){
   const lines=[];
   lines.push("你是婚礼跟拍摄影师的选题助理。请给出 "+many+" 条【拍摄灵感】，每条都要能立刻照着拍。");
   if(gear)lines.push("摄影师手上的器材："+gear+"。");
+  /* v6.27：把每个场景的"你有/你缺"算给模型看。
+     之前只说"不许编造"，但模型不知道哪些场景缺件，遇到没有 35mm 的场景就硬编一个 "V1"。
+     现在明确给替代方案，它才有东西可填。 */
+  const gaps=scenes.map(function(s){
+    const f=ideaGearFit(s);
+    const own=f.own.map(function(o){return o.tok+"="+(o.gear.model||o.gear.name);}).join(",");
+    return s.k+"｜有："+(own||"无")+(f.miss.length?"｜缺："+f.miss.join("、")+"（用现有器材替代，不许编）":"｜齐");
+  }).join("\n");
+  lines.push("各场景器材情况（scene → 你实际有什么 / 缺什么）：");
+  lines.push(gaps);
   lines.push("可用场景（必须从这里选 scene 字段）："+scenes.map(function(s){return s.k;}).join("、")+"。");
   if(o.style)lines.push("额外偏好："+o.style+"。");
   if(o.avoid&&have.length)lines.push("已有灵感（不要重复，换角度）："+have.slice(0,25).join("；")+"。");
   lines.push("");
   lines.push("要求：");
   lines.push("1. 每条必须点名用上面清单里【真实存在】的器材，不许编造没有的镜头/机身/灯具。");
+  lines.push("   注意：本行/本段的器材清单是唯一合法取值。若某场景标着「缺：35mm」，就用你有的镜头替代（85mm 退两步、24-70mm 拧到 35mm 端），不许写「35mm」「V1」这种你没有的东西。");
   lines.push("2. desc 写具体拍法（机位、参数倾向、光线判断、抓拍时机），30-60 字，别说空话。");
   lines.push("3. tips 写一句这条最容易翻车的点。");
   lines.push("4. gear 只能填器材清单里出现过的那一件的型号；gears 再列出这条会一起用到的其它器材（从清单里挑，最多2件，可空数组）。");
@@ -9963,8 +10077,12 @@ function ideaBuildPrompt(opt){
   lines.push("   key 拍摄重点：这条最关键的 1-2 个动作要领（机位高低、对焦点、连拍时机、跟焦方式）。");
   lines.push("   elements 三大元素：subject 主体拍什么 / light 光线怎么用 / comp 构图怎么排（各 8-20 字）。");
   lines.push("   setting 现场环境：在哪拍、背景有什么、需要清掉什么杂物。");
+  /* v6.27 参考图：抓不到平台图片（反爬），但可以让模型把"该找什么样的图"讲清楚，
+     用户点开平台后一眼就能判断哪张是要的，而不是盲翻几百张。 */
+  lines.push("   look 画面参照：用一句话描出这条成片长什么样（景别+画面里有什么+光从哪来+什么色调），用来在平台上比对找图。25-40 字。");
+  lines.push("   shot 拍摄参数：机位高度、焦段、光圈/快门倾向，如「蹲低平视 35mm端 f/2.8 1/200s」。");
   lines.push("只输出 JSON，不要解释，格式：");
-  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"主器材型号","gears":["其它器材"],"tags":["标签1","标签2"],"tips":"注意点","ref":"搜索关键词","kind":"图集|视频|教程","lights":"打光方式","key":"拍摄重点","setting":"现场环境","elements":{"subject":"主体","light":"光线","comp":"构图"}}]}');
+  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"主器材型号","gears":["其它器材"],"tags":["标签1","标签2"],"tips":"注意点","ref":"搜索关键词","kind":"图集|视频|教程","lights":"打光方式","key":"拍摄重点","setting":"现场环境","look":"画面参照","shot":"拍摄参数","elements":{"subject":"主体","light":"光线","comp":"构图"}}]}');
   return lines.join("\n");
 }
 /* 调 AI。失败返回 {ok:false,reason}，绝不抛 —— 没配 key / 网络断 / 模型乱答都要给人话。 */
@@ -10031,15 +10149,25 @@ function ideaNormalizeAI(arr,opt){
     /* 场景必须落在我定义过的场景里，落不进去就按文案重新猜一次 */
     let scene=String(x.scene==null?"":x.scene).trim();
     if(sceneKeys.indexOf(scene)<0)scene=ideaGuessScene(title+" "+String(x.desc||""));
-    /* 器材：模型给的型号必须真实存在于我的器材库，否则清空并回落到场景推荐 */
+    /* 器材：模型给的型号必须真实存在于我的器材库，否则清空并回落到场景推荐。
+       v6.27：原来的 `gear.indexOf(m)>=0` 反向包含太宽容 —— "V1"、"X" 这种单字母都能蒙到 X2T-C。
+       现在只认「型号整体出现」或「给了型号里够长的一段」，不接受拿 1-2 个字符凑。 */
     let gear=String(x.gear==null?"":x.gear).trim();
     let gearOk=false;
-    if(gear){
+    const gLow=gear.toLowerCase();
+    if(gear && gLow.length>=3){                 /* 少于 3 个字符的，一律当噪音 */
       for(let k=0;k<myGears.length;k++){
         const m=String(myGears[k].model||myGears[k].name||"");
-        if(m&&(m===gear||m.indexOf(gear)>=0||gear.indexOf(m)>=0)){gear=m;gearOk=true;break;}
+        if(!m)continue;
+        const mLow=m.toLowerCase();
+        /* ① 完全相同 ② 模型给了型号里的一段（≥3 字符，如 "24-70" / "a7m4"）
+           ③ 模型把型号包在更长一串里 —— 只在型号本身够长（≥4）时接受 */
+        if(mLow===gLow || mLow.indexOf(gLow)>=0 || (m.length>=4 && gLow.indexOf(mLow)>=0)){
+          gear=m;gearOk=true;break;
+        }
       }
     }
+    if(!gearOk)gear="";                          /* 没命中就清空，交给场景推荐兜底，绝不保留编造值 */
     const bind=ideaAutoBind({title:title,desc:String(x.desc||""),tags:[],scene:scene,gear:gearOk?gear:""});
     let tags=Array.isArray(x.tags)?x.tags.map(function(t){return String(t||"").trim();}).filter(Boolean):[];
     tags=tags.filter(function(t){return t.length<=12;}).slice(0,6);
@@ -10078,6 +10206,8 @@ function ideaNormalizeAI(arr,opt){
       lights:String(x.lights==null?"":x.lights).trim().slice(0,120),
       key:String(x.key==null?"":x.key).trim().slice(0,120),
       setting:String(x.setting==null?"":x.setting).trim().slice(0,120),
+      look:String(x.look==null?"":x.look).trim().slice(0,120),
+      shot:String(x.shot==null?"":x.shot).trim().slice(0,80),
       elements:(function(){
         const e=(x.elements&&typeof x.elements==="object")?x.elements:{};
         const pick=function(v){return String(v==null?"":v).trim().slice(0,40);};
@@ -10480,6 +10610,8 @@ function icaSaveAll(){
       lights:it.lights||"",
       key:it.key||"",
       setting:it.setting||"",
+      look:it.look||"",
+      shot:it.shot||"",
       elements:it.elements||null,
       gears:(it.gears||[]).slice(0,4),
       ai:1,
