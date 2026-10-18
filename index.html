@@ -2104,6 +2104,25 @@
   /* 已在库的条目：整条压暗 + 复选框禁用，省得用户勾了却"入库无反应" */
   .ifm-item.is-dup{opacity:.55}
   .ifm-item.is-dup .ifm-chk input{cursor:not-allowed}
+  /* ===== v6.20 自动捕捉 ===== */
+  .job-modal.ifm.cap{max-width:760px;width:min(94vw,760px)}
+  .ica-aiwarn{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12.5px;line-height:1.6;
+    color:var(--ink2);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.34);
+    border-radius:var(--r-xs);padding:9px 12px;margin-bottom:12px}
+  .ica-aiwarn span{flex:1;min-width:180px}
+  .ica-opts{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .ica-f{margin-bottom:0;flex:0 0 auto}
+  .ica-f-sm{width:78px}
+  .ica-f-grow{flex:1 1 220px;min-width:180px}
+  .ica-avoid{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted2);
+    margin:11px 0 2px;cursor:pointer;user-select:none}
+  .ica-avoid input{width:14px;height:14px;accent-color:var(--gold);cursor:pointer}
+  /* AI 生成条目的"翻车点"提示，比普通描述更扎眼一点，但不抢标题 */
+  .ifm-tips{font-size:11.5px;line-height:1.65;color:var(--amber);margin-top:4px}
+  /* 卡片上的 AI 生成角标 —— 必须一眼能分辨"生成的"和"真抓来的" */
+  .idea-ai{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:800;
+    padding:1px 6px;border-radius:var(--r-pill);background:rgba(168,85,247,.14);
+    color:#a855f7;border:1px solid rgba(168,85,247,.3);vertical-align:middle;margin-left:5px}
   .ifm-new{background:rgba(34,197,94,.1);color:#16a34a}
   .ifm-open{flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;
     border-radius:50%;background:var(--bg3);color:var(--muted2);font-size:12px;text-decoration:none;font-weight:800}
@@ -5209,6 +5228,7 @@ window.QRCode = {
               <option value="" data-page-node-id="kNDIW01RwEDHMZCSaEu9LG">全部标签</option>
             </select>
             <span class="pf-count" id="idea-count" data-page-node-id="v611IdeaCount"></span>
+            <button class="btn sm" onclick="openIdeaCapture()" data-page-node-id="v620CapBtn" title="按你的器材和婚礼环节，让 AI 自动出一批可拍的灵感">⚡ 自动捕捉</button>
             <button class="btn sm" onclick="openIdeaFetch()" data-page-node-id="v618FetchBtn" title="粘贴抖音/小红书分享文案或链接，自动识别并按你的器材匹配">📥 采集</button>
             <button class="btn sm" onclick="addIdea()" data-page-node-id="ZVxWJdGP0KtqYTTfplDJJW">✨ 记灵感</button>
           </div>
@@ -5292,6 +5312,55 @@ window.QRCode = {
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaFetch()">取消</button>
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="ifmRefetch()" id="ifm-refetch" data-page-node-id="v618FetchRefetch">🔄 刷新抓取</button>
               <button class="btn sm job" onclick="ifmSaveAll()" data-page-node-id="v618FetchSave">📥 全部入库</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== v6.20 自动捕捉：AI 按「我的器材 × 婚礼环节」生成候选灵感 ==================== -->
+        <div class="job-modal-overlay" id="idea-cap-modal" style="display:none" onclick="if(event.target===this)closeIdeaCapture()" data-page-node-id="v620CapModal">
+          <div class="job-modal ifm cap" data-page-node-id="v620CapBox">
+            <div class="jm-head"><span>⚡ 自动捕捉灵感</span><span class="jm-close" onclick="closeIdeaCapture()">✕</span></div>
+            <div class="jm-body">
+              <div class="ifm-tip" data-page-node-id="v620CapTip">
+                按你<b>手上的器材</b>和<b>婚礼环节</b>，让 AI 出一批「这套家伙具体怎么拍」的候选。
+                生成的条目会标明 <b>🤖 AI 生成</b>，不是从平台上抓来的真实内容。
+              </div>
+              <div class="ica-aiwarn" id="ica-aiwarn" style="display:none" data-page-node-id="v620CapWarn">
+                <span>还没配 AI，自动捕捉需要先填一个模型 Key（DeepSeek / OpenAI 兼容都行）</span>
+                <button class="btn sm" onclick="icaGoSettings()" data-page-node-id="v620CapGoSet">去设置</button>
+              </div>
+              <div class="ica-opts">
+                <div class="jm-field ica-f">
+                  <label>业务线</label>
+                  <select id="ica-biz">
+                    <option value="婚礼纪实">婚礼纪实</option>
+                    <option value="人像写真">人像写真</option>
+                    <option value="活动跟拍">活动跟拍</option>
+                    <option value="电商产品">电商产品</option>
+                    <option value="商业拍摄">商业拍摄</option>
+                  </select>
+                </div>
+                <div class="jm-field ica-f ica-f-sm">
+                  <label>条数</label>
+                  <input type="number" id="ica-count" min="1" max="12" value="6"/>
+                </div>
+                <div class="jm-field ica-f ica-f-grow">
+                  <label>额外偏好（选填）</label>
+                  <input type="text" id="ica-style" placeholder="例：多出逆光/夜景，或想要能接单卖钱的技巧"/>
+                </div>
+              </div>
+              <label class="ica-avoid"><input type="checkbox" id="ica-avoid" checked/> 自动避开库里已有的题目，别越捕越重复</label>
+              <div class="ifm-bar">
+                <button class="btn sm ifm-go" id="ica-go" onclick="icaRun()" data-page-node-id="v620CapRun">⚡ 开始捕捉</button>
+                <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="icaPickAll(true)">全选</button>
+                <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="icaPickAll(false)">全不选</button>
+                <span class="ifm-note" id="ica-note" data-page-node-id="v620CapNote"></span>
+              </div>
+              <div class="ifm-list" id="ica-list" data-page-node-id="v620CapList"></div>
+            </div>
+            <div class="jm-foot">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaCapture()">取消</button>
+              <button class="btn sm job" onclick="icaSaveAll()" data-page-node-id="v620CapSave">🤖 收下勾选的</button>
             </div>
           </div>
         </div>
@@ -5613,7 +5682,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.19</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.20</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6114,7 +6183,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.19";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.20";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9455,19 +9524,204 @@ function ideaGuessScene(text){
   return bestN>=1?best:"";
 }
 /* 一条灵感 → 自动补场景/器材/缺失提示（入库前调用） */
+/* 在文案里找「用户明确提到的器材」。返回 DB.gears 里真实存在的那一件（没有则 null）。
+   为什么需要：场景器材表是「灯光/85mm/24-70mm」这种固定顺序，直接取第一个会让"晨袍窗光、
+   85mm 收两档"被推荐成 Godox 灯 —— 文案都点名要 85mm 了，就该给 85mm。 */
+function ideaGearMentioned(text){
+  var s=String(text||"").toLowerCase();
+  if(!s.trim())return null;
+  var gears=(DB.gears||[]).filter(function(g){return g.status!=="retired";});
+  var hit=null,hitLen=0;
+  gears.forEach(function(g){
+    var m=String(g.model||g.name||"").trim();
+    if(!m)return;
+    var ml=m.toLowerCase();
+    /* 型号全名命中优先；再退到「85mm / 24-70 / AD600」这类可识别片段 */
+    if(s.indexOf(ml)>=0){ if(m.length>hitLen){hit=g;hitLen=m.length;} return; }
+    var frag=ml.match(/[a-z]*\d{2,3}(-\d{2,3})?\s*mm|ad\d{3}|[a-z]{2,4}\d{3,4}/g);
+    if(frag){ for(var i=0;i<frag.length;i++){ if(s.indexOf(frag[i])>=0 && frag[i].length>hitLen){hit=g;hitLen=frag[i].length;} } }
+  });
+  return hit;
+}
 function ideaAutoBind(item){
-  var sc=item.scene||ideaGuessScene((item.title||"")+" "+(item.desc||"")+" "+(item.tags||[]).join(" "));
+  var txt=(item.title||"")+" "+(item.desc||"")+" "+(item.tags||[]).join(" ");
+  var sc=item.scene||ideaGuessScene(txt);
   var scene=IDEA_SCENES.filter(function(x){return x.k===sc;})[0];
   var fit=scene?ideaGearFit(scene):{own:[],miss:[]};
+  /* 器材优先级：① 调用方已指定 ② 文案里点名且我真有的那件 ③ 场景推荐的第一件 */
+  var picked=item.gear||"";
+  if(!picked){
+    var ment=ideaGearMentioned(txt);
+    if(ment)picked=String(ment.model||ment.name||"");
+  }
+  if(!picked && fit.own[0])picked=fit.own[0].gear.name;
+  var own=fit.own.map(function(o){return o.gear.name;});
+  /* miss 保留场景的原有缺口判断（"仪式现场缺 70-200"是事实，不该因为文案提到 24-70 就被抹掉） */
+  var miss=fit.miss.slice();
   return {
     scene:scene?scene.k:"",
     biz:scene?scene.biz:"",
-    gear:(item.gear||(fit.own[0]?fit.own[0].gear.name:"")),
-    own:fit.own.map(function(o){return o.gear.name;}),
-    miss:fit.miss,
-    ready:!!scene&&fit.miss.length===0
+    gear:picked,
+    own:own,
+    miss:miss,
+    ready:!!scene&&miss.length===0
   };
 }
+/* ==================== v6.20 自动捕捉灵感（AI 按「我的器材 × 婚礼环节」生成候选） ====================
+   为什么走 AI 而不是爬虫：抖音搜索页是反爬 JS 壳，小红书 explore 直接 302 登录墙（v6.18 实测），
+   真爬拿不到东西。所以这里用你已有的 AI 配置（设置 → 语音 AI，DeepSeek/OpenAI 兼容接口），
+   把你的器材清单和婚礼环节喂进去，让它出「用你手上这套家伙具体怎么拍」的候选。
+   底线：生成的东西全部标 ai:1，卡片明写「AI 生成」，绝不伪装成真实抓取到的内容。 */
+const IDEA_CAP_KEY="xiaoyu_idea_capture";
+function loadIdeaCapCfg(){
+  try{const r=localStorage.getItem(IDEA_CAP_KEY);if(r)return Object.assign({count:6,biz:"婚礼纪实",style:"",avoid:true,lastTs:0},JSON.parse(r));}catch(e){}
+  return {count:6,biz:"婚礼纪实",style:"",avoid:true,lastTs:0};
+}
+function saveIdeaCapCfg(cfg){
+  try{localStorage.setItem(IDEA_CAP_KEY,JSON.stringify(cfg));}catch(e){}
+}
+/* 把「我有什么器材」整理成一句话，喂给模型 —— 这是全功能的关键上下文：
+   不给器材，模型只会吐"婚礼拍摄十大技巧"这种废话；给了器材，它才会说"24-70 在 1/60 下跟拍" */
+function ideaGearBrief(){
+  const gs=(DB.gears||[]).filter(g=>g.status!=="retired");
+  if(!gs.length)return "";
+  const by={};
+  gs.forEach(function(g){
+    const c=g.category||"其他";
+    (by[c]=by[c]||[]).push(String(g.model||g.name||"").trim());
+  });
+  return Object.keys(by).map(function(c){return c+"："+by[c].join("、");}).join("；");
+}
+/* 已有灵感标题（喂给模型去重，避免每次都吐同一批） */
+function ideaExistingTitles(limit){
+  return (DB.ideas||[]).slice(0, limit||40).map(function(x){return String(x.title||"").trim();}).filter(Boolean);
+}
+/* 构造提示词。单独成函数是为了测试能直接断言「器材确实进了提示词」 */
+function ideaBuildPrompt(opt){
+  const o=opt||{};
+  const gear=ideaGearBrief();
+  const scenes=IDEA_SCENES.filter(function(s){return !o.biz||s.biz===o.biz;});
+  const many=o.count||6;
+  const have=ideaExistingTitles(40);
+  const lines=[];
+  lines.push("你是婚礼跟拍摄影师的选题助理。请给出 "+many+" 条【拍摄灵感】，每条都要能立刻照着拍。");
+  if(gear)lines.push("摄影师手上的器材："+gear+"。");
+  lines.push("可用场景（必须从这里选 scene 字段）："+scenes.map(function(s){return s.k;}).join("、")+"。");
+  if(o.style)lines.push("额外偏好："+o.style+"。");
+  if(o.avoid&&have.length)lines.push("已有灵感（不要重复，换角度）："+have.slice(0,25).join("；")+"。");
+  lines.push("");
+  lines.push("要求：");
+  lines.push("1. 每条必须点名用上面清单里【真实存在】的器材，不许编造没有的镜头/机身/灯具。");
+  lines.push("2. desc 写具体拍法（机位、参数倾向、光线判断、抓拍时机），30-60 字，别说空话。");
+  lines.push("3. tips 写一句这条最容易翻车的点。");
+  lines.push("4. gear 只能填器材清单里出现过的那一件的型号。");
+  lines.push("只输出 JSON，不要解释，格式：");
+  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"某件器材型号","tags":["标签1","标签2"],"tips":"注意点"}]}');
+  return lines.join("\n");
+}
+/* 调 AI。失败返回 {ok:false,reason}，绝不抛 —— 没配 key / 网络断 / 模型乱答都要给人话。 */
+async function ideaCaptureAI(opt){
+  const cfg=loadAIVoiceCfg();
+  if(!cfg||!cfg.enabled||!cfg.apiKey)return {ok:false,reason:"no-key"};
+  if(typeof fetch!=="function")return {ok:false,reason:"no-net"};
+  const prompt=ideaBuildPrompt(opt);
+  let res;
+  const ctrl=(typeof AbortController!=="undefined")?new AbortController():null;
+  const tid=setTimeout(function(){try{if(ctrl)ctrl.abort();}catch(e){}},30000);
+  try{
+    res=await fetch(cfg.baseUrl,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.apiKey},
+      body:JSON.stringify({
+        model:cfg.model||"deepseek-chat",
+        messages:[{role:"system",content:"你只输出合法 JSON，不写任何解释性文字。"},{role:"user",content:prompt}],
+        temperature:0.8
+      }),
+      signal:ctrl?ctrl.signal:undefined
+    });
+  }catch(e){
+    clearTimeout(tid);
+    return {ok:false,reason:"net",detail:String(e&&e.message||e)};
+  }
+  clearTimeout(tid);
+  if(!res.ok){
+    /* 状态码要翻译成人话 —— 直接甩「HTTP 500」等于没说，用户不知道该改什么 */
+    let msg="接口返回 "+res.status+"，稍等一会儿再试";
+    if(res.status===401||res.status===403)msg="API Key 不对或没权限（"+res.status+"），去设置里核对一下";
+    else if(res.status===404)msg="接口地址不对（404），检查「接口地址」那一栏";
+    else if(res.status===429)msg="调用太频繁或额度用完了（429），等几分钟或充值后再试";
+    else if(res.status>=500)msg="模型服务端出问题了（"+res.status+"），不是你的错，过会儿再试";
+    return {ok:false,reason:"http",detail:msg};
+  }
+  let j;
+  try{j=await res.json();}catch(e){return {ok:false,reason:"bad-json"};}
+  const content=j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;
+  if(!content)return {ok:false,reason:"empty"};
+  const obj=parseLooseJSON(content);
+  const arr=Array.isArray(obj)?obj:((obj&&(obj.ideas||obj.items||obj.list))||[]);
+  if(!arr||!arr.length)return {ok:false,reason:"no-items"};
+  const items=ideaNormalizeAI(arr,opt);
+  if(!items.length)return {ok:false,reason:"no-items"};
+  return {ok:true,items:items};
+}
+/* 把模型返回的任意形状洗成能直接入库的灵感条目。
+   这里每一条校验都是为了防「模型瞎编器材」——编出来的镜头会让人真去下单。 */
+function ideaNormalizeAI(arr,opt){
+  const o=opt||{};
+  const myGears=(DB.gears||[]).filter(function(g){return g.status!=="retired";});
+  const sceneKeys=IDEA_SCENES.map(function(s){return s.k;});
+  const seen={};
+  (DB.ideas||[]).forEach(function(x){ if(x.title)seen[String(x.title).trim()]=1; });
+  const out=[];
+  for(let i=0;i<arr.length;i++){
+    const x=arr[i]||{};
+    let title=String(x.title==null?"":x.title).trim().replace(/^[0-9]+[.、]\s*/,"");
+    if(!title)continue;
+    if(title.length>40)title=title.slice(0,40);
+    if(seen[title])continue;               /* 和库里重名的不收，省得越捕越多重复 */
+    seen[title]=1;
+    /* 场景必须落在我定义过的场景里，落不进去就按文案重新猜一次 */
+    let scene=String(x.scene==null?"":x.scene).trim();
+    if(sceneKeys.indexOf(scene)<0)scene=ideaGuessScene(title+" "+String(x.desc||""));
+    /* 器材：模型给的型号必须真实存在于我的器材库，否则清空并回落到场景推荐 */
+    let gear=String(x.gear==null?"":x.gear).trim();
+    let gearOk=false;
+    if(gear){
+      for(let k=0;k<myGears.length;k++){
+        const m=String(myGears[k].model||myGears[k].name||"");
+        if(m&&(m===gear||m.indexOf(gear)>=0||gear.indexOf(m)>=0)){gear=m;gearOk=true;break;}
+      }
+    }
+    const bind=ideaAutoBind({title:title,desc:String(x.desc||""),tags:[],scene:scene,gear:gearOk?gear:""});
+    let tags=Array.isArray(x.tags)?x.tags.map(function(t){return String(t||"").trim();}).filter(Boolean):[];
+    tags=tags.filter(function(t){return t.length<=12;}).slice(0,6);
+    /* 模型常把场景名/业务线也写进 tags，直接 push 会出双份 #婚礼纪实 —— 按归一化值去重 */
+    const seenTag={};
+    tags.forEach(function(t){ seenTag[String(t).trim().toLowerCase()]=1; });
+    [bind.scene,bind.biz].forEach(function(t){
+      if(!t)return;
+      const k=String(t).trim().toLowerCase();
+      if(!seenTag[k]){ seenTag[k]=1; tags.push(t); }
+    });
+    out.push({
+      title:title,
+      desc:String(x.desc==null?"":x.desc).trim().slice(0,160),
+      tags:tags.slice(0,8),
+      source:"AI 生成",
+      scene:bind.scene,
+      biz:bind.biz,
+      gear:bind.gear,
+      own:bind.own,
+      miss:bind.miss,
+      ready:bind.ready,
+      tips:String(x.tips==null?"":x.tips).trim().slice(0,120),
+      ai:1,                  /* 打标：卡片上必须显示「AI 生成」 */
+      keep:true
+    });
+  }
+  return out;
+}
+
 /* ==================== v6.18 灵感采集：弹窗行为 ==================== */
 let IFM_ITEMS=[];       /* 解析结果（预览态） */
 let IFM_BUSY=false;
@@ -9669,6 +9923,166 @@ function ifmSaveAll(){
   toast("已采集 "+added+" 条灵感 ✓"+(skipped?("，跳过重复 "+skipped+" 条"):""),"ok");
 }
 
+/* ==================== v6.20 自动捕捉：弹窗行为 ==================== */
+let ICA_ITEMS=[];
+let ICA_BUSY=false;
+function openIdeaCapture(){
+  const m=document.getElementById("idea-cap-modal");
+  if(!m)return;
+  ICA_ITEMS=[];
+  const box=document.getElementById("ica-list");
+  if(box)box.innerHTML='<div class="ifm-empty">点「⚡ 开始捕捉」，让 AI 按你的器材出一批可拍的灵感</div>';
+  const note=document.getElementById("ica-note");
+  if(note)note.textContent="";
+  const cfg=loadIdeaCapCfg();
+  const bz=document.getElementById("ica-biz");
+  if(bz)bz.value=cfg.biz||"婚礼纪实";
+  const ct=document.getElementById("ica-count");
+  if(ct)ct.value=String(cfg.count||6);
+  const st=document.getElementById("ica-style");
+  if(st)st.value=cfg.style||"";
+  const av=document.getElementById("ica-avoid");
+  if(av)av.checked=cfg.avoid!==false;
+  /* 没配 AI 时直接把"下一步该干嘛"写在脸上，别让人点了按钮干等 */
+  icaCheckAI(!0);
+  m.style.display="flex";
+}
+function closeIdeaCapture(){
+  const m=document.getElementById("idea-cap-modal");
+  if(m)m.style.display="none";
+  ICA_ITEMS=[];ICA_BUSY=false;
+}
+/* 检查 AI 是否可用，不可用时在弹窗里给一句人话 + 跳设置 */
+function icaCheckAI(silent){
+  const cfg=loadAIVoiceCfg();
+  const ok=!!(cfg&&cfg.enabled&&cfg.apiKey);
+  const warn=document.getElementById("ica-aiwarn");
+  const btn=document.getElementById("ica-go");
+  if(warn)warn.style.display=ok?"none":"flex";
+  if(btn)btn.disabled=!ok;
+  if(!ok&&!silent)toast("还没配 AI，先点上面的「去设置」","warn");
+  return ok;
+}
+function icaGoSettings(){
+  closeIdeaCapture();
+  const cfg=loadAIVoiceCfg();
+  if(!cfg.enabled){try{cfg.enabled=true;localStorage.setItem(AI_VOICE_KEY,JSON.stringify(cfg));}catch(e){}}
+  refreshAIVoiceUI();
+  openSettings&&openSettings();
+  /* scrollIntoView 不是所有环境都有（jsdom 就没有），有则滚，没有就算了 —— 不能因为它崩掉 */
+  setTimeout(function(){
+    const box=document.getElementById("ai-voice-cfg");
+    if(box&&typeof box.scrollIntoView==="function")box.scrollIntoView({block:"center"});
+  },300);
+}
+/* 开始捕捉 */
+async function icaRun(){
+  if(ICA_BUSY)return;
+  if(!icaCheckAI(false))return;
+  const cfg=loadIdeaCapCfg();
+  cfg.biz=(document.getElementById("ica-biz")||{}).value||"婚礼纪实";
+  cfg.count=Math.max(1,Math.min(12,parseInt((document.getElementById("ica-count")||{}).value,10)||6));
+  cfg.style=((document.getElementById("ica-style")||{}).value||"").trim();
+  cfg.avoid=!!((document.getElementById("ica-avoid")||{}).checked);
+  saveIdeaCapCfg(cfg);
+
+  ICA_BUSY=true;
+  const btn=document.getElementById("ica-go");
+  const note=document.getElementById("ica-note");
+  if(btn){btn.disabled=true;btn.textContent="⏳ 捕捉中…";}
+  if(note)note.textContent="正在让 AI 按你的器材出题，一般 5-15 秒…";
+  let settled=false;
+  function finish(){ if(settled)return; settled=true; ICA_BUSY=false;
+    if(btn){btn.disabled=false;btn.textContent="⚡ 开始捕捉";} }
+  /* 兜底：模型不响应/浏览器节流时按钮不能永远灰着 */
+  const guard=setTimeout(finish,45000);
+  let r;
+  try{ r=await ideaCaptureAI(cfg); }catch(e){ r={ok:false,reason:"net"}; }
+  clearTimeout(guard);finish();
+
+  if(!r.ok){
+    const msg={
+      "no-key":"没配 AI：去「设置 → 语音 AI」填 Key 再回来",
+      "no-net":"当前环境不能联网，自动捕捉用不了",
+      "net":"网络没通，检查一下再试",
+      "http":(r.detail||"接口报错"),
+      "bad-json":"模型返回的内容看不懂，再点一次试试",
+      "empty":"模型没返回内容，再点一次试试",
+      "no-items":"这次没出有效条目，换个偏好或再试一次"
+    }[r.reason]||"捕捉失败，再试一次";
+    if(note)note.textContent=msg;
+    toast(msg,"warn");
+    return;
+  }
+  ICA_ITEMS=r.items;
+  renderIcaList();
+  cfg.lastTs=Date.now();saveIdeaCapCfg(cfg);
+  if(note)note.textContent="捕捉到 "+r.items.length+" 条候选，挑要的入库";
+}
+function renderIcaList(){
+  const box=document.getElementById("ica-list");
+  if(!box)return;
+  if(!ICA_ITEMS.length){box.innerHTML='<div class="ifm-empty">还没有候选</div>';return;}
+  box.innerHTML=ICA_ITEMS.map(function(it,i){
+    const sc=it.scene?('<span class="ifm-tag ifm-scene">🎬 '+esc(it.scene)+'</span>'):'<span class="ifm-tag ifm-noscene">未匹配场景</span>';
+    const gear=it.gear?('<span class="ifm-tag ifm-gear">📷 '+esc(it.gear)+'</span>'):'';
+    const miss=(it.miss&&it.miss.length)?('<span class="ifm-tag ifm-miss">缺 '+esc(it.miss.join(' / '))+'</span>'):(it.scene?'<span class="ifm-tag ifm-ok">✓ 器材齐全</span>':'');
+    const tags=(it.tags||[]).slice(0,4).map(function(t){return '<span class="ifm-tag ifm-kw">#'+esc(t)+'</span>';}).join("");
+    return '<div class="ifm-item'+(it.keep?'':' off')+'" data-page-node-id="v620Item'+i+'">'+
+      '<label class="ifm-chk"><input type="checkbox" '+(it.keep?'checked':'')+' onchange="icaToggle('+i+',this.checked)"/></label>'+
+      '<div class="ifm-main">'+
+        '<div class="ifm-hd"><span class="ifm-plat">🤖 AI 生成</span></div>'+
+        '<div class="ifm-title">'+esc(it.title||'(无标题)')+'</div>'+
+        (it.desc?('<div class="ifm-desc">'+esc(it.desc)+'</div>'):'')+
+        (it.tips?('<div class="ifm-tips">⚠ '+esc(it.tips)+'</div>'):'')+
+        '<div class="ifm-tags">'+sc+gear+miss+tags+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+}
+function icaToggle(i,on){ if(ICA_ITEMS[i])ICA_ITEMS[i].keep=!!on; renderIcaList(); }
+function icaPickAll(on){ ICA_ITEMS.forEach(function(x){x.keep=!!on;}); renderIcaList(); }
+function icaSaveAll(){
+  const pick=ICA_ITEMS.filter(function(x){return x.keep;});
+  if(!pick.length){toast("没有勾选任何条目","warn");return;}
+  DB.ideas=DB.ideas||[];
+  const seen={};
+  DB.ideas.forEach(function(x){ if(x.title)seen[String(x.title).trim()]=1; });
+  let added=0,skipped=0;
+  pick.forEach(function(it){
+    const t=String(it.title||"").trim();
+    if(!t)return;
+    if(seen[t]){skipped++;return;}
+    seen[t]=1;
+    DB.ideas.unshift({
+      title:t,
+      desc:it.desc||"",
+      tags:(it.tags||[]).slice(0,8),
+      source:"AI 生成",
+      img:"",
+      url:"",
+      scene:it.scene||"",
+      gear:it.gear||"",
+      tips:it.tips||"",     /* 翻车点单独存，编辑弹窗里也要能看到 */
+      ai:1,
+      created:localDateStr()
+    });
+    added++;
+  });
+  if(!added){
+    closeIdeaCapture();renderIdeas();
+    toast(skipped?("这 "+skipped+" 条跟库里重名，没有重复收"):"没有新增","warn");
+    return;
+  }
+  save();closeIdeaCapture();renderIdeas();
+  toast("已收下 "+added+" 条 AI 灵感 ✓"+(skipped?("，跳过重复 "+skipped+" 条"):""),"ok");
+}
+/* 只留下某条（其余丢弃）—— 常用于"只想要这一条"的场景，省得挨个取消勾选 */
+function icaKeepOnly(i){
+  ICA_ITEMS.forEach(function(x,k){x.keep=(k===i);});
+  renderIcaList();
+}
+
 function renderIdeas(){
   const grid=document.getElementById("idea-grid");
   let all=DB.ideas||[];
@@ -9726,7 +10140,13 @@ function renderIdeas(){
     const gaps=ideaGearGaps().slice(0,3);
     let html='<button class="igc'+(gf===''?' on':'')+'" onclick="ideaPickGear(\'\')"><b>全部器材</b><i>'+(DB.ideas||[]).length+' 条灵感</i></button>';
     html+=gears.map(function(g){
-      const n=all.filter(i=>(i.gear||"")===g.name || (i.tags||[]).indexOf(String(g.model||"").split(' ')[0])>=0 || (i.tags||[]).indexOf(String(g.model||""))>=0).length;
+      /* 灵感里存的可能是 name 也可能是 model（v6.20 起统一写 model），两个都要认，否则计数恒为 0 */
+      const n=all.filter(function(i){
+        const gv=String(i.gear||"");
+        if(!gv)return false;
+        const nm=String(g.name||""), md=String(g.model||"");
+        return gv===nm || (md&&gv===md) || (g.tags&&(i.tags||[]).indexOf(md)>=0);
+      }).length;
       return '<button class="igc'+(gf===g.name?' on':'')+'" onclick="ideaPickGear(\''+esc(g.name).replace(/'/g,"")+'\')" title="'+esc(g.model||g.name)+'">'+
         '<b>'+esc(String(g.model||g.name).slice(0,16))+'</b><i>'+esc(g.category)+' · '+n+'</i></button>';
     }).join("");
@@ -9745,7 +10165,15 @@ function renderIdeas(){
     const gapToks=ideaGearGaps().map(x=>x.tok);
     list=list.filter(id=>IDEA_SCENES.some(sc=>((id.scene||"")===sc.k||(id.tags||[]).indexOf(sc.k)>=0) && ideaGearFit(sc).miss.some(m=>gapToks.indexOf(m)>=0)));
   }else if(gf){
-    list=list.filter(id=>(id.gear||"")===gf || (id.tags||[]).some(t=>ideaFindGear(t)&&ideaFindGear(t).name===gf));
+    /* 点器材筛选时传进来的是 g.name，但灵感里存的可能是 name 也可能是 model（v6.20 起写 model），
+       两边都得认；否则点「Sony 85mm」会一条灵感都筛不出来。 */
+    const _g=(DB.gears||[]).filter(function(x){return String(x.name||"")===gf||String(x.model||"")===gf;})[0];
+    const _md=_g?String(_g.model||""):"", _nm=_g?String(_g.name||""):"";
+    list=list.filter(function(id){
+      const gv=String(id.gear||"");
+      if(gv&&(gv===gf||gv===_md||gv===_nm))return true;
+      return (id.tags||[]).some(function(t){const f=ideaFindGear(t);return !!f&&(f.name===gf||String(f.model||"")===gf);});
+    });
   }
   if(IDEA_SCENE_PICK)list=list.filter(id=>(id.scene||"")===IDEA_SCENE_PICK || (id.tags||[]).indexOf(IDEA_SCENE_PICK)>=0);
 
@@ -9780,8 +10208,9 @@ function renderIdeas(){
         '<div class="idea-tags">'+(id.tags||[]).map(t=>'<span class="idea-tag">'+esc(t)+'</span>').join("")+'</div>'+
       '</div>'+
       '<div class="idea-body">'+
-        '<div class="idea-title">'+esc(id.title)+'</div>'+
+        '<div class="idea-title">'+esc(id.title)+(id.ai?'<span class="idea-ai" title="这条是 AI 按你的器材生成的，不是平台上抓来的">🤖 AI</span>':'')+'</div>'+
         '<div class="idea-desc">'+esc(id.desc)+'</div>'+
+        (id.tips?('<div class="ifm-tips">⚠ '+esc(id.tips)+'</div>'):'')+
         ((sceneChip||gearChip)?('<div class="idea-bind">'+sceneChip+gearChip+'</div>'):'')+
         '<div class="idea-meta"><span class="idea-source">'+ideaPlatIcon(id.source)+' '+esc(id.source)+(id.url?('<a class="idea-link" href="'+esc(id.url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="打开原链接">↗</a>'):'')+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
       '</div>'+
@@ -9899,6 +10328,9 @@ function saveIdeaModal(){
     img:(document.getElementById("im-img").value||"").trim(),
     /* v6.18：保留采集来的原链接，编辑时不能丢 */
     url:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).url||"":""),
+    /* v6.20：AI 标记与翻车点同样要留住 —— 否则编辑一下"生成的"就伪装成"自己记的"了 */
+    ai:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).ai||0:0),
+    tips:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).tips||"":""),
     scene:document.getElementById("im-scene").value||"",
     gear:document.getElementById("im-gear").value||""
   };
