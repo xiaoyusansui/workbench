@@ -5556,6 +5556,7 @@ window.QRCode = {
             <div class="jm-body" id="idea-detail-body" data-page-node-id="v626DetailBody"></div>
             <div class="jm-foot">
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaDetail()">关闭</button>
+              <button class="btn sm" id="idm-fill-btn" style="display:none" onclick="fillIdeaFromDetail()" data-page-node-id="v627DetailFill">✨ 补齐这条</button>
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="editIdeaFromDetail()" data-page-node-id="v626DetailEdit">✏️ 改这条</button>
             </div>
           </div>
@@ -5878,7 +5879,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.27</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.28</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6379,7 +6380,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.27";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.28";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9677,6 +9678,13 @@ function openIdeaDetail(i){
   const body=document.getElementById("idea-detail-body");
   if(!box||!body)return;
   body.innerHTML=ideaDetailHTML(id);
+  /* 骨架是空的才显示「补齐」（AI 生成的旧条目说得过去；你自己手记的别去动它） */
+  const fill=document.getElementById("idm-fill-btn");
+  if(fill){
+    const need=!!IDIA_NEED_FILL;
+    fill.style.display=need?"":"none";
+    fill.disabled=false;fill.textContent="✨ 补齐这条";
+  }
   box.style.display="flex";
   const sc=body.querySelector(".idm-scroll");
   if(sc)sc.scrollTop=0;
@@ -9719,6 +9727,14 @@ function ideaPurgeFakeGear(){
   return fixed;
 }
 function ideaDetailHTML(id){
+  /* 这条缺不缺骨架 —— 缺就在底部挂一个「补齐」，否则永远是"没记" */
+  const _el0=id.elements||{};
+  const skeletonMissing=!(id.lights&&id.key&&(_el0.subject||_el0.light||_el0.comp));
+  IDIA_NEED_FILL=skeletonMissing&&!!id.ai;
+  return ideaDetailBody(id);
+}
+let IDIA_NEED_FILL=false;
+function ideaDetailBody(id){
   const sc=IDEA_SCENES.filter(function(x){return x.k===id.scene;})[0]||null;
   const kind=ideaGuessKind(id);
   const kindTxt={"图集":"对照图集","视频":"看视频","教程":"看教程"}[kind];
@@ -9833,6 +9849,71 @@ function editIdeaFromDetail(){
   if(i<0)return;
   closeIdeaDetail();
   editIdea(i);
+}
+/* v6.27：老条目骨架是空的（那时还没这个字段），只能显示"没记"。
+   给它一个补齐入口 —— 只补空的，你自己写过的字一个都不动。 */
+async function fillIdeaFromDetail(){
+  const i=IDIA_OPEN;
+  const it=(DB.ideas||[])[i];
+  if(!it)return;
+  const cfg=loadAIVoiceCfg();
+  if(!cfg||!cfg.enabled||!cfg.apiKey){toast("还没配 AI，去设置里填个 Key","warn");return;}
+  const btn=document.getElementById("idm-fill-btn");
+  if(btn){btn.disabled=true;btn.textContent="补齐中…";}
+  try{
+    const realGear=ideaGearBrief();
+    const sc=IDEA_SCENES.filter(function(x){return x.k===it.scene;})[0];
+    const fit=sc?ideaGearFit(sc):{own:[],miss:[]};
+    const ask=[
+      "给下面这一条已有的拍摄灵感补全骨架。只输出 JSON，不要解释。",
+      "灵感标题："+String(it.title||""),
+      "已有描述："+String(it.desc||""),
+      "场景："+String(it.scene||"未知"),
+      "我手上的器材："+(realGear||"无"),
+      sc?("这个场景我有："+(fit.own.map(function(o){return o.tok+"="+(o.gear.model||o.gear.name);}).join(",")||"无")+
+          (fit.miss.length?("；缺："+fit.miss.join("、")+"（用现有器材替代，不许编）"):"；齐")):"",
+      "要求：gear 只能填我清单里真实存在的型号；不许编。",
+      "输出格式：",
+      '{"lights":"打光方式","key":"拍摄重点","shot":"机位 焦段 光圈 快门","look":"画面参照 25-40 字","setting":"现场环境","elements":{"subject":"主体","light":"光线","comp":"构图"}}'
+    ].filter(Boolean).join("\n");
+    const res=await fetch(cfg.baseUrl,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.apiKey},
+      body:JSON.stringify({
+        model:cfg.model||"deepseek-chat",
+        messages:[{role:"system",content:"你只输出合法 JSON，不写任何解释性文字。"},{role:"user",content:ask}],
+        temperature:0.6
+      })
+    });
+    if(!res.ok){throw new Error("HTTP "+res.status);}
+    const j=await res.json();
+    const txt=(j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content)||"";
+    const obj=parseLooseJSON(txt)||{};
+    const pick=function(v,n){return String(v==null?"":v).trim().slice(0,n||120);};
+    const e=(obj.elements&&typeof obj.elements==="object")?obj.elements:{};
+    /* 只填空位：已经有内容的一律保留（可能是用户自己手写的） */
+    if(!it.lights)it.lights=pick(obj.lights);
+    if(!it.key)it.key=pick(obj.key);
+    if(!it.shot)it.shot=pick(obj.shot,80);
+    if(!it.look)it.look=pick(obj.look);
+    if(!it.setting)it.setting=pick(obj.setting);
+    if(!(it.elements&&(it.elements.subject||it.elements.light||it.elements.comp))){
+      const o={subject:pick(e.subject,40),light:pick(e.light,40),comp:pick(e.comp,40)};
+      if(o.subject||o.light||o.comp)it.elements=o;
+    }
+    save();
+    if(IDIA_OPEN>=0){const body=document.getElementById("idea-detail-body");
+      if(body){body.innerHTML=ideaDetailHTML(DB.ideas[IDIA_OPEN]);
+        const sc2=body.querySelector(".idm-scroll");if(sc2)sc2.scrollTop=0;}}
+    /* 补完了就把按钮收起来 —— 骨架已经齐了还挂着「补齐这条」很怪 */
+    const fb=document.getElementById("idm-fill-btn");
+    if(fb&&!IDIA_NEED_FILL){fb.style.display="none";}
+    renderIdeas();
+    toast("已按你的器材补齐 ✓","ok");
+  }catch(err){
+    if(btn){btn.disabled=false;btn.textContent="✨ 补齐这条";}
+    toast("补齐失败："+(err&&err.message?err.message:"网络错误"),"warn");
+  }
 }
 
 function ideaPlatIcon(name){
