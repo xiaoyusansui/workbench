@@ -2065,6 +2065,13 @@
   .ifm-tip{font-size:12.5px;line-height:1.65;color:var(--muted2);background:var(--bg3);
     border-left:3px solid var(--gold);border-radius:var(--r-xs);padding:10px 12px;margin-bottom:14px}
   .ifm-tip b{color:var(--gold);font-weight:800}
+  /* 粘贴区：粘贴几条就长几条，上限 5 行后就地滚动。原先固定 4 行高，粘 4 条只露 3 行，
+     看着像"第一条被截了/顺序乱了"（实测滚了一行上去，纯视觉误会，但会吓人一跳）。 */
+  #ifm-input{width:100%;box-sizing:border-box;min-height:84px;max-height:150px;resize:vertical;
+    font:inherit;font-size:12.5px;line-height:1.75;padding:9px 11px;border-radius:var(--r-ctl);
+    border:1px solid var(--line2);background:var(--bg2);color:var(--ink);outline:none;
+    transition:border-color var(--dur-2) var(--ease)}
+  #ifm-input:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.13)}
   .ifm-bar{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
   .ifm-go:hover{filter:brightness(1.06)}
   .ifm-note{font-size:11.5px;color:var(--muted3);margin-left:auto}
@@ -2094,6 +2101,9 @@
   .ifm-noscene{background:var(--bg3);color:var(--muted3)}
   .ifm-kw{background:var(--bg3);color:var(--muted2);font-weight:600}
   .ifm-dup{background:rgba(148,163,184,.18);color:var(--muted2)}
+  /* 已在库的条目：整条压暗 + 复选框禁用，省得用户勾了却"入库无反应" */
+  .ifm-item.is-dup{opacity:.55}
+  .ifm-item.is-dup .ifm-chk input{cursor:not-allowed}
   .ifm-new{background:rgba(34,197,94,.1);color:#16a34a}
   .ifm-open{flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;
     border-radius:50%;background:var(--bg3);color:var(--muted2);font-size:12px;text-decoration:none;font-weight:800}
@@ -5268,7 +5278,7 @@ window.QRCode = {
               </div>
               <div class="jm-field">
                 <label>📋 粘贴分享文案 / 链接</label>
-                <textarea id="ifm-input" rows="4" placeholder="例：婚礼跟拍机位全攻略 #婚礼跟拍# https://v.douyin.com/xxxx/ 复制此链接，打开抖音搜索…" oninput="ifmOnInput()" data-page-node-id="v618FetchInput"></textarea>
+                <textarea id="ifm-input" rows="4" placeholder="例：婚礼跟拍机位全攻略 #婚礼跟拍# https://v.douyin.com/xxxx/ 复制此链接，打开抖音搜索…" oninput="ifmOnInput()" onpaste="setTimeout(function(){ifmOnInput()},0)" data-page-node-id="v618FetchInput"></textarea>
                 <div class="ifm-bar">
                   <button class="btn sm ifm-go" onclick="ifmParse()" data-page-node-id="v618FetchParse">🔍 解析</button>
                   <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="ifmPasteFromClipboard()" data-page-node-id="v618FetchClip">📋 读剪贴板</button>
@@ -5603,7 +5613,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.18</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.19</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6104,7 +6114,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.18";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.19";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9391,34 +9401,56 @@ const IDEA_MATCH_WORDS={
   "场景氛围":["氛围","场景图","生活方式","布置","软装"]
 };
 /* 给一段文本打分，返回最可能的场景 key（阈值不足返回空，不硬凑）。
-   打分权重：命中场景名本身 5 分（最强信号），命中专属关键词 2 分，弱关键词 1 分。
-   v6.18 修正：原先「场景名 +2、关键词 +1」会让『仪式现场』仅因文案里有"走廊"就输给『酒店走廊』。 */
+   打分规则（v6.19 重排，前两版都吃过亏）：
+   · 命中场景名本身 +8 —— 最强信号（文案直接说"仪式现场"就该是仪式现场）
+   · 命中专属关键词 +3 —— 该场景独有、别处不会出现
+   · 多词加分用递减（+3/+2/+1/再往上都按 +1），避免"关键词堆得多"压过"词更硬"
+   历史教训：v6.18 首版『仪式现场』仅因文案里有"走廊"就输给『酒店走廊』；第二版又因"交换戒指"
+   同属『细节静物』关键词，让婚礼重头戏被分进静物。→ 关键词得按"分量"排，不能只按"有没有"。 */
 const IDEA_STRONG_WORDS={
-  "外景旅拍":["旅拍","外景","草地","海边","山"],
-  "宴席敬酒":["敬酒","敬茶","主桌"],
-  "婚礼夜景":["夜景","冷焰火","烟火"],
-  "细节静物":["戒指","婚鞋","请柬","手捧花"],
-  "情绪特写":["特写","情绪","眼神","剪影"]
+  "婚房准备":["晨袍","新娘妆","披头纱","出门前"],
+  "迎亲接亲":["堵门","迎亲","接亲"],
+  "仪式现场":["交换戒指","宣誓","入场","进场","花门","司仪","仪式"],
+  "宴席敬酒":["敬酒","敬茶","主桌","交杯酒"],
+  "合影全家福":["全家福","大合影","合照","排位"],
+  "外景旅拍":["旅拍","外景","海边","草地","剪影","日落"],
+  "婚礼夜景":["夜景","冷焰火","烟火","夜色"],
+  "情绪特写":["情绪","特写","泪","眼神","侧脸"],
+  "细节静物":["婚鞋","请柬","手捧花","桌卡","喜糖","静物"],
+  "逆光人像":["逆光","光斑","轮廓光","通透"],
+  "活动签到":["签到处","背景板","展会"],
+  "会场全景":["会场","舞台","观众席"],
+  "白底产品":["白底","棚拍","平铺","电商"],
+  "城市霓虹":["霓虹","赛博","街灯"],
+  "场景氛围":["氛围","软装","生活方式"]
 };
 function ideaGuessScene(text){
   var s=String(text||"");
   if(!s.trim())return "";
-  var best="",bestN=0,tie="";
+  var best="",bestN=0,ties=[];
   Object.keys(IDEA_MATCH_WORDS).forEach(function(k){
-    var n=0;
+    var strong=IDEA_STRONG_WORDS[k]||[];
+    var n=0,hits=0;
     IDEA_MATCH_WORDS[k].forEach(function(w){
       if(s.indexOf(w)<0)return;
-      n += ((IDEA_STRONG_WORDS[k]||[]).indexOf(w)>=0)?2:1;
+      hits++;
+      /* 递减加分：第 1 个词 +3，第 2 个 +2，第 3 个 +1，之后都 +1 */
+      var bonus=hits===1?3:(hits===2?2:1);
+      n += (strong.indexOf(w)>=0)?(bonus+2):bonus;
     });
     /* 场景名本身出现，权重最高 */
-    if(s.indexOf(k)>=0)n+=5;
-    if(n>bestN){bestN=n;best=k;tie="";}
-    else if(n===bestN&&n>0)tie=k;
+    if(s.indexOf(k)>=0)n+=8;
+    if(n>bestN){bestN=n;best=k;ties=[k];}
+    else if(n===bestN&&n>0)ties.push(k);
   });
-  /* 同分时优先「婚礼纪实」线（跟拍业务的默认语境），再退回首字顺序 */
-  if(tie&&best){
-    var bz1=ideaSceneBiz(best),bz2=ideaSceneBiz(tie);
-    if(bz2==="婚礼纪实"&&bz1!=="婚礼纪实")return tie;
+  /* 同分裁决：先选婚礼纪实线的（跟拍业务默认语境），再选关键词定义更长的（更具体），最后按首字顺序 */
+  if(ties.length>1){
+    ties.sort(function(a,b){
+      var ba=ideaSceneBiz(a)==="婚礼纪实"?0:1, bb=ideaSceneBiz(b)==="婚礼纪实"?0:1;
+      if(ba!==bb)return ba-bb;
+      return (IDEA_MATCH_WORDS[b]||[]).length-(IDEA_MATCH_WORDS[a]||[]).length;
+    });
+    best=ties[0];
   }
   return bestN>=1?best:"";
 }
@@ -9481,6 +9513,16 @@ function ifmOnInput(){
   const v=t.value||"";
   const lines=v.split(/\n+/).filter(function(x){return x.trim();}).length;
   n.textContent=lines?(lines+" 行待解析"):"";
+  ifmGrow(t);
+}
+/* 粘贴区随内容长高（上限由 CSS max-height 卡住，超出就地滚动）。
+   顺手把滚动位置归零 —— 否则粘完一长段，框里停在中间，用户会以为前面几条被吃了。 */
+function ifmGrow(t){
+  if(!t)return;
+  t.style.height="auto";
+  var max=150;
+  t.style.height=Math.min(t.scrollHeight,max)+"px";
+  t.scrollTop=0;
 }
 /* 解析：先本地拆文案，再对每条尽量补齐标题（抓不到就用文案里的标题，不编造） */
 function ifmParse(){
@@ -9502,8 +9544,7 @@ function ifmParse(){
   /* 已在库里的同链接标出来，避免重复收 */
   const exist={};
   (DB.ideas||[]).forEach(function(x){ if(x.url)exist[x.url]=1; });
-  items.forEach(function(it){ if(it.url&&exist[it.url]){it.dup=true;} });
-  IFM_ITEMS=items;
+  items.forEach(function(it){ if(it.url&&exist[it.url]){it.dup=true;it.keep=false;} });  IFM_ITEMS=items;
   renderIfmList();
   const note=document.getElementById("ifm-note");
   if(note)note.textContent="解析出 "+items.length+" 条";
@@ -9565,8 +9606,8 @@ function renderIfmList(){
     const tags=(it.tags||[]).slice(0,5).map(function(t){return '<span class="ifm-tag ifm-kw">#'+esc(t)+'</span>';}).join("");
     const dup=it.dup?'<span class="ifm-tag ifm-dup">已在库</span>':'';
     const fetched=it.fetched?'<span class="ifm-tag ifm-new">已抓取详情</span>':'';
-    return '<div class="ifm-item'+(it.keep?'':' off')+'" data-page-node-id="v618Item'+i+'">'+
-      '<label class="ifm-chk"><input type="checkbox" '+(it.keep?'checked':'')+' onchange="ifmToggle('+i+',this.checked)"/></label>'+
+    return '<div class="ifm-item'+(it.keep?'':' off')+(it.dup?' is-dup':'')+'" data-page-node-id="v618Item'+i+'">'+
+      '<label class="ifm-chk"><input type="checkbox" '+(it.keep?'checked':'')+(it.dup?' disabled title="这条链接已经在灵感库里了"':'')+' onchange="ifmToggle('+i+',this.checked)"/></label>'+
       '<div class="ifm-main">'+
         '<div class="ifm-hd"><span class="ifm-plat">'+esc(it.platformIcon||'✏')+' '+esc(it.platform||'手动')+'</span>'+
           (it.author?('<span class="ifm-author">@'+esc(it.author)+'</span>'):'')+fetched+dup+'</div>'+
@@ -9585,7 +9626,18 @@ function ifmToggle(i,on){
 /* 入库：只收勾选的，且跳过重复链接 */
 function ifmSaveAll(){
   const pick=IFM_ITEMS.filter(function(x){return x.keep;});
-  if(!pick.length){toast("没有勾选任何条目","warn");return;}
+  if(!pick.length){
+    /* 区分两种"没得存"：全是已在库的，还是用户自己全取消了 —— 提示同一个样子会被骂 */
+    const allDup=IFM_ITEMS.length>0 && IFM_ITEMS.every(function(x){return x.dup;});
+    if(allDup){
+      const n=IFM_ITEMS.length;
+      closeIdeaFetch();renderIdeas();
+      toast(n+" 条都已在灵感库里，没有重复收","warn");
+    }else{
+      toast("没有勾选任何条目","warn");
+    }
+    return;
+  }
   const exist={};
   (DB.ideas||[]).forEach(function(x){ if(x.url)exist[x.url]=1; });
   let added=0,skipped=0;
@@ -9606,7 +9658,13 @@ function ifmSaveAll(){
     });
     added++;
   });
-  if(!added){toast("没有新增（都已在库里）","warn");return;}
+  /* 全都在库里：把结果说清楚并关掉弹窗。原先只弹一句 toast 就 return，
+     用户点完「全部入库」弹窗还杵在那儿，像是点了个寂寞，得自己找取消。 */
+  if(!added){
+    closeIdeaFetch();renderIdeas();
+    toast(skipped?("这 "+skipped+" 条都已在灵感库里，没有重复收"):"没有新增（都已在库里）","warn");
+    return;
+  }
   save();closeIdeaFetch();renderIdeas();
   toast("已采集 "+added+" 条灵感 ✓"+(skipped?("，跳过重复 "+skipped+" 条"):""),"ok");
 }
