@@ -5698,7 +5698,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.21</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.22</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6199,7 +6199,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.21";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.22";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7333,6 +7333,19 @@ function saveAIVoiceSettings(){
   cfg.apiKey=document.getElementById("ai-voice-key").value.trim();
   cfg.model=document.getElementById("ai-voice-model").value.trim()||cfg.model;
   try{localStorage.setItem(AI_VOICE_KEY,JSON.stringify(cfg));}catch(e){}
+  /* v6.21：以前保存完只弹一句"已保存"就结束。如果用户是从「自动捕捉」里点「去设置」
+     跳过来的，填完 Key 后完全不知道该干嘛 —— 得自己想起来回灵感、再点一次捕捉、参数还要重选。
+     现在：识别到这次是从捕捉弹窗跳来的，保存后自动把捕捉弹窗拉回来，并提示可以开始了。 */
+  if(cfg.apiKey&&ICA_CAME_FROM_SETTINGS){
+    ICA_CAME_FROM_SETTINGS=false;
+    toast("Key 已保存，回去点「⚡ 开始捕捉」就行 ✓");
+    setTimeout(function(){ closeSettings&&closeSettings(); openIdeaCapture(); },350);
+    return;
+  }
+  if(!cfg.apiKey){
+    toast("还没填 API Key，自动捕捉用不了","warn");
+    return;
+  }
   toast("AI 语音配置已保存 ✓");
 }
 function toggleAIVoice(){
@@ -9942,17 +9955,24 @@ function ifmSaveAll(){
 /* ==================== v6.20 自动捕捉：弹窗行为 ==================== */
 let ICA_ITEMS=[];
 let ICA_BUSY=false;
+/* v6.21：用户从捕捉弹窗跳去设置填 Key 的标记 + 记住刚才选的业务线。
+   保存后据此把弹窗拉回来，参数还是原来那些 —— 否则填完 Key 只看到一句"已保存"，
+   人还得自己想起回来、重新点一次、参数还要重选。 */
+let ICA_CAME_FROM_SETTINGS=false;
+let ICA_BIZ_KEEP="";
 function openIdeaCapture(){
   const m=document.getElementById("idea-cap-modal");
   if(!m)return;
   ICA_ITEMS=[];
   const box=document.getElementById("ica-list");
-  if(box)box.innerHTML='<div class="ifm-empty">点「⚡ 开始捕捉」，让 AI 按你的器材出一批可拍的灵感</div>';
+  if(box)box.innerHTML='<div class="ifm-empty">'+(icaAIReady()
+    ?'点「⚡ 开始捕捉」，让 AI 按你的器材出一批可拍的灵感'
+    :'还没配 AI —— 先点上面那条里的绿色「去设置」，填一个 API Key，回来就能捕捉了')+'</div>';
   const note=document.getElementById("ica-note");
   if(note)note.textContent="";
   const cfg=loadIdeaCapCfg();
   const bz=document.getElementById("ica-biz");
-  if(bz)bz.value=cfg.biz||"婚礼纪实";
+  if(bz)bz.value=ICA_BIZ_KEEP||cfg.biz||"婚礼纪实";
   const ct=document.getElementById("ica-count");
   if(ct)ct.value=String(cfg.count||6);
   const st=document.getElementById("ica-style");
@@ -9968,10 +9988,15 @@ function closeIdeaCapture(){
   if(m)m.style.display="none";
   ICA_ITEMS=[];ICA_BUSY=false;
 }
+/* AI 是否可用：配了地址+Key+开关才算能跑 */
+function icaAIReady(){
+  const cfg=loadAIVoiceCfg();
+  return !!(cfg&&cfg.enabled&&cfg.apiKey);
+}
 /* 检查 AI 是否可用，不可用时在弹窗里给一句人话 + 跳设置 */
 function icaCheckAI(silent){
   const cfg=loadAIVoiceCfg();
-  const ok=!!(cfg&&cfg.enabled&&cfg.apiKey);
+  const ok=icaAIReady();
   const warn=document.getElementById("ica-aiwarn");
   const btn=document.getElementById("ica-go");
   if(warn)warn.style.display=ok?"none":"flex";
@@ -9984,6 +10009,10 @@ function icaCheckAI(silent){
   return ok;
 }
 function icaGoSettings(){
+  /* 先记下用户当前的选项，保存 Key 后回到弹窗时原样还原 */
+  ICA_CAME_FROM_SETTINGS=true;
+  const _bz=document.getElementById("ica-biz");
+  ICA_BIZ_KEEP=_bz?String(_bz.value||""):"";
   closeIdeaCapture();
   const cfg=loadAIVoiceCfg();
   if(!cfg.enabled){try{cfg.enabled=true;localStorage.setItem(AI_VOICE_KEY,JSON.stringify(cfg));}catch(e){}}
