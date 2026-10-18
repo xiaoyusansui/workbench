@@ -1974,7 +1974,7 @@
   .idea-bizbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
   .ibz{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);
     background:var(--surface);border:1px solid var(--glass-border);color:var(--muted2);cursor:pointer;
-    font-family:inherit;font-size:12.5px;font-weight:700;transition:.15s}
+    font-family:inherit;font-size:12.5px;font-weight:700;transition:.15s;white-space:nowrap;flex:none}
   .ibz b{color:var(--ink2);font-weight:800}
   .ibz i{font-style:normal;font-size:11px;opacity:.62}
   .ibz-ico{font-size:14px;line-height:1}
@@ -2005,6 +2005,9 @@
   .isc-txt b{font-size:12.5px;font-weight:800;color:var(--ink)}
   .isc-txt i{font-style:normal;font-size:10.5px;color:var(--muted3);line-height:1.4;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  /* 业务线角标占住了右上角，卡内文案右侧留出避让，避免「婚礼纪实」和箭头/省略号挤在一起 */
+  .isc-txt b{padding-right:6px}
+  .isc-txt i{padding-right:2px}
   .isc-bot{display:flex;align-items:center;gap:6px;margin-top:2px}
   .isc-ok{font-size:10px;font-weight:800;color:#16a34a;background:rgba(34,197,94,.12);padding:2px 7px;border-radius:var(--r-pill)}
   .isc-miss{font-size:10px;font-weight:700;color:#b45309;background:rgba(251,191,36,.16);padding:2px 7px;
@@ -5512,7 +5515,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.16</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.17</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6013,7 +6016,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.16";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.17";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -10749,21 +10752,70 @@ function showUpdateBar(remoteV){
   bar.textContent="🔔 已发布新版本 v"+remoteV+"（当前 v"+APP_VER+"），点击立即刷新 →";
   bar.style.display="flex";
 }
+function hideUpdateBar(){
+  var bar=document.getElementById("ver-update-bar");
+  if(bar)bar.style.display="none";
+}
 function checkVersionUpdate(){
   try{
     if(typeof fetch!=="function")return;
     var url="version.json?x="+(Date.now());
     fetch(url,{cache:"no-store"}).then(function(r){return r&&r.ok?r.json():null;})
-      .then(function(d){if(!d||!d.v)return;if(vnum(d.v)>vnum(APP_VER))showUpdateBar(d.v);})
+      .then(function(d){
+        if(!d||!d.v)return;
+        if(vnum(d.v)>vnum(APP_VER))showUpdateBar(d.v);
+        else hideUpdateBar();   /* 已经是最新（可能刚刷新过），把残留提示条收掉 */
+      })
       .catch(function(){});
   }catch(e){}
+}
+/* v6.17 版本检查改为持续进行：启动时一次 + 每 5 分钟一次 + 页面重新可见时一次。
+   以前只在启动时查一次，导致发布新版本后一直开着的标签页永远不知道要更新。 */
+function startVersionWatch(){
+  checkVersionUpdate();
+  if(window.__verTimer)clearInterval(window.__verTimer);
+  window.__verTimer=setInterval(checkVersionUpdate,5*60*1000);
+  document.addEventListener("visibilitychange",function(){
+    if(document.visibilityState==="visible")checkVersionUpdate();
+  });
+  window.addEventListener("focus",function(){checkVersionUpdate();});
+  window.addEventListener("online",function(){checkVersionUpdate();});
+}
+
+/* v6.17 跨标签页实时同步：另一个标签页保存后，本页立刻跟着更新，
+   不用手动刷新。storage 事件只在「其它」标签页写入时触发，所以不会自激。 */
+function startStorageWatch(){
+  if(window.__storageWatchOn)return;
+  window.__storageWatchOn=true;
+  window.addEventListener("storage",function(e){
+    if(e.key!==KEY)return;
+    if(!e.newValue)return;
+    /* 自己刚保存的数据别覆盖回来 */
+    if(Date.now()-(window.__lastLocalEdit||0)<1200)return;
+    try{
+      var incoming=JSON.parse(e.newValue);
+      if(!incoming||typeof incoming!=="object")return;
+      DB=morphDB(incoming);
+      renderAll();
+      setSyncStatus&&setSyncStatus("ok","已同步其它标签页的改动 "+timeStr());
+    }catch(err){}
+  });
+}
+/* 回到前台时顺手补一次渲染：后台标签页可能被浏览器节流，渲染有延迟 */
+function refreshOnVisible(){
+  document.addEventListener("visibilitychange",function(){
+    if(document.visibilityState!=="visible")return;
+    try{renderAll();}catch(e){}
+  });
 }
 
 fillBanPlan();
 initPeriodBar();          /* v6.10 周期导航初始化 */
 switchTab("home");tick();setInterval(tick,1000);
 renderWeekBar();
-checkVersionUpdate();
+startVersionWatch();
+startStorageWatch();
+refreshOnVisible();
 /* v5.92：启动时做一次数据体检 —— 容量预警 + 损坏兜底 */
 (function(){
   try{
