@@ -1649,7 +1649,10 @@
   .jm-field input:focus,.jm-field select:focus,.jm-field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(96,165,250,.15)}
   .jm-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .jm-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-  .jm-row3 .jm-field input{text-align:center}
+  /* v6.26：三格输入框会按内容撑宽，把右边那格顶出弹窗（「怎么排」被切掉）。
+     grid 子项默认 min-width:auto，必须显式归零，输入框才能老实缩在格子里。 */
+  .jm-row3>.jm-field{min-width:0}
+  .jm-row3 .jm-field input{text-align:center;width:100%;box-sizing:border-box;min-width:0}
   .jm-foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--glass-border);background:rgba(0,0,0,.08)}
 
   /* 智能卡片增强 */
@@ -2002,6 +2005,64 @@
     background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);transition:.12s}
   .idea-src:hover{background:rgba(168,85,247,.12);color:#9333ea;border-color:rgba(168,85,247,.32);
     transform:translateY(-1px)}
+  /* ===== v6.26 灵感详情页 =====
+     卡片只有标题一句话，点开得能直接照着干活：设备 / 三大元素 / 打光 / 拍摄重点。
+     弹窗必须自己能滚：.job-modal 默认没 max-height，内容一长就顶出屏幕且没有滚轮。 */
+  .job-modal.idm{max-width:640px;width:min(94vw,640px);display:flex;flex-direction:column;
+    max-height:calc(100vh - 40px);overflow:hidden}
+  @supports (height:100dvh){.job-modal.idm{max-height:calc(100dvh - 40px)}}
+  .job-modal.idm .jm-head{flex:0 0 auto;background:linear-gradient(135deg,#a855f7,#7c3aed)}
+  .job-modal.idm .jm-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:0;
+    scrollbar-width:thin;scrollbar-color:var(--muted3) transparent}
+  .job-modal.idm .jm-body::-webkit-scrollbar{width:7px}
+  .job-modal.idm .jm-body::-webkit-scrollbar-thumb{background:var(--muted3);border-radius:4px}
+  .job-modal.idm .jm-foot{flex:0 0 auto}
+  .idm-scroll{padding:16px 18px;display:flex;flex-direction:column;gap:13px}
+  .idm-hero{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:var(--r-sub);
+    background:linear-gradient(135deg,rgba(168,85,247,.13),rgba(124,58,237,.05));
+    border:1px solid rgba(168,85,247,.22)}
+  .idm-kind{flex:none;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;
+    justify-content:center;font-size:15px;font-weight:900;letter-spacing:0;
+    background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;box-shadow:0 4px 12px rgba(168,85,247,.28)}
+  .idm-ht{flex:1;min-width:0}
+  .idm-title{font-size:15.5px;font-weight:900;color:var(--ink);line-height:1.35;word-break:break-word}
+  .idm-sub{font-size:11px;color:var(--muted3);margin-top:5px}
+  .idm-sec{border:1px solid var(--glass-border);border-radius:var(--r-sub);
+    background:var(--surface);padding:12px 14px}
+  .idm-h{font-size:12px;font-weight:900;color:var(--ink2);margin-bottom:8px;
+    display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .idm-p{font-size:12.5px;line-height:1.75;color:var(--muted2);word-break:break-word}
+  .idm-dim{color:var(--muted3);font-style:normal}
+  .idm-warn{color:var(--amber)}
+  .idm-tagrec{font-size:10px;font-weight:700;padding:2px 7px;border-radius:var(--r-pill);
+    background:rgba(96,165,250,.12);color:#2563eb;letter-spacing:0}
+  .idm-gears{display:flex;gap:6px;flex-wrap:wrap}
+  .idm-gear{font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:var(--r-pill);
+    background:rgba(96,165,250,.13);color:#2563eb;border:1px solid rgba(96,165,250,.28)}
+  .idm-miss{font-size:11px;color:#b45309;margin-top:8px;line-height:1.6}
+  /* 三大元素：三格并排，窄屏一行一个 */
+  .idm-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .idm-el{border-radius:var(--r-xs);background:var(--bg3);padding:9px 10px;
+    display:flex;flex-direction:column;gap:5px;min-width:0}
+  .idm-el b{font-size:10.5px;font-weight:900;color:var(--muted3);letter-spacing:.5px}
+  .idm-el span{font-size:12px;line-height:1.6;color:var(--ink2);word-break:break-word}
+  .idm-q{font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:9px;word-break:break-all}
+  .idm-srcs{display:flex;gap:6px;flex-wrap:wrap}
+  .idm-src{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:800;
+    padding:6px 12px;border-radius:var(--r-pill);text-decoration:none;
+    background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;transition:.12s}
+  .idm-src:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  /* 卡片整体可点：给个明确的「能点开」信号，别只靠 cursor:pointer */
+  .idea-card:hover .idea-title{color:#9333ea}
+  /* v6.26 详情页里「去平台看真图」是整个页面最该被点的东西，但它排在最后，
+     640 宽的弹窗里会被挤到折线下面。把它提到首屏可见（hero 下面第一块），
+     同时把长文案那段收起来——它是"看之前"的辅助，不是入口。 */
+  .idm-sec.idm-srcsec{order:-1;background:linear-gradient(135deg,rgba(168,85,247,.1),transparent);
+    border-color:rgba(168,85,247,.26)}
+  .idm-srcsec .idm-q{margin-bottom:9px}
+  /* hero 是标题，必须永远在最前；素材块排它后面（order 只在同层级生效，
+     之前把素材块 -1 直接顶到了标题上面，读起来像"搜索框比标题还重要"） */
+  .idm-hero{order:-2}
   .idea-cover-kind b{font-size:30px;font-weight:400;line-height:1}
   .idea-cover-kind i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.3px;
     color:var(--muted3);text-align:center;padding:0 10px;line-height:1.4}
@@ -2091,11 +2152,46 @@
     background:rgba(96,165,250,.12);color:#2563eb}
   html[data-theme="dark"] .idea-scene{background:rgba(168,85,247,.2);color:#d8b4fe}
   html[data-theme="dark"] .idea-gear{background:rgba(96,165,250,.2);color:#93c5fd}
+  /* v6.26 详情页深色：上面给的是浅底深色字，深色模式下会糊成一片 */
+  html[data-theme="dark"] .idm-gear{background:rgba(96,165,250,.2);color:#93c5fd;border-color:rgba(96,165,250,.34)}
+  html[data-theme="dark"] .idm-tagrec{background:rgba(96,165,250,.2);color:#93c5fd}
+  html[data-theme="dark"] .idm-miss{color:#fcd34d}
+  html[data-theme="dark"] .idm-el span{color:var(--ink2)}
+  html[data-theme="dark"] .idm-hero{background:linear-gradient(135deg,rgba(168,85,247,.22),rgba(124,58,237,.08));
+    border-color:rgba(168,85,247,.34)}
+  html[data-theme="dark"] .idea-card:hover .idea-title{color:#d8b4fe}
+  @media(max-width:560px){
+    /* 手机上三格并排会挤成三根面条，改成竖排 */
+    .idm-3{grid-template-columns:1fr}
+    .job-modal.idm{max-width:100%;width:calc(100vw - 20px);max-height:calc(100vh - 24px)}
+    @supports (height:100dvh){.job-modal.idm{max-height:calc(100dvh - 24px)}}
+    .idm-scroll{padding:13px 14px;gap:11px}
+    .idm-kind{width:36px;height:36px;font-size:19px}
+    .idm-title{font-size:14.5px}
+  }
 
   /* 弹窗里的场景提示 */
   .imh-miss{color:#b45309;font-weight:700}
   .imh-miss em{font-style:normal;font-weight:800}
   #idea-modal .book-fetch-msg{margin-top:6px}
+  /* v6.26：加了 打光/拍摄重点/三大元素 三组输入框后，弹窗高 847px。
+     在 1280×720 的机器上整块超出屏幕（实测 top:-63 bottom:784），
+     顶上的场景选择被切掉、底下的「保存」在屏幕外——用户会以为存不了。
+     跟设置面板同一个毛病：.job-modal 没有 max-height。 */
+  #idea-modal .job-modal{display:flex;flex-direction:column;
+    max-height:calc(100vh - 32px);overflow:hidden}
+  @supports (height:100dvh){#idea-modal .job-modal{max-height:calc(100dvh - 32px)}}
+  #idea-modal .jm-head{flex:0 0 auto}
+  #idea-modal .jm-body{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;
+    scrollbar-color:var(--muted3) transparent}
+  #idea-modal .jm-body::-webkit-scrollbar{width:7px}
+  #idea-modal .jm-body::-webkit-scrollbar-thumb{background:var(--muted3);border-radius:4px}
+  #idea-modal .jm-foot{flex:0 0 auto}
+  /* 手机上三格 1fr 各只有 99px，光"怎么排"三个字就要挤掉一半。竖排。 */
+  @media(max-width:640px){
+    #idea-modal .jm-row3{grid-template-columns:1fr}
+    #idea-modal .jm-row3 .jm-field input{text-align:left}
+  }
   @media(max-width:640px){
     .isc{width:172px}
     /* 窄屏场景卡只有 172px，业务线标会挤到标题上，直接隐藏（点开筛选条同样能分辨） */
@@ -5331,6 +5427,18 @@ window.QRCode = {
               <div class="jm-field"><label>📝 具体怎么拍</label>
                 <textarea id="im-desc" rows="3" placeholder="机位 / 光线 / 参数 / 后期方向…"></textarea>
               </div>
+              <!-- v6.26：详情页要看的三项，手记时也能填，否则永远是「没记」 -->
+              <div class="jm-field"><label>💡 打光方式（可选）</label>
+                <input id="im-lights" placeholder="如：窗光侧逆 + 反光板补下半身"/>
+              </div>
+              <div class="jm-field"><label>🎬 拍摄重点（可选）</label>
+                <input id="im-key" placeholder="如：等她抬头那一下连拍三张"/>
+              </div>
+              <div class="jm-row3">
+                <div class="jm-field"><label>主体</label><input id="im-el-subject" placeholder="拍什么"/></div>
+                <div class="jm-field"><label>光线</label><input id="im-el-light" placeholder="怎么用光"/></div>
+                <div class="jm-field"><label>构图</label><input id="im-el-comp" placeholder="怎么排"/></div>
+              </div>
               <div class="jm-field"><label>🏷 标签（逗号分隔，可留空自动补）</label>
                 <input id="im-tags" placeholder="婚礼, 仪式, 情绪"/>
               </div>
@@ -5420,6 +5528,18 @@ window.QRCode = {
             <div class="jm-foot">
               <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaCapture()">取消</button>
               <button class="btn sm job" onclick="icaSaveAll()" data-page-node-id="v620CapSave">🤖 收下勾选的</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== v6.26 灵感详情页 ==================== -->
+        <div class="job-modal-overlay" id="idea-detail-modal" style="display:none" onclick="if(event.target===this)closeIdeaDetail()" data-page-node-id="v626DetailModal">
+          <div class="job-modal idm" data-page-node-id="v626DetailBox">
+            <div class="jm-head"><span>💡 这条灵感怎么拍</span><span class="jm-close" onclick="closeIdeaDetail()">✕</span></div>
+            <div class="jm-body" id="idea-detail-body" data-page-node-id="v626DetailBody"></div>
+            <div class="jm-foot">
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="closeIdeaDetail()">关闭</button>
+              <button class="btn sm" style="background:var(--bg3);color:var(--muted)" onclick="editIdeaFromDetail()" data-page-node-id="v626DetailEdit">✏️ 改这条</button>
             </div>
           </div>
         </div>
@@ -5741,7 +5861,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.25</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.26</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6242,7 +6362,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.25";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.26";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9523,6 +9643,95 @@ function ideaSearchBar(id){
   return '<div class="idea-srcbar"><span class="idea-srcq" title="'+esc(q)+'">🔍 '+esc(q)+'</span>'+btns+'</div>';
 }
 
+/* ==================== v6.26 灵感详情页 ====================
+   卡片只有标题+一句话，看完还是不知道该怎么拍。点开要能直接照着干活：
+   使用设备 / 三大元素（主体·光线·构图）/ 打光方式 / 拍摄重点 / 现场环境 / 去平台看真图。 */
+let IDIA_OPEN=-1;
+function openIdeaDetail(i){
+  const id=(DB.ideas||[])[i];
+  if(!id)return;
+  IDIA_OPEN=i;
+  const box=document.getElementById("idea-detail-modal");
+  const body=document.getElementById("idea-detail-body");
+  if(!box||!body)return;
+  body.innerHTML=ideaDetailHTML(id);
+  box.style.display="flex";
+  const sc=body.querySelector(".idm-scroll");
+  if(sc)sc.scrollTop=0;
+}
+function closeIdeaDetail(){
+  const box=document.getElementById("idea-detail-modal");
+  if(box)box.style.display="none";
+  IDIA_OPEN=-1;
+}
+/* 老数据没有这些字段：能从 desc / gear / scene 推的就推，推不出就明说"没记"，不编。 */
+function ideaDetailHTML(id){
+  const sc=IDEA_SCENES.filter(function(x){return x.k===id.scene;})[0]||null;
+  const kind=ideaGuessKind(id);
+  const kindTxt={"图集":"对照图集","视频":"看视频","教程":"看教程"}[kind];
+  /* 设备：优先 gears 数组，其次单件，再次场景推荐（要标明是推荐不是已选） */
+  let gears=Array.isArray(id.gears)?id.gears.filter(Boolean):[];
+  if(!gears.length&&id.gear)gears=[id.gear];
+  const gearIsRec=!gears.length&&!!sc;
+  if(gearIsRec)gears=String((sc&&sc.gear)||"").split("/").filter(Boolean);
+  /* 缺件提示：只对真实器材清单算 */
+  const miss=(function(){
+    if(!sc)return [];
+    const fit=ideaGearFit(sc.k);
+    return (fit.miss||[]).slice(0,3);
+  })();
+  const el=id.elements||{};
+  const esc_text=function(s){return esc(s);};
+  const rows=[];
+  rows.push('<div class="idm-hero"><span class="idm-kind" title="'+esc(kindTxt)+'">'+({"图集":"图","视频":"影","教程":"学"}[kind])+'</span>'+
+    '<div class="idm-ht"><div class="idm-title">'+esc(id.title||"(无标题)")+
+    (id.ai?'<span class="idea-ai" title="AI 按你的器材生成的">🤖 AI</span>':'')+'</div>'+
+    '<div class="idm-sub">'+(sc?(sc.icon+" "+esc(sc.k)):"未归场景")+' · '+esc(id.created||"")+' · '+esc(kindTxt)+'</div></div></div>');
+  /* 一句话拍法 */
+  rows.push('<div class="idm-sec"><div class="idm-h">🎯 怎么拍</div><div class="idm-p">'+esc(id.desc||"（没写具体拍法）")+'</div></div>');
+  /* 使用设备 */
+  rows.push('<div class="idm-sec"><div class="idm-h">📷 使用设备'+(gearIsRec?'<span class="idm-tagrec">场景推荐·你库里有</span>':'')+'</div>'+
+    (gears.length?('<div class="idm-gears">'+gears.map(function(g){
+      return '<span class="idm-gear">'+esc(g)+'</span>';
+    }).join("")+'</div>'):'<div class="idm-p idm-dim">这条还没指定器材</div>')+
+    (miss.length?('<div class="idm-miss">⚠ 这个场景还缺：'+esc(miss.join(" / "))+'</div>'):'')+
+    '</div>');
+  /* 三大元素 */
+  rows.push('<div class="idm-sec"><div class="idm-h">🧩 三大元素</div><div class="idm-3">'+
+    ideaElementCell("主体",el.subject)+
+    ideaElementCell("光线",el.light)+
+    ideaElementCell("构图",el.comp)+
+    '</div></div>');
+  /* 打光方式 */
+  rows.push('<div class="idm-sec"><div class="idm-h">💡 打光方式</div>'+
+    (id.lights?('<div class="idm-p">'+esc(id.lights)+'</div>'):'<div class="idm-p idm-dim">没记打光方式 —— 这条偏自然光抓拍</div>')+'</div>');
+  /* 拍摄重点 */
+  rows.push('<div class="idm-sec"><div class="idm-h">🎬 拍摄重点</div>'+
+    (id.key?('<div class="idm-p">'+esc(id.key)+'</div>'):'<div class="idm-p idm-dim">没记要点，看上面「怎么拍」</div>')+'</div>');
+  /* 现场环境 */
+  if(id.setting)rows.push('<div class="idm-sec"><div class="idm-h">🏠 现场环境</div><div class="idm-p">'+esc(id.setting)+'</div></div>');
+  /* 翻车点 */
+  if(id.tips)rows.push('<div class="idm-sec"><div class="idm-h">⚠ 容易翻车</div><div class="idm-p idm-warn">'+esc(id.tips)+'</div></div>');
+  /* 找真实参考：v6.26 起用 order:-1 提到首屏 */
+  const q=ideaSearchTerm(id);
+  rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 去看真实素材</div>'+
+    '<div class="idm-q">搜「'+esc(q)+'」</div>'+
+    '<div class="idm-srcs">'+IDEA_SEARCH.map(function(p){
+      return '<a class="idm-src" href="'+esc(p.build(q))+'" target="_blank" rel="noopener">'+p.icon+' 在'+esc(p.key)+'找</a>';
+    }).join("")+'</div></div>');
+  return '<div class="idm-scroll">'+rows.join("")+'</div>';
+}
+function ideaElementCell(label,val){
+  return '<div class="idm-el"><b>'+esc(label)+'</b>'+(val?('<span>'+esc(val)+'</span>'):'<span class="idm-dim">没记</span>')+'</div>';
+}
+/* 详情页里直接进编辑，省得关掉再找 */
+function editIdeaFromDetail(){
+  const i=IDIA_OPEN;
+  if(i<0)return;
+  closeIdeaDetail();
+  editIdea(i);
+}
+
 function ideaPlatIcon(name){
   var s=String(name||"");
   for(var i=0;i<IDEA_PLATFORMS.length;i++){ if(s.indexOf(IDEA_PLATFORMS[i].key)>=0)return IDEA_PLATFORMS[i].icon; }
@@ -9746,11 +9955,16 @@ function ideaBuildPrompt(opt){
   lines.push("1. 每条必须点名用上面清单里【真实存在】的器材，不许编造没有的镜头/机身/灯具。");
   lines.push("2. desc 写具体拍法（机位、参数倾向、光线判断、抓拍时机），30-60 字，别说空话。");
   lines.push("3. tips 写一句这条最容易翻车的点。");
-  lines.push("4. gear 只能填器材清单里出现过的那一件的型号。");
+  lines.push("4. gear 只能填器材清单里出现过的那一件的型号；gears 再列出这条会一起用到的其它器材（从清单里挑，最多2件，可空数组）。");
   lines.push("5. ref 给一个【能直接拿去小红书/抖音/B站搜】的短关键词（6-16字，带场景+要点，不要标点、不要句子），用来找这条灵感的真实照片和视频教程。");
   lines.push("6. kind 从「图集 / 视频 / 教程」里选一个：这条灵感最该看哪种素材。");
+  lines.push("7. 下面四项是这条灵感的骨架，必须写具体，不许写空话：");
+  lines.push("   lights 打光方式：用什么光（自然光/单灯/双灯/逆光/侧光…）、光源摆在哪、功率或档位、要不要补光/柔光。");
+  lines.push("   key 拍摄重点：这条最关键的 1-2 个动作要领（机位高低、对焦点、连拍时机、跟焦方式）。");
+  lines.push("   elements 三大元素：subject 主体拍什么 / light 光线怎么用 / comp 构图怎么排（各 8-20 字）。");
+  lines.push("   setting 现场环境：在哪拍、背景有什么、需要清掉什么杂物。");
   lines.push("只输出 JSON，不要解释，格式：");
-  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"某件器材型号","tags":["标签1","标签2"],"tips":"注意点","ref":"搜索关键词","kind":"图集|视频|教程"}]}');
+  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"主器材型号","gears":["其它器材"],"tags":["标签1","标签2"],"tips":"注意点","ref":"搜索关键词","kind":"图集|视频|教程","lights":"打光方式","key":"拍摄重点","setting":"现场环境","elements":{"subject":"主体","light":"光线","comp":"构图"}}]}');
   return lines.join("\n");
 }
 /* 调 AI。失败返回 {ok:false,reason}，绝不抛 —— 没配 key / 网络断 / 模型乱答都要给人话。 */
@@ -9858,6 +10072,33 @@ function ideaNormalizeAI(arr,opt){
       kind:(function(){
         const k=String(x.kind==null?"":x.kind).trim();
         return /^(图集|视频|教程)$/.test(k)?k:"图集";
+      })(),
+      /* v6.26 详情页骨架：打光 / 拍摄重点 / 三大元素 / 现场环境。
+         器材 still 只认真实存在的，编的镜头会让人真去下单。 */
+      lights:String(x.lights==null?"":x.lights).trim().slice(0,120),
+      key:String(x.key==null?"":x.key).trim().slice(0,120),
+      setting:String(x.setting==null?"":x.setting).trim().slice(0,120),
+      elements:(function(){
+        const e=(x.elements&&typeof x.elements==="object")?x.elements:{};
+        const pick=function(v){return String(v==null?"":v).trim().slice(0,40);};
+        const o={subject:pick(e.subject),light:pick(e.light),comp:pick(e.comp)};
+        return (o.subject||o.light||o.comp)?o:null;
+      })(),
+      gears:(function(){
+        const raw=Array.isArray(x.gears)?x.gears:[];
+        const okList=[];
+        raw.forEach(function(g0){
+          const g=String(g0==null?"":g0).trim();
+          if(!g)return;
+          for(let k=0;k<myGears.length;k++){
+            const m=String(myGears[k].model||myGears[k].name||"");
+            if(m&&(m===g||m.indexOf(g)>=0||g.indexOf(m)>=0)){if(okList.indexOf(m)<0)okList.push(m);return;}
+          }
+        });
+        /* 主器材也算进装备清单，详情页要能一次看全 */
+        const main=bind.gear||"";
+        if(main&&okList.indexOf(main)<0)okList.unshift(main);
+        return okList.slice(0,4);
       })(),
       ai:1,                  /* 打标：卡片上必须显示「AI 生成」 */
       keep:true
@@ -10231,6 +10472,16 @@ function icaSaveAll(){
       scene:it.scene||"",
       gear:it.gear||"",
       tips:it.tips||"",     /* 翻车点单独存，编辑弹窗里也要能看到 */
+      /* v6.26 修正：这里原先是老字段白名单，模型给的 ref / kind / 打光 / 拍摄重点 /
+         三大元素 / 副器材 全在入库那一刻被丢掉，卡片上又退回「场景+器材」的兜底词，
+         详情页也只剩"没记"。这些是这条灵感的骨架，必须跟着存。 */
+      ref:it.ref||"",
+      kind:it.kind||"图集",
+      lights:it.lights||"",
+      key:it.key||"",
+      setting:it.setting||"",
+      elements:it.elements||null,
+      gears:(it.gears||[]).slice(0,4),
       ai:1,
       created:localDateStr()
     });
@@ -10366,11 +10617,15 @@ function renderIdeas(){
       : emptyState({icon:"💡",text:"还没有收集任何灵感",sub:"从「婚房准备」「仪式现场」这些婚礼场景起手，记下你要怎么拍、用哪支镜头",btn:"✨ 记录第一个灵感",action:"addIdea()"});
     return;
   }
-  grid.innerHTML=list.map((id,idi)=>{id._i=idi;
+  /* v6.26：_i 必须是「在 DB.ideas 里的真实下标」，不能用 list 里的序号。
+     之前写的是 idi（筛选后序号），一开筛选，编辑/删除就会动到别的那条。 */
+  grid.innerHTML=list.map((id,idi)=>{id._i=all.indexOf(id);
     const sc=IDEA_SCENES.filter(x=>x.k===(id.scene||""))[0];
     const sceneChip=sc?('<span class="idea-scene" title="'+esc(sc.biz)+'">'+sc.icon+' '+esc(sc.k)+'</span>'):'';
     const gearChip=id.gear?('<span class="idea-gear">📷 '+esc(id.gear)+'</span>'):'';
-    return '<div class="idea-card">'+
+    /* v6.26：卡片点开看详情（使用设备 / 三大元素 / 打光方式 / 拍摄重点）。
+       之前整张卡片没绑任何事件，cursor:pointer 只是看着能点，点了没反应。 */
+    return '<div class="idea-card" onclick="openIdeaDetail('+id._i+')" title="点开看这条怎么拍" data-page-node-id="v626IdeaCard">'+
       '<div class="idea-img-wrap">'+(id.img?('<img src="'+esc(id.img)+'" onerror="this.style.display=\'none\'">'):ideaNoCover(id))+
         '<div class="idea-tags">'+(id.tags||[]).map(t=>'<span class="idea-tag">'+esc(t)+'</span>').join("")+'</div>'+
       '</div>'+
@@ -10382,7 +10637,8 @@ function renderIdeas(){
         ideaSearchBar(id)+
         '<div class="idea-meta"><span class="idea-source">'+ideaPlatIcon(id.source)+' '+esc(id.source)+(id.url?('<a class="idea-link" href="'+esc(id.url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="打开原链接">↗</a>'):'')+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
       '</div>'+
-      '<div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea('+idi+')">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea('+idi+')">删除</button></div>'+
+      /* v6.26：卡片整体可点开详情，这两个按钮得先把冒泡掐掉，否则点删除会顺带弹详情 */
+      '<div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="event.stopPropagation();editIdea('+id._i+')">编辑</button><button class="ia-btn ia-btn-del" onclick="event.stopPropagation();delIdea('+id._i+')">删除</button></div>'+
     '</div>';
   }).join("");
 }
@@ -10442,6 +10698,13 @@ function openIdeaModal(idx){
   document.getElementById("im-desc").value=it.desc||"";
   document.getElementById("im-source").value=it.source||"";
   document.getElementById("im-img").value=it.img||"";
+  /* v6.26 新字段回填：编辑时不能把已记的打光/重点/三大元素清空 */
+  const _el=it.elements||{};
+  document.getElementById("im-lights").value=it.lights||"";
+  document.getElementById("im-key").value=it.key||"";
+  document.getElementById("im-el-subject").value=_el.subject||"";
+  document.getElementById("im-el-light").value=_el.light||"";
+  document.getElementById("im-el-comp").value=_el.comp||"";
   scSel.value = it.scene||IDEA_SCENE_PICK||"";
   gSel.value = it.gear||"";
   /* 场景变了自动补器材与业务线提示 */
@@ -10500,10 +10763,30 @@ function saveIdeaModal(){
     ai:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).ai||0:0),
     tips:(_ideaEditIdx>=0?(DB.ideas[_ideaEditIdx]||{}).tips||"":""),
     scene:document.getElementById("im-scene").value||"",
-    gear:document.getElementById("im-gear").value||""
+    gear:document.getElementById("im-gear").value||"",
+    /* v6.26 详情页骨架：手记也要能填，不然详情页永远显示「没记」 */
+    lights:(document.getElementById("im-lights").value||"").trim(),
+    key:(document.getElementById("im-key").value||"").trim(),
+    elements:(function(){
+      const o={
+        subject:(document.getElementById("im-el-subject").value||"").trim(),
+        light:(document.getElementById("im-el-light").value||"").trim(),
+        comp:(document.getElementById("im-el-comp").value||"").trim()
+      };
+      return (o.subject||o.light||o.comp)?o:null;
+    })()
   };
   DB.ideas=DB.ideas||[];
   if(_ideaEditIdx>=0 && DB.ideas[_ideaEditIdx]){
+    /* v6.26：手动改了主器材，详情页装备清单里那条旧镜头就成了错信息 —— 替换掉 */
+    const old=DB.ideas[_ideaEditIdx]||{};
+    const og=String(old.gear||""), ng=String(data.gear||"");
+    if(og!==ng){
+      let gs=Array.isArray(old.gears)?old.gears.slice():[];
+      const at=gs.indexOf(og);
+      if(at>=0)gs[at]=ng; else if(ng)gs.unshift(ng);
+      data.gears=gs.filter(Boolean).slice(0,4);
+    }
     Object.assign(DB.ideas[_ideaEditIdx],data);
     toast("已更新灵感 ✓","ok");
   }else{
