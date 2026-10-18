@@ -1992,6 +1992,19 @@
   .idea-cover-ph{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:26px;opacity:.55}
   .idea-cover-ph i{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.4px;color:var(--muted3)}
   .idea-tags{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
+  /* v6.25 卡片上的「去看真实素材」一排：关键词 + 三个平台直达 */
+  .idea-srcbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:9px 0 8px;
+    padding-top:9px;border-top:1px dashed var(--line2)}
+  .idea-srcq{font-size:10.5px;font-weight:700;color:var(--muted3);max-width:100%;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 100%;margin-bottom:2px}
+  .idea-src{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:800;
+    padding:3px 9px;border-radius:var(--r-pill);text-decoration:none;cursor:pointer;
+    background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);transition:.12s}
+  .idea-src:hover{background:rgba(168,85,247,.12);color:#9333ea;border-color:rgba(168,85,247,.32);
+    transform:translateY(-1px)}
+  .idea-cover-kind b{font-size:30px;font-weight:400;line-height:1}
+  .idea-cover-kind i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.3px;
+    color:var(--muted3);text-align:center;padding:0 10px;line-height:1.4}
   .idea-tag{font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-weight:700;background:rgba(168,85,247,.85);color:#fff;backdrop-filter:blur(4px)}
   .idea-body{padding:14px}
   .idea-title{font-size:14.5px;font-weight:900;color:var(--ink);margin-bottom:6px;line-height:1.3}
@@ -5728,7 +5741,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.24</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.25</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6229,7 +6242,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.24";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.25";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9466,6 +9479,50 @@ function decodeHtmlEntities(s){
   return d.value;
 }
 /* 来源名 → 平台图标（卡片上的来源徽章用；未知来源给 📍，保持原样） */
+/* v6.25 素材直达：每条灵感配一个「去哪个平台搜什么词」。
+   不存可能过期的具体笔记链接（那条笔记可能被删/被限流），只存关键词，
+   每次点都现场拼搜索地址 —— 链接永远有效，也永远是平台上的真实素材。 */
+const IDEA_SEARCH=[
+  {key:"小红书",icon:"📕",build:function(q){return "https://www.xiaohongshu.com/search_result?keyword="+encodeURIComponent(q);}},
+  {key:"抖音",  icon:"🎵",build:function(q){return "https://www.douyin.com/search/"+encodeURIComponent(q);}},
+  {key:"B站",   icon:"📺",build:function(q){return "https://search.bilibili.com/all?keyword="+encodeURIComponent(q)+"&order=click";}}
+];
+/* 关键词来源：模型给的 ref > 场景+器材简称+拍摄。
+   注意别把完整型号塞进去 —— "Sony 24-70mm F2.8 GM II 拍摄" 这种长词在小红书上
+   几乎搜不到东西，用户要的是能命中真实笔记的短词。优先取焦段这类可搜的片段。 */
+function ideaSearchTerm(id){
+  const x=id||{};
+  let q=String(x.ref||"").trim();
+  if(!q){
+    const parts=[];
+    if(x.scene)parts.push(x.scene);
+    const g=ideaGearShort(x.gear);
+    if(g)parts.push(g);
+    q=parts.length?(parts.join(" ")+" 拍摄"):String(x.title||"").trim();
+  }
+  q=q.replace(/[，。、；：！？""''《》()（）\[\]【】#·]/g," ").replace(/\s+/g," ").trim();
+  return q.slice(0,40);
+}
+/* 器材型号 → 可搜的短称呼：Sony FE 24-70mm F2.8 GM II → 24-70mm；FE 85mm F1.4 DG DN → 85mm */
+function ideaGearShort(gear){
+  const s=String(gear||"");
+  if(!s)return "";
+  const m=s.match(/(\d{2,3}\s*-\s*\d{2,3}\s*mm|\d{2,3}\s*mm)/i);
+  if(m)return m[1].replace(/\s+/g,"");
+  /* 没有焦段的器材（灯、机身）就直接用名字，别硬塞 */
+  return s.length<=12?s:"";
+}
+/* 卡片底部的「去看真实素材」一排按钮 */
+function ideaSearchBar(id){
+  const q=ideaSearchTerm(id);
+  if(!q)return "";
+  const btns=IDEA_SEARCH.map(function(p){
+    return '<a class="idea-src" href="'+esc(p.build(q))+'" target="_blank" rel="noopener" '+
+      'onclick="event.stopPropagation()" title="在'+esc(p.key)+'搜「'+esc(q)+'」">'+p.icon+' '+esc(p.key)+'</a>';
+  }).join("");
+  return '<div class="idea-srcbar"><span class="idea-srcq" title="'+esc(q)+'">🔍 '+esc(q)+'</span>'+btns+'</div>';
+}
+
 function ideaPlatIcon(name){
   var s=String(name||"");
   for(var i=0;i<IDEA_PLATFORMS.length;i++){ if(s.indexOf(IDEA_PLATFORMS[i].key)>=0)return IDEA_PLATFORMS[i].icon; }
@@ -9474,10 +9531,26 @@ function ideaPlatIcon(name){
 }
 /* 没有封面图时的占位：采集来的用平台图标 + 平台色块，手记的仍是灯泡。
    一个 36px 的大灯泡在一整片卡片里太抢视线，换成平台标识更像"这是从哪抄来的活儿"。 */
+/* 没有封面图时的占位。v6.25 起：不再是一个孤零零的灯泡 —— 改成"该看什么素材"
+   的标识（图集/视频/教程），并提示点下面的平台按钮能看真实参考。
+   一个 💡 在整个页面里既没信息量又抢视线，用户的原话是"没有任何参考素材"。
+   老数据没有 kind 字段，按标题/描述的词猜一个，别让它们还是灯泡。 */
+function ideaGuessKind(id){
+  const k=String((id&&id.kind)||"");
+  if(/^(图集|视频|教程)$/.test(k))return k;
+  const t=String((id&&id.title)||"")+" "+String((id&&id.desc)||"");
+  if(/教程|布光|怎么拍|参数|思路|方法|技巧|解析|复盘/.test(t))return "教程";
+  if(/视频|运镜|慢门|延时|转场|航拍|律动|跟拍|追焦/.test(t))return "视频";
+  return "图集";
+}
 function ideaNoCover(id){
+  const kind=ideaGuessKind(id);
+  const map={"图集":{i:"🖼️",t:"对照图集"}, "视频":{i:"🎬",t:"看视频"}, "教程":{i:"📖",t:"看教程"}};
+  const m=map[kind];
+  if(m)return '<span class="idea-cover-ph idea-cover-kind"><b>'+m.i+'</b><i>'+m.t+'</i></span>';
   var plat=(id&&id.source)||"";
   var isPlat=/小红书|抖音|B站|微博|公众号|视频号|Instagram|Pinterest/.test(plat);
-  if(!isPlat)return '<span class="idea-img-placeholder">💡</span>';
+  if(!isPlat)return '<span class="idea-cover-ph idea-cover-kind"><b>💡</b><i>看下方平台找参考</i></span>';
   return '<span class="idea-cover-ph">'+ideaPlatIcon(plat)+'<i>'+esc(plat)+'</i></span>';
 }
 /* 单条抓取：直连 → CORS 代理。每通道 5s 超时（三通道最坏 15s，再长用户就以为卡死了）；
@@ -9674,8 +9747,10 @@ function ideaBuildPrompt(opt){
   lines.push("2. desc 写具体拍法（机位、参数倾向、光线判断、抓拍时机），30-60 字，别说空话。");
   lines.push("3. tips 写一句这条最容易翻车的点。");
   lines.push("4. gear 只能填器材清单里出现过的那一件的型号。");
+  lines.push("5. ref 给一个【能直接拿去小红书/抖音/B站搜】的短关键词（6-16字，带场景+要点，不要标点、不要句子），用来找这条灵感的真实照片和视频教程。");
+  lines.push("6. kind 从「图集 / 视频 / 教程」里选一个：这条灵感最该看哪种素材。");
   lines.push("只输出 JSON，不要解释，格式：");
-  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"某件器材型号","tags":["标签1","标签2"],"tips":"注意点"}]}');
+  lines.push('{"ideas":[{"title":"标题(≤20字)","desc":"具体拍法","scene":"场景名","gear":"某件器材型号","tags":["标签1","标签2"],"tips":"注意点","ref":"搜索关键词","kind":"图集|视频|教程"}]}');
   return lines.join("\n");
 }
 /* 调 AI。失败返回 {ok:false,reason}，绝不抛 —— 没配 key / 网络断 / 模型乱答都要给人话。 */
@@ -9774,6 +9849,16 @@ function ideaNormalizeAI(arr,opt){
       miss:bind.miss,
       ready:bind.ready,
       tips:String(x.tips==null?"":x.tips).trim().slice(0,120),
+      /* v6.25 素材：ref 是拿去平台搜的关键词，kind 是这条最该看什么素材 */
+      ref:(function(){
+        let r=String(x.ref==null?"":x.ref).trim();
+        r=r.replace(/[，。、；：！？""''《》()（）\[\]【】#·]/g," ").replace(/\s+/g," ").trim();
+        return r.slice(0,40);
+      })(),
+      kind:(function(){
+        const k=String(x.kind==null?"":x.kind).trim();
+        return /^(图集|视频|教程)$/.test(k)?k:"图集";
+      })(),
       ai:1,                  /* 打标：卡片上必须显示「AI 生成」 */
       keep:true
     });
@@ -9967,6 +10052,8 @@ function ifmSaveAll(){
       url:it.url||"",
       scene:it.scene||"",
       gear:it.gear||"",
+      ref:it.ref||"",
+      kind:it.kind||"",
       created:localDateStr()
     });
     added++;
@@ -10114,6 +10201,7 @@ function renderIcaList(){
         '<div class="ifm-title">'+esc(it.title||'(无标题)')+'</div>'+
         (it.desc?('<div class="ifm-desc">'+esc(it.desc)+'</div>'):'')+
         (it.tips?('<div class="ifm-tips">⚠ '+esc(it.tips)+'</div>'):'')+
+        ideaSearchBar(it)+
         '<div class="ifm-tags">'+sc+gear+miss+tags+'</div>'+
       '</div>'+
     '</div>';
@@ -10291,6 +10379,7 @@ function renderIdeas(){
         '<div class="idea-desc">'+esc(id.desc)+'</div>'+
         (id.tips?('<div class="ifm-tips">⚠ '+esc(id.tips)+'</div>'):'')+
         ((sceneChip||gearChip)?('<div class="idea-bind">'+sceneChip+gearChip+'</div>'):'')+
+        ideaSearchBar(id)+
         '<div class="idea-meta"><span class="idea-source">'+ideaPlatIcon(id.source)+' '+esc(id.source)+(id.url?('<a class="idea-link" href="'+esc(id.url)+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="打开原链接">↗</a>'):'')+'</span><span class="idea-date">'+esc(id.created||"")+'</span></div>'+
       '</div>'+
       '<div class="idea-actions"><button class="ia-btn ia-btn-edit" onclick="editIdea('+idi+')">编辑</button><button class="ia-btn ia-btn-del" onclick="delIdea('+idi+')">删除</button></div>'+
