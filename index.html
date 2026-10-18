@@ -1950,7 +1950,11 @@
   /* ====== 灵感收集 ====== */
   .idea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
   @media(max-width:600px){.idea-grid{grid-template-columns:1fr}}
-  .idea-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;transition:.2s;cursor:pointer}
+  .idea-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;transition:.2s;cursor:pointer;
+    /* v6.20：带「翻车点」的卡片内容比普通卡多一行，同一行卡片被拉伸对齐后
+       「编辑/删除」会被顶下去、不在一条水平线上。改成纵向 flex，按钮区贴底。 */
+    display:flex;flex-direction:column}
+  .idea-card .idea-body{flex:1 1 auto}
   .idea-card:hover{transform:translateY(-3px);border-color:rgba(168,85,247,.3)}
   .idea-img-wrap{width:100%;height:160px;background:var(--bg3);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
   .idea-img-wrap img{width:100%;height:100%;object-fit:cover}
@@ -2035,6 +2039,9 @@
 
   /* 卡片上的场景 / 器材归属 */
   .idea-bind{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 8px}
+  /* v6.20：紧跟「翻车点」时不能再用上负边距 —— 会把「📷 器材」标签顶到提示文字那一行，
+     截图里只露出半截。带提示的卡片改成正常上间距。 */
+  .ifm-tips+.idea-bind{margin-top:7px}
   .idea-scene{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:var(--r-pill);
     background:rgba(168,85,247,.12);color:#9333ea}
   .idea-gear{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--r-pill);
@@ -2074,6 +2081,11 @@
   #ifm-input:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.13)}
   .ifm-bar{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
   .ifm-go:hover{filter:brightness(1.06)}
+  /* v6.20 修正：.ifm-go 是紫色渐变背景，全局 .btn:disabled 只压了 opacity，
+     截图里禁用态依然像一颗亮紫按钮，用户会去点、然后没反应。改成灰化并去掉渐变。 */
+  .ifm-go:disabled,.ifm-go:disabled:hover{background:var(--bg3)!important;background-image:none!important;
+    color:var(--muted3)!important;opacity:1;filter:none;cursor:not-allowed;box-shadow:none}
+  .ifm-go:disabled{opacity:.85}
   .ifm-note{font-size:11.5px;color:var(--muted3);margin-left:auto}
   .ifm-list{display:flex;flex-direction:column;gap:9px;max-height:340px;overflow-y:auto;padding-right:2px}
   .ifm-empty{font-size:12.5px;color:var(--muted3);text-align:center;padding:22px 0}
@@ -2117,8 +2129,12 @@
   .ica-avoid{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted2);
     margin:11px 0 2px;cursor:pointer;user-select:none}
   .ica-avoid input{width:14px;height:14px;accent-color:var(--gold);cursor:pointer}
-  /* AI 生成条目的"翻车点"提示，比普通描述更扎眼一点，但不抢标题 */
-  .ifm-tips{font-size:11.5px;line-height:1.65;color:var(--amber);margin-top:4px}
+  /* AI 生成条目的"翻车点"提示，比普通描述更扎眼一点，但不抢标题。
+     v6.20 修正：原先 margin-top 只有 4px，而 .ifm-tags 没上边距 —— 实测两者间距 0px，
+     橙色警示和下面一排彩色标签糊成一条，反而看不清重点。改成左描边的小块，独立成行。 */
+  .ifm-tips{font-size:11.5px;line-height:1.6;color:var(--amber);margin-top:7px;
+    padding-left:8px;border-left:2px solid rgba(245,158,11,.45)}
+  .ifm-tips+.ifm-tags{margin-top:9px}
   /* 卡片上的 AI 生成角标 —— 必须一眼能分辨"生成的"和"真抓来的" */
   .idea-ai{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:800;
     padding:1px 6px;border-radius:var(--r-pill);background:rgba(168,85,247,.14);
@@ -5682,7 +5698,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.20</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.21</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6183,7 +6199,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.20";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.21";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9959,7 +9975,11 @@ function icaCheckAI(silent){
   const warn=document.getElementById("ica-aiwarn");
   const btn=document.getElementById("ica-go");
   if(warn)warn.style.display=ok?"none":"flex";
-  if(btn)btn.disabled=!ok;
+  if(btn){
+    btn.disabled=!ok;
+    /* 禁用态不能只是"变灰然后沉默"：鼠标悬停要说明为什么点不了 */
+    btn.title=ok?"按当前器材和业务线生成一批候选":"还没配 AI，先点「去设置」填一个模型 Key";
+  }
   if(!ok&&!silent)toast("还没配 AI，先点上面的「去设置」","warn");
   return ok;
 }
