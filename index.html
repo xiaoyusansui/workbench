@@ -2135,6 +2135,21 @@
   .ia-btn-del{background:rgba(248,113,113,.08);color:var(--coral)}
   .ia-btn-del:hover{background:rgba(248,113,113,.15)}
   .add-idea{background:var(--surface);border:2px dashed rgba(168,85,247,.2);border-radius:var(--radius);padding:32px;text-align:center;color:#a855f7;font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
+  /* ===== v6.31 灵感详情：按真实器材的拍法建议 ===== */
+  .idm-advice{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(245,158,11,.04));
+    border-color:rgba(34,197,94,.26)}
+  .idm-atchips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+  .idm-atchip{font-size:10px;font-weight:800;padding:2px 8px;border-radius:var(--r-pill);
+    background:rgba(34,197,94,.12);color:#15803d;border:1px solid rgba(34,197,94,.28)}
+  .idm-advice-row{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.65;
+    margin-bottom:7px}
+  .idm-advice-row:last-child{margin-bottom:0}
+  .idm-advice-row>b{flex:none;min-width:62px;font-size:11px;font-weight:900;color:var(--ink2);
+    letter-spacing:.3px;padding-top:1px}
+  .idm-advice-row>span{color:var(--muted2);word-break:break-word;flex:1;min-width:0}
+  html[data-theme="dark"] .idm-advice{background:linear-gradient(135deg,rgba(34,197,94,.14),rgba(245,158,11,.06))}
+  html[data-theme="dark"] .idm-atchip{background:rgba(34,197,94,.2);color:#86efac}
+  .idm-advice-note{font-size:11px;color:var(--muted3);line-height:1.6}
   /* ===== v6.16 灵感：业务线 / 婚礼场景 / 我的器材 三条带 ===== */
   .idea-bizbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
   .ibz{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);
@@ -5952,7 +5967,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.30</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.31</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6453,7 +6468,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.30";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.31";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9529,6 +9544,137 @@ function ideaGearGaps(){
   });
   return Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a];}).map(function(t){return {tok:t,n:cnt[t]};});
 }
+/* v6.31：本地「内容技法分析 + 真实器材匹配」引擎。
+   抓取/手记的灵感，即使没匹配到 IDEA_SCENES 场景、或场景器材表里的型号不在你库里，
+   也能从素材文字读出技法，对照你【真实拥有的器材】给可执行拍法。绝不虚构型号——
+   所有镜头/灯光/稳定器/三脚架都从 DB.gears 里取真实存在的那件。 */
+function ideaLensParse(g){
+  var m=String(g.model||g.name||"");
+  var z=m.match(/(\d{1,3})\s*-\s*(\d{1,3})\s*mm/i);
+  var pr=m.match(/(\d{2,3})\s*mm/i);
+  var info={g:g,min:null,max:null,isZoom:false,aper:null};
+  if(z){info.min=+z[1];info.max=+z[2];info.isZoom=true;}
+  else if(pr){info.min=info.max=+pr[1];}
+  var ap=m.match(/f\/?\s*([0-9.]+)\s*-\s*([0-9.]+)/i)||m.match(/f\/?\s*([0-9.]+)/i);
+  if(ap)info.aper=(ap[1]&&ap[2])?Math.min(+ap[1],+ap[2]):+ap[1];
+  return info;
+}
+function ideaOwnGearAdvice(id){
+  var it=id||{};
+  var gears=(DB.gears||[]).filter(function(g){return g.status!=='retired';});
+  var cam=gears.filter(function(g){return g.category==='相机';});
+  var lens=gears.filter(function(g){return g.category==='镜头';}).map(ideaLensParse).filter(function(x){return x.min!=null;});
+  var light=gears.filter(function(g){return g.category==='灯光';});
+  var tripod=gears.filter(function(g){return /三脚架|脚架|mt055|tripod/i.test(String(g.name+' '+g.model+' '+g.category));});
+  var stab=gears.filter(function(g){return /稳定|rs\s?\d|如影|云台/i.test(String(g.name+' '+g.model+' '+g.category));});
+  var aerial=gears.filter(function(g){return g.category==='航拍';});
+  var el=it.elements||{};
+  var txt=[it.title,it.desc,it.look,it.key,it.setting,it.tips,el.subject,el.light,el.comp,(it.tags||[]).join(' ')].map(function(v){return String(v||'');}).join(' ');
+  var tl=String(txt).toLowerCase();
+  var TECH=[
+    {k:'逆光',w:['逆光','轮廓光','剪影','背光','眩光','光斑','通透']},
+    {k:'人像',w:['人像','新娘','新郎','肖像','写真','情侣','闺蜜','家人','母亲']},
+    {k:'特写',w:['特写','眼神','侧脸','微表情','手','泪','戒指','婚鞋','请柬','手捧花','细节']},
+    {k:'广角',w:['广角','大场景','环境','全景','空间','氛围','现场','全场']},
+    {k:'长焦',w:['长焦','压缩','远景','舞台','敬酒','抓拍','远处']},
+    {k:'微距',w:['微距','产品','静物','质感','倒影','平铺','白底','电商']},
+    {k:'夜景',w:['夜景','弱光','夜间','夜晚','蓝调','霓虹','灯火','冷焰火','烟花','串灯','灯串']},
+    {k:'合影',w:['全家福','合影','合照','大合影','排位','站位','集体']},
+    {k:'航拍',w:['航拍','上帝视角','俯瞰','鸟瞰','高空']},
+    {k:'运镜',w:['运镜','视频','跟拍','转场','延时','慢门','追焦','稳定器','手持']},
+    {k:'窗光',w:['窗光','晨袍','自然光','窗边','柔光','清晨']},
+    {k:'情绪',w:['情绪','故事','纪实','真实','感染力','氛围感']},
+    {k:'婚纱',w:['婚纱','头纱','拖尾','白纱','嫁衣']},
+    {k:'敬酒',w:['敬酒','敬茶','主桌','交杯','酒席','宴席','酒桌']}
+  ];
+  var techs=[];
+  TECH.forEach(function(t){
+    var score=0;
+    t.w.forEach(function(w,i){ if(tl.indexOf(w.toLowerCase())>=0)score+=(t.w.length-i); });
+    if(score>0)techs.push({k:t.k,score:score});
+  });
+  techs.sort(function(a,b){return b.score-a.score;});
+  var has=function(t){return techs.some(function(x){return x.k===t;});};
+  /* 选镜头：优先真实拥有的 */
+  var pickLens=null;
+  if(lens.length){
+    if(has('人像')||has('特写')||has('婚纱')||has('情绪')){
+      var pr=lens.filter(function(x){return !x.isZoom;}).sort(function(a,b){return (a.aper||9)-(b.aper||9)||b.max-a.max;})[0];
+      pickLens=pr||lens.slice().sort(function(a,b){return b.max-a.max;})[0];
+    }else if(has('广角')||has('合影')){
+      pickLens=lens.slice().sort(function(a,b){return a.min-b.min;})[0];
+    }else if(has('长焦')||has('敬酒')){
+      pickLens=lens.slice().sort(function(a,b){return b.max-a.max;})[0];
+    }else if(has('微距')){
+      var mc=lens.find(function(x){return /macro|微距|90mm|100mm|105mm/i.test(x.g.model||x.g.name||'');});
+      pickLens=mc||lens.filter(function(x){return !x.isZoom;}).sort(function(a,b){return (a.aper||9)-(b.aper||9);})[0]||lens.slice().sort(function(a,b){return b.max-a.max;})[0];
+    }else{
+      pickLens=lens.slice().sort(function(a,b){return (b.max-b.min)-(a.max-a.min);})[0]||lens[0];
+    }
+  }
+  var aperture;
+  if(has('合影')||has('广角'))aperture='F5.6–F8（前后排都清晰）';
+  else if(has('人像')||has('特写')||has('婚纱')||has('情绪'))aperture='F1.4–F2.8（虚化背景、突出人物）';
+  else if(has('夜景'))aperture='F1.4–F2.8（弱光手持）或收 F8 配闪拍大合照';
+  else if(has('微距')||has('产品'))aperture='F4–F8（微距收一点保景深）';
+  else aperture='F2.8–F5.6（主体与现场兼顾）';
+  var lightTxt='';
+  if(has('夜景')||has('敬酒')||has('合影')){
+    if(light.length)lightTxt+='弱光/室内用 '+light.map(function(g){return g.model||g.name;}).join('、')+' 离机补光（TTL 或手动 1/8–1/16），柔光罩打亮人脸、压环境光；';
+    else lightTxt+='弱光建议补一支便携闪光灯（你库里暂无灯光器材）；';
+  }
+  if(has('窗光')||has('人像')||has('婚纱'))lightTxt+='优先借自然窗光，人物侧对窗，反光板/闪灯补暗部；';
+  if(has('微距')||has('产品'))lightTxt+='静物用单灯+柔光箱，或窗边侧逆光勾边；';
+  if(!lightTxt)lightTxt='以现场光为主，必要时机顶/离机闪补光；';
+  lightTxt=lightTxt.replace(/；\s*$/,'');
+  var pos;
+  if(has('逆光'))pos='低角度把光源（太阳/灯串）放人物侧后，压天空曝光、用补光提脸；剪影就干脆欠曝；';
+  else if(has('航拍')&&aerial.length)pos='用 '+(aerial[0].model||aerial[0].name)+' 无人机抬到 30–80m 俯拍，顺光/侧光避免死白；';
+  else if(has('合影'))pos='机位略高、三脚架固定，光圈收小保证全员清晰；';
+  else if(has('特写')||has('人像')||has('婚纱'))pos='眼平机位，对焦眼睛；';
+  else if(has('广角'))pos='贴近主体低角度，带入环境交代故事；';
+  else if(has('长焦'))pos='拉远压缩空间，背景虚化突出主体；';
+  else pos='平视机位，保持稳定；';
+  if(has('航拍')&&!aerial.length)pos+='（你库里暂无航拍器材，可用长焦仰拍替代俯瞰感）';
+  var pts=[];
+  if(has('逆光'))pts.push('对人物脸补光或点测光，别让逆光把脸拍黑；');
+  if(has('人像')||has('婚纱')||has('情绪'))pts.push('引导情绪别摆拍，抓自然互动与眼神；');
+  if(has('特写'))pts.push('凑近拍手、戒指、请柬等细节，交代婚礼故事；');
+  if(has('夜景'))pts.push('提高 ISO 或开大光圈，动的人用闪灯凝固；');
+  if(has('合影'))pts.push('先排好站位再拍，多拍几张防闭眼；');
+  if(has('运镜')&&stab.length)pts.push('上 '+stab.map(function(g){return g.model||g.name;}).join('、')+' 稳定器，走位运镜更顺；');
+  else if(has('运镜'))pts.push('手持注意呼吸节奏，或上稳定器；');
+  if(has('窗光'))pts.push('让人物脸朝窗，侧光立体感最强；');
+  if(!pts.length)pts.push('先按上面镜头/光圈试拍，现场再微调；');
+  var refGear=[];
+  if(pickLens)refGear.push(pickLens.g.model||pickLens.g.name);
+  light.forEach(function(g){ if(lightTxt.indexOf(g.model||g.name)>=0)refGear.push(g.model||g.name); });
+  stab.forEach(function(g){ if(lightTxt.indexOf(g.model||g.name)>=0||pos.indexOf(g.model||g.name)>=0)refGear.push(g.model||g.name); });
+  aerial.forEach(function(g){ if(pos.indexOf(g.model||g.name)>=0)refGear.push(g.model||g.name); });
+  return {techs:techs, lens:pickLens?pickLens.g:null, aperture:aperture, light:lightTxt, position:pos, points:pts, cam:(cam[0]||null), refGear:refGear};
+}
+/* 把引擎结果渲染成详情页一节。仅引用真实器材，没识别出技法且没镜头时给温和提示。 */
+function ideaAdviceHTML(advice){
+  if(!advice)return '';
+  if(!advice.techs.length && !advice.lens)return '<div class="idm-sec idm-advice" data-page-node-id="v631Advice"><div class="idm-h">🤖 按你现有器材的拍法建议</div><div class="idm-advice-note">没从素材里识别出明确技法，也没匹配到场景。去「器材管理」登记你的镜头后，建议会更准。</div></div>';
+  var techTags=advice.techs.slice(0,5).map(function(t){return '<span class="idm-atchip">'+esc(t.k)+'</span>';}).join('');
+  var rows=['<div class="idm-sec idm-advice" data-page-node-id="v631Advice">'];
+  rows.push('<div class="idm-h">🤖 按你现有器材的拍法建议<span class="idm-tagrec">本地分析·仅引用你库里的器材</span></div>');
+ if(techTags)rows.push('<div class="idm-atchips">识别到的技法：'+techTags+'</div>');
+  if(advice.lens){
+    rows.push('<div class="idm-advice-row"><b>📷 推荐镜头</b><span>'+esc(advice.lens.model||advice.lens.name)+'（你库里真实拥有）</span></div>');
+  }else if((DB.gears||[]).filter(function(g){return g.status!=='retired'&&g.category==='镜头';}).length){
+    rows.push('<div class="idm-advice-row"><b>📷 推荐镜头</b><span>按技法未锁定单一镜头，挑你最顺手的变焦/定焦即可</span></div>');
+  }else{
+    rows.push('<div class="idm-advice-row"><b>📷 推荐镜头</b><span class="idm-advice-note">你还没登记镜头，先去「器材管理」加一支，建议 35/50/85 定焦 + 24-70 变焦</span></div>');
+  }
+  rows.push('<div class="idm-advice-row"><b>🔢 光圈</b><span>'+esc(advice.aperture)+'</span></div>');
+  rows.push('<div class="idm-advice-row"><b>💡 打光</b><span>'+esc(advice.light)+'</span></div>');
+  rows.push('<div class="idm-advice-row"><b>📐 机位</b><span>'+esc(advice.position)+'</span></div>');
+  rows.push('<div class="idm-advice-row"><b>🎯 要点</b><span>'+advice.points.map(function(p){return '· '+esc(p);}).join('<br>')+'</span></div>');
+  rows.push('</div>');
+  return rows.join('');
+}
 /* 标签是否属于某业务线（含同义词） */
 function ideaTagInBiz(tag,bizKey){
   var b=ideaBizOf(bizKey); if(!b) return true;
@@ -9991,6 +10137,7 @@ function ideaDetailBody(id){
     return (f.miss||[]).slice(0,3);
   })();
   const el=id.elements||{};
+  const advice=ideaOwnGearAdvice(id);
   const esc_text=function(s){return esc(s);};
   const rows=[];
   rows.push('<div class="idm-hero"><span class="idm-kind" title="'+esc(kindTxt)+'">'+({"图集":"图","视频":"影","教程":"学"}[kind])+'</span>'+
@@ -10016,7 +10163,16 @@ function ideaDetailBody(id){
     });
     return bad.slice(0,3);
   })();
-  rows.push('<div class="idm-sec"><div class="idm-h">🎯 怎么拍</div><div class="idm-p">'+esc(descTxt||"（没写具体拍法）")+'</div>'+
+  var howTxt;
+  if(descTxt){ howTxt=esc(descTxt); }
+  else if(advice.lens||advice.techs.length){
+    var _bits=[];
+    if(advice.lens)_bits.push('用 '+(advice.lens.model||advice.lens.name));
+    _bits.push(advice.aperture);
+    _bits.push(advice.position.replace(/；\s*$/,''));
+    howTxt='（按你现有器材分析）'+esc(_bits.join('，').replace(/，\s*$/,''));
+  } else { howTxt='（没写具体拍法）'; }
+  rows.push('<div class="idm-sec"><div class="idm-h">🎯 怎么拍</div><div class="idm-p">'+howTxt+'</div>'+
     (fakeInDesc.length?('<div class="idm-fake">⚠ 这段里提到的 '+esc(fakeInDesc.join(" / "))+' 不在你的器材清单里，可能是早前生成的。看下面的真实设备。</div>'):'')+'</div>');
   /* 使用设备 */
   /* 使用设备：没有器材时不能只留一句"没记"，要给出"用你现有的哪支顶" */
@@ -10033,8 +10189,12 @@ function ideaDetailBody(id){
   rows.push('<div class="idm-sec"><div class="idm-h">📷 使用设备'+(gearIsRec?'<span class="idm-tagrec">场景推荐·你库里有</span>':'')+'</div>'+
     (gears.length?('<div class="idm-gears">'+gears.map(function(g){
       return '<span class="idm-gear">'+esc(g)+'</span>';
-    }).join("")+'</div>'):'<div class="idm-p idm-dim">这条还没指定器材</div>')+
-    (alt?('<div class="idm-alt">💡 '+esc(alt)+'</div>'):'')+
+    }).join("")+'</div>'):
+    (advice.lens?
+      ('<div class="idm-gears"><span class="idm-gear">'+esc(advice.lens.model||advice.lens.name)+'</span></div>'+
+       '<div class="idm-alt">💡 按素材技法 + 你现有器材自动推荐</div>'):
+      (alt?('<div class="idm-alt">💡 '+esc(alt)+'</div>'):
+           '<div class="idm-p idm-dim">这条还没指定器材</div>'))) +
     (miss.length?('<div class="idm-miss">⚠ 这个场景缺 '+esc(miss.join(" / "))+' —— '+
       (gears.length?'用你手上的器材替代：85mm 退两步，24-70mm 拧到对应焦段':'先用你现有的镜头顶上，或按需补一支')+'</div>'):'')+
     '</div>');
@@ -10052,6 +10212,7 @@ function ideaDetailBody(id){
   /* 拍摄重点 */
   rows.push('<div class="idm-sec"><div class="idm-h">🎬 拍摄重点</div>'+
     (id.key?('<div class="idm-p">'+esc(id.key)+'</div>'):'<div class="idm-p idm-dim">没记要点，看上面「怎么拍」</div>')+'</div>');
+  rows.push(ideaAdviceHTML(advice));
   /* 现场环境 */
   if(id.setting)rows.push('<div class="idm-sec"><div class="idm-h">🏠 现场环境</div><div class="idm-p">'+esc(id.setting)+'</div></div>');
   /* 翻车点 */
