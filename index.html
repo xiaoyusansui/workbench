@@ -2047,6 +2047,26 @@
   .idm-el b{font-size:10.5px;font-weight:900;color:var(--muted3);letter-spacing:.5px}
   .idm-el span{font-size:12px;line-height:1.6;color:var(--ink2);word-break:break-word}
   .idm-q{font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:9px;word-break:break-all}
+  /* v6.29 图片流：嵌 Bing 图片搜索，看到的是真实成片 */
+  .idm-imgbox{position:relative;border-radius:var(--r-xs);overflow:hidden;
+    border:1px solid var(--glass-border);background:var(--bg3);margin-bottom:9px}
+  .idm-frame{display:block;width:100%;height:470px;border:0;background:var(--bg3)}
+  .idm-imgload{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--muted2);
+    background:var(--bg3);pointer-events:none;text-align:center;padding:0 20px}
+  .idm-imgload i{font-style:normal;font-size:11px;font-weight:600;color:var(--muted3);line-height:1.6}
+  .idm-qrow{display:flex;gap:6px;margin-bottom:9px}
+  .idm-qrow input{flex:1;min-width:0;background:var(--bg2);border:1px solid var(--line2);
+    border-radius:var(--r-ctl);padding:8px 11px;font:inherit;font-size:12.5px;color:var(--ink);outline:none}
+  .idm-qrow input:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.13)}
+  .idm-go{flex:none;border:none;border-radius:var(--r-ctl);padding:8px 16px;font-size:12.5px;
+    font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,#a855f7,#7c3aed);transition:.15s}
+  .idm-go:hover{filter:brightness(1.07)}
+  .idm-note{font-size:10.5px;line-height:1.6;color:var(--muted3);margin-top:8px}
+  .idm-imgfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    font-size:10.5px;color:var(--muted3);margin:-3px 0 9px}
+  .idm-imgfoot a{color:#9333ea;font-weight:800;text-decoration:none;white-space:nowrap}
+  .idm-imgfoot a:hover{text-decoration:underline}
   /* v6.27：抓不到平台图片（小红书/抖音都是反爬+登录墙），但可以把"该找什么样的图"说清楚，
      照着比对，比盲翻几百张快得多。 */
   .idm-look{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;line-height:1.7;
@@ -2185,6 +2205,16 @@
     .idm-scroll{padding:13px 14px;gap:11px}
     .idm-kind{width:36px;height:36px;font-size:19px}
     .idm-title{font-size:14.5px}
+    /* 手机上弹窗本身可滚，iframe 太高会把下面全推出去，压到 300。
+       但 310px 宽直接喂给 Bing，它会当成"超窄桌面窗口"排版 ——
+       搜索框和筛选条巨大、只露一张半图。所以按 2 倍宽渲染再用 scale 缩回来：
+       逻辑宽度 620 能正常出行列，视觉宽度还是 310。 */
+    .idm-imgbox{height:300px;overflow:hidden}
+    .idm-frame{width:200%;height:600px;transform:scale(.5);transform-origin:0 0}
+    /* 搜索框和按钮挤在一行，别竖排堆成两个大块 */
+    .idm-qrow{flex-wrap:nowrap}
+    .idm-qrow input{flex:1 1 auto;min-width:0}
+    .idm-go{flex:0 0 auto;padding:8px 14px}
   }
 
   /* 弹窗里的场景提示 */
@@ -5879,7 +5909,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.28</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.29</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6380,7 +6410,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.28";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.29";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9625,6 +9655,77 @@ const IDEA_SEARCH=[
   {key:"抖音",  icon:"🎵",build:function(q){return "https://www.douyin.com/search/"+encodeURIComponent(q);}},
   {key:"B站",   icon:"📺",build:function(q){return "https://search.bilibili.com/all?keyword="+encodeURIComponent(q)+"&order=click";}}
 ];
+/* ==================== v6.29 灵感配图 ====================
+   前面一直卡在"抓不到真实图片"：小红书/抖音是反爬 + 登录墙（这台机器实测被风控），
+   Openverse / Wikimedia 的 API 在这台机器连不上，Pexels / Pixabay 要 Key。
+   但 Bing 图片搜索没有 X-Frame-Options，实测可以整页嵌进 iframe 并正常渲染缩略图流
+   —— 中文关键词命中很好，手机上两列瀑布流。这就是"给图"的解法：不搬图，直接把图片流嵌进来。
+   filterui:photo-photo 只要照片，把插画/AI 图/矢量图滤掉，摄影师要的是真实成片。 */
+const IDEA_IMG_SRC={
+  bing:function(q){
+    return "https://www.bing.com/images/search?q="+encodeURIComponent(q)+
+      "&qft=+filterui:photo-photo&form=IRFLTR&first=1";
+  }
+};
+/* 图片搜索词：Bing 吃"短词 + 空格"，而且**场景词权重大、会把结果带偏**。
+   实测：「酒店走廊 逆光剪影」→ 出来一堆酒店装修图库；
+        「婚礼 逆光 剪影」→ 全是婚礼逆光剪影真实成片（这才是要的）。
+   所以图片词不能复用 ref（那个是给小红书/抖音搜笔记的），得走「业务线 + 视觉术语」。 */
+const IDEA_VISUAL_WORDS=["侧逆光","逆光","剪影","轮廓光","窗光","自然光","单灯","双灯","三灯",
+  "硬光","柔光","高调","低调","黄金时刻","蓝调","顶光","反射","倒影","星光","烛光","暖调","冷调",
+  "前景","引导线","对称","居中","留白","俯拍","仰拍","低角度","平视","特写","中景","全景","大场景"];
+const IDEA_BIZ_WORD={"婚礼纪实":"婚礼","人像写真":"人像","活动跟拍":"活动","电商产品":"产品","商业拍摄":"商业空间"};
+function ideaImageQuery(id){
+  const x=id||{};
+  const clean=function(s){return String(s||"").replace(/[，。、；：！？""''《》()（）\[\]【】#·]/g," ").replace(/\s+/g," ").trim();};
+  const bizKey=String(x.biz||(function(){try{return ideaSceneBiz(x.scene);}catch(e){return "";}})()||"");
+  const biz=IDEA_BIZ_WORD[bizKey]||"";
+  /* 从三大元素/画面参照里挑视觉术语，最多两个 —— 别把整句描述塞进去 */
+  const el=x.elements||{};
+  const pool=[el.light,el.comp,el.subject,x.look,x.lights].map(function(v){return String(v||"");}).join(" ");
+  const hit=[];
+  IDEA_VISUAL_WORDS.forEach(function(w){
+    if(pool.indexOf(w)>=0&&hit.indexOf(w)<0&&hit.length<2)hit.push(w);
+  });
+  const parts=[];
+  if(biz)parts.push(biz);
+  hit.forEach(function(w){parts.push(w);});
+  if(parts.length>=2)return clean(parts.join(" ")).slice(0,28);
+  /* 没视觉词：业务线 + 场景（比单场景准一点） */
+  if(biz&&x.scene)return clean(biz+" "+x.scene).slice(0,24);
+  if(x.scene)return clean(x.scene+" 摄影").slice(0,24);
+  return clean(x.title).slice(0,14)||"婚礼摄影";
+}
+/* 详情页里的图片流：默认 Bing，可切小红书/抖音（能不能显示看各自风控，Bing 最稳） */
+function ideaImgFrameHTML(id){
+  const q=ideaImageQuery(id);
+  return '<div class="idm-imgbox" id="idm-imgbox">'+
+      '<div class="idm-imgload" id="idm-imgload"><span>正在加载参考图…</span>'+
+        '<i>第一次会慢一点，图是 Bing 搜到的真实成片</i></div>'+
+      '<iframe class="idm-frame" id="idm-frame" src="'+esc(IDEA_IMG_SRC.bing(q))+'" '+
+        'loading="lazy" referrerpolicy="no-referrer-when-downgrade" '+
+        'onload="ideaFrameLoaded()" data-page-node-id="v629ImgFrame"></iframe>'+
+    '</div>'+
+    '<div class="idm-imgfoot">'+
+      '<span>图在框里能上下滑；只当光线和构图参考</span>'+
+      '<a href="'+esc(IDEA_IMG_SRC.bing(q))+'" target="_blank" rel="noopener" data-page-node-id="v629ImgMore">看更多 ↗</a>'+
+    '</div>';
+}
+function ideaFrameLoaded(){
+  const l=document.getElementById("idm-imgload");
+  if(l)l.style.display="none";
+}
+/* 换词重搜 —— AI 给的关键词不一定准，让人能当场改 */
+function ideaImgResearch(){
+  const inp=document.getElementById("idm-q-in");
+  const f=document.getElementById("idm-frame");
+  const l=document.getElementById("idm-imgload");
+  if(!inp||!f)return;
+  const q=String(inp.value||"").trim();
+  if(!q){toast("先写个关键词","warn");return;}
+  if(l){l.style.display="flex";}
+  f.src=IDEA_IMG_SRC.bing(q);
+}
 /* 关键词来源：模型给的 ref > 场景+器材简称+拍摄。
    注意别把完整型号塞进去 —— "Sony 24-70mm F2.8 GM II 拍摄" 这种长词在小红书上
    几乎搜不到东西，用户要的是能命中真实笔记的短词。优先取焦段这类可搜的片段。 */
@@ -9831,13 +9932,19 @@ function ideaDetailBody(id){
   /* 找真实参考：v6.26 起用 order:-1 提到首屏 */
   const q=ideaSearchTerm(id);
   const kindWord={"图集":"对照图","视频":"参考视频","教程":"教程"}[kind];
-  rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 去看真实素材'+
+  rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 真实参考图'+
       '<span class="idm-ask">要找：'+esc(kindWord)+'</span></div>'+
-    '<div class="idm-q">搜「'+esc(q)+'」</div>'+
-    (id.look?('<div class="idm-look"><b>画面长这样</b><span>'+esc(id.look)+'</span></div>'):'')+
+    /* 图片流：直接嵌 Bing 图片搜索结果，看到的就是真实成片 */
+    ideaImgFrameHTML(id)+
+    '<div class="idm-qrow">'+
+      '<input id="idm-q-in" value="'+esc(ideaImageQuery(id))+'" placeholder="换关键词再搜，如：酒店走廊 逆光 剪影" data-page-node-id="v629ImgQ">'+
+      '<button class="idm-go" onclick="ideaImgResearch()" data-page-node-id="v629ImgGo">搜图</button>'+
+    '</div>'+
+    (id.look?('<div class="idm-look"><b>照着找</b><span>'+esc(id.look)+'</span></div>'):'')+
     '<div class="idm-srcs">'+IDEA_SEARCH.map(function(p){
       return '<a class="idm-src" href="'+esc(p.build(q))+'" target="_blank" rel="noopener">'+p.icon+' 在'+esc(p.key)+'找</a>';
-    }).join("")+'</div></div>');
+    }).join("")+'</div>'+
+    '<div class="idm-note">图来自 Bing 图片搜索，是别人的作品（其中可能混有 AI 生成图），看光线和构图即可；点图能进原网页。</div></div>');
   return '<div class="idm-scroll">'+rows.join("")+'</div>';
 }
 function ideaElementCell(label,val){
