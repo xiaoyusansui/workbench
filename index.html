@@ -9623,7 +9623,8 @@ function ideaOwnGearAdvice(id){
     if(light.length)lightTxt+='弱光/室内用 '+light.map(function(g){return g.model||g.name;}).join('、')+' 离机补光（TTL 或手动 1/8–1/16），柔光罩打亮人脸、压环境光；';
     else lightTxt+='弱光建议补一支便携闪光灯（你库里暂无灯光器材）；';
   }
-  if(has('窗光')||has('人像')||has('婚纱'))lightTxt+='优先借自然窗光，人物侧对窗，反光板/闪灯补暗部；';
+  if(has('窗光'))lightTxt+='优先借自然窗光，人物侧对窗，反光板/闪灯补暗部；';
+  else if(has('人像')||has('婚纱'))lightTxt+='以自然光/现场光为主，暗部用反光板或闪灯轻补，别压掉氛围；';
   if(has('微距')||has('产品'))lightTxt+='静物用单灯+柔光箱，或窗边侧逆光勾边；';
   if(!lightTxt)lightTxt='以现场光为主，必要时机顶/离机闪补光；';
   lightTxt=lightTxt.replace(/；\s*$/,'');
