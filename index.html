@@ -5967,7 +5967,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.31</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.32</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6468,7 +6468,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.31";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.32";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9861,30 +9861,68 @@ const IDEA_IMG_SRC={
    实测：「酒店走廊 逆光剪影」→ 出来一堆酒店装修图库；
         「婚礼 逆光 剪影」→ 全是婚礼逆光剪影真实成片（这才是要的）。
    所以图片词不能复用 ref（那个是给小红书/抖音搜笔记的），得走「业务线 + 视觉术语」。 */
+/* v6.32：图片搜索词分三类。IDEA_VISUAL_WORDS 保留兼容（早期测试引用其长度），
+   真正决定搜索词的是下面三组。关键区别：打光器材词（单灯/柔光/硬光…）绝不进搜索词 ——
+   一进就被 Bing 当成灯具商城，搜「新娘晨袍」会出来一堆 COB 面光灯。 */
 const IDEA_VISUAL_WORDS=["侧逆光","逆光","剪影","轮廓光","窗光","自然光","单灯","双灯","三灯",
   "硬光","柔光","高调","低调","黄金时刻","蓝调","顶光","反射","倒影","星光","烛光","暖调","冷调",
   "前景","引导线","对称","居中","留白","俯拍","仰拍","低角度","平视","特写","中景","全景","大场景"];
+/* ① 内容名词：这张照片「拍的是什么」（标题里出现的优先） */
+const IDEA_CONTENT_WORDS=["人像","写真","晨袍","头纱","婚纱","婚鞋","戒指","手捧花","捧花","请柬","桌卡","喜糖",
+  "新娘","新郎","父母","伴娘","伴郎","宾客","化妆","盘发","上妆","穿鞋","整理头纱","婚房","婚房准备","化妆间",
+  "门框","门口","窗边","楼梯","走廊","酒店","草坪","海边","公路","餐桌","主桌","舞台","花门","背景板","签到台","会场","观众",
+  "迎亲","接亲","堵门","找鞋","仪式","誓词","交换戒指","敬茶","敬酒","交杯","宴席","合影","全家福","大合影",
+  "拥抱","亲吻","牵手","背影","侧脸","眼神","眼泪","落泪","微笑","回眸",
+  "日出","日落","夜晚","夜景","烟花","冷焰火","串灯","灯串","霓虹","烛光",
+  "产品","白底","平铺","静物","主图","包装","细节","质地","倒影","颁奖","奖杯"];
+/* ② 景别/机位/画面效果：让结果更像「照片」而不是「商品」；逆光/剪影最能一眼认出画面，排前面 */
+const IDEA_FRAME_WORDS=["逆光","剪影","轮廓光","侧逆光","半身","特写","全身","中景","近景","全景","大场景",
+  "俯拍","仰拍","低角度","平视","对称","留白","前景","引导线"];
+/* ③ 打光/灯具词：进图片搜索会被当商品，一律不进搜索词 */
+const IDEA_GEAR_NOISE=["单灯","双灯","三灯","四灯","硬光","柔光","反光板","柔光箱","灯架","补光灯","面光灯","COB","LED灯"];
 const IDEA_BIZ_WORD={"婚礼纪实":"婚礼","人像写真":"人像","活动跟拍":"活动","电商产品":"产品","商业拍摄":"商业空间"};
 function ideaImageQuery(id){
   const x=id||{};
   const clean=function(s){return String(s||"").replace(/[，。、；：！？""''《》()（）\[\]【】#·]/g," ").replace(/\s+/g," ").trim();};
   const bizKey=String(x.biz||(function(){try{return ideaSceneBiz(x.scene);}catch(e){return "";}})()||"");
   const biz=IDEA_BIZ_WORD[bizKey]||"";
-  /* 从三大元素/画面参照里挑视觉术语，最多两个 —— 别把整句描述塞进去 */
+  /* v6.32：图片搜索词要描述「这张照片拍的是什么」，不是「怎么打光」。
+     老实现把 单灯/柔光/硬光 也当视觉词，Bing 当灯具商城搜 ——
+     「晨袍门框半身引导」被搜成「婚礼 单灯 柔光」，结果全是 COB 面光灯/补光灯。
+     新规则（内容优先）：标题内容名词 → 不够再补主体/场景 → 最多一个景别/机位词；
+     打光器材词一律剔除。 */
   const el=x.elements||{};
-  const pool=[el.light,el.comp,el.subject,x.look,x.lights].map(function(v){return String(v||"");}).join(" ");
-  const hit=[];
-  IDEA_VISUAL_WORDS.forEach(function(w){
-    if(pool.indexOf(w)>=0&&hit.indexOf(w)<0&&hit.length<2)hit.push(w);
-  });
+  const title=String(x.title||"");
+  /* 按「词在段落里出现的先后」挑内容名词，越靠前越优先（标题=这条灵感拍什么） */
+  function contentWords(seg){
+    const arr=[];
+    const s=String(seg||"");
+    IDEA_CONTENT_WORDS.forEach(function(w){ const i=s.indexOf(w); if(i>=0)arr.push({w:w,i:i}); });
+    arr.sort(function(a,b){return a.i-b.i;});
+    const out=[];
+    arr.forEach(function(o){ if(out.indexOf(o.w)<0)out.push(o.w); });
+    return out;
+  }
+  let content=contentWords(title).slice(0,2);
+  if(!content.length)content=contentWords(el.subject).slice(0,1);
+  if(!content.length)content=contentWords(x.scene).slice(0,1);
+  const pool=[title,el.subject,x.scene,x.look,el.comp,el.light,x.lights].join(" ");
+  const frame=[];
+  IDEA_FRAME_WORDS.forEach(function(w){ if(pool.indexOf(w)>=0 && frame.indexOf(w)<0)frame.push(w); });
   const parts=[];
   if(biz)parts.push(biz);
-  hit.forEach(function(w){parts.push(w);});
-  if(parts.length>=2)return clean(parts.join(" ")).slice(0,28);
-  /* 没视觉词：业务线 + 场景（比单场景准一点） */
-  if(biz&&x.scene)return clean(biz+" "+x.scene).slice(0,24);
-  if(x.scene)return clean(x.scene+" 摄影").slice(0,24);
-  return clean(x.title).slice(0,14)||"婚礼摄影";
+  content.forEach(function(w){ parts.push(w); });
+  if(frame.length && parts.length<4)parts.push(frame[0]);
+  /* 一个词都没挑到时，退回场景名 / 标题 */
+  if(!parts.length){
+    if(x.scene)parts.push(x.scene);
+    else if(title)parts.push(clean(title).slice(0,10));
+  }
+  let q=clean(parts.join(" "));
+  /* 最后一道保险：宁可少词，也绝不把灯具/打光词带出去 */
+  IDEA_GEAR_NOISE.forEach(function(w){ q=q.split(w).join(" "); });
+  q=clean(q);
+  return q.slice(0,28)||"婚礼摄影";
 }
 /* v6.30：图源配置（Bing / Pexels / Pixabay）。Key 只存本机 localStorage，绝不进源码、不上传。 */
 const IMG_SRC_KEY='xiaoyu_img_src', IMG_PEXELS_KEY='xiaoyu_img_pexels', IMG_PIXABAY_KEY='xiaoyu_img_pixabay';
