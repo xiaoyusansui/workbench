@@ -2097,6 +2097,24 @@
   .idm-sec.idm-srcsec{order:-1;background:linear-gradient(135deg,rgba(168,85,247,.1),transparent);
     border-color:rgba(168,85,247,.26)}
   .idm-srcsec .idm-q{margin-bottom:9px}
+  /* v6.30：Pexels / Pixabay 真实照片网格（替代 Bing iframe，正版无水印无 AI 图混杂） */
+  .idm-imggrid{margin-top:6px}
+  .idm-imggrid-i{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .idm-imgcell{display:block;overflow:hidden;border-radius:10px;background:var(--bg3);
+    aspect-ratio:1/1;transition:transform .15s var(--ease)}
+  .idm-imgcell:hover{transform:scale(1.03)}
+  .idm-imgcell img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;
+    background:var(--bg3)}
+  .idm-imgload{padding:18px 10px;text-align:center;color:var(--muted2);font-size:12px;line-height:1.7}
+  .idm-imgload i{display:block;font-style:normal;font-size:10.5px;color:var(--muted3);margin-top:4px}
+  /* 分段控件：图源三选一 */
+  .seg{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;
+    background:var(--bg2)}
+  .seg-btn{appearance:none;border:0;background:transparent;color:var(--ink2);
+    padding:6px 13px;font-size:12px;cursor:pointer;transition:var(--t-all)}
+  .seg-btn.active{background:linear-gradient(135deg,var(--amber),var(--gold));color:#1a1a2e;font-weight:700}
+  .sa-link{font-size:11px;color:var(--gold);text-decoration:none;margin-left:6px;white-space:nowrap}
+  .sa-link:hover{text-decoration:underline}
   /* hero 是标题，必须永远在最前；素材块排它后面（order 只在同层级生效，
      之前把素材块 -1 直接顶到了标题上面，读起来像"搜索框比标题还重要"） */
   .idm-hero{order:-2}
@@ -4949,7 +4967,7 @@ window.QRCode = {
         <span data-page-node-id="v592GlobalSchLbl">排程日历</span>
       </li>
 
-      <div class="nav-label" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 富淮城运营</div>
+      <div class="nav-label" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 项目运营</div>
       <li class="nav-item" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
         <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
         <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
@@ -5027,7 +5045,7 @@ window.QRCode = {
         <div class="title-row" data-page-node-id="ngnJnuxBFrtKZXaKMUreds">
           <div class="title-group" data-page-node-id="hoqNTMJmwWS02m41Gmbb62">
             <h1 id="page-title" data-page-node-id="8HrcLbNhiXE5yY7oSxrEWW">📋 策划工作 <span class="sparkle" data-page-node-id="wHL937EYAEOEhhRLxwzUGz"></span></h1>
-            <div class="subtitle" id="page-subtitle" data-page-node-id="cV44qApNUZ7gS5SV0DoLmG">百江富淮城运营项目策划 · 任务追踪与进度管理</div>
+            <div class="subtitle" id="page-subtitle" data-page-node-id="cV44qApNUZ7gS5SV0DoLmG">项目运营策划 · 任务追踪与进度管理</div>
           </div>
         </div>
         <div class="topbar" data-page-node-id="tV8RHh7gylXsZ9KkmWXQ6y">
@@ -5058,9 +5076,9 @@ window.QRCode = {
               <div class="ov-grid biz-row" id="ov-grid-gl" data-page-node-id="v592GridGl"></div>
             </div>
 
-            <!-- 💼 富淮城运营 -->
+            <!-- 💼 项目运营 -->
             <div class="dash-section" id="dash-biz-section" data-page-node-id="rqDVOurq4OYodVAEZ7YGKx">
-              <div class="dash-sect-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 富淮城运营</div>
+              <div class="dash-sect-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 项目运营</div>
               <div class="ov-grid biz-row" id="ov-grid-biz" data-page-node-id="WTcJrSVsDiNs9Ef4eq9dW2"></div>
             </div>
 
@@ -5905,12 +5923,37 @@ window.QRCode = {
               </div>
             </div>
 
+            <!-- 🖼 灵感配图源（v6.30）：Bing / Pexels / Pixabay 三选一 -->
+            <div class="sett-sect" data-page-node-id="v630ImgSrcSect">
+              <h4 data-page-node-id="v630ImgSrcH"><span class="sect-icon" data-page-node-id="v630ImgSrcIcon">🖼</span> 灵感配图源（可选）</h4>
+              <div class="sett-row" data-page-node-id="v630SrcRow">
+                <label data-page-node-id="v630SrcLbl">参考图来源</label>
+                <div class="seg" id="img-src-seg" data-page-node-id="v630Seg">
+                  <button type="button" class="seg-btn" data-src="bing" onclick="setImgSrc('bing')" data-page-node-id="v630SegBing">Bing 搜索</button>
+                  <button type="button" class="seg-btn" data-src="pexels" onclick="setImgSrc('pexels')" data-page-node-id="v630SegPexels">Pexels</button>
+                  <button type="button" class="seg-btn" data-src="pixabay" onclick="setImgSrc('pixabay')" data-page-node-id="v630SegPixabay">Pixabay</button>
+                </div>
+              </div>
+              <div class="ai-field" data-page-node-id="v630PexelsRow">
+                <label data-page-node-id="v630PexelsLbl">Pexels API Key</label>
+                <input type="password" id="img-pexels-key" placeholder="粘贴 Pexels Key" data-page-node-id="v630PexelsKey"/>
+                <a class="sa-link" href="https://www.pexels.com/api/" target="_blank" rel="noopener" data-page-node-id="v630PexelsLink">免费申请 ↗</a>
+              </div>
+              <div class="ai-field" data-page-node-id="v630PixabayRow">
+                <label data-page-node-id="v630PixabayLbl">Pixabay API Key</label>
+                <input type="password" id="img-pixabay-key" placeholder="粘贴 Pixabay Key" data-page-node-id="v630PixabayKey"/>
+                <a class="sa-link" href="https://pixabay.com/api/docs/" target="_blank" rel="noopener" data-page-node-id="v630PixabayLink">免费申请 ↗</a>
+              </div>
+              <div class="sa-desc" data-page-node-id="v630ImgNote">Pexels / Pixabay 是免费正版图库：参考图无水印、无 AI 图混杂、可看作者授权。Key 仅存本机浏览器，不上传。没填 Key 时自动用 Bing 搜索。</div>
+              <button class="btn ghost sm" onclick="saveImgSrcKeys()" data-page-node-id="v630ImgSave">保存配置</button>
+            </div>
+
             <!-- ℹ 关于 -->
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.29</span></div>
-                <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">百江富淮城运营 + 摄影师工作台</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.30</span></div>
+                <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
               </div>
@@ -6318,7 +6361,7 @@ const SEED={
   ],
   jobs:[
     {client:"张女士",date:"2026-08-09",type:"人像写真",price:588,deposit:200,finalPay:388,plan:"周末下午 · 城市公园外拍，自然光人像，需带反光板和三脚架。风格偏日系清新，参考之前小红书样片。",status:"confirmed"},
-    {client:"百江富淮城案场",date:"2026-08-12",type:"商业拍摄",price:2800,deposit:1000,plan:"营销中心环境定档拍摄 + 样板间空镜。上午 9:00 到场，先拍外立面再进室内，预计 3 小时。尾款拍摄后一周结算。",status:"pending"},
+    {client:"某项目案场",date:"2026-08-12",type:"商业拍摄",price:2800,deposit:1000,plan:"营销中心环境定档拍摄 + 样板间空镜。上午 9:00 到场，先拍外立面再进室内，预计 3 小时。尾款拍摄后一周结算。",status:"pending"},
     {client:"李先生",date:"2026-08-15",type:"活动跟拍",price:1500,deposit:1500,plan:"公司年会活动全程跟拍，重点抓拍领导讲话、颁奖环节、团队合影。需确认场地灯光条件。全款已收。",status:"doing"},
     {client:"王小姐",date:"",type:"电商产品",price:800,plan:"手工艺品淘宝详情页拍摄，白底图 + 场景图各 10 张。具体日期待客户确认档期。",status:"pending"}
   ],
@@ -6335,7 +6378,7 @@ const SEED={
       {text:"掌握自然光人像布光技巧（拍5组客片）",done:false},
       {text:"输出一套个人作品集（20张精选）",done:false}
     ]},
-    {title:"百江富淮城运营策划",cycle:"2026 Q3",status:"active",krs:[
+    {title:"项目运营策划",cycle:"2026 Q3",status:"active",krs:[
       {text:"完成案场包装物料方案并落地执行",done:true},
       {text:"策划1场圈层活动（到访50+组）",done:false},
       {text:"新媒体内容周更4条，互动率提升15%",done:false}
@@ -6361,7 +6404,7 @@ const SEED={
   ],
   reviews:[
     {week:"2026年第31周 (7.27-8.2)",date:"2026-08-02",
-     done:"✅ 百江富淮城案场包装方案初稿完成\n✅ 张女士人像写真交付，客户满意\n✅ 《写给大家看的设计书》读完\n✅ 摄影热点新增8条素材",
+     done:"✅ 项目案场包装方案初稿完成\n✅ 张女士人像写真交付，客户满意\n✅ 《写给大家看的设计书》读完\n✅ 摄影热点新增8条素材",
      plan:"📌 案场包装物料落地跟进\n📌 李先生活动跟拍准备\n📌 开始读《非暴力沟通》\n📌 整理Q3 OKR进度",
      data:{tasksDone:4,tasksTotal:6,photosTaken:1,booksRead:1,income:1200},
      insight:"本周效率不错，但活动跟拍的后期处理时间超出预期。下周需要提前预留后期时间。案场包装方案的反馈比预期积极，可以加快推进节奏。"},
@@ -6410,7 +6453,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.29";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.30";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6604,7 +6647,7 @@ function showDataRescue(){
 let curTab="home";
 const TAB_TITLES={
   home:{title:"🐟 首页",sub:"工作台总览 · 一屏掌握所有进展"},
-  plan:{title:"📋 策划工作",sub:"富淮城运营 · 推广策划与任务进度管理"},
+  plan:{title:"📋 策划工作",sub:"项目运营 · 推广策划与任务进度管理"},
   course:{title:"📷 摄影课程",sub:"摄影学习 · 从基础到实战，系统化提升"},
   hot:{title:"🔥 摄影热点",sub:"摄影学习 · 追踪平台热门趋势，保持敏感度"},
   job:{title:"📋 事务管理",sub:"接单交付 · 服务事项 · 拍摄计划 · 收款跟进"},
@@ -6733,7 +6776,7 @@ function renderOverview(){
       <div class="ov-bar"><i style="width:${c.pct}%"></i></div>
     </div>`;
   };
-  /* v5.92：首页分区与侧边栏分组 1:1 对应 —— 全局常驻 / 富淮城运营 / 摄影学习 / 摄影创作 / 接单交付 / 个人成长 */
+  /* v5.92：首页分区与侧边栏分组 1:1 对应 —— 全局常驻 / 项目运营 / 摄影学习 / 摄影创作 / 接单交付 / 个人成长 */
   const mountCards=(id,cards)=>{const host=document.getElementById(id);if(host)host.innerHTML=cards.map(mkCard).join("");};
   mountCards("ov-grid-gl",globalCards);
   mountCards("ov-grid-biz",bizCards);
@@ -9696,9 +9739,32 @@ function ideaImageQuery(id){
   if(x.scene)return clean(x.scene+" 摄影").slice(0,24);
   return clean(x.title).slice(0,14)||"婚礼摄影";
 }
-/* 详情页里的图片流：默认 Bing，可切小红书/抖音（能不能显示看各自风控，Bing 最稳） */
-function ideaImgFrameHTML(id){
-  const q=ideaImageQuery(id);
+/* v6.30：图源配置（Bing / Pexels / Pixabay）。Key 只存本机 localStorage，绝不进源码、不上传。 */
+const IMG_SRC_KEY='xiaoyu_img_src', IMG_PEXELS_KEY='xiaoyu_img_pexels', IMG_PIXABAY_KEY='xiaoyu_img_pixabay';
+function getImgSrc(){ return localStorage.getItem(IMG_SRC_KEY)||'bing'; }
+function getImgKey(src){
+  if(src==='pexels')return localStorage.getItem(IMG_PEXELS_KEY)||'';
+  if(src==='pixabay')return localStorage.getItem(IMG_PIXABAY_KEY)||'';
+  return '';
+}
+function setImgSrc(src){
+  localStorage.setItem(IMG_SRC_KEY, src);
+  var bs=document.querySelectorAll('#img-src-seg .seg-btn');
+  for(var i=0;i<bs.length;i++){ bs[i].classList.toggle('active', bs[i].getAttribute('data-src')===src); }
+}
+function saveImgSrcKeys(){
+  var p=document.getElementById('img-pexels-key'), x=document.getElementById('img-pixabay-key');
+  if(p)localStorage.setItem(IMG_PEXELS_KEY, (p.value||'').trim());
+  if(x)localStorage.setItem(IMG_PIXABAY_KEY, (x.value||'').trim());
+  toast('配图源已保存','ok');
+}
+function loadImgSrcUI(){
+  var src=getImgSrc(); setImgSrc(src);
+  var p=document.getElementById('img-pexels-key'); if(p)p.value=localStorage.getItem(IMG_PEXELS_KEY)||'';
+  var x=document.getElementById('img-pixabay-key'); if(x)x.value=localStorage.getItem(IMG_PIXABAY_KEY)||'';
+}
+/* Bing 整页 iframe（无 Key 时的兜底，也是默认源） */
+function bingFrame(q){
   return '<div class="idm-imgbox" id="idm-imgbox">'+
       '<div class="idm-imgload" id="idm-imgload"><span>正在加载参考图…</span>'+
         '<i>第一次会慢一点，图是 Bing 搜到的真实成片</i></div>'+
@@ -9711,20 +9777,73 @@ function ideaImgFrameHTML(id){
       '<a href="'+esc(IDEA_IMG_SRC.bing(q))+'" target="_blank" rel="noopener" data-page-node-id="v629ImgMore">看更多 ↗</a>'+
     '</div>';
 }
+/* 详情页图片流：按用户在设置里选的源渲染 */
+function ideaImgFrameHTML(id){
+  const q=ideaImageQuery(id);
+  const src=getImgSrc(), key=getImgKey(src);
+  /* 选了 Pexels / Pixabay 但没填 Key —— 老实回退 Bing，并提示 */
+  if(src==='bing'||!key){
+    const note=(src!=='bing'&&!key)?'<div class="idm-note" style="color:var(--coral)">没填 '+src+' 的 Key，已自动用 Bing 搜索</div>':'';
+    return bingFrame(q)+note;
+  }
+  /* Pexels / Pixabay：先放一个占位网格，打开详情后由 ideaImgPexels / ideaImgPixabay 异步填图 */
+  return '<div class="idm-imggrid" id="idm-imggrid"><div class="idm-imgload" id="idm-imgload"><span>正在从 '+
+    (src==='pexels'?'Pexels':'Pixabay')+' 拉参考图…</span></div></div>';
+}
+/* Pexels：fetch + CORS（Pexels 接口支持浏览器跨域）。失败（多为跨域/网络）自动回退 Bing */
+async function ideaImgPexels(q){
+  const grid=document.getElementById('idm-imggrid'); if(!grid)return;
+  const key=getImgKey('pexels');
+  if(!key){ grid.innerHTML='<div class="idm-imgload"><span>未填 Pexels Key</span></div>'; return; }
+  grid.innerHTML='<div class="idm-imgload"><span>正在从 Pexels 拉参考图…</span></div>';
+  try{
+    const r=await fetch('https://api.pexels.com/v1/search?query='+encodeURIComponent(q)+'&per_page=15&locale=zh-CN',{headers:{'Authorization':key}});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const j=await r.json(); const photos=j.photos||[];
+    if(!photos.length){ grid.innerHTML='<div class="idm-imgload"><span>Pexels 没找到「'+esc(q)+'」相关图，换个词试试</span></div>'; return; }
+    grid.innerHTML='<div class="idm-imggrid-i">'+photos.map(function(p){
+      const t=(p.src&&(p.src.large||p.src.medium))||''; const u=p.url||'#';
+      return '<a class="idm-imgcell" href="'+esc(u)+'" target="_blank" rel="noopener"><img loading="lazy" src="'+esc(t)+'" alt="'+esc(p.alt||'')+'" onerror="this.parentNode.style.display=\'none\'"></a>';
+    }).join('')+'</div>';
+  }catch(e){
+    grid.innerHTML=bingFrame(q)+'<div class="idm-note" style="color:var(--coral)">Pexels 加载失败（多为浏览器跨域限制），已自动改用 Bing</div>';
+  }
+}
+/* Pixabay：JSONP（自带跨域支持，无需代理）。失败回退 Bing */
+function ideaImgPixabay(q){
+  const grid=document.getElementById('idm-imggrid'); if(!grid)return;
+  const key=getImgKey('pixabay');
+  if(!key){ grid.innerHTML='<div class="idm-imgload"><span>未填 Pixabay Key</span></div>'; return; }
+  grid.innerHTML='<div class="idm-imgload"><span>正在从 Pixabay 拉参考图…</span></div>';
+  const cb='__px'+Date.now()+Math.floor(Math.random()*9999);
+  window[cb]=function(j){
+    delete window[cb];
+    const hits=(j&&j.hits)||[];
+    if(!hits.length){ grid.innerHTML='<div class="idm-imgload"><span>Pixabay 没找到「'+esc(q)+'」相关图，换个词试试</span></div>'; return; }
+    grid.innerHTML='<div class="idm-imggrid-i">'+hits.map(function(p){
+      return '<a class="idm-imgcell" href="'+esc(p.pageURL||'#')+'" target="_blank" rel="noopener"><img loading="lazy" src="'+esc(p.webformatURL||'')+'" alt="'+esc(p.tags||'')+'" onerror="this.parentNode.style.display=\'none\'"></a>';
+    }).join('')+'</div>';
+  };
+  const s=document.createElement('script');
+  s.src='https://pixabay.com/api/?key='+encodeURIComponent(key)+'&q='+encodeURIComponent(q)+'&image_type=photo&per_page=18&lang=zh&callback='+cb;
+  s.onerror=function(){ delete window[cb]; grid.innerHTML=bingFrame(q)+'<div class="idm-note" style="color:var(--coral)">Pixabay 加载失败，已自动改用 Bing</div>'; };
+  document.body.appendChild(s);
+}
 function ideaFrameLoaded(){
   const l=document.getElementById("idm-imgload");
   if(l)l.style.display="none";
 }
-/* 换词重搜 —— AI 给的关键词不一定准，让人能当场改 */
+/* 换词重搜 —— AI 给的关键词不一定准，让人能当场改（按当前图源分流） */
 function ideaImgResearch(){
-  const inp=document.getElementById("idm-q-in");
-  const f=document.getElementById("idm-frame");
-  const l=document.getElementById("idm-imgload");
-  if(!inp||!f)return;
+  const inp=document.getElementById("idm-q-in"); if(!inp)return;
   const q=String(inp.value||"").trim();
   if(!q){toast("先写个关键词","warn");return;}
-  if(l){l.style.display="flex";}
-  f.src=IDEA_IMG_SRC.bing(q);
+  const src=getImgSrc(), key=getImgKey(src);
+  if(src==='bing'||!key){
+    const f=document.getElementById("idm-frame"); const l=document.getElementById("idm-imgload");
+    if(l)l.style.display="flex"; if(f)f.src=IDEA_IMG_SRC.bing(q);
+  } else if(src==='pexels'){ ideaImgPexels(q); }
+  else if(src==='pixabay'){ ideaImgPixabay(q); }
 }
 /* 关键词来源：模型给的 ref > 场景+器材简称+拍摄。
    注意别把完整型号塞进去 —— "Sony 24-70mm F2.8 GM II 拍摄" 这种长词在小红书上
@@ -9789,6 +9908,14 @@ function openIdeaDetail(i){
   box.style.display="flex";
   const sc=body.querySelector(".idm-scroll");
   if(sc)sc.scrollTop=0;
+  /* v6.30：选了 Pexels / Pixabay 时，innerHTML 里的占位网格要异步拉图 */
+  const _src=getImgSrc(), _key=getImgKey(_src);
+  if((_src==='pexels'||_src==='pixabay')&&_key){
+    setTimeout(function(){
+      if(_src==='pexels')ideaImgPexels(ideaImageQuery(id));
+      else ideaImgPixabay(ideaImageQuery(id));
+    },0);
+  }
 }
 function closeIdeaDetail(){
   const box=document.getElementById("idea-detail-modal");
@@ -9932,6 +10059,12 @@ function ideaDetailBody(id){
   /* 找真实参考：v6.26 起用 order:-1 提到首屏 */
   const q=ideaSearchTerm(id);
   const kindWord={"图集":"对照图","视频":"参考视频","教程":"教程"}[kind];
+  const imgNote=(function(){
+    const s=getImgSrc(), k=getImgKey(s);
+    if(s==='bing'||!k)return '图来自 Bing 图片搜索，是别人的作品（其中可能混有 AI 生成图），看光线和构图即可；点图能进原网页。';
+    if(s==='pexels')return '图来自 Pexels 免费正版图库，可放心当光线/构图参考；点图进原图页看作者与授权。';
+    return '图来自 Pixabay 免费正版图库，可放心当光线/构图参考；点图进原图页看作者与授权。';
+  })();
   rows.push('<div class="idm-sec idm-srcsec"><div class="idm-h">🔍 真实参考图'+
       '<span class="idm-ask">要找：'+esc(kindWord)+'</span></div>'+
     /* 图片流：直接嵌 Bing 图片搜索结果，看到的就是真实成片 */
@@ -9944,7 +10077,7 @@ function ideaDetailBody(id){
     '<div class="idm-srcs">'+IDEA_SEARCH.map(function(p){
       return '<a class="idm-src" href="'+esc(p.build(q))+'" target="_blank" rel="noopener">'+p.icon+' 在'+esc(p.key)+'找</a>';
     }).join("")+'</div>'+
-    '<div class="idm-note">图来自 Bing 图片搜索，是别人的作品（其中可能混有 AI 生成图），看光线和构图即可；点图能进原网页。</div></div>');
+    '<div class="idm-note">'+imgNote+'</div></div>');
   return '<div class="idm-scroll">'+rows.join("")+'</div>';
 }
 function ideaElementCell(label,val){
@@ -12100,6 +12233,7 @@ function openSettings(){
   if(sel)sel.value=localStorage.getItem(CLOUD_KEY_PREFIX+"sync_interval")||"60";
   updateStorageBar();   /* v5.92：打开设置即刷新存储容量条与预警 */
   refreshAIVoiceUI(); /* v5.97：刷新 AI 语音提取配置 */
+  loadImgSrcUI();   /* v6.30：刷新灵感配图源选择 + Key */
   document.getElementById("settings-modal").style.display="flex";
 }
 function closeSettings(){document.getElementById("settings-modal").style.display="none";}
