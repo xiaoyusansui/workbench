@@ -2670,6 +2670,63 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   }
 
 
+  /* ====== 出片策划（v6.35）====== */
+  .shoot-wrap{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start;margin-top:14px}
+  @media(max-width:860px){.shoot-wrap{grid-template-columns:1fr}}
+  .shoot-form{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:18px}
+  .sf-row{margin-bottom:13px}
+  .sf-2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .sf-lab{display:block;font-size:11.5px;font-weight:900;color:var(--muted);margin-bottom:5px;letter-spacing:.3px}
+  .sf-in{width:100%;background:var(--bg3);border:1px solid var(--glass-border);border-radius:var(--r-ctl);padding:9px 11px;font-size:13px;color:var(--ink);font-family:inherit;box-sizing:border-box}
+  .sf-in:focus{outline:none;border-color:var(--gold)}
+  .sf-ta{min-height:62px;resize:vertical;line-height:1.5}
+  .shoot-result{display:flex;flex-direction:column;gap:14px}
+  .sp-sec{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:16px 18px}
+  .sp-h{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:10px}
+  .sp-sub{font-size:11.5px;font-weight:800;color:var(--brand2);margin:6px 0 7px}
+  .sp-sub-gap{color:var(--amber)}
+  .sp-glist{display:flex;flex-direction:column;gap:8px}
+  .sp-gi{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:var(--r-sub);background:var(--bg3);border:1px solid var(--glass-border)}
+  .sp-gi.gap{background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.3)}
+  .sp-pri{flex:none;font-size:10px;font-weight:900;padding:0 7px;border-radius:5px;height:17px;line-height:17px}
+  .sp-pri.p0{background:rgba(248,113,113,.18);color:var(--coral)}
+  .sp-pri.p1{background:rgba(251,191,36,.18);color:var(--amber)}
+  .sp-pri.p2{background:rgba(148,163,184,.18);color:var(--muted2)}
+  .sp-pri.must,.sp-pri.sug{background:rgba(34,197,94,.14);color:var(--brand2)}
+  .sp-gib{flex:1;min-width:0}
+  .sp-gn{font-size:12.5px;font-weight:900;color:var(--ink)}
+  .sp-own{font-style:normal;font-size:11px;font-weight:700;color:var(--brand2);margin-left:6px}
+  .sp-gr{font-size:11.5px;line-height:1.5;color:var(--gold2);font-weight:700;margin-top:2px}
+  .sp-tag{flex:none;font-size:10.5px;font-weight:900;padding:2px 8px;border-radius:99px}
+  .sp-gi.ok .sp-tag{background:rgba(34,197,94,.14);color:var(--brand2)}
+  .sp-gi.gap .sp-tag{background:rgba(248,113,113,.14);color:var(--coral)}
+  .sp-ok{font-size:12.5px;font-weight:800;color:var(--brand2)}
+  .sp-qt{display:flex;flex-direction:column;gap:7px}
+  .sp-qr{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:var(--r-sub);background:var(--bg3);border:1px solid var(--glass-border)}
+  .sp-qs{font-size:13px;font-weight:800;color:var(--ink2)}
+  .sp-qn{font-size:14px;font-weight:900;color:var(--gold2)}
+  .sp-sc{margin-bottom:11px}
+  .sp-sch{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px}
+  .sp-scn{font-size:11px;font-weight:800;color:var(--muted);margin-left:6px}
+  .sp-an{background:var(--bg3);border:1px solid var(--glass-border);border-radius:var(--r-sub);padding:9px 12px;margin-bottom:7px}
+  .sp-ant{font-size:12.5px;font-weight:800;color:var(--ink2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .sp-lens{font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:99px;background:rgba(34,197,94,.12);color:var(--brand2)}
+  .sp-lens.miss{background:rgba(248,113,113,.12);color:var(--coral)}
+  .sp-antip{font-size:11.5px;line-height:1.55;color:var(--muted2);margin-top:3px}
+  .sp-vib{font-size:12.5px;line-height:1.65;color:var(--ink2)}
+  .shoot-actions{display:flex;gap:10px;margin:4px 0 18px}
+  .shoot-history{margin-top:6px}
+  .shoot-history h4{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px}
+  .sp-hist{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-sub);box-shadow:var(--card-shadow);margin-bottom:9px}
+  .sp-hist-main{flex:1;min-width:0}
+  .sp-hist-t{font-size:13px;font-weight:900;color:var(--ink)}
+  .sp-hist-m{font-size:11px;color:var(--muted);margin-top:2px}
+  .sp-hist-btns{flex:none;display:flex;gap:7px}
+  .sp-hbtn{border:1px solid rgba(212,165,116,.4);background:rgba(212,165,116,.1);color:var(--gold2);border-radius:var(--r-ctl);padding:4px 12px;font-size:11.5px;font-weight:800;font-family:inherit;cursor:pointer;transition:.12s}
+  .sp-hbtn:hover{background:rgba(212,165,116,.2)}
+  .sp-hbtn.del{border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.08);color:var(--coral)}
+  .sp-hist-empty{font-size:12px;color:var(--muted);padding:6px 0;line-height:1.6}
+
 </style>
 <script>
   /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
@@ -5052,6 +5109,11 @@ window.QRCode = {
         <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
       </li>
 
+      <li class="nav-item" data-nav="shoot" onclick="switchTab('shoot')" data-page-node-id="v635ShootNav">
+        <span class="nav-icon" style="background:rgba(212,165,116,.14);color:var(--gold)" data-page-node-id="v635ShootNavIco">🎬</span>
+        <span data-page-node-id="v635ShootNavLbl">出片策划</span>
+      </li>
+
       <div class="nav-label" data-page-node-id="XEPCsx5cOk1d9MpIAMD29Q">🌱 个人成长</div>
       <li class="nav-item" data-nav="okr" onclick="switchTab('okr')" data-page-node-id="L9XlV5wbcr3AepXXEjz3mD">
         <span class="nav-icon" style="background:rgba(236,72,153,.12);color:#ec4899" data-page-node-id="fOUkXpsGcLnzHNCJAfH8C8">🎯</span>
@@ -5739,6 +5801,68 @@ window.QRCode = {
         <div id="bookings-list" data-page-node-id="CmYhs9maHkcExCM0OlaZiG"></div>
       </section>
 
+      <!-- ==================== 出片策划 ==================== -->
+      <section id="panel-shoot" style="display:none" data-page-node-id="v635ShootPanel">
+        <div class="sec-head" data-page-node-id="v635ShootHead">
+          <h2 data-page-node-id="v635ShootTitle">🎬 出片策划</h2>
+          <div class="sec-actions" data-page-node-id="v635ShootActs">
+            <button class="btn sm" onclick="genShootPlan()" data-page-node-id="v635GenBtn">⚡ 生成策划</button>
+          </div>
+        </div>
+        <div class="works-hint" data-page-node-id="v635ShootHint">接了一个订单？填好下面，自动帮你算「明天带什么器材」+「每个场景怎么拍、出几张精修」。镜头/灯/三脚架都按你登记的真实器材匹配，没有就标缺口。</div>
+        <div class="shoot-wrap" data-page-node-id="v635ShootWrap">
+          <div class="shoot-form" data-page-node-id="v635ShootForm">
+            <div class="sf-row">
+              <label class="sf-lab">订单标题 / 客户</label>
+              <input class="sf-in" id="shoot-title" placeholder="如：小雨 &amp; 阿杰 订婚宴" data-page-node-id="v635T">
+            </div>
+            <div class="sf-row sf-2">
+              <div><label class="sf-lab">拍摄日期</label><input class="sf-in" id="shoot-date" type="date" data-page-node-id="v635D"></div>
+              <div><label class="sf-lab">订单类型</label>
+                <select class="sf-in" id="shoot-type" data-page-node-id="v635Ty">
+                  <option>订婚宴</option><option>婚礼跟拍</option><option>婚纱写真</option><option>轻婚纱</option><option>宝宝照</option><option>全家福</option><option>产品</option><option>活动</option>
+                </select>
+              </div>
+            </div>
+            <div class="sf-row sf-2">
+              <div><label class="sf-lab">精修张数</label><input class="sf-in" id="shoot-count" type="number" min="1" max="999" value="20" data-page-node-id="v635C"></div>
+              <div><label class="sf-lab">场地氛围</label>
+                <select class="sf-in" id="shoot-venue" data-page-node-id="v635V">
+                  <option>新娘自布置(森系/ins风)</option><option>酒店宴会厅</option><option>草坪户外</option><option>海边</option><option>室内纯色</option><option>其他</option>
+                </select>
+              </div>
+            </div>
+            <div class="sf-row sf-2">
+              <div><label class="sf-lab">拍摄时段</label>
+                <select class="sf-in" id="shoot-time" data-page-node-id="v635Ti"><option>白天为主</option><option>全天</option><option>夜晚为主</option></select>
+              </div>
+              <div><label class="sf-lab">机位数</label>
+                <select class="sf-in" id="shoot-cams" data-page-node-id="v635Cm"><option value="1">单机位（我一人）</option><option value="2">双机位</option></select>
+              </div>
+            </div>
+            <div class="sf-row sf-2">
+              <div><label class="sf-lab">是否拍视频</label>
+                <select class="sf-in" id="shoot-video" data-page-node-id="v635Vd"><option>否</option><option>是</option></select>
+              </div>
+              <div></div>
+            </div>
+            <div class="sf-row">
+              <label class="sf-lab">客户特殊要求</label>
+              <textarea class="sf-in sf-ta" id="shoot-req" placeholder="如：多拍和新娘爸妈的互动、要几张竖版发朋友圈" data-page-node-id="v635R"></textarea>
+            </div>
+          </div>
+          <div class="shoot-result" id="shoot-result" data-page-node-id="v635Result"></div>
+        </div>
+        <div class="shoot-actions" id="shoot-actions" style="display:none" data-page-node-id="v635Acts">
+          <button class="btn ghost" onclick="saveShootPlan()" data-page-node-id="v635Save">💾 保存此策划</button>
+          <button class="btn ghost" onclick="copyShootPlan()" data-page-node-id="v635Copy">📋 复制全文</button>
+        </div>
+        <div class="shoot-history" data-page-node-id="v635Hist">
+          <h4 data-page-node-id="v635HistH">🗂 历史策划</h4>
+          <div id="shoot-history-list" data-page-node-id="v635HistList"></div>
+        </div>
+      </section>
+
       <!-- ==================== 同步托盘 ==================== -->
       <div class="synctray" data-page-node-id="RPWmzwziWBAQJjzQIljPfx">
         <div class="sync-status" id="sync-status" title="点击设置云同步" onclick="openSyncSetup()" data-page-node-id="hXSdgKHRAmcDxcVGgGnOJC">
@@ -6000,7 +6124,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.33</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.35</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6192,7 +6316,7 @@ window.QRCode = {
 })();
 
 /* ==================== 公共工具 ==================== */
-const esc=s=>(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39"}[c]));
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39"}[c]));
 const PAL=["#60a5fa","#22c55e","#a78bfa","#fbbf24","#f87171","#2dd4bf","#fb923c","#38bdf8","#f472b6","#a3e635"];
 /* v6.13：板块数已达 7，哈希取色会撞色 → 给正式板块钉死专属色，新增板块走哈希兜底 */
 const BK_FIXED={
@@ -6479,7 +6603,9 @@ const SEED={
     {title:"摄影课程 Phase1 作业：盲调练习",date:"2026-08-07",time:"20:00",tag:"study",done:false,desc:"闭眼回忆三要素数值"},
     {title:"周末暖场活动 拍摄记录",date:"2026-08-09",time:"14:00",tag:"shot",done:false,desc:"露营咖啡主题活动现场"}
   ],
-  works:[]
+  works:[],
+  shootPlans:[],
+  shootLast:null
 };
 
 const BANKUAI_REMAP={
@@ -6501,7 +6627,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.33";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.35";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6706,7 +6832,8 @@ const TAB_TITLES={
   idea:{title:"💡 灵感收集",sub:"摄影创作 · 按我的器材 × 婚礼跟拍场景收集 · 拍前现成参考"},
   schedule:{title:"📅 排程日历",sub:"全局常驻 · 拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
   works:{title:"📷 我的作品",sub:"摄影创作 · 上传作品 · 标记客片 · 同步客户画廊"},
-  bookings:{title:"📩 客户预约",sub:"接单交付 · 客户在客户端提交跟拍预约 · 统一处理"}
+  bookings:{title:"📩 客户预约",sub:"接单交付 · 客户在客户端提交跟拍预约 · 统一处理"},
+  shoot:{title:"🎬 出片策划",sub:"接单交付 · 按订单自动出设备清单 + 拍摄角度 + 精修配额"}
 };
 function openMobileNav(){
   const sb=document.querySelector(".sidebar");const ov=document.querySelector(".mobile-nav-overlay");
@@ -6721,7 +6848,7 @@ function closeMobileNav(){
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
-  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings"];
+  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
   document.getElementById("page-title").innerHTML=info.title+' <span class="sparkle"></span>';
@@ -6730,7 +6857,7 @@ function switchTab(t){
   else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
-  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();
+  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();else if(t==="shoot")renderShoot();
   // 手机端切换模块后关闭抽屉并回到顶部
   if(window.innerWidth<=834){closeMobileNav();window.scrollTo({top:0,behavior:"smooth"});}
 }
@@ -6784,7 +6911,9 @@ function renderOverview(){
      big:jobs.length,sub:`进行中 ${jDoing} · 已完成 ${jDone}`,
      pct:jobs.length?Math.round(jDone/jobs.length*100):0},
     {nav:"bookings",icon:"📩",color:"#4f9dff",title:"客户预约",
-     big:0,sub:`客户提交后在此统一处理`,pct:0,remote:true}
+     big:0,sub:`客户提交后在此统一处理`,pct:0,remote:true},
+    {nav:"shoot",icon:"🎬",color:"var(--gold)",title:"出片策划",
+     big:(DB.shootPlans||[]).length,sub:`已存 ${(DB.shootPlans||[]).length} 份策划`,pct:0}
   ];
   const learnCards=[
     {nav:"hot",icon:"🔥",color:"var(--coral)",title:"摄影热点",
@@ -9259,6 +9388,329 @@ function renderGearAudit(){
     '</div>';
 }
 
+/* ==================== v6.35 出片策划：按订单自动出「带什么 + 怎么拍」 ==================== */
+/* 复用 v6.33 器材诊断（gearAuditCalc / ideaFindGear / ideaLensParse）与 DB.gears。
+   不联网、不虚构型号：镜头/灯/三脚架都从你【真实登记的器材】里取，没有就如实标缺口。
+   场景角度里的镜头类型（人像/特写/广角/长焦/微距/环境）按真实器材匹配，缺了就给补购建议。 */
+const SHOOT_TYPES={
+  "订婚宴":{scenes:[
+    {s:"晨袍·准备",w:3,a:[
+      {t:"窗边自然光半身",l:"人像",tip:"新娘穿晨袍对窗梳妆，大光圈定焦拍侧脸与双手，背景虚化出窗格光斑。"},
+      {t:"布置细节特写",l:"微距",tip:"她自己布置的桌花、请柬、甜品台，贴近拍质感，交代「亲手布置」的用心。"}]},
+    {s:"仪式·交换信物",w:6,a:[
+      {t:"正面记录",l:"环境",tip:"24-70 站稍远，框住两人 + 背景布置，交代现场氛围。"},
+      {t:"手部特写",l:"特写",tip:"交换戒指/信物时俯拍手部特写，定焦凑近，背景干净。"},
+      {t:"情绪抓拍",l:"人像",tip:"誓词时盯新娘表情连拍，捕捉落泪或微笑的瞬间。"}]},
+    {s:"互动·敬茶敬酒",w:4,a:[
+      {t:"低角度互动",l:"环境",tip:"蹲低拍敬茶/碰杯，把自布置背景也收进画面。"},
+      {t:"杯盏小品",l:"微距",tip:"杯沿、茶盏、戒指并置的小品，补充细节张数。"}]},
+    {s:"亲友合影",w:4,a:[
+      {t:"全家福站位",l:"环境",tip:"高机位或借三脚架，排位紧凑，确保每张脸都亮。"},
+      {t:"好友放松合影",l:"人像",tip:"仪式后和新娘闺蜜的自然合影，引导真笑。"}]},
+    {s:"现场布置留念",w:3,a:[
+      {t:"全景氛围",l:"广角",tip:"用广角把整片自布置场景收进来：拱门、桌花、灯串、迎宾牌。"},
+      {t:"前景框构图",l:"人像",tip:"用花枝/灯串做前景虚化框住新娘，层次更足。"}]}
+  ]},
+  "婚礼跟拍":{scenes:[
+    {s:"迎亲接亲",w:4,a:[
+      {t:"堵门找鞋",l:"环境",tip:"35/24-70 抓堵门互动与抱新娘出门，注意退路别卡门框。"},
+      {t:"车内对视",l:"人像",tip:"上车后拍两人对视或牵手，定焦大光圈。"},
+      {t:"婚鞋特写",l:"微距",tip:"婚鞋、手捧花并置特写，交代细节。"}]},
+    {s:"仪式现场",w:6,a:[
+      {t:"入场全景",l:"环境",tip:"24-70 站远交代入场与来宾。"},
+      {t:"交换戒指",l:"特写",tip:"俯拍手部特写，连拍。"},
+      {t:"誓词情绪",l:"人像",tip:"长焦或定焦抓脸，不打扰。"},
+      {t:"亲吻瞬间",l:"长焦",tip:"70-200 远处抓亲吻，避免闯入。"}]},
+    {s:"宴席敬酒",w:5,a:[
+      {t:"主桌敬酒",l:"环境",tip:"24-70 跟敬酒动线，必要时离机闪补光。"},
+      {t:"父母落泪",l:"人像",tip:"抓父母眼眶红/拥抱，情感张力最强。"},
+      {t:"酒杯特写",l:"微距",tip:"交杯/酒杯小品。"}]},
+    {s:"合影全家福",w:4,a:[
+      {t:"大合影高机位",l:"环境",tip:"三脚架 + 离机闪，排位紧凑。"},
+      {t:"亲友抓拍",l:"人像",tip:"合影后放松互动。"}]},
+    {s:"外景旅拍",w:3,a:[
+      {t:"逆光情侣",l:"人像",tip:"日落前逆光剪影/轮廓光。"},
+      {t:"环境空镜",l:"广角",tip:"草坪/公路大场景。"}]},
+    {s:"夜景氛围",w:3,a:[
+      {t:"串灯人像",l:"人像",tip:"灯串/冷焰火做背景，大光圈。"},
+      {t:"烟花抓拍",l:"长焦",tip:"长焦压缩烟花与新人的关系。"}]}
+  ]},
+  "婚纱写真":{scenes:[
+    {s:"晨袍·化妆",w:3,a:[
+      {t:"化妆花絮",l:"人像",tip:"侧光拍化妆与整理头纱。"},
+      {t:"窗边晨袍",l:"人像",tip:"对窗自然光半身。"}]},
+    {s:"外景环境",w:5,a:[
+      {t:"逆光氛围",l:"人像",tip:"日落逆光剪影。"},
+      {t:"环境互动",l:"广角",tip:"把场景收进来，人物不抢戏。"},
+      {t:"裙摆特写",l:"微距",tip:"婚纱裙摆/头纱纹理。"}]},
+    {s:"情绪人像",w:5,a:[
+      {t:"侧脸眼神",l:"特写",tip:"定焦大光圈拍眼神。"},
+      {t:"动态甩纱",l:"人像",tip:"甩纱动态，高速快门。"}]},
+    {s:"细节静物",w:3,a:[
+      {t:"戒指婚鞋",l:"微距",tip:"并置特写。"}]}
+  ]},
+  "轻婚纱":{scenes:[
+    {s:"晨袍准备",w:3,a:[{t:"对窗半身",l:"人像",tip:"自然光半身。"},{t:"布置特写",l:"微距",tip:"细节特写。"}]},
+    {s:"外景人像",w:6,a:[{t:"逆光氛围",l:"人像",tip:"逆光剪影。"},{t:"环境空镜",l:"广角",tip:"收环境。"},{t:"裙摆特写",l:"微距",tip:"裙摆纹理。"}]},
+    {s:"情绪特写",w:5,a:[{t:"侧脸眼神",l:"特写",tip:"眼神特写。"},{t:"动态甩纱",l:"人像",tip:"甩纱动态。"}]},
+    {s:"细节留念",w:3,a:[{t:"戒指婚鞋",l:"微距",tip:"并置特写。"}]}
+  ]},
+  "宝宝照":{scenes:[
+    {s:"互动抓拍",w:5,a:[{t:"亲子互动",l:"人像",tip:"蹲平拍亲子，定焦大光圈。"},{t:"笑声特写",l:"特写",tip:"抓笑眼与嘴。"}]},
+    {s:"细节特写",w:4,a:[{t:"小手脚",l:"微距",tip:"手/脚/睫毛特写。"},{t:"玩具并置",l:"微距",tip:"道具小品。"}]},
+    {s:"环境空镜",w:3,a:[{t:"爬行环境",l:"广角",tip:"低角度收环境。"}]}
+  ]},
+  "全家福":{scenes:[
+    {s:"正式合影",w:6,a:[{t:"排位站位",l:"环境",tip:"三脚架高机位，确保脸亮。"},{t:"互动放松",l:"人像",tip:"引导自然笑。"}]},
+    {s:"环境空镜",w:3,a:[{t:"家居氛围",l:"广角",tip:"收家居环境。"}]},
+    {s:"细节留念",w:2,a:[{t:"手部相握",l:"特写",tip:"三代同堂手相握。"}]}
+  ]},
+  "产品":{scenes:[
+    {s:"白底主图",w:6,a:[{t:"平铺/立拍",l:"微距",tip:"三脚架 + 灯，白底干净。"},{t:"倒影质感",l:"微距",tip:"亚克力倒影。"}]},
+    {s:"场景图",w:4,a:[{t:"环境融入",l:"环境",tip:"24-70 融入使用场景。"},{t:"氛围光",l:"人像",tip:"暖光氛围。"}]},
+    {s:"细节特写",w:3,a:[{t:"材质纹理",l:"微距",tip:"近摄材质。"}]}
+  ]},
+  "活动":{scenes:[
+    {s:"开场舞台",w:5,a:[{t:"灯光秀",l:"环境",tip:"24-70 收舞台。"},{t:"领导讲话",l:"长焦",tip:"长焦不打扰。"}]},
+    {s:"颁奖合影",w:5,a:[{t:"握手奖杯",l:"环境",tip:"24-70 抓握手。"},{t:"队列大合影",l:"广角",tip:"广角收队列。"}]},
+    {s:"现场花絮",w:3,a:[{t:"观众反应",l:"人像",tip:"抓观众。"}]}
+  ]}
+};
+const SHOOT_GEAR={
+  "订婚宴":["body1","stdZoom","prime","light2","trigger","wide","battery","card2","macro","backup"],
+  "婚礼跟拍":["body2","stdZoom","tele","prime","wide","light2","trigger","battery","card2","modifier","macro","backup"],
+  "婚纱写真":["prime","stdZoom","wide","light2","trigger","battery","card2","macro"],
+  "轻婚纱":["prime","stdZoom","wide","light2","battery","card2"],
+  "宝宝照":["prime","stdZoom","light2","trigger","battery","card2","wide"],
+  "全家福":["stdZoom","wide","light2","trigger","battery","card2"],
+  "产品":["light2","trigger","macro","stdZoom","prime","battery","card2"],
+  "活动":["body2","stdZoom","tele","light2","trigger","battery","card2","wide"]
+};
+/* 把精修张数按场景权重分配，保证精确求和到 N（余数按小数最大优先补 1） */
+function shootSplit(ws,N){
+  N=Math.max(0,Math.round(N||0));
+  if(!ws.length||!N)return ws.map(function(){return 0;});
+  var tot=ws.reduce(function(a,b){return a+b;},0)||1;
+  var raw=ws.map(function(w){return w/tot*N;});
+  var fl=raw.map(Math.floor);
+  var rem=N-fl.reduce(function(a,b){return a+b;},0);
+  var fr=raw.map(function(v,i){return {i:i,f:v-Math.floor(v)};}).sort(function(a,b){return b.f-a.f;});
+  for(var k=0;k<rem;k++)fl[fr[k%fr.length].i]++;
+  return fl;
+}
+/* 按真实器材选镜头：镜头类型 → 你库里真实存在的那支，没有就标缺口 */
+function shootPickLens(type){
+  var gears=(DB.gears||[]).filter(function(g){return g.status!=='retired'&&g.category==='镜头';})
+    .map(function(g){return {g:g,info:ideaLensParse(g)};}).filter(function(x){return x.info.min!=null;});
+  var out=function(label,owned){return {label:label,owned:!!owned};};
+  if(!gears.length)return out("暂无镜头（需补一支主力头）",false);
+  var pick;
+  if(type==="人像"||type==="特写"||type==="情绪"){
+    pick=gears.filter(function(x){return !x.info.isZoom;})
+      .sort(function(a,b){return (a.info.aper||9)-(b.info.aper||9)||b.info.max-a.info.max;})[0]
+      || gears.slice().sort(function(a,b){return b.info.max-a.info.max;})[0];
+  }else if(type==="广角"||type==="环境"||type==="合影"){
+    pick=gears.slice().sort(function(a,b){return a.info.min-b.info.min;})[0];
+  }else if(type==="长焦"||type==="敬酒"||type==="远处"){
+    pick=gears.slice().sort(function(a,b){return b.info.max-a.info.max;})[0];
+  }else if(type==="微距"||type==="细节"||type==="产品"){
+    var mc=gears.find(function(x){return /macro|微距|90mm|100mm|105mm/i.test((x.g.model||x.g.name||""));});
+    if(mc)pick=mc; else return out("暂无微距（可加近摄接圈 ¥200-400）",false);
+  }else{
+    pick=gears.slice().sort(function(a,b){return b.info.max-a.info.max;})[0];
+  }
+  if(!pick)return out("暂无合适镜头（需补）",false);
+  var nm=pick.g.model||pick.g.name||"";
+  return out(nm+(pick.info.isZoom?" 变焦":" 定焦")+(pick.info.aper?" F"+pick.info.aper:""),true);
+}
+/* 器材缺口表里的「已备器材名」：从真实登记的器材里取对应那件 */
+function shootOwnNameFor(k){
+  var live=(DB.gears||[]).filter(function(g){return g.status!=='retired';});
+  function first(cat){var g=live.find(function(x){return x.category===cat;});return g?g.name:null;}
+  function find(tok){var g=ideaFindGear(tok);return g?g.name:null;}
+  switch(k){
+    case "body1": case "body2": return first("相机");
+    case "light2": return first("灯光");
+    case "trigger": return find("引闪");
+    case "battery": return find("电池");
+    case "card2": return find("内存卡");
+    case "modifier": return find("反光板");
+    case "backup": return find("硬盘");
+    case "tripod": return find("三脚架");
+    case "macro": return find("微距");
+    case "stdZoom": {var e=shootPickLens("环境");return e.owned?e.label:null;}
+    case "tele": {var e2=shootPickLens("长焦");return e2.owned?e2.label:null;}
+    case "prime": {var e3=shootPickLens("人像");return e3.owned?e3.label:null;}
+    case "wide": {var e4=shootPickLens("广角");return e4.owned?e4.label:null;}
+  }
+  return null;
+}
+/* 这台订单需要哪些器材 + 你备齐了没（body1 是底线，视频单加三脚架） */
+function shootGearList(type,cams,video){
+  var r=gearAuditCalc();
+  var keys=(SHOOT_GEAR[type]||SHOOT_GEAR["订婚宴"]).slice();
+  if(keys.indexOf("body1")<0)keys.unshift("body1");
+  if(cams>=2&&keys.indexOf("body2")<0)keys.push("body2");
+  if(video&&keys.indexOf("tripod")<0)keys.push("tripod");
+  return keys.map(function(k){
+    var n=GA_NEEDS.filter(function(x){return x.k===k;})[0];
+    var isGa=!!n;
+    var ok=isGa?r.c[k]:(k==="body1"?(r.p.bodies>=1):(k==="tripod"?!!ideaFindGear("三脚架"):false));
+    var own=shootOwnNameFor(k);
+    var name=isGa?n.name:(k==="body1"?"机身":(k==="tripod"?"三脚架":"器材"));
+    var pri=isGa?n.p:(k==="body1"?"必备":(k==="tripod"?"建议":"建议"));
+    var priCls=isGa?n.p.toLowerCase():(k==="body1"?"must":"sug");
+    var rec=isGa?n.rec:(k==="body1"?"至少 1 台机身":(k==="tripod"?"合影/视频/长曝光需要，碳纤维款更轻便":"建议携带"));
+    return {k:k,name:name,ok:ok,own:own,pri:pri,priCls:priCls,rec:rec,isGa:isGa};
+  });
+}
+/* 场地氛围 + 时段 → 控光/构图提示（新娘自布置会强化「多拍她布置的细节」） */
+function shootVibe(venue,time){
+  var a=[];
+  if(venue.indexOf("新娘自布置")>=0)a.push("现场是新人自己布置的，多拍花艺、桌布、请柬、甜品台等细节，并把布置物当前景框，画面更有「专属感」——这是你这场最该多交代的内容。");
+  else if(venue.indexOf("酒店")>=0)a.push("酒店宴会厅多为白墙硬光，注意用离机闪跳闪柔化，避免直打。");
+  else if(venue.indexOf("草坪")>=0||venue.indexOf("户外")>=0)a.push("户外注意防晒与风，备遮光板/反光板控光，黄昏是出片黄金期。");
+  else if(venue.indexOf("海边")>=0)a.push("海边反光强、易过曝，减曝光补偿，注意镜头防潮防沙。");
+  else if(venue.indexOf("室内纯色")>=0)a.push("纯色背景干净，适合极简产品感写真，注意布光均匀。");
+  if(time.indexOf("夜晚")>=0)a.push("夜间/弱光场景多，建议开灯补光、必要时离机闪，ISO 可适当提高保快门。");
+  else if(time.indexOf("全天")>=0)a.push("全天跨度大，注意正午顶光与傍晚逆光的曝光切换。");
+  return a.join(" ");
+}
+/* 纯文本版策划（用于复制/保存） */
+function shootPlanText(o,split,gear,scenes){
+  var L=[];
+  L.push("【出片策划 · "+o.title+"】");
+  L.push("类型："+o.type+" ｜ 精修 "+o.count+" 张 ｜ 场地："+o.venue+" ｜ 时段："+o.time+(o.cams>=2?" ｜ 双机位":" ｜ 单机位")+(o.video?" ｜ 含视频":""));
+  if(o.req)L.push("特殊要求："+o.req);
+  L.push("");
+  L.push("一、设备清单");
+  gear.forEach(function(g){ L.push((g.ok?"✓ 已备":"✗ 需补")+" ["+g.pri+"] "+g.name+(g.own?"（"+g.own+"）":"")+(g.ok?"":" → "+g.rec)); });
+  L.push("");
+  L.push("二、出片配额（共 "+o.count+" 张）");
+  scenes.forEach(function(sc,i){ L.push("· "+sc.s+"："+split[i]+" 张"); });
+  L.push("");
+  L.push("三、拍摄角度与机位");
+  scenes.forEach(function(sc,i){ L.push("【"+sc.s+" · "+split[i]+" 张】"); sc.a.forEach(function(an){ var ls=shootPickLens(an.l); L.push("  - "+an.t+" ｜ 镜头："+ls.label+(ls.owned?"":"（缺口）")+" ｜ "+an.tip); }); });
+  if(o.vibe){ L.push(""); L.push("氛围提示："+o.vibe); }
+  return L.join("\n");
+}
+function genShootPlan(){
+  try{
+    var type=document.getElementById("shoot-type").value;
+    var count=Math.max(1,Math.min(999,parseInt(document.getElementById("shoot-count").value)||20));
+    var venue=document.getElementById("shoot-venue").value;
+    var time=document.getElementById("shoot-time").value;
+    var cams=parseInt(document.getElementById("shoot-cams").value)||1;
+    var video=document.getElementById("shoot-video").value==="是";
+    var req=(document.getElementById("shoot-req").value||"").trim();
+    var title=(document.getElementById("shoot-title").value||"").trim()||(type+" · "+count+"张精修");
+    var date=(document.getElementById("shoot-date").value||"");
+    var t=SHOOT_TYPES[type]||SHOOT_TYPES["订婚宴"];
+    var scenes=t.scenes;
+    var split=shootSplit(scenes.map(function(s){return s.w;}),count);
+    var gear=shootGearList(type,cams,video);
+    var vibe=shootVibe(venue,time);
+    var o={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req,vibe:vibe};
+    DB.shootLast={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req};
+    try{save();}catch(e){}
+    var gearReady=gear.filter(function(g){return g.ok;});
+    var gearGap=gear.filter(function(g){return !g.ok;});
+    function gearItem(g){
+      return '<div class="sp-gi '+(g.ok?"ok":"gap")+'"><span class="sp-pri '+g.priCls+'">'+g.pri+'</span>'+
+        '<div class="sp-gib"><div class="sp-gn">'+esc(g.name)+(g.own?' <em class="sp-own">'+esc(g.own)+'</em>':'')+'</div>'+
+        (g.ok?'':'<div class="sp-gr">→ '+esc(g.rec)+'</div>')+'</div>'+
+        '<span class="sp-tag">'+(g.ok?"已备":"需补")+'</span></div>';
+    }
+    var gearHtml='<div class="sp-sec"><div class="sp-h">🎒 设备清单</div>'+
+      (gearReady.length?'<div class="sp-sub">必带（已备 '+gearReady.length+' 项）</div><div class="sp-glist">'+gearReady.map(gearItem).join("")+'</div>':'')+
+      (gearGap.length?'<div class="sp-sub sp-sub-gap">建议补充（缺口 '+gearGap.length+' 项，按优先级）</div><div class="sp-glist">'+gearGap.map(gearItem).join("")+'</div>':'<div class="sp-ok">✅ 这场需要的器材你都齐了。</div>')+
+      '</div>';
+    var quotaHtml='<div class="sp-sec"><div class="sp-h">📊 出片配额（共 '+count+' 张精修）</div><div class="sp-qt">'+scenes.map(function(sc,i){
+      return '<div class="sp-qr"><span class="sp-qs">'+esc(sc.s)+'</span><span class="sp-qn">'+split[i]+' 张</span></div>';
+    }).join("")+'</div></div>';
+    var angleHtml='<div class="sp-sec"><div class="sp-h">🎬 拍摄角度与机位</div>'+scenes.map(function(sc,i){
+      return '<div class="sp-sc"><div class="sp-sch">'+esc(sc.s)+' <span class="sp-scn">'+split[i]+' 张</span></div>'+sc.a.map(function(an){
+        var ls=shootPickLens(an.l);
+        return '<div class="sp-an"><div class="sp-ant">'+esc(an.t)+' <span class="sp-lens '+(ls.owned?"own":"miss")+'">📷 '+esc(ls.label)+(ls.owned?"":"（缺口）")+'</span></div>'+
+          '<div class="sp-antip">'+esc(an.tip)+'</div></div>';
+      }).join("")+'</div>';
+    }).join("")+'</div>';
+    var vibHtml=vibe?'<div class="sp-sec"><div class="sp-h">💡 氛围与控光提示</div><div class="sp-vib">'+esc(vibe)+'</div></div>':'';
+    var box=document.getElementById("shoot-result");
+    box.innerHTML=gearHtml+quotaHtml+angleHtml+vibHtml;
+    box.dataset.plan=shootPlanText(o,split,gear,scenes);
+    document.getElementById("shoot-actions").style.display="flex";
+    toast("已生成策划 ✓","ok");
+  }catch(e){ toast("生成失败："+e.message,"err"); }
+}
+function copyShootPlan(){
+  var box=document.getElementById("shoot-result");
+  var txt=box?box.dataset.plan:"";
+  if(!txt){toast("请先生成策划","warn");return;}
+  var done=function(){toast("策划已复制，可直接发给自己或客户","ok");};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){toast("复制失败，请长按选择","err");});}
+  else{var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){toast("复制失败，请长按选择","err");}document.body.removeChild(ta);}
+}
+function saveShootPlan(){
+  var box=document.getElementById("shoot-result");
+  var txt=box?box.dataset.plan:"";
+  if(!txt){toast("请先生成策划","warn");return;}
+  var L=DB.shootPlans||(DB.shootPlans=[]);
+  var d=DB.shootLast||{};
+  L.unshift({id:"sp"+Date.now(),ts:Date.now(),title:d.title||"未命名策划",date:d.date||"",type:d.type||"",count:d.count||0,venue:d.venue||"",time:d.time||"",cams:d.cams||1,video:!!d.video,req:d.req||""});
+  try{save();}catch(e){}
+  renderShootHistory();
+  toast("已存为历史策划 ✓","ok");
+}
+function delShootPlan(id){
+  if(!confirm("删除这份策划？"))return;
+  DB.shootPlans=(DB.shootPlans||[]).filter(function(p){return p.id!==id;});
+  try{save();}catch(e){}
+  renderShootHistory();
+}
+function loadShootPlan(id){
+  var p=(DB.shootPlans||[]).filter(function(x){return x.id===id;})[0];
+  if(!p)return;
+  if(document.getElementById("shoot-title"))document.getElementById("shoot-title").value=p.title||"";
+  if(document.getElementById("shoot-date"))document.getElementById("shoot-date").value=p.date||"";
+  if(document.getElementById("shoot-type"))document.getElementById("shoot-type").value=p.type||"订婚宴";
+  if(document.getElementById("shoot-count"))document.getElementById("shoot-count").value=p.count||20;
+  if(document.getElementById("shoot-venue"))document.getElementById("shoot-venue").value=p.venue||"新娘自布置(森系/ins风)";
+  if(document.getElementById("shoot-time"))document.getElementById("shoot-time").value=p.time||"白天为主";
+  if(document.getElementById("shoot-cams"))document.getElementById("shoot-cams").value=String(p.cams||1);
+  if(document.getElementById("shoot-video"))document.getElementById("shoot-video").value=p.video?"是":"否";
+  if(document.getElementById("shoot-req"))document.getElementById("shoot-req").value=p.req||"";
+  genShootPlan();
+}
+function renderShootHistory(){
+  var host=document.getElementById("shoot-history-list");
+  if(!host)return;
+  var L=DB.shootPlans||[];
+  if(!L.length){host.innerHTML='<div class="sp-hist-empty">还没有保存的策划。生成后点「保存此策划」即可留档，明天直接调出来看。</div>';return;}
+  host.innerHTML=L.map(function(p){
+    return '<div class="sp-hist"><div class="sp-hist-main"><div class="sp-hist-t">'+esc(p.title||"未命名")+'</div>'+
+      '<div class="sp-hist-m">'+esc(p.type||"")+(p.date?' · '+esc(p.date):'')+' · '+esc(p.count||0)+' 张精修 · '+esc(p.venue||"")+'</div></div>'+
+      '<div class="sp-hist-btns"><button class="sp-hbtn" onclick="loadShootPlan(\''+p.id+'\')">调出</button>'+
+      '<button class="sp-hbtn del" onclick="delShootPlan(\''+p.id+'\')">删</button></div></div>';
+  }).join("");
+}
+function renderShoot(){
+  var last=DB.shootLast||{};
+  if(document.getElementById("shoot-title"))document.getElementById("shoot-title").value=last.title||"";
+  if(document.getElementById("shoot-type"))document.getElementById("shoot-type").value=last.type||"订婚宴";
+  if(document.getElementById("shoot-count"))document.getElementById("shoot-count").value=last.count||20;
+  if(document.getElementById("shoot-venue"))document.getElementById("shoot-venue").value=last.venue||"新娘自布置(森系/ins风)";
+  if(document.getElementById("shoot-time"))document.getElementById("shoot-time").value=last.time||"白天为主";
+  if(document.getElementById("shoot-cams"))document.getElementById("shoot-cams").value=String(last.cams||1);
+  if(document.getElementById("shoot-video"))document.getElementById("shoot-video").value=last.video?"是":"否";
+  if(document.getElementById("shoot-req"))document.getElementById("shoot-req").value=last.req||"";
+  if(document.getElementById("shoot-date")&&!document.getElementById("shoot-date").value){
+    var dt=new Date(Date.now()+86400000);
+    document.getElementById("shoot-date").value=localDateStr(dt);
+  }
+  renderShootHistory();
+}
+
 function renderGears(){
   renderGearAudit();          /* v6.33：器材增删改后诊断同步刷新 */
   const grid=document.getElementById("gear-grid");
@@ -10090,49 +10542,62 @@ const IDEA_FRAME_WORDS=["逆光","剪影","轮廓光","侧逆光","半身","特�
   "俯拍","仰拍","低角度","平视","对称","留白","前景","引导线"];
 /* ③ 打光/灯具词：进图片搜索会被当商品，一律不进搜索词 */
 const IDEA_GEAR_NOISE=["单灯","双灯","三灯","四灯","硬光","柔光","反光板","柔光箱","灯架","补光灯","面光灯","COB","LED灯"];
+/* 强主体：这张照片「最核心是谁/是什么」。优先于地点/机位被挑出来当搜索主语 */
+const IDEA_SUBJECT=["新娘","新郎","婚纱","婚纱照","晨袍","头纱","婚鞋","戒指","手捧花","捧花","伴娘","伴郎","父母","全家福","大合影","合影","宝宝","宠物","美食","咖啡","饮品","蛋糕","产品","人像","写真","婚房","化妆","盘发"];
+/* 中→英映射：Pexels / Pixabay 是英文库，中文 query 几乎搜不到东西；Bing 用中文即可。
+   这里只做本地映射（不联网、不假装会翻译），映射不到的词在英文源会被安全丢弃，由类别词兜底。 */
+const IDEA_ZH2EN={
+  "新娘":"bride","新郎":"groom","婚纱":"wedding dress","婚纱照":"wedding photo","晨袍":"bridal robe","头纱":"veil","婚鞋":"bridal shoes","戒指":"wedding ring","手捧花":"bridal bouquet","捧花":"bouquet","伴娘":"bridesmaid","伴郎":"groomsman","父母":"parents","全家福":"family portrait","合影":"group photo","大合影":"group photo","宝宝":"baby","宠物":"pet","美食":"food","咖啡":"coffee","饮品":"drink","蛋糕":"cake","产品":"product","人像":"portrait","写真":"portrait","婚房":"bridal suite","化妆":"makeup","盘发":"hairstyle",
+  "门框":"doorway","门口":"doorway","窗边":"window","楼梯":"stairs","走廊":"corridor","酒店":"hotel","草坪":"lawn","海边":"beach","公路":"road","餐桌":"dining table","主桌":"head table","舞台":"stage","花门":"flower arch","签到台":"check-in desk","会场":"venue","婚房准备":"bridal preparation","化妆间":"dressing room",
+  "迎亲":"wedding","接亲":"wedding","堵门":"wedding","找鞋":"wedding","仪式":"ceremony","誓词":"vows","交换戒指":"ring exchange","敬茶":"tea ceremony","敬酒":"wedding toast","交杯":"wedding","宴席":"banquet","拥抱":"embrace","亲吻":"kiss","牵手":"holding hands","背影":"back view","侧脸":"profile","眼神":"eyes","眼泪":"tears","落泪":"crying","微笑":"smile","回眸":"looking back",
+  "日出":"sunrise","日落":"sunset","夜晚":"night","夜景":"night","烟花":"fireworks","冷焰火":"fireworks","串灯":"string lights","灯串":"string lights","霓虹":"neon","烛光":"candlelight",
+  "白底":"white background","平铺":"flat lay","静物":"still life","主图":"product shot","包装":"packaging","细节":"detail","质地":"texture","倒影":"reflection","颁奖":"award","奖杯":"trophy",
+  "逆光":"backlight","剪影":"silhouette","轮廓光":"rim light","侧逆光":"backlight","半身":"half body","特写":"close up","全身":"full body","中景":"medium shot","近景":"close up","全景":"wide shot","大场景":"landscape","俯拍":"overhead","仰拍":"low angle","低角度":"low angle","平视":"eye level","对称":"symmetry","留白":"negative space","前景":"foreground","引导线":"leading lines",
+  "婚礼":"wedding","人像":"portrait","活动":"event","商业空间":"architecture"
+};
 const IDEA_BIZ_WORD={"婚礼纪实":"婚礼","人像写真":"人像","活动跟拍":"活动","电商产品":"产品","商业拍摄":"商业空间"};
-function ideaImageQuery(id){
+/* v6.34：图片搜索词生成。两处实质升级（相对 v6.32）：
+   ① 强主体优先 + 用上 desc / tags / elements 文本，让搜索词更贴「这张照片到底拍什么」，而不是泛泛的品类词；
+   ② 按图源给不同语言：Bing 用中文并末尾补类别词（婚纱摄影）收敛；Pexels / Pixabay 必须英文化，否则中文在这两个英文库里几乎搜不到东西 —— 这正是「搜出来和需要差别很大」的主因。
+   不论哪个源，打光器材词（单灯/柔光…）一律剔除，绝不进搜索词。 */
+function ideaImageQuery(id, src){
+  src=src||"bing";
   const x=id||{};
   const clean=function(s){return String(s||"").replace(/[，。、；：！？""''《》()（）\[\]【】#·]/g," ").replace(/\s+/g," ").trim();};
-  const bizKey=String(x.biz||(function(){try{return ideaSceneBiz(x.scene);}catch(e){return "";}})()||"");
-  const biz=IDEA_BIZ_WORD[bizKey]||"";
-  /* v6.32：图片搜索词要描述「这张照片拍的是什么」，不是「怎么打光」。
-     老实现把 单灯/柔光/硬光 也当视觉词，Bing 当灯具商城搜 ——
-     「晨袍门框半身引导」被搜成「婚礼 单灯 柔光」，结果全是 COB 面光灯/补光灯。
-     新规则（内容优先）：标题内容名词 → 不够再补主体/场景 → 最多一个景别/机位词；
-     打光器材词一律剔除。 */
   const el=x.elements||{};
-  const title=String(x.title||"");
-  /* 按「词在段落里出现的先后」挑内容名词，越靠前越优先（标题=这条灵感拍什么） */
-  function contentWords(seg){
-    const arr=[];
-    const s=String(seg||"");
-    IDEA_CONTENT_WORDS.forEach(function(w){ const i=s.indexOf(w); if(i>=0)arr.push({w:w,i:i}); });
-    arr.sort(function(a,b){return a.i-b.i;});
-    const out=[];
-    arr.forEach(function(o){ if(out.indexOf(o.w)<0)out.push(o.w); });
-    return out;
-  }
-  let content=contentWords(title).slice(0,2);
-  if(!content.length)content=contentWords(el.subject).slice(0,1);
-  if(!content.length)content=contentWords(x.scene).slice(0,1);
-  const pool=[title,el.subject,x.scene,x.look,el.comp,el.light,x.lights].join(" ");
-  const frame=[];
-  IDEA_FRAME_WORDS.forEach(function(w){ if(pool.indexOf(w)>=0 && frame.indexOf(w)<0)frame.push(w); });
-  const parts=[];
-  if(biz)parts.push(biz);
-  content.forEach(function(w){ parts.push(w); });
-  if(frame.length && parts.length<4)parts.push(frame[0]);
-  /* 一个词都没挑到时，退回场景名 / 标题 */
-  if(!parts.length){
-    if(x.scene)parts.push(x.scene);
-    else if(title)parts.push(clean(title).slice(0,10));
-  }
-  let q=clean(parts.join(" "));
+  /* 综合文本池：标题 + 描述 + 标签 + 场景 + 各元素字段，越靠前越优先 */
+  const text=[x.title,x.desc,(x.tags||[]).join(" "),x.scene,el.subject,el.comp,el.light,x.look,x.lights].join(" ");
+  /* 按「词在文本里出现的先后」挑词，越靠前越优先 */
+  function pick(words,seg){const a=[];const s=String(seg||"");words.forEach(function(w){const i=s.indexOf(w);if(i>=0)a.push({w:w,i:i});});
+    a.sort(function(p,q){return p.i-q.i;});const o=[];a.forEach(function(p){if(o.indexOf(p.w)<0)o.push(p.w);});return o;}
+  /* 强主体：优先标题/描述/主体/场景里出现的核心（新娘/婚纱/晨袍/戒指…），拿前 2 个 */
+  let subject=[].concat(pick(IDEA_SUBJECT,x.title),pick(IDEA_SUBJECT,(x.desc||"")),pick(IDEA_SUBJECT,el.subject),pick(IDEA_SUBJECT,x.scene)).slice(0,2);
+  if(!subject.length)subject=pick(IDEA_SUBJECT,text).slice(0,1);
+  /* 其余内容词（地点/物体/婚俗）当场景补充，按先后取 1 个 */
+  let rest=pick(IDEA_CONTENT_WORDS,text).filter(function(w){return subject.indexOf(w)<0;});
+  let scene=rest.slice(0,1);
+  let style=pick(IDEA_FRAME_WORDS,text).slice(0,1);
+  let zhParts=subject.concat(scene,style);
+  if(!zhParts.length)zhParts.push(x.scene||clean(x.title).slice(0,10)||"婚纱摄影");
+  let zh=clean(zhParts.join(" "));
   /* 最后一道保险：宁可少词，也绝不把灯具/打光词带出去 */
-  IDEA_GEAR_NOISE.forEach(function(w){ q=q.split(w).join(" "); });
-  q=clean(q);
-  return q.slice(0,28)||"婚礼摄影";
+  IDEA_GEAR_NOISE.forEach(function(w){ zh=zh.split(w).join(" "); });
+  zh=clean(zh);
+  const _bizKey=String(x.biz||(function(){try{return ideaSceneBiz(x.scene);}catch(e){return "";}})()||"");
+  if(src==="bing"){
+    /* Bing 中文搜图：有具体主体时末尾补类别词帮助收敛（婚礼→婚纱摄影，避免被婚庆商品稀释） */
+    const catZh=IDEA_BIZ_WORD[_bizKey]||"";
+    const catZhTail=(catZh==="婚礼"?"婚纱摄影":catZh);
+    /* 末尾补类别词收敛（婚礼→婚纱摄影）；已有类别语义或已含该词就不加，避免重复/冗余 */
+    if(catZhTail && zh.indexOf(catZhTail)<0 && !/婚纱摄影|婚礼|人像|产品|活动|商业/.test(zh))zh=zh+" "+catZhTail;
+    return zh.slice(0,28)||"婚纱摄影";
+  }
+  /* Pexels / Pixabay：英文关键词（这两个库中文几乎搜不到，必须英文化） */
+  const enParts=zhParts.map(function(w){return IDEA_ZH2EN[w];}).filter(Boolean);
+  const catEn={"婚礼":"wedding","人像":"portrait","活动":"event","产品":"product","商业空间":"architecture"}[IDEA_BIZ_WORD[_bizKey]||""]||"wedding";
+  if(!enParts.length)enParts.push(catEn,"photography");
+  else if(enParts.length<2)enParts.push("photography");
+  return enParts.slice(0,4).join(" ").toLowerCase()||"wedding photography";
 }
 /* v6.30：图源配置（Bing / Pexels / Pixabay）。Key 只存本机 localStorage，绝不进源码、不上传。 */
 const IMG_SRC_KEY='xiaoyu_img_src', IMG_PEXELS_KEY='xiaoyu_img_pexels', IMG_PIXABAY_KEY='xiaoyu_img_pixabay';
@@ -10174,7 +10639,7 @@ function bingFrame(q){
 }
 /* 详情页图片流：按用户在设置里选的源渲染 */
 function ideaImgFrameHTML(id){
-  const q=ideaImageQuery(id);
+  const q=ideaImageQuery(id, getImgSrc());
   const src=getImgSrc(), key=getImgKey(src);
   /* 选了 Pexels / Pixabay 但没填 Key —— 老实回退 Bing，并提示 */
   if(src==='bing'||!key){
@@ -10307,8 +10772,8 @@ function openIdeaDetail(i){
   const _src=getImgSrc(), _key=getImgKey(_src);
   if((_src==='pexels'||_src==='pixabay')&&_key){
     setTimeout(function(){
-      if(_src==='pexels')ideaImgPexels(ideaImageQuery(id));
-      else ideaImgPixabay(ideaImageQuery(id));
+      if(_src==='pexels')ideaImgPexels(ideaImageQuery(id,'pexels'));
+      else ideaImgPixabay(ideaImageQuery(id,'pixabay'));
     },0);
   }
 }
@@ -10480,7 +10945,7 @@ function ideaDetailBody(id){
     /* 图片流：直接嵌 Bing 图片搜索结果，看到的就是真实成片 */
     ideaImgFrameHTML(id)+
     '<div class="idm-qrow">'+
-      '<input id="idm-q-in" value="'+esc(ideaImageQuery(id))+'" placeholder="换关键词再搜，如：酒店走廊 逆光 剪影" data-page-node-id="v629ImgQ">'+
+      '<input id="idm-q-in" value="'+esc(ideaImageQuery(id, getImgSrc()))+'" placeholder="换关键词再搜，如：酒店走廊 逆光 剪影" data-page-node-id="v629ImgQ">'+
       '<button class="idm-go" onclick="ideaImgResearch()" data-page-node-id="v629ImgGo">搜图</button>'+
     '</div>'+
     (id.look?('<div class="idm-look"><b>照着找</b><span>'+esc(id.look)+'</span></div>'):'')+
