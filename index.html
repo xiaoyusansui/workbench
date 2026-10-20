@@ -1953,6 +1953,36 @@
   .gc-btn{flex:1;border:none;border-radius:9px;padding:7px 0;font-size:12px;font-weight:700;cursor:pointer;transition:.12s}
   .gc-btn-primary{background:linear-gradient(135deg,var(--muted2),#94a3b8);color:#0f172a}
   .gc-btn-outline{background:var(--bg3);color:var(--muted)}
+
+  /* ====== 器材配置诊断（v6.33）====== */
+  .gear-audit{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(34,197,94,.05),rgba(212,165,116,.08));
+    border:1px solid rgba(212,165,116,.24);border-radius:var(--radius);padding:15px 17px;margin-bottom:16px}
+  .gear-audit::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--brand),var(--gold))}
+  .ga-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px}
+  .ga-title{font-size:13.5px;font-weight:900;color:var(--ink)}
+  .ga-sub{font-size:11px;font-weight:700;color:var(--muted)}
+  .ga-score{margin-left:auto;display:flex;align-items:baseline;gap:2px;font-size:11px;color:var(--muted);font-weight:700}
+  .ga-score b{font-size:22px;color:var(--gold2);font-weight:900;line-height:1}
+  .ga-bar{height:6px;border-radius:99px;background:rgba(148,163,184,.16);overflow:hidden;margin-bottom:8px}
+  .ga-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--gold));transition:width .5s}
+  .ga-verdict{font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:4px}
+  .ga-verdict em{font-style:normal;color:var(--coral)}
+  .ga-item{display:flex;gap:9px;padding:9px 0;border-top:1px dashed rgba(148,163,184,.28)}
+  .ga-pri{flex:none;font-size:10px;font-weight:900;padding:0 7px;border-radius:5px;height:17px;line-height:17px}
+  .ga-pri.p0{background:rgba(248,113,113,.18);color:var(--coral)}
+  .ga-pri.p1{background:rgba(251,191,36,.18);color:var(--amber)}
+  .ga-pri.p2{background:rgba(148,163,184,.18);color:var(--muted2)}
+  .ga-body{flex:1;min-width:0}
+  .ga-name{font-size:12.5px;font-weight:900;color:var(--ink);margin-bottom:2px}
+  .ga-why{font-size:11.5px;line-height:1.55;color:var(--muted2)}
+  .ga-rec{font-size:11.5px;line-height:1.55;color:var(--gold2);font-weight:700;margin-top:3px}
+  .ga-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px solid rgba(148,163,184,.22)}
+  .ga-note{flex:1;min-width:170px;font-size:10.5px;line-height:1.5;color:var(--muted)}
+  .ga-btn{flex:none;border:1px solid rgba(212,165,116,.4);background:rgba(212,165,116,.1);color:var(--gold2);
+    border-radius:var(--r-ctl);padding:5px 11px;font-size:11px;font-weight:800;font-family:inherit;cursor:pointer;transition:.15s}
+  .ga-btn:hover{background:rgba(212,165,116,.2);border-color:var(--gold)}
+  .ga-ok{padding:8px 0;font-size:12px;font-weight:800;color:var(--brand2)}
+  .ga-empty{padding:6px 0;font-size:12px;line-height:1.6;color:var(--muted2)}
   .gc-btn-outline:hover{background:var(--surface-hover);color:var(--ink2)}
   .add-gear{background:var(--surface);border:2px dashed rgba(148,163,184,.2);border-radius:var(--radius);padding:24px;text-align:center;color:var(--muted2);font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
   .add-gear:hover{background:rgba(148,163,184,.04);border-color:var(--muted2)}
@@ -5403,6 +5433,9 @@ window.QRCode = {
           <div class="gear-stat" data-page-node-id="ODCg9A4RmDQZvwgTDkgG4k"><span class="gs-num gs-repair" id="gs-repair" data-page-node-id="nev521GNIoct7BGZjLLF8N">0</span><span class="gs-lb" data-page-node-id="uEQHkFwzI3TeqdNtIzyQvV">维修中</span></div>
           <div class="gear-stat" data-page-node-id="IUcKBjHy0j3rUHEBbUTIk2"><span class="gs-num gs-val" id="gs-val" data-page-node-id="L59IxiB0ssYOnDJJ6tRodO">¥0</span><span class="gs-lb" data-page-node-id="vd3uC2AsTDTBYvjYDF9wYh">总价值</span></div>
         </div>
+        <!-- v6.33 器材配置诊断（按婚礼跟拍实战需要，只读 DB.gears） -->
+        <div class="gear-audit" id="gear-audit"></div>
+
         <!-- 分类筛选 -->
         <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
         <div class="gear-grid" id="gear-grid" data-page-node-id="AMdYidqOThffeVKb0CBUUk"></div>
@@ -5967,7 +6000,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.32</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.33</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6468,7 +6501,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.32";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.33";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9050,7 +9083,184 @@ function setGearFilter(el,val){
   renderGears();
 }
 
+/* ==================== v6.33 器材配置诊断（婚礼跟拍视角） ====================
+   目的：按「一场婚礼跟拍要拍完」的实战需要，对照你登记的器材，算出缺口 + 补充建议。
+   原则：① 只读 DB.gears，不联网；② 没登记的就当没有，并在卡片底部明说；
+        ③ 推荐型号是通用参考，价格只给区间、标注随行情浮动，不假装是实时报价。 */
+var GA_NEEDS=[
+  {k:"body2", w:18, p:"P0", name:"第二机身（双机双镜）",
+   why:"一台机身坏了整场婚礼就没有备份；双机还能省掉现场换镜头的灰。",
+   rec:"二手 Sony A7M3 / A7C，参考 ¥5,000–7,000"},
+  {k:"light2", w:14, p:"P0", name:"第二支闪光灯",
+   why:"只有一支灯，灯一坏全场合影没光；暗场仪式 + 20 人以上大合影，一支热靴灯功率也不够。",
+   rec:"神牛 AD200Pro（外拍灯，功率大）/ V1 Pro（同形态备份），参考 ¥1,800–2,600"},
+  {k:"trigger", w:6, p:"P0", name:"引闪器（离机闪）",
+   why:"机顶直打硬光很难看；离机补光是婚拍基本操作，没引闪器灯只能焊在机顶。",
+   rec:"神牛 X3 / Xpro II，参考 ¥300–500"},
+  {k:"stdZoom", w:12, p:"P0", name:"标准变焦（24-70 / 28-75 类）",
+   why:"仪式走位、敬酒跟拍的主力焦段，没有它现场只能靠退腿。",
+   rec:"24-70 F2.8 / 28-75 F2.8，参考 ¥5,000–13,000"},
+  {k:"tele", w:12, p:"P1", name:"长焦（70-200 类）",
+   why:"仪式台离得远、抢特写不打扰新人，靠它。",
+   rec:"70-200 F2.8 / 70-180 F2.8，参考 ¥7,000–16,000"},
+  {k:"prime", w:10, p:"P1", name:"大光圈定焦（50 或 85）",
+   why:"晨袍、化妆、暗场人像全靠 F1.4–F1.8 顶光，变焦 F2.8 在酒店房间不够用。",
+   rec:"50mm F1.8 / 85mm F1.8，参考 ¥1,500–4,000"},
+  {k:"wide", w:10, p:"P1", name:"超广角（24mm 及更广）",
+   why:"晨袍的酒店小房间、敬酒绕桌、十几人全家福，28mm 起常常退无可退。",
+   rec:"16-28 F2.8 / 17-28 F2.8 / 20mm F1.8，参考 ¥4,500–6,500"},
+  {k:"battery", w:6, p:"P1", name:"备用电池 ≥ 2 块",
+   why:"一场婚礼 10–12 小时，A7M4 一块电池约 2–3 小时；中途换电是婚拍最常见的翻车点。",
+   rec:"FZ100 副厂电池 2–3 块，参考 ¥120–200/块（含双充座充）"},
+  {k:"card2", w:6, p:"P1", name:"第二张存储卡（双卡备份）",
+   why:"单卡出问题整场片子就没了；A7M4 是双卡槽，插张 SD 就能同时记录。",
+   rec:"128G V60 SD，参考 ¥300–500"},
+  {k:"macro", w:4, p:"P2", name:"微距 / 近摄能力",
+   why:"戒指、婚鞋、请柬、首饰细节，现在只能靠 85/50 拍完裁切，画质掉得厉害。",
+   rec:"近摄接圈最省（参考 ¥200–400）；预算够再上 90mm 微距"},
+  {k:"modifier", w:4, p:"P2", name:"塑光配件（反光板 / 柔光 / 灯架）",
+   why:"热靴灯直打是硬光，白墙多的酒店里跳闪 + 柔光罩差别非常大。",
+   rec:"5 合 1 反光板 ¥80 / 柔光球 ¥60 / 灯架 ¥150"},
+  {k:"backup", w:2, p:"P2", name:"素材备份盘（SSD / 移动硬盘）",
+   why:"回门当晚就有人催片，卡不能一直不格；当天倒一次盘比什么都稳。",
+   rec:"1TB 便携 SSD，参考 ¥500–700"}
+];
+
+/* 镜头焦段/光圈解析：只认文字里的数字，识别不出就 lo=0（按「未知」保守处理，不猜） */
+function gearLensParse(str){
+  var s=String(str||"");
+  var m=s.match(/(\d{1,3})\s*(?:[-–—~至]\s*(\d{1,3}))?\s*mm/i);
+  var lo=m?+m[1]:0, hi=m?(m[2]?+m[2]:+m[1]):0;
+  var fa=s.match(/(?:F|f)\s*\/?\s*(\d(?:\.\d)?)/);
+  return {s:s,lo:lo,hi:hi,f:fa?+fa[1]:0,macro:/macro|微距/i.test(s)};
+}
+
+/* 统计登记器材（已退役的不算进在用配置，但仍算「登记过」） */
+function gearAuditProfile(){
+  var all=DB.gears||[];
+  var live=all.filter(function(g){return (g.status||"active")!=="retired"});
+  var p={all:all.length,live:live.length,bodies:0,lights:0,drones:0,gimbals:0,
+         triggers:0,batteries:0,cards:0,backups:0,modifiers:0,lenses:[],names:[]};
+  live.forEach(function(g){
+    var nm=((g.name||"")+" "+(g.brand||"")+" "+(g.model||"")).replace(/\s+/g," ").trim();
+    var low=nm.toLowerCase();
+    p.names.push(nm);
+    if(g.category==="相机")p.bodies++;
+    else if(g.category==="镜头")p.lenses.push(gearLensParse(nm));
+    else if(g.category==="灯光")p.lights++;
+    else if(g.category==="航拍")p.drones++;
+    /* 配件按关键词细分（兼容把灯/卡登记成「配件」的情况） */
+    if(/引闪|触发器|trigger|xpro|x3|x2t|闪客/.test(low))p.triggers++;
+    if(/电池|电芯|fz100|np-f/.test(low))p.batteries++;
+    if(!/读卡器/.test(low)&&/内存卡|存储卡|cfexpress|cfa|v60|v90/.test(low))p.cards++;
+    if(/硬盘|ssd|固态|nas|移动存储/.test(low))p.backups++;
+    if(/反光板|柔光伞|柔光箱|柔光球|灯架|束光|扩散/.test(low))p.modifiers++;
+    if(/rs3|rs4|rs5|稳定器|云台/.test(low))p.gimbals++;
+  });
+  return p;
+}
+
+function gearAuditChecks(p){
+  var L=p.lenses;
+  var any=function(fn){for(var i=0;i<L.length;i++)if(fn(L[i]))return true;return false;};
+  var hasWord=function(re){for(var i=0;i<p.names.length;i++)if(re.test(p.names[i]))return true;return false;};
+  return {
+    body2:    p.bodies>=2,
+    light2:   p.lights>=2,
+    trigger:  p.triggers>=1,
+    stdZoom:  any(function(l){return l.lo>0&&l.lo<=35&&l.hi>=45&&l.hi<=120;}),
+    tele:     any(function(l){return l.hi>=135;}),
+    prime:    any(function(l){return l.lo>0&&l.lo===l.hi&&l.f>0&&l.f<=1.8&&l.lo>=45&&l.lo<=100;}),
+    wide:     any(function(l){return l.lo>0&&l.lo<=24;}),
+    macro:    any(function(l){return l.macro;})||hasWord(/近摄|接圈/i),
+    battery:  p.batteries>=2,
+    card2:    p.cards>=2,
+    modifier: p.modifiers>=1,
+    backup:   p.backups>=1
+  };
+}
+
+function gearAuditCalc(){
+  var p=gearAuditProfile(), c=gearAuditChecks(p);
+  var got=0,total=0,miss=[];
+  GA_NEEDS.forEach(function(n){
+    total+=n.w;
+    if(c[n.k])got+=n.w; else miss.push(n);
+  });
+  var score=total?Math.round(got/total*100):0;
+  var p0=miss.filter(function(n){return n.p==="P0";}).length;
+  var p1=miss.filter(function(n){return n.p==="P1";}).length;
+  var p2=miss.filter(function(n){return n.p==="P2";}).length;
+  return {p:p,c:c,score:score,miss:miss,p0:p0,p1:p1,p2:p2};
+}
+function gearAuditGrade(score){
+  if(score>=85)return {t:"配置完整",d:"婚礼跟拍没有明显短板，可以把钱留给备份或后期设备。"};
+  if(score>=70)return {t:"基本够用",d:"主线能跑完，补 1–2 项会更稳。"};
+  if(score>=50)return {t:"有缺口",d:"主线能拍，但标 P0 的项属于「婚礼当天会出事」的等级，建议尽早补。"};
+  return {t:"缺口较大",d:"建议先按 P0 补齐，再扩大接单量。"};
+}
+
+var _gaOpen=false;
+function toggleGearAudit(){_gaOpen=!_gaOpen;renderGearAudit();}
+
+function copyGearAuditPlan(){
+  var r=gearAuditCalc();
+  if(!r.miss.length){toast("配置已经完整，没有要补的项","ok");return;}
+  var txt="【器材补充清单 · "+new Date().toLocaleDateString("zh-CN")+"】\n"+
+    r.miss.map(function(n,i){return (i+1)+". ["+n.p+"] "+n.name+"\n   "+n.rec;}).join("\n")+
+    "\n\n（依据你登记的 "+r.p.all+" 件器材诊断；参考价随行情浮动）";
+  var done=function(){toast("清单已复制，可直接发给自己或店家","ok");};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done,function(){toast("复制失败，请长按选择文本","err");});
+  }else{
+    var ta=document.createElement("textarea");
+    ta.value=txt;ta.style.position="fixed";ta.style.left="-9999px";
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");done();}catch(e){toast("复制失败，请长按选择文本","err");}
+    document.body.removeChild(ta);
+  }
+}
+
+function renderGearAudit(){
+  var box=document.getElementById("gear-audit");
+  if(!box)return;
+  var r=gearAuditCalc();
+  if(!r.p.all){
+    box.innerHTML='<div class="ga-head"><div class="ga-title">🩺 器材配置诊断</div></div>'+
+      '<div class="ga-empty">登记器材后，这里会按「一场婚礼跟拍要拍完」的需要自动算出缺口 —— 比如缺哪支焦段、灯够不够、电池和卡够不够。<br>先把机身和镜头录进来即可。</div>'+
+      '<div class="ga-foot"><span class="ga-note">只做本地分析，不上传任何数据。</span>'+
+      '<button class="ga-btn" onclick="openGearModal()">＋ 新增器材</button></div>';
+    return;
+  }
+  var g=gearAuditGrade(r.score);
+  var shown=_gaOpen?r.miss:r.miss.filter(function(n){return n.p==="P0";});
+  if(!_gaOpen&&shown.length<2)shown=r.miss.slice(0,2);
+  var items=shown.map(function(n){
+    return '<div class="ga-item"><span class="ga-pri '+n.p.toLowerCase()+'">'+n.p+'</span>'+
+      '<div class="ga-body"><div class="ga-name">'+esc(n.name)+'</div>'+
+      '<div class="ga-why">'+esc(n.why)+'</div>'+
+      '<div class="ga-rec">→ '+esc(n.rec)+'</div></div></div>';
+  }).join("");
+  if(!r.miss.length)items='<div class="ga-ok">✅ 婚拍关键项都齐了，没有要补的。</div>';
+  var more=(r.miss.length>shown.length)
+    ? '<button class="ga-btn" onclick="toggleGearAudit()">展开全部 '+r.miss.length+' 项</button>'
+    : (_gaOpen?'<button class="ga-btn" onclick="toggleGearAudit()">收起</button>':'');
+  box.innerHTML=
+    '<div class="ga-head"><div class="ga-title">🩺 器材配置诊断</div>'+
+      '<div class="ga-sub">· 按婚礼跟拍实战需要</div>'+
+      '<div class="ga-score"><b>'+r.score+'</b><span>分</span></div></div>'+
+    '<div class="ga-bar"><i style="width:'+r.score+'%"></i></div>'+
+    '<div class="ga-verdict">'+g.t+' · '+esc(g.d)+
+      (r.p0?' <em>（P0 硬风险 '+r.p0+' 处）</em>':'')+'</div>'+
+    items+
+    '<div class="ga-foot"><span class="ga-note">依据你登记的 '+r.p.all+' 件在用器材分析，没登记的不计入；推荐型号仅供参考，价格随行情浮动。</span>'+
+      more+
+      (r.miss.length?'<button class="ga-btn" onclick="copyGearAuditPlan()">📋 复制补充清单</button>':'')+
+    '</div>';
+}
+
 function renderGears(){
+  renderGearAudit();          /* v6.33：器材增删改后诊断同步刷新 */
   const grid=document.getElementById("gear-grid");
   let list=DB.gears||[];
   const q=(document.getElementById("gear-search")?.value||"").trim().toLowerCase();
