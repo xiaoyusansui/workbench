@@ -2670,6 +2670,34 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   }
 
 
+  /* ====== 日历：预约/策划标记 + 移动端表单优化（v6.36）====== */
+  .cd-dot.dot-booking{background:var(--blue)}
+  .cd-dot.dot-shoot{background:var(--gold)}
+  .hcs-recent-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:14px 16px;margin-top:14px}
+  .hcs-recent-card h4{margin:0 0 10px;font-size:14px;color:var(--gold)}
+  .hr-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--glass-border)}
+  .hr-item:last-child{border-bottom:none}
+  .hr-ic{font-size:16px}
+  .hr-info{flex:1;min-width:0}
+  .hr-t{font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hr-s{font-size:11px;color:var(--muted)}
+  .hr-d{font-size:12px;color:var(--muted2);font-variant-numeric:tabular-nums}
+  .hr-bk .hr-ic{color:var(--blue)} .hr-sp .hr-ic{color:var(--gold)}
+  .cal-empty{font-size:12px;color:var(--muted);padding:6px 0}
+  .tmpl-bar{display:flex;align-items:center;gap:8px;margin:10px 0;flex-wrap:wrap}
+  .tmpl-bar select{max-width:200px}
+  @media(max-width:640px){
+    .shoot-form .sf-2,.sf-row.sf-2{grid-template-columns:1fr}
+    .shoot-wrap{flex-direction:column}
+    .sf-in{font-size:16px;min-height:42px}
+    .sf-ta{font-size:16px}
+    .modal-box:not(.voice-box){max-width:100%;width:100%}
+    .bk-btns{flex-wrap:wrap;gap:6px}
+    .work-btn{padding:9px 12px;font-size:14px}
+    .toolbar{flex-wrap:wrap}
+    .toolbar .btn{font-size:13px;padding:7px 10px}
+  }
+
   /* ====== 出片策划（v6.35）====== */
   .shoot-wrap{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start;margin-top:14px}
   @media(max-width:860px){.shoot-wrap{grid-template-columns:1fr}}
@@ -2683,6 +2711,11 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   .shoot-result{display:flex;flex-direction:column;gap:14px}
   .sp-sec{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:16px 18px}
   .sp-h{font-size:14px;font-weight:900;color:var(--ink);margin-bottom:10px}
+  .sp-meta .sp-meta-title{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px}
+  .sp-meta .sp-meta-row{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:2px}
+  .sp-meta .sp-client{color:var(--brand2);font-weight:700}
+  .sp-meta .sp-bk{color:var(--blue);font-weight:700}
+  .sp-meta .sp-req{color:var(--amber)}
   .sp-sub{font-size:11.5px;font-weight:800;color:var(--brand2);margin:6px 0 7px}
   .sp-sub-gap{color:var(--amber)}
   .sp-glist{display:flex;flex-direction:column;gap:8px}
@@ -5069,7 +5102,7 @@ window.QRCode = {
         <span data-page-node-id="v592GlobalSchLbl">排程日历</span>
       </li>
 
-      <div class="nav-label" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 项目运营</div>
+      <div class="nav-label" id="nav-lbl-estate" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 项目运营</div>
       <li class="nav-item" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
         <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
         <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
@@ -5185,7 +5218,7 @@ window.QRCode = {
 
             <!-- 💼 项目运营 -->
             <div class="dash-section" id="dash-biz-section" data-page-node-id="rqDVOurq4OYodVAEZ7YGKx">
-              <div class="dash-sect-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 项目运营</div>
+              <div class="dash-sect-label" id="dash-biz-label" data-page-node-id="pRwQJx1K0QU0NdvuSMgusV">💼 项目运营</div>
               <div class="ov-grid biz-row" id="ov-grid-biz" data-page-node-id="WTcJrSVsDiNs9Ef4eq9dW2"></div>
             </div>
 
@@ -5252,6 +5285,10 @@ window.QRCode = {
               <h4 data-page-node-id="Jolfk73tJfXClCJKv0QO8G">🕐 即将到来</h4>
               <div id="home-upcoming" data-page-node-id="DwiNfFAqCMKLswwyBBdw3g"></div>
             </div>
+            <div class="hcs-recent-card" data-page-node-id="v636RecentCard">
+              <h4 data-page-node-id="v636RecentH">📌 近期拍摄 / 预约</h4>
+              <div id="home-recent" data-page-node-id="v636Recent"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -5306,7 +5343,10 @@ window.QRCode = {
           <button class="btn ghost" onclick="exportCSV('plan')" data-page-node-id="vEtytEF2VTpNBGsBJszEsS">⬇ 导出</button>
           <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步" data-page-node-id="tRkTG544G4v1Ua50jD2KZq">💾 保存</button>
           <button class="btn" onclick="addRowPlan()" data-page-node-id="WgLonM2Ay3oecDCXxjognI">＋ 新增</button>
+          <button class="btn ghost" onclick="savePlanTemplate()" data-page-node-id="v636TmpSave">📑 存为模板</button>
+          <button class="btn ghost" onclick="cloneLastPlan()" data-page-node-id="v636TmpClone">♻ 克隆上次</button>
         </div>
+        <div class="tmpl-bar" id="tmpl-bar" data-page-node-id="v636TmplBar"></div>
 
         <div class="plan-stats" data-page-node-id="wIaLZnkYturyTLetzpLfav">
           <div class="ps-card" data-filter="all" data-page-node-id="0NzGBZxHAXuujGIVAKMeGc"><div class="ps-num" id="sc-total" data-page-node-id="tZiTd0wsquJ3rDH63aYh5a">0</div><div class="ps-label" data-page-node-id="nV8n1RGaNmVYmdow2axKyT">总任务</div><div class="ps-sub" id="sc-total-sub" data-page-node-id="gIjfrglHzkexMxRsPwTHUM">—</div></div>
@@ -5794,10 +5834,11 @@ window.QRCode = {
         <div class="sec-head" data-page-node-id="BFuGVyM6AnAipUIkrA720y">
           <h2 data-page-node-id="J568r6JkACcXnyHw2NoXYP">📩 客户预约</h2>
           <div class="sec-actions" data-page-node-id="1leeDJHilzSAvEYUeOsCTa">
-            <button class="btn sm" onclick="loadBookingsWeb()" data-page-node-id="iQNqB55CIcH1CPfWXBXIpe">刷新</button>
+            <button class="btn sm" onclick="openBookingModal()" data-page-node-id="v636NewBk">＋ 新建预约</button>
+            <button class="btn sm" onclick="renderBookings()" data-page-node-id="iQNqB55CIcH1CPfWXBXIpe">刷新</button>
           </div>
         </div>
-        <div class="works-hint" data-page-node-id="7eG1FNmlGgI7tA7VHeVwFD">客户在客户端提交「预约跟拍」后会显示在这里，可标记是否已联系。</div>
+        <div class="works-hint" data-page-node-id="7eG1FNmlGgI7tA7VHeVwFD">客户在小程序提交的预约、以及你在本网页建的预约都会显示在这里；网页建的预约可标记状态、可一键生成出片策划。</div>
         <div id="bookings-list" data-page-node-id="CmYhs9maHkcExCM0OlaZiG"></div>
       </section>
 
@@ -5807,6 +5848,7 @@ window.QRCode = {
           <h2 data-page-node-id="v635ShootTitle">🎬 出片策划</h2>
           <div class="sec-actions" data-page-node-id="v635ShootActs">
             <button class="btn sm" onclick="genShootPlan()" data-page-node-id="v635GenBtn">⚡ 生成策划</button>
+            <button class="btn sm ghost" onclick="printShootPlan()" data-page-node-id="v636Print">🖨 导出/打印</button>
           </div>
         </div>
         <div class="works-hint" data-page-node-id="v635ShootHint">接了一个订单？填好下面，自动帮你算「明天带什么器材」+「每个场景怎么拍、出几张精修」。镜头/灯/三脚架都按你登记的真实器材匹配，没有就标缺口。</div>
@@ -5820,7 +5862,7 @@ window.QRCode = {
               <div><label class="sf-lab">拍摄日期</label><input class="sf-in" id="shoot-date" type="date" data-page-node-id="v635D"></div>
               <div><label class="sf-lab">订单类型</label>
                 <select class="sf-in" id="shoot-type" data-page-node-id="v635Ty">
-                  <option>订婚宴</option><option>婚礼跟拍</option><option>婚纱写真</option><option>轻婚纱</option><option>宝宝照</option><option>全家福</option><option>产品</option><option>活动</option>
+                  <option>订婚宴</option><option>婚礼跟拍</option><option>婚纱写真</option><option>轻婚纱</option><option>宝宝照</option><option>全家福</option><option>产品</option><option>活动</option><option>商业拍摄(案场/空间)</option><option>活动跟拍(年会/开业)</option>
                 </select>
               </div>
             </div>
@@ -5847,6 +5889,15 @@ window.QRCode = {
               <div></div>
             </div>
             <div class="sf-row">
+              <div><label class="sf-lab">关联预约</label>
+                <select class="sf-in" id="shoot-booking" data-page-node-id="v636Bk"><option value="">（不关联）</option></select>
+              </div>
+              <div><label class="sf-lab">客户称呼（可留空）</label><input class="sf-in" id="shoot-client" placeholder="默认取预约/标题" data-page-node-id="v636Cl" /></div>
+            </div>
+            <div class="sf-row sf-2">
+              <div></div><div></div>
+            </div>
+            <div class="sf-row">
               <label class="sf-lab">客户特殊要求</label>
               <textarea class="sf-in sf-ta" id="shoot-req" placeholder="如：多拍和新娘爸妈的互动、要几张竖版发朋友圈" data-page-node-id="v635R"></textarea>
             </div>
@@ -5862,6 +5913,31 @@ window.QRCode = {
           <div id="shoot-history-list" data-page-node-id="v635HistList"></div>
         </div>
       </section>
+
+      <!-- ==================== 网页新建预约（v6.36） ==================== -->
+      <div class="modal" id="booking-modal" style="display:none" onclick="if(event.target===this)closeBookingModal()">
+        <div class="modal-box" style="max-width:520px" data-page-node-id="v636BkBox">
+          <h3 id="booking-modal-title" data-page-node-id="v636BkTitle">＋ 新建预约</h3>
+          <div class="sf-row"><label class="sf-lab">客户名称</label><input class="sf-in" id="bk-name" placeholder="如：王小姐" data-page-node-id="v636BkN" /></div>
+          <div class="sf-row sf-2">
+            <div><label class="sf-lab">联系方式</label><input class="sf-in" id="bk-phone" placeholder="手机号" data-page-node-id="v636BkP" /></div>
+            <div><label class="sf-lab">预约类型</label>
+              <select class="sf-in" id="bk-type" data-page-node-id="v636BkT"><option>婚礼跟拍</option><option>订婚宴</option><option>婚纱写真</option><option>宝宝照</option><option>全家福</option><option>商业拍摄</option><option>活动跟拍</option><option>其他</option></select>
+            </div>
+          </div>
+          <div class="sf-row sf-2">
+            <div><label class="sf-lab">预约日期</label><input class="sf-in" id="bk-date" type="date" data-page-node-id="v636BkD" /></div>
+            <div><label class="sf-lab">状态</label>
+              <select class="sf-in" id="bk-status" data-page-node-id="v636BkS"><option value="new">新预约</option><option value="contacted">已联系</option><option value="done">已成交</option></select>
+            </div>
+          </div>
+          <div class="sf-row"><label class="sf-lab">需求 / 备注</label><textarea class="sf-in sf-ta" id="bk-note" placeholder="预算、套系、特殊要求…" data-page-node-id="v636BkNote"></textarea></div>
+          <div class="modal-actions" data-page-node-id="v636BkAct">
+            <button class="btn ghost" onclick="closeBookingModal()">取消</button>
+            <button class="btn" onclick="saveBookingLocal()" id="bk-save-btn" data-page-node-id="v636BkSave">保存</button>
+          </div>
+        </div>
+      </div>
 
       <!-- ==================== 同步托盘 ==================== -->
       <div class="synctray" data-page-node-id="RPWmzwziWBAQJjzQIljPfx">
@@ -6120,12 +6196,19 @@ window.QRCode = {
               <button class="btn ghost sm" onclick="saveImgSrcKeys()" data-page-node-id="v630ImgSave">保存配置</button>
             </div>
 
+            <!-- 🏷 主业项目名（v6.36，本地脱敏反转） -->
+            <div class="sett-sect" data-page-node-id="v636Alias">
+              <h4 data-page-node-id="v636AliasH"><span class="sect-icon" data-page-node-id="v636AliasIc">🏷</span> 主业项目名（仅本地显示）</h4>
+              <p class="modal-tip" data-page-node-id="v636AliasTip">导出 / 发布到云端的内容仍统一脱敏为「项目运营」；仅在你本机界面用真名显示，一眼认出是哪个项目。</p>
+              <input type="text" id="proj-alias" placeholder="如：你的主业项目名（仅本机显示）" oninput="saveProjAlias()" data-page-node-id="v636AliasInp" />
+            </div>
+
             <!-- ℹ 关于 -->
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.35</span></div>
-                <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.36</span></div>
+                <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
               </div>
@@ -6605,7 +6688,9 @@ const SEED={
   ],
   works:[],
   shootPlans:[],
-  shootLast:null
+  shootLast:null,
+  bookings:[],
+  planTemplates:[]
 };
 
 const BANKUAI_REMAP={
@@ -6627,7 +6712,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.35";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.36";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6652,6 +6737,8 @@ function morphDB(d){
   if(!d.reviews)d.reviews=JSON.parse(JSON.stringify(SEED.reviews));
   if(!d.ideas)d.ideas=JSON.parse(JSON.stringify(SEED.ideas));
   if(!d.events)d.events=JSON.parse(JSON.stringify(SEED.events));
+  if(!d.bookings)d.bookings=[];
+  if(!d.planTemplates)d.planTemplates=[];
   if(!d.works)d.works=[];
   /* 热点补链（v5.84）：老数据没有 kw/url 时，按标题从内置样例补齐搜索词，
      保证「点开热点 → 跳转对应平台观看」对所有老用户同样可用 */
@@ -6857,7 +6944,7 @@ function switchTab(t){
   else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
-  else if(t==="works")renderWorks();else if(t==="bookings")loadBookingsWeb();else if(t==="shoot")renderShoot();
+  else if(t==="works")renderWorks();else if(t==="bookings")renderBookings();else if(t==="shoot")renderShoot();
   // 手机端切换模块后关闭抽屉并回到顶部
   if(window.innerWidth<=834){closeMobileNav();window.scrollTo({top:0,behavior:"smooth"});}
 }
@@ -6964,6 +7051,7 @@ function renderOverview(){
 
   /* 首页日历行程 */
   renderHomeCal();
+  renderHomeRecent();
 }
 
 /* ==================== 策划工作 ==================== */
@@ -7198,6 +7286,7 @@ function fillBanPlan(){
   sel.innerHTML='<option value="">全部板块</option>'+BANKUAI_PLAN.map(b=>`<option ${b===cur?"selected":""}>${b}</option>`).join("");
 }
 function renderPlan(){
+  if(typeof renderPlanTemplatesBar==='function')renderPlanTemplatesBar();
   const today=new Date();today.setHours(0,0,0,0);
   const periodR=periodRange(PERIOD_ANCHOR);
   /* v6.10：主表默认只显示「本期未完成」；已完成进折叠区，不占主表视线 */
@@ -9474,6 +9563,18 @@ const SHOOT_TYPES={
     {s:"开场舞台",w:5,a:[{t:"灯光秀",l:"环境",tip:"24-70 收舞台。"},{t:"领导讲话",l:"长焦",tip:"长焦不打扰。"}]},
     {s:"颁奖合影",w:5,a:[{t:"握手奖杯",l:"环境",tip:"24-70 抓握手。"},{t:"队列大合影",l:"广角",tip:"广角收队列。"}]},
     {s:"现场花絮",w:3,a:[{t:"观众反应",l:"人像",tip:"抓观众。"}]}
+  ]},
+  "商业拍摄(案场/空间)":{scenes:[
+    {s:"空间全景",w:5,a:[{t:"样板间横移",l:"广角",tip:"24-70 收室内空间比例，三脚架水平校正。"},{t:"外立面气势",l:"广角",tip:"低角度仰拍建筑，修正透视变形。"}]},
+    {s:"细节材质",w:4,a:[{t:"建材肌理",l:"微距",tip:"石材/木饰面/金属质感特写。"},{t:"景观小品",l:"人像",tip:"示范区水景、廊架的氛围。"}]},
+    {s:"人物赋能",w:4,a:[{t:"销售动线",l:"环境",tip:"人物在空间中的尺度感，交代场景用途。"},{t:"接待场景",l:"人像",tip:"销售与客户互动的自然抓拍。"}]},
+    {s:"夜景亮化",w:2,a:[{t:"亮化氛围",l:"人像",tip:"建筑灯光与天空的层次。"}]}
+  ]},
+  "活动跟拍(年会/开业)":{scenes:[
+    {s:"开场暖场",w:5,a:[{t:"签到互动",l:"人像",tip:"抓嘉宾签到、交谈。"},{t:"暖场氛围",l:"环境",tip:"24-70 收现场布置与人群。"}]},
+    {s:"舞台流程",w:6,a:[{t:"领导致辞",l:"长焦",tip:"长焦不打扰。"},{t:"颁奖握手",l:"环境",tip:"24-70 抓握手与奖杯。"},{t:"表演抓拍",l:"人像",tip:"舞台灯下动态。"}]},
+    {s:"合影留念",w:4,a:[{t:"大合影",l:"广角",tip:"广角收队列。"},{t:"自由交流",l:"人像",tip:"茶歇自然互动。"}]},
+    {s:"物料空镜",w:2,a:[{t:"背景板",l:"微距",tip:"LOGO 与物料特写。"}]}
   ]}
 };
 const SHOOT_GEAR={
@@ -9484,7 +9585,9 @@ const SHOOT_GEAR={
   "宝宝照":["prime","stdZoom","light2","trigger","battery","card2","wide"],
   "全家福":["stdZoom","wide","light2","trigger","battery","card2"],
   "产品":["light2","trigger","macro","stdZoom","prime","battery","card2"],
-  "活动":["body2","stdZoom","tele","light2","trigger","battery","card2","wide"]
+  "活动":["body2","stdZoom","tele","light2","trigger","battery","card2","wide"],
+  "商业拍摄(案场/空间)":["stdZoom","wide","light2","trigger","battery","card2","macro","tripod"],
+  "活动跟拍(年会/开业)":["body2","stdZoom","tele","light2","trigger","battery","card2","wide"]
 };
 /* 把精修张数按场景权重分配，保证精确求和到 N（余数按小数最大优先补 1） */
 function shootSplit(ws,N){
@@ -9582,6 +9685,7 @@ function shootPlanText(o,split,gear,scenes){
   L.push("【出片策划 · "+o.title+"】");
   L.push("类型："+o.type+" ｜ 精修 "+o.count+" 张 ｜ 场地："+o.venue+" ｜ 时段："+o.time+(o.cams>=2?" ｜ 双机位":" ｜ 单机位")+(o.video?" ｜ 含视频":""));
   if(o.req)L.push("特殊要求："+o.req);
+  if(o.client)L.push("客户："+o.client);
   L.push("");
   L.push("一、设备清单");
   gear.forEach(function(g){ L.push((g.ok?"✓ 已备":"✗ 需补")+" ["+g.pri+"] "+g.name+(g.own?"（"+g.own+"）":"")+(g.ok?"":" → "+g.rec)); });
@@ -9603,6 +9707,10 @@ function genShootPlan(){
     var cams=parseInt(document.getElementById("shoot-cams").value)||1;
     var video=document.getElementById("shoot-video").value==="是";
     var req=(document.getElementById("shoot-req").value||"").trim();
+    var bsel=document.getElementById("shoot-booking");
+    var bookingId=bsel?bsel.value:"";
+    var client=(document.getElementById("shoot-client").value||"").trim();
+    if(bookingId){var _bk=(DB.bookings||[]).filter(function(x){return x.id===bookingId;})[0];if(_bk&&!client)client=_bk.name||"";}
     var title=(document.getElementById("shoot-title").value||"").trim()||(type+" · "+count+"张精修");
     var date=(document.getElementById("shoot-date").value||"");
     var t=SHOOT_TYPES[type]||SHOOT_TYPES["订婚宴"];
@@ -9610,8 +9718,8 @@ function genShootPlan(){
     var split=shootSplit(scenes.map(function(s){return s.w;}),count);
     var gear=shootGearList(type,cams,video);
     var vibe=shootVibe(venue,time);
-    var o={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req,vibe:vibe};
-    DB.shootLast={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req};
+    var o={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req,vibe:vibe,bookingId:bookingId,client:client};
+    DB.shootLast={title:title,date:date,type:type,count:count,venue:venue,time:time,cams:cams,video:video,req:req,bookingId:bookingId,client:client};
     try{save();}catch(e){}
     var gearReady=gear.filter(function(g){return g.ok;});
     var gearGap=gear.filter(function(g){return !g.ok;});
@@ -9636,8 +9744,16 @@ function genShootPlan(){
       }).join("")+'</div>';
     }).join("")+'</div>';
     var vibHtml=vibe?'<div class="sp-sec"><div class="sp-h">💡 氛围与控光提示</div><div class="sp-vib">'+esc(vibe)+'</div></div>':'';
+    var _bkName=(function(){if(!o.bookingId)return '';var b=(DB.bookings||[]).filter(function(x){return x.id===o.bookingId;})[0];return b?esc(b.name+(b.date?' · '+b.date:'')):'已删除';})();
+    var metaHtml='<div class="sp-sec sp-meta"><div class="sp-h">📋 策划概要</div>'+
+      '<div class="sp-meta-title">'+esc(o.title)+'</div>'+
+      '<div class="sp-meta-row">类型：'+esc(o.type)+' ｜ 精修 '+o.count+' 张 ｜ 场地：'+esc(o.venue)+' ｜ 时段：'+esc(o.time)+(o.cams>=2?' ｜ 双机位':' ｜ 单机位')+(o.video?' ｜ 含视频':'')+'</div>'+
+      (o.client?'<div class="sp-meta-row sp-client">👤 客户：'+esc(o.client)+'</div>':'')+
+      (o.bookingId?'<div class="sp-meta-row sp-bk">🔗 关联预约：'+_bkName+'</div>':'')+
+      (o.req?'<div class="sp-meta-row sp-req">📝 特殊要求：'+esc(o.req)+'</div>':'')+
+      '</div>';
     var box=document.getElementById("shoot-result");
-    box.innerHTML=gearHtml+quotaHtml+angleHtml+vibHtml;
+    box.innerHTML=metaHtml+gearHtml+quotaHtml+angleHtml+vibHtml;
     box.dataset.plan=shootPlanText(o,split,gear,scenes);
     document.getElementById("shoot-actions").style.display="flex";
     toast("已生成策划 ✓","ok");
@@ -9657,7 +9773,7 @@ function saveShootPlan(){
   if(!txt){toast("请先生成策划","warn");return;}
   var L=DB.shootPlans||(DB.shootPlans=[]);
   var d=DB.shootLast||{};
-  L.unshift({id:"sp"+Date.now(),ts:Date.now(),title:d.title||"未命名策划",date:d.date||"",type:d.type||"",count:d.count||0,venue:d.venue||"",time:d.time||"",cams:d.cams||1,video:!!d.video,req:d.req||""});
+  L.unshift({id:"sp"+Date.now(),ts:Date.now(),title:d.title||"未命名策划",date:d.date||"",type:d.type||"",count:d.count||0,venue:d.venue||"",time:d.time||"",cams:d.cams||1,video:!!d.video,req:d.req||"",bookingId:d.bookingId||"",client:d.client||""});
   try{save();}catch(e){}
   renderShootHistory();
   toast("已存为历史策划 ✓","ok");
@@ -9680,6 +9796,8 @@ function loadShootPlan(id){
   if(document.getElementById("shoot-cams"))document.getElementById("shoot-cams").value=String(p.cams||1);
   if(document.getElementById("shoot-video"))document.getElementById("shoot-video").value=p.video?"是":"否";
   if(document.getElementById("shoot-req"))document.getElementById("shoot-req").value=p.req||"";
+  if(document.getElementById("shoot-booking"))document.getElementById("shoot-booking").value=p.bookingId||"";
+  if(document.getElementById("shoot-client"))document.getElementById("shoot-client").value=p.client||"";
   genShootPlan();
 }
 function renderShootHistory(){
@@ -9708,6 +9826,8 @@ function renderShoot(){
     var dt=new Date(Date.now()+86400000);
     document.getElementById("shoot-date").value=localDateStr(dt);
   }
+  var bsel=document.getElementById("shoot-booking");
+  if(bsel){var bs=(DB.bookings||[]);bsel.innerHTML='<option value="">（不关联）</option>'+bs.map(function(b){return '<option value="'+b.id+'">'+esc((b.name||"预约")+(b.date?" · "+b.date:""))+'</option>';}).join("");}
   renderShootHistory();
 }
 
@@ -10152,7 +10272,8 @@ const IDEA_BIZ=[
   {key:"人像写真",icon:"👤",hots:["人像","写真","情绪","氛围","少女","肖像","客片","女生"]},
   {key:"活动跟拍",icon:"🎪",hots:["活动","年会","开场","领导","颁奖","合影","现场","直播"]},
   {key:"电商产品",icon:"📦",hots:["产品","电商","主图","静物","布光","质感","细节"]},
-  {key:"商业拍摄",icon:"🏢",hots:["商业","案场","空间","房产","装修","宣传片"]}
+  {key:"商业拍摄",icon:"🏢",hots:["商业","案场","空间","房产","装修","宣传片"]},
+  {key:"地产案场",icon:"🏗",hots:["案场","样板间","楼盘","示范区","售楼部","工地","开盘","交房","地产","小区","园林"]}
 ];
 /* 婚礼跟拍业务全流程：接亲 → 仪式 → 宴席 → 外景 → 出片。
  * gear 写成「具体型号优先、类别兜底」，用 / 分隔表示「任一命中即可」。 */
@@ -10172,7 +10293,10 @@ const IDEA_SCENES=[
   {k:"年会开场",biz:"活动跟拍",icon:"🎤",gear:"24-70mm/70-200mm",line:"舞台 · 灯光秀 · 大合影"},
   {k:"颁奖合影",biz:"活动跟拍",icon:"🏆",gear:"24-70mm/闪光灯",line:"握手 · 奖杯 · 队列"},
   {k:"产品主图",biz:"电商产品",icon:"🛍",gear:"灯光/微距/三脚架",line:"白底 · 倒影 · 质感"},
-  {k:"案场空间",biz:"商业拍摄",icon:"🏠",gear:"24-70mm/三脚架/航拍",line:"样板间 · 沙盘 · 外立面"}
+  {k:"案场空间",biz:"商业拍摄",icon:"🏠",gear:"24-70mm/三脚架/航拍",line:"样板间 · 沙盘 · 外立面"},
+  {k:"示范区园林",biz:"地产案场",icon:"🌳",gear:"24-70mm/广角",line:"园林 · 水景 · 动线"},
+  {k:"开盘活动",biz:"地产案场",icon:"🎉",gear:"24-70mm/闪光灯",line:"人气 · 舞台 · 礼花"},
+  {k:"交房验房",biz:"地产案场",icon:"🔑",gear:"24-70mm/35mm",line:"门 · 窗 · 细节交付"}
 ];
 function ideaBizOf(key){return IDEA_BIZ.filter(b=>b.key===key)[0]||null;}
 /* 器材匹配：把 "灯光/85mm/24-70mm" 拆成若干候选词，逐个去 DB.gears 里找 */
@@ -10543,7 +10667,7 @@ const IDEA_FRAME_WORDS=["逆光","剪影","轮廓光","侧逆光","半身","特�
 /* ③ 打光/灯具词：进图片搜索会被当商品，一律不进搜索词 */
 const IDEA_GEAR_NOISE=["单灯","双灯","三灯","四灯","硬光","柔光","反光板","柔光箱","灯架","补光灯","面光灯","COB","LED灯"];
 /* 强主体：这张照片「最核心是谁/是什么」。优先于地点/机位被挑出来当搜索主语 */
-const IDEA_SUBJECT=["新娘","新郎","婚纱","婚纱照","晨袍","头纱","婚鞋","戒指","手捧花","捧花","伴娘","伴郎","父母","全家福","大合影","合影","宝宝","宠物","美食","咖啡","饮品","蛋糕","产品","人像","写真","婚房","化妆","盘发"];
+const IDEA_SUBJECT=["新娘","新郎","婚纱","婚纱照","晨袍","头纱","婚鞋","戒指","手捧花","捧花","伴娘","伴郎","父母","全家福","大合影","合影","宝宝","宠物","美食","咖啡","饮品","蛋糕","产品","人像","写真","婚房","化妆","盘发","楼盘","样板间","示范区","交房","开盘","地产"];
 /* 中→英映射：Pexels / Pixabay 是英文库，中文 query 几乎搜不到东西；Bing 用中文即可。
    这里只做本地映射（不联网、不假装会翻译），映射不到的词在英文源会被安全丢弃，由类别词兜底。 */
 const IDEA_ZH2EN={
@@ -10555,7 +10679,7 @@ const IDEA_ZH2EN={
   "逆光":"backlight","剪影":"silhouette","轮廓光":"rim light","侧逆光":"backlight","半身":"half body","特写":"close up","全身":"full body","中景":"medium shot","近景":"close up","全景":"wide shot","大场景":"landscape","俯拍":"overhead","仰拍":"low angle","低角度":"low angle","平视":"eye level","对称":"symmetry","留白":"negative space","前景":"foreground","引导线":"leading lines",
   "婚礼":"wedding","人像":"portrait","活动":"event","商业空间":"architecture"
 };
-const IDEA_BIZ_WORD={"婚礼纪实":"婚礼","人像写真":"人像","活动跟拍":"活动","电商产品":"产品","商业拍摄":"商业空间"};
+const IDEA_BIZ_WORD={"婚礼纪实":"婚礼","人像写真":"人像","活动跟拍":"活动","电商产品":"产品","商业拍摄":"商业空间","地产案场":"地产"};
 /* v6.34：图片搜索词生成。两处实质升级（相对 v6.32）：
    ① 强主体优先 + 用上 desc / tags / elements 文本，让搜索词更贴「这张照片到底拍什么」，而不是泛泛的品类词；
    ② 按图源给不同语言：Bing 用中文并末尾补类别词（婚纱摄影）收敛；Pexels / Pixabay 必须英文化，否则中文在这两个英文库里几乎搜不到东西 —— 这正是「搜出来和需要差别很大」的主因。
@@ -12343,6 +12467,58 @@ async function markBookingWeb(i,status){
   }catch(e){ alert("更新失败："+e.message); }
 }
 
+/* ==================== v6.36 新增：预约网页端 / 项目别名 / 首页聚合 / 策划模板 / 打印 ==================== */
+/* v6.36 新增：预约网页端 / 项目别名 / 首页聚合 / 策划模板 / 打印（纯源码，由 _mk636.js 注入主文件） */
+function bkStatusText(s){return s==='done'?'已成交':(s==='contacted'?'已联系':'新预约');}
+function openBookingModal(){var m=document.getElementById('booking-modal');if(m){document.getElementById('booking-modal-title').textContent='＋ 新建预约';document.getElementById('bk-save-btn').textContent='保存';document.getElementById('bk-name').value='';document.getElementById('bk-phone').value='';document.getElementById('bk-type').value='婚礼跟拍';var dt=new Date(Date.now()+86400000);document.getElementById('bk-date').value=localDateStr(dt);document.getElementById('bk-status').value='new';document.getElementById('bk-note').value='';m.style.display='flex';}}
+function closeBookingModal(){var m=document.getElementById('booking-modal');if(m)m.style.display='none';}
+function saveBookingLocal(){var name=(document.getElementById('bk-name').value||'').trim();if(!name){toast('请填写客户名称','warn');return;}DB.bookings=DB.bookings||[];DB.bookings.unshift({id:'bk'+Date.now(),name:name,phone:(document.getElementById('bk-phone').value||'').trim(),type:document.getElementById('bk-type').value,date:document.getElementById('bk-date').value||'',status:document.getElementById('bk-status').value,note:(document.getElementById('bk-note').value||'').trim(),createdAt:localDateStr(new Date()),local:true});try{save();}catch(e){}closeBookingModal();renderBookings();toast('已建档预约 ✓','ok');}
+function delBookingLocal(id){if(!confirm('删除这条预约？'))return;DB.bookings=(DB.bookings||[]).filter(function(b){return b.id!==id;});try{save();}catch(e){}renderBookings();toast('已删除','ok');}
+function editBookingLocal(id){var b=(DB.bookings||[]).filter(function(x){return x.id===id;})[0];if(!b)return;openBookingModal();document.getElementById('booking-modal-title').textContent='编辑预约';document.getElementById('bk-save-btn').textContent='保存修改';document.getElementById('bk-name').value=b.name||'';document.getElementById('bk-phone').value=b.phone||'';document.getElementById('bk-type').value=b.type||'婚礼跟拍';document.getElementById('bk-date').value=b.date||'';document.getElementById('bk-status').value=b.status||'new';document.getElementById('bk-note').value=b.note||'';}
+function bkToShoot(id){var b=(DB.bookings||[]).filter(function(x){return x.id===id;})[0];if(!b)return;switchTab('shoot');if(document.getElementById('shoot-title'))document.getElementById('shoot-title').value=b.name||'';if(document.getElementById('shoot-date'))document.getElementById('shoot-date').value=b.date||'';if(document.getElementById('shoot-type'))document.getElementById('shoot-type').value=b.type||'婚礼跟拍';if(document.getElementById('shoot-client'))document.getElementById('shoot-client').value=b.name||'';if(document.getElementById('shoot-booking'))document.getElementById('shoot-booking').value=id;genShootPlan();toast('已带入预约信息，确认后点保存此策划','ok');}
+async function renderBookings(){
+  var box=document.getElementById('bookings-list');if(!box)return;
+  var html='';
+  var local=(DB.bookings||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
+  html+=local.map(function(b){
+    var linked=(DB.shootPlans||[]).filter(function(p){return p.bookingId===b.id;}).length;
+    return '<div class="bk-card bk-local"><div class="bk-top"><b>'+esc(b.name)+(b.type?(' · '+esc(b.type)):'')+'</b><span class="bk-badge '+(b.status==='done'?'done':(b.status==='contacted'?'mid':'new'))+'">'+bkStatusText(b.status)+'</span></div>'+
+      (b.phone?'<div class="bk-line">📞 <a href="tel:'+esc(b.phone)+'">'+esc(b.phone)+'</a></div>':'')+
+      (b.date?'<div class="bk-line">📅 '+esc(b.date)+'</div>':'')+
+      (b.note?'<div class="bk-line bk-note">💬 '+esc(b.note)+'</div>':'')+
+      '<div class="bk-btns">'+(linked?'<button class="work-btn" onclick="switchTab(\'shoot\')">查看策划('+linked+')</button>':'<button class="work-btn" onclick="bkToShoot(\''+b.id+'\')">生成策划</button>')+
+      '<button class="work-btn" onclick="editBookingLocal(\''+b.id+'\')">编辑</button>'+
+      '<button class="work-btn del" onclick="delBookingLocal(\''+b.id+'\')">删除</button></div></div>';
+  }).join('');
+  if(!ghToken){html+='<div class="works-hint">未配置 GitHub 令牌：上方为网页自建的预约（存本机）。配置令牌后可同步客户小程序提交的预约。</div>';
+  }else{try{
+    var list=await ghReq('/gists?per_page=100');var desc='🐟小鱼工作台-客户预约';
+    var m=(list||[]).filter(function(g){return g.description===desc;}).sort(function(a,b){return new Date(b.updated_at)-new Date(a.updated_at);});
+    if(m.length){var g=await ghReq('/gists/'+m[0].id);var fn=Object.keys(g.files)[0];var arr=fn&&g.files[fn].content?JSON.parse(g.files[fn].content):[];
+      var sorted=arr.map(function(b,idx){return {b:b,idx:idx};}).sort(function(x,y){return new Date(y.b.createdAt)-new Date(x.b.createdAt);});
+      html+=sorted.map(function(o){var b=o.b,idx=o.idx;
+        return '<div class="bk-card"><div class="bk-top"><b>'+esc(b.name)+'</b><span class="bk-badge '+(b.status==='done'?'done':'new')+'">'+(b.status==='done'?'已联系':'新')+'</span></div>'+
+        '<div class="bk-line">📞 <a href="tel:'+esc(b.phone)+'">'+esc(b.phone)+'</a></div>'+
+        (b.date?'<div class="bk-line">📅 '+esc(b.date)+'</div>':'')+
+        '<div class="bk-line">📷 '+esc(b.service||'')+(b.budget?(' · '+esc(b.budget)):'')+'</div>'+
+        (b.note?'<div class="bk-line bk-note">💬 '+esc(b.note)+'</div>':'')+
+        '<div class="bk-time">'+esc(b.createdAt||'')+'</div>'+
+        '<button class="work-btn" onclick="markBookingWeb('+idx+',\''+(b.status==='done'?'new':'done')+'\')">'+(b.status==='done'?'标记未联系':'标记已联系')+'</button></div>';
+      }).join('');
+    }else{html+='<div class="works-hint">云端暂无预约。</div>';}
+  }catch(e){html+='<div class="works-hint">云端预约读取失败：'+esc(e.message)+'</div>';}}
+  box.innerHTML=html||'<div class="works-hint">还没有预约。点「＋ 新建预约」登记，或配置令牌同步客户小程序提交的预约。</div>';
+}
+function saveProjAlias(){var v=(document.getElementById('proj-alias').value||'').trim();localStorage.setItem('xiaoyu_proj_alias',v);applyProjAlias();}
+function applyProjAlias(){var a=localStorage.getItem('xiaoyu_proj_alias');var name=a?a:'项目运营';var lbl='💼 '+name;var e1=document.getElementById('nav-lbl-estate');if(e1)e1.textContent=lbl;var e2=document.getElementById('dash-biz-label');if(e2)e2.textContent=lbl;var e3=document.getElementById('page-subtitle');if(e3)e3.textContent=name+'策划 · 任务追踪与进度管理';var e4=document.getElementById('about-pos');if(e4)e4.textContent=name+' + 摄影师工作台';var inp=document.getElementById('proj-alias');if(inp&&!inp.value&&a)inp.value=a;}
+function renderHomeRecent(){var host=document.getElementById('home-recent');if(!host)return;var todayStr=localDateStr();var items=[];(DB.bookings||[]).forEach(function(b){if(b.date&&b.date>=todayStr)items.push({d:b.date,cls:'hr-bk',ic:'📩',t:(b.name||'预约')+(b.type?' · '+b.type:''),sub:'预约'});});(DB.shootPlans||[]).forEach(function(p){if(p.date&&p.date>=todayStr)items.push({d:p.date,cls:'hr-sp',ic:'🎬',t:(p.title||'策划')+(p.type?' · '+p.type:''),sub:'策划'});});(DB.events||[]).forEach(function(e){if(e.date&&e.date>=todayStr&&!e.done)items.push({d:e.date,cls:'hr-ev',ic:'📅',t:(e.title||''),sub:TAG_MAP[e.tag]||''});});items.sort(function(a,b){return a.d.localeCompare(b.d)||a.sub.localeCompare(b.sub);});items=items.slice(0,8);if(!items.length){host.innerHTML='<div class="cal-empty">未来暂无拍摄 / 预约安排。</div>';return;}host.innerHTML=items.map(function(it){return '<div class="hr-item '+it.cls+'"><span class="hr-ic">'+it.ic+'</span><div class="hr-info"><div class="hr-t">'+esc(it.t)+'</div><div class="hr-s">'+esc(it.sub)+'</div></div><span class="hr-d">'+it.d.slice(5)+'</span></div>';}).join('');}
+function savePlanTemplate(){var rows=DB.rows||[];if(!rows.length){toast('当前没有事项可存为模板','warn');return;}var name=prompt('模板名称：','本周模板');if(!name)return;DB.planTemplates=DB.planTemplates||[];DB.planTemplates.unshift({id:'pt'+Date.now(),name:name,ts:Date.now(),rows:rows.map(function(r){return {b:r.b,t:r.t,s:r.s,d:r.d,dt:r.dt,m:r.m,key:r.key||0};})});if(DB.planTemplates.length>20)DB.planTemplates.length=20;try{save();}catch(e){}renderPlanTemplatesBar();toast('已存为模板：'+name,'ok');}
+function cloneLastPlan(){var rows=DB.rows||[];if(!rows.length){toast('没有可克隆的历史事项','warn');return;}var add=rows.map(function(r){return {b:r.b,t:r.t,s:'todo',d:r.d,dt:'',m:r.m,key:r.key||0,star:0};});DB.rows=add.concat(DB.rows);try{save();}catch(e){}renderPlan();toast('已克隆上次 '+add.length+' 条（进度重置为待处理）','ok');}
+function renderPlanTemplatesBar(){var host=document.getElementById('tmpl-bar');if(!host)return;var ts=DB.planTemplates||[];if(!ts.length){host.innerHTML='';return;}host.innerHTML='<span class="tmpl-label">模板：</span><select id="tmpl-sel">'+ts.map(function(t){return '<option value="'+t.id+'">'+esc(t.name)+'</option>';}).join('')+'</select><button class="btn ghost sm" onclick="applyPlanTemplate()">套用</button>';}
+function applyPlanTemplate(){var sel=document.getElementById('tmpl-sel');if(!sel)return;var t=(DB.planTemplates||[]).filter(function(x){return x.id===sel.value;})[0];if(!t)return;var add=t.rows.map(function(r){return {b:r.b,t:r.t,s:'todo',d:r.d,dt:'',m:r.m,key:r.key||0,star:0};});DB.rows=add.concat(DB.rows);try{save();}catch(e){}renderPlan();toast('已套用模板 '+t.name+'（'+add.length+' 条）','ok');}
+function printShootPlan(){var box=document.getElementById('shoot-result');var txt=box?box.dataset.plan:'';if(!txt){toast('请先生成策划','warn');return;}var w=window.open('','_blank');if(!w){toast('被浏览器拦截，请允许弹窗','err');return;}var html='<html><head><meta charset="utf-8"><title>出片策划</title><style>body{font-family:-apple-system,system-ui,"Microsoft YaHei",sans-serif;padding:24px;line-height:1.7;color:#1f2937;white-space:pre-wrap}h1{font-size:20px;margin:0 0 12px}pre{font-family:inherit;font-size:14px}</style></head><body><h1>'+esc((DB.shootLast||{}).title||'出片策划')+'</h1><pre>'+esc(txt)+'</pre><scr'+'ipt>window.onload=function(){window.print();}</'+'script></body></html>';w.document.write(html);w.document.close();}
+
+
 /* ==================== 编辑委托 ==================== */
 document.addEventListener("input",e=>{
   const el=e.target;if(!el.classList.contains("cell-input"))return;
@@ -12689,7 +12865,7 @@ function renderCalStats(){
   const done=evts.filter(e=>e.done).length;
   const pend=total-done;
   const todayStr=localDateStr();
-  const todayCnt=evts.filter(e=>e.date===todayStr).length;
+  const todayCnt=evts.filter(e=>e.date===todayStr).length + (DB.bookings||[]).filter(b=>b.date===todayStr).length + (DB.shootPlans||[]).filter(p=>p.date===todayStr).length;
   document.getElementById("cal-stats").innerHTML=
     `<div class="cs-card cs-total"><div class="cs-num">${total}</div><div class="cs-label">总行程</div></div>`+
     `<div class="cs-card cs-done"><div class="cs-num">${done}</div><div class="cs-label">已完成</div></div>`+
@@ -12706,10 +12882,10 @@ function renderCalMonth(){
   const evts=DB.events||[];
   /* build date -> events map */
   const evtMap={};
-  evts.forEach(e=>{
-    if(!evtMap[e.date])evtMap[e.date]=[];
-    evtMap[e.date].push(e);
-  });
+  function pushCalItem(arr,item){ if(!evtMap[arr])evtMap[arr]=[]; evtMap[arr].push(item); }
+  evts.forEach(e=>pushCalItem(e.date,e));
+  (DB.bookings||[]).forEach(b=>{ if(b.date) pushCalItem(b.date,{tag:"booking",done:false,title:b.name||"预约"}); });
+  (DB.shootPlans||[]).forEach(p=>{ if(p.date) pushCalItem(p.date,{tag:"shoot",done:false,title:p.title||"策划"}); });
   let html=`<div class="cal-header"><h3>${y}年 ${m+1}月</h3>`+
     `<div class="cal-month-nav"><button class="cal-nav-btn" onclick="calOffset(-1)">◀</button>`+
     `<button class="cal-nav-btn" onclick="calOffset(0)">今天</button>`+
@@ -12719,19 +12895,19 @@ function renderCalMonth(){
   /* prev month days */
   for(let i=firstDay-1;i>=0;i--){
     const dd=daysInPrev-i,dateStr=formatDate(y,m-1,dd);
-    html+=buildCalCell(dd,dateStr,true,evts[dateStr]||[],todayStr);
+    html+=buildCalCell(dd,dateStr,true,evtMap[dateStr]||[],todayStr);
   }
   /* current month */
   for(let d=1;d<=daysInMonth;d++){
     const dateStr=formatDate(y,m,d);
-    html+=buildCalCell(d,dateStr,false,evts[dateStr]||[],todayStr);
+    html+=buildCalCell(d,dateStr,false,evtMap[dateStr]||[],todayStr);
   }
   /* next month */
   const totalCells=Math.ceil((firstDay+daysInMonth)/7)*7;
   const nextCount=totalCells-(firstDay+daysInMonth);
   for(let d=1;d<=nextCount;d++){
     const dateStr=formatDate(y,m+1,d);
-    html+=buildCalCell(d,dateStr,true,evts[dateStr]||[],todayStr);
+    html+=buildCalCell(d,dateStr,true,evtMap[dateStr]||[],todayStr);
   }
   html+=`</div>`;
   container.innerHTML=html;
@@ -13154,6 +13330,7 @@ function renderAll(){
   else if(curTab==="okr")renderOKRs();else if(curTab==="gear")renderGears();else if(curTab==="review")renderReviews();else if(curTab==="idea")renderIdeas();
   else if(curTab==="schedule")renderSchedule();
   renderWeekBar();
+  applyProjAlias();
 }
 
 /* 网盘同步指南卡：切换百度网盘 / WPS 标签 */
