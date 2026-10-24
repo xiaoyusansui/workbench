@@ -2760,6 +2760,40 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
   .sp-hbtn.del{border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.08);color:var(--coral)}
   .sp-hist-empty{font-size:12px;color:var(--muted);padding:6px 0;line-height:1.6}
 
+
+/* ====== 项目运营 KPI 周结算（v6.38） ====== */
+.ops-fields{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-card);box-shadow:var(--card-shadow);padding:16px;margin-bottom:18px}
+.ops-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.ops-lbl{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:var(--ink2)}
+.ops-in{width:100%;background:var(--bg3);color:var(--ink);border:1px solid var(--glass-border);border-radius:var(--r-ctl);padding:9px 11px;font-size:13px;font-family:inherit;font-weight:600}
+.ops-in:focus{outline:2px solid var(--gold);outline-offset:1px}
+textarea.ops-in{resize:vertical;line-height:1.5}
+.ops-media-h{font-size:12px;font-weight:900;color:var(--ink);margin:4px 0 8px}
+.ops-media{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.ops-mrow{display:flex;gap:8px}
+.ops-mname{flex:1}
+.ops-mscore{flex:0 0 86px;width:86px}
+.ops-note-l{margin-bottom:12px}
+.ops-prev{font-size:13px;font-weight:800;color:var(--ink2);background:rgba(212,165,116,.1);border:1px solid rgba(212,165,116,.35);border-radius:var(--r-sub);padding:10px 12px;margin-bottom:12px}
+.ops-prev b{font-size:18px;color:var(--gold2);margin:0 4px}
+.ops-prev-sub{font-size:11px;font-weight:700;color:var(--muted)}
+.ops-btns{display:flex;gap:10px}
+.ops-list{display:flex;flex-direction:column;gap:12px}
+.ops-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-card);box-shadow:var(--card-shadow);padding:14px 16px}
+.ops-card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ops-card-hd b{font-size:15px;font-weight:900;color:var(--ink)}
+.ops-date{font-size:11.5px;color:var(--muted);font-weight:700}
+.ops-scores{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.ops-s{display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--bg3);border:1px solid var(--glass-border);border-radius:var(--r-sub);padding:10px 6px}
+.ops-s-n{font-size:20px;font-weight:900;color:var(--brand2)}
+.ops-s-l{font-size:10.5px;font-weight:800;color:var(--muted)}
+.ops-total{background:rgba(212,165,116,.12);border-color:rgba(212,165,116,.4)}
+.ops-total .ops-s-n{color:var(--gold2)}
+.ops-media-mini{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ops-chip{font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;background:rgba(34,197,94,.1);color:var(--brand2);border:1px solid rgba(34,197,94,.25)}
+.ops-note-t{font-size:12.5px;line-height:1.6;color:var(--muted2);background:var(--bg3);border-radius:var(--r-sub);padding:8px 11px;margin-bottom:8px}
+.ops-card-act{display:flex;gap:8px;justify-content:flex-end}
+@media(max-width:560px){.ops-media{grid-template-columns:1fr}.ops-scores{grid-template-columns:repeat(2,1fr)}}
 </style>
 <script>
   /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
@@ -5108,6 +5142,11 @@ window.QRCode = {
         <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
       </li>
 
+      <li class="nav-item" data-nav="ops" onclick="switchTab('ops')" data-page-node-id="v638OpsNav">
+        <span class="nav-icon" style="background:rgba(212,165,116,.12);color:var(--gold)" data-page-node-id="v638OpsNavIco">📊</span>
+        <span data-page-node-id="v638OpsNavLbl">运营KPI周结</span>
+      </li>
+
       <div class="nav-label" data-page-node-id="2C1Q4ndWaFrqxUF2cUcBaE">📸 摄影学习</div>
       <li class="nav-item" data-nav="hot" onclick="switchTab('hot')" data-page-node-id="nID8Fkejtze1jJEHvMR4Kf">
         <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="zGyyIPmQwvmoiSCGgZwFrY">🔥</span>
@@ -5586,6 +5625,19 @@ window.QRCode = {
           </div>
         </div>
         <div class="review-list" id="review-list" data-page-node-id="UwEdhC3fdZeQA2BLmbLvWp"></div>
+      </section>
+
+      <!-- ==================== 项目运营 KPI 周结算 ==================== -->
+      <section id="panel-ops" style="display:none" data-page-node-id="v638OpsPanel">
+        <div class="sec-head" data-page-node-id="v638OpsHead">
+          <h2 data-page-node-id="v638OpsH2">📊 运营KPI周结</h2>
+          <div class="sec-actions" data-page-node-id="v638OpsActions">
+            <button class="btn sm" onclick="addKpiWeek()" data-page-node-id="v638OpsAdd">＋ 录一周</button>
+            <button class="btn sm ghost" onclick="exportKpiCSV()" data-page-node-id="v638OpsExp">⬇ 导出周报</button>
+          </div>
+        </div>
+        <div class="ops-form" id="ops-form" data-page-node-id="v638OpsForm"></div>
+        <div class="ops-list" id="ops-list" data-page-node-id="v638OpsList"></div>
       </section>
 
       <!-- ==================== 灵感收集 ==================== -->
@@ -6207,7 +6259,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.37</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.38</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6690,7 +6742,8 @@ const SEED={
   shootPlans:[],
   shootLast:null,
   bookings:[],
-  planTemplates:[]
+  planTemplates:[],
+  kpiWeeks:[]
 };
 
 const BANKUAI_REMAP={
@@ -6712,7 +6765,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.37";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.38";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6739,6 +6792,7 @@ function morphDB(d){
   if(!d.events)d.events=JSON.parse(JSON.stringify(SEED.events));
   if(!d.bookings)d.bookings=[];
   if(!d.planTemplates)d.planTemplates=[];
+  if(!d.kpiWeeks)d.kpiWeeks=[];
   if(!d.works)d.works=[];
   /* 热点补链（v5.84）：老数据没有 kw/url 时，按标题从内置样例补齐搜索词，
      保证「点开热点 → 跳转对应平台观看」对所有老用户同样可用 */
@@ -6920,7 +6974,8 @@ const TAB_TITLES={
   schedule:{title:"📅 排程日历",sub:"全局常驻 · 拍摄安排 · 策划节点 · 学习计划 · 生活提醒"},
   works:{title:"📷 我的作品",sub:"摄影创作 · 上传作品 · 标记客片 · 同步客户画廊"},
   bookings:{title:"📩 客户预约",sub:"接单交付 · 客户在客户端提交跟拍预约 · 统一处理"},
-  shoot:{title:"🎬 出片策划",sub:"接单交付 · 按订单自动出设备清单 + 拍摄角度 + 精修配额"}
+  shoot:{title:"🎬 出片策划",sub:"接单交付 · 按订单自动出设备清单 + 拍摄角度 + 精修配额"},
+  ops:{title:"📊 运营KPI周结",sub:"项目运营 · 案场接待40% + 线上留电40% + 新媒体六项20% 周结算"}
 };
 function openMobileNav(){
   const sb=document.querySelector(".sidebar");const ov=document.querySelector(".mobile-nav-overlay");
@@ -6935,7 +6990,7 @@ function closeMobileNav(){
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
-  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot"];
+  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot","ops"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
   document.getElementById("page-title").innerHTML=info.title+' <span class="sparkle"></span>';
@@ -6944,7 +6999,7 @@ function switchTab(t){
   else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
-  else if(t==="works")renderWorks();else if(t==="bookings")renderBookings();else if(t==="shoot")renderShoot();
+  else if(t==="works")renderWorks();else if(t==="bookings")renderBookings();else if(t==="shoot")renderShoot();else if(t==="ops")renderOps();
   // 手机端切换模块后关闭抽屉并回到顶部
   if(window.innerWidth<=834){closeMobileNav();window.scrollTo({top:0,behavior:"smooth"});}
 }
@@ -6986,6 +7041,8 @@ function renderOverview(){
     {nav:"plan",icon:"📋",color:"var(--brand)",title:"策划工作",
      big:DB.rows.length,sub:`进行中 ${planDoing} · 已完成 ${planDone}`,
      pct:DB.rows.length?Math.round(planDone/DB.rows.length*100):0},
+    {nav:"ops",icon:"📊",color:"var(--gold)",title:"运营KPI周结",
+     big:(DB.kpiWeeks||[]).length,sub:"周结算记录",pct:0},
   ];
   /* v6.06 全局常驻区仅「日历行程」；「事务管理」卡片已归入 🎬 接单交付 */
   const globalCards=[
@@ -10280,6 +10337,133 @@ function renderReviews(){
 function addReview(){const week=(prompt("周次（如：2026年第32周 8.3-8.9）：")||"").trim();if(!week){formErr("周次不能为空");return;}const date=localDateStr();const done=prompt("本周完成了什么？（逐行写）:")||"";const plan=prompt("下周计划？")||"";const insight=prompt("心得与洞察？")||"";DB.reviews=DB.reviews||[];DB.reviews.unshift({week:week,date:date,done:done,plan:plan,insight:insight,data:{}});save();renderReviews();toast("已新增复盘周记 ✓","ok");}
 function editReview(i){const r=DB.reviews[i];r.week=prompt("周次：",r.week)||r.week;r.done=prompt("本周完成：",r.done)||r.done;r.plan=prompt("下周计划：",r.plan)||r.plan;r.insight=prompt("心得洞察：",r.insight)||r.insight;save();renderReviews();}
 function delReview(i){if(confirm("删除该周记？")){DB.reviews.splice(i,1);save();renderReviews();}}
+
+/* ==================== 项目运营 KPI 周结算（v6.38） ==================== */
+/* 口径：综合得分 = 案场接待×0.4 + 线上留电×0.4 + 新媒体六项均分×0.2（各项录入 0-100） */
+let _opsEditIdx=-1;
+const OPS_MEDIA_DEFLT=["新媒体①","新媒体②","新媒体③","新媒体④","新媒体⑤","新媒体⑥"];
+function kpiWeeks(){ if(!DB.kpiWeeks)DB.kpiWeeks=[]; return DB.kpiWeeks; }
+function opsClamp(v){ v=Number(v)||0; if(v<0)v=0; if(v>100)v=100; return v; }
+function opsEditRec(){ return _opsEditIdx>=0?kpiWeeks()[_opsEditIdx]:null; }
+function opsMediaArr(){
+  if(_opsEditIdx>=0){ var e=kpiWeeks()[_opsEditIdx]; return (e&&e.media&&e.media.length)?e.media:OPS_MEDIA_DEFLT.map(function(n){return {name:n,score:""};}); }
+  return OPS_MEDIA_DEFLT.map(function(n){return {name:n,score:""};});
+}
+function opsComposite(w){
+  var rec=opsClamp(w.reception), lead=opsClamp(w.lead);
+  var ms=(w.media||[]).map(function(m){return opsClamp(m.score);});
+  var avg=ms.length? ms.reduce(function(a,b){return a+b;},0)/ms.length : 0;
+  return Math.round((rec*0.4+lead*0.4+avg*0.2)*10)/10;
+}
+function renderOps(){
+  var form=document.getElementById("ops-form");
+  var e=opsEditRec();
+  var media=opsMediaArr();
+  if(form){
+    form.innerHTML=
+      '<div class="ops-fields">'+
+        '<div class="ops-row">'+
+          '<label class="ops-lbl">周次<input id="ops-week" class="ops-in" placeholder="如 2026年第43周" value="'+(e?esc(e.week):"")+'"></label>'+
+          '<label class="ops-lbl">日期<input id="ops-date" class="ops-in" type="date" value="'+(e?esc(e.date):localDateStr())+'"></label>'+
+        '</div>'+
+        '<div class="ops-row">'+
+          '<label class="ops-lbl">案场接待得分(40%)<input id="ops-rec" class="ops-in" type="number" min="0" max="100" oninput="numOnly(this);opsPreview()" value="'+(e?esc(e.reception):"")+'"></label>'+
+          '<label class="ops-lbl">线上留电得分(40%)<input id="ops-lead" class="ops-in" type="number" min="0" max="100" oninput="numOnly(this);opsPreview()" value="'+(e?esc(e.lead):"")+'"></label>'+
+        '</div>'+
+        '<div class="ops-media-h">新媒体六项(20%，取六项平均)</div>'+
+        '<div class="ops-media" id="ops-media">'+
+          media.map(function(m,mi){return '<div class="ops-mrow"><input class="ops-in ops-mname" data-mi="'+mi+'" placeholder="项名" value="'+esc(m.name)+'"><input class="ops-in ops-mscore" data-mi="'+mi+'" type="number" min="0" max="100" oninput="numOnly(this);opsPreview()" placeholder="得分" value="'+(m.score!==undefined&&m.score!==null?esc(m.score):"")+'"></div>';}).join("")+
+        '</div>'+
+        '<label class="ops-lbl ops-note-l">备注<textarea id="ops-note" class="ops-in" rows="2" placeholder="本周小结 / 异常说明">'+(e?esc(e.note||""):"")+'</textarea></label>'+
+        '<div class="ops-prev" id="ops-prev"></div>'+
+        '<div class="ops-btns">'+
+          '<button class="btn" id="ops-save" data-page-node-id="v638OpsSave" onclick="saveKpiWeek()">'+(e?"保存修改":"保存本周")+'</button>'+
+          (e?'<button class="btn ghost" onclick="cancelKpiEdit()">取消</button>':'')+
+        '</div>'+
+      '</div>';
+    opsPreview();
+  }
+  var list=document.getElementById("ops-list");
+  if(!list)return;
+  var arr=kpiWeeks().slice().sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+  if(!arr.length){ list.innerHTML=emptyState({icon:"📊",text:"还没有录入任何一周的运营KPI",sub:"按 案场接待40% + 线上留电40% + 新媒体六项20% 录每周得分，自动算综合，月底一键导出周报",btn:"＋ 录第一周",action:"addKpiWeek()"}); return; }
+  list.innerHTML=arr.map(function(w){
+    var ci=kpiWeeks().indexOf(w);
+    var ms=w.media||[];
+    var avg=ms.length? Math.round(ms.reduce(function(a,m){return a+opsClamp(m.score);},0)/ms.length*10)/10 : 0;
+    return '<div class="ops-card">'+
+      '<div class="ops-card-hd"><b>'+esc(w.week||"未命名周")+'</b><span class="ops-date">📅 '+esc(w.date||"")+'</span></div>'+
+      '<div class="ops-scores">'+
+        '<div class="ops-s"><span class="ops-s-n">'+opsClamp(w.reception)+'</span><span class="ops-s-l">案场接待·40%</span></div>'+
+        '<div class="ops-s"><span class="ops-s-n">'+opsClamp(w.lead)+'</span><span class="ops-s-l">线上留电·40%</span></div>'+
+        '<div class="ops-s"><span class="ops-s-n">'+avg+'</span><span class="ops-s-l">新媒体均·20%</span></div>'+
+        '<div class="ops-s ops-total"><span class="ops-s-n">'+opsComposite(w)+'</span><span class="ops-s-l">综合得分</span></div>'+
+      '</div>'+
+      (ms.length?'<div class="ops-media-mini">'+ms.map(function(m){return '<span class="ops-chip">'+esc(m.name)+' '+opsClamp(m.score)+'</span>';}).join("")+'</div>':'')+
+      (w.note?'<div class="ops-note-t">'+esc(w.note)+'</div>':'')+
+      '<div class="ops-card-act"><button class="rv-btn rv-btn-edit" onclick="editKpiWeek('+ci+')">编辑</button><button class="rv-btn rv-btn-del" onclick="delKpiWeek('+ci+')">删除</button></div>'+
+    '</div>';
+  }).join("");
+}
+function opsPreview(){
+  var rec=nonNegNum(document.getElementById("ops-rec")||{value:""});
+  var lead=nonNegNum(document.getElementById("ops-lead")||{value:""});
+  var scores=[];
+  document.querySelectorAll("#ops-media .ops-mscore").forEach(function(el){ scores.push(nonNegNum(el)); });
+  var avg=scores.length? scores.reduce(function(a,b){return a+b;},0)/scores.length : 0;
+  var total=Math.round((rec*0.4+lead*0.4+avg*0.2)*10)/10;
+  var prev=document.getElementById("ops-prev");
+  if(prev) prev.innerHTML='实时综合得分：<b>'+total+'</b><span class="ops-prev-sub">（案场 '+rec+'×0.4 + 线上 '+lead+'×0.4 + 新媒体均 '+Math.round(avg*10)/10+'×0.2）</span>';
+}
+function addKpiWeek(){ _opsEditIdx=-1; renderOps(); var w=document.getElementById("ops-week"); if(w)w.focus(); }
+function editKpiWeek(i){ _opsEditIdx=i; renderOps(); }
+function cancelKpiEdit(){ _opsEditIdx=-1; renderOps(); }
+function saveKpiWeek(){
+  var weekEl=document.getElementById("ops-week");
+  var week=(weekEl&&weekEl.value||"").trim();
+  if(!week){ formErr("周次不能为空"); return; }
+  var dateEl=document.getElementById("ops-date");
+  var date=(dateEl&&dateEl.value)||localDateStr();
+  var rec=nonNegNum(document.getElementById("ops-rec"));
+  var lead=nonNegNum(document.getElementById("ops-lead"));
+  var media=[];
+  document.querySelectorAll("#ops-media .ops-mrow").forEach(function(row){
+    var nm=row.querySelector(".ops-mname").value.trim();
+    var sc=nonNegNum(row.querySelector(".ops-mscore"));
+    media.push({name:nm||("新媒体"+(media.length+1)), score:sc});
+  });
+  var noteEl=document.getElementById("ops-note");
+  var note=(noteEl&&noteEl.value||"").trim();
+  var obj={week:week,date:date,reception:rec,lead:lead,media:media,note:note,ts:Date.now()};
+  if(_opsEditIdx>=0){ kpiWeeks()[_opsEditIdx]=obj; toast("已保存修改 ✓","ok"); }
+  else { kpiWeeks().unshift(obj); toast("已录入本周KPI ✓","ok"); }
+  _opsEditIdx=-1; save(); renderOps();
+}
+function delKpiWeek(i){
+  wbConfirm("删除这一周的KPI记录？删除后不可恢复。", function(){
+    kpiWeeks().splice(i,1); save(); renderOps(); toast("已删除","ok");
+  });
+}
+function exportKpiCSV(){
+  try{
+    var arr=kpiWeeks().slice().sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+    var head=["周次","日期","案场接待(40%)","线上留电(40%)","新媒体均分(20%)","综合得分","新媒体明细","备注"];
+    var lines=[head.join(",")];
+    arr.forEach(function(w){
+      var ms=w.media||[];
+      var avg=ms.length? Math.round(ms.reduce(function(a,m){return a+opsClamp(m.score);},0)/ms.length*10)/10 : 0;
+      var detail=ms.map(function(m){return (m.name||"")+" "+opsClamp(m.score);}).join(" | ");
+      var cells=[w.week,w.date,opsClamp(w.reception),opsClamp(w.lead),avg,opsComposite(w),detail,w.note||""].map(function(v){
+        v=(v==null?"":v).toString(); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;
+      });
+      lines.push(cells.join(","));
+    });
+    var blob=new Blob(["﻿"+lines.join("\n")],{type:"text/csv;charset=utf-8"});
+    var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="项目运营KPI周结_"+localDateStr()+".csv"; a.click();
+    toast("已导出周报 ✓","ok");
+  }catch(err){ toast("导出失败："+err.message,"err"); }
+}
+
 
 /* ==================== 灵感收集 ==================== */
 /* v6.16：灵感不再是一盘散沙，按「我的器材 × 婚礼跟拍业务」两条主线收集。
