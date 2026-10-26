@@ -1264,6 +1264,39 @@
   .nav-label-global{color:var(--gold);opacity:.85}
   .nav-item.nav-global.active{box-shadow:inset 3px 0 0 var(--gold),0 0 12px var(--gold-glow)}
 
+  /* ===== v6.43 侧栏大类目 / 子类目（可折叠，状态记本地） ===== */
+  .nav-item.nav-pin{margin-bottom:2px}
+  .nav-group{margin-top:2px}
+  .nav-group-hd{
+    display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;
+    padding:9px 12px;margin:2px 0 2px;background:none;border:0;border-radius:var(--radius-xs);
+    color:var(--muted);font-family:inherit;font-size:11.5px;font-weight:900;letter-spacing:.6px;
+    text-align:left;cursor:pointer;transition:.15s;user-select:none
+  }
+  .nav-group-hd:hover{background:var(--bg3);color:var(--ink2)}
+  .nav-g-ico{font-size:13px;line-height:1;flex:none}
+  .nav-g-lbl{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .nav-g-cnt{
+    flex:none;font-size:9.5px;font-weight:900;color:var(--muted);background:var(--bg3);
+    border:1px solid var(--glass-border);border-radius:99px;padding:0 6px;min-width:16px;text-align:center;line-height:15px
+  }
+  .nav-g-arrow{
+    flex:none;width:5px;height:5px;margin-right:2px;
+    border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
+    transform:rotate(45deg);transition:transform .18s;transform-origin:60% 60%
+  }
+  .nav-group.collapsed .nav-g-arrow{transform:rotate(-45deg);border-color:var(--muted2)}
+  .nav-group.has-active .nav-g-lbl{color:var(--gold2)}
+  .nav-group.has-active .nav-g-cnt{color:var(--gold2);background:rgba(212,165,116,.16);border-color:rgba(212,165,116,.35)}
+  .nav-group-body{
+    display:flex;flex-direction:column;gap:1px;
+    margin:0 0 4px 15px;padding-left:8px;border-left:1px solid var(--glass-border)
+  }
+  .nav-group.collapsed .nav-group-body{display:none}
+  .nav-item.nav-sub{padding:9px 11px;font-size:12.5px;gap:9px;margin-bottom:1px}
+  .nav-item.nav-sub .nav-icon{width:26px;height:26px;font-size:14px;border-radius:8px}
+  .nav-item.nav-sub.active{box-shadow:inset 2px 0 0 var(--gold),0 0 10px var(--gold-glow)}
+
   /* v5.92 全局 Toast：增删改统一 2 秒反馈 */
   #wb-toast{
     position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:99999;display:none;
@@ -1375,6 +1408,10 @@
     .nav-list{display:block;padding:4px 10px;flex:1;overflow:visible}
     .nav-item{padding:12px 14px;font-size:14px;margin-bottom:3px;white-space:nowrap}
     .nav-item .nav-icon{width:32px;height:32px;font-size:17px}
+    .nav-item.nav-sub{padding:11px 12px;font-size:13.5px}
+    .nav-item.nav-sub .nav-icon{width:30px;height:30px;font-size:16px}
+    .nav-group-hd{padding:11px 12px;font-size:12.5px}
+    .nav-g-ico{font-size:14px}
     .nav-item.mobile-only{display:flex}
     .sync-chip.mobile-only{display:flex}
     .sidebar-footer{padding:12px 14px;border-top:1px solid var(--glass-border);margin-top:auto}
@@ -5213,82 +5250,110 @@ window.QRCode = {
       <div class="sb-role" data-page-node-id="WuRZeFmEBW7sZDtqv14Udu">专业能力是根本，资源整合是杠杆，持续学习是保障</div>
     </div>
 
-    <ul class="nav-list" data-page-node-id="xYbUBqHBpNqF95QFEbvQ39">
-      <li class="nav-item active" data-nav="home" onclick="switchTab('home')" data-page-node-id="ys7wd6KTlmt1W6vKLrskBy">
+    <div class="nav-list" data-page-node-id="xYbUBqHBpNqF95QFEbvQ39">
+      <!-- v6.43 侧栏重排：顶部两个常驻项（首页 / 排程日历）+ 5 个可折叠大类目（点标题收起/展开，状态记本地） -->
+      <div class="nav-item nav-pin active" data-nav="home" onclick="switchTab('home')" data-page-node-id="ys7wd6KTlmt1W6vKLrskBy">
         <span class="nav-icon" style="background:linear-gradient(135deg,rgba(212,165,116,.18),rgba(251,191,36,.12));color:var(--gold)" data-page-node-id="ZPK8gfHKER5dsxHCcSlysd">🐟</span>
         <span data-page-node-id="62ECbf8OIeTUdJO1QgBrvb">首页</span>
-      </li>
-
-      <!-- v6.06 全局常驻仅「排程日历」；「事务管理」已归入 🎬 接单交付 -->
-      <div class="nav-label nav-label-global" data-page-node-id="v592GlobalLbl">⚡ 全局常驻</div>
-      <li class="nav-item nav-global" data-nav="schedule" onclick="switchTab('schedule')" data-page-node-id="v592GlobalSch">
+      </div>
+      <div class="nav-item nav-pin nav-global" data-nav="schedule" onclick="switchTab('schedule')" data-page-node-id="v592GlobalSch">
         <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="v592GlobalSchIcon">📅</span>
         <span data-page-node-id="v592GlobalSchLbl">排程日历</span>
-      </li>
+      </div>
 
-      <div class="nav-label" id="nav-lbl-estate" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">💼 项目运营</div>
-      <li class="nav-item" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
-        <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
-        <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
-      </li>
+      <div class="nav-group" data-g="plan" data-page-node-id="NxzgSAvvxZCSSovAyKWIAz">
+        <button type="button" class="nav-group-hd" onclick="toggleNavGroup('plan')" aria-expanded="true">
+          <span class="nav-g-ico">💼</span><span class="nav-g-lbl" id="nav-lbl-estate">项目运营</span><span class="nav-g-cnt">1</span><span class="nav-g-arrow"></span>
+        </button>
+        <div class="nav-group-body">
+          <div class="nav-item nav-sub" data-nav="plan" onclick="switchTab('plan')" data-page-node-id="lU9hDgZ0MUbzoevzyEQb77">
+            <span class="nav-icon" style="background:rgba(34,197,94,.12);color:var(--brand)" data-page-node-id="d45CQOMh9hWVRTtIaEALiO">📋</span>
+            <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="nav-label" data-page-node-id="2C1Q4ndWaFrqxUF2cUcBaE">📸 摄影学习</div>
-      <li class="nav-item" data-nav="hot" onclick="switchTab('hot')" data-page-node-id="nID8Fkejtze1jJEHvMR4Kf">
-        <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="zGyyIPmQwvmoiSCGgZwFrY">🔥</span>
-        <span data-page-node-id="dnlvfEKEGnNlyftWRWNur7">摄影热点</span>
-      </li>
-      <li class="nav-item" data-nav="course" onclick="switchTab('course')" data-page-node-id="gxobD6lGDxUX3yPrqeyadP">
-        <span class="nav-icon" style="background:rgba(251,191,36,.12);color:var(--amber)" data-page-node-id="V6T4gn86XMoGCEw8G4Nrt3">📷</span>
-        <span data-page-node-id="JWYFRzqG2HC9IMrOoJo3wT">摄影课程</span>
-      </li>
-      <li class="nav-item" data-nav="gear" onclick="switchTab('gear')" data-page-node-id="B5r7a55iwO5hkgRYl9YfII">
-        <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="WiqH3FCTOxqXH8AvQfY4f7">🔧</span>
-        <span data-page-node-id="It7IbDmD8QuDAzRSnkdzuE">器材管理</span>
-      </li>
+      <div class="nav-group" data-g="learn" data-page-node-id="2C1Q4ndWaFrqxUF2cUcBaE">
+        <button type="button" class="nav-group-hd" onclick="toggleNavGroup('learn')" aria-expanded="true">
+          <span class="nav-g-ico">📸</span><span class="nav-g-lbl">摄影学习</span><span class="nav-g-cnt">3</span><span class="nav-g-arrow"></span>
+        </button>
+        <div class="nav-group-body">
+          <div class="nav-item nav-sub" data-nav="hot" onclick="switchTab('hot')" data-page-node-id="nID8Fkejtze1jJEHvMR4Kf">
+            <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="zGyyIPmQwvmoiSCGgZwFrY">🔥</span>
+            <span data-page-node-id="dnlvfEKEGnNlyftWRWNur7">摄影热点</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="course" onclick="switchTab('course')" data-page-node-id="gxobD6lGDxUX3yPrqeyadP">
+            <span class="nav-icon" style="background:rgba(251,191,36,.12);color:var(--amber)" data-page-node-id="V6T4gn86XMoGCEw8G4Nrt3">📷</span>
+            <span data-page-node-id="JWYFRzqG2HC9IMrOoJo3wT">摄影课程</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="gear" onclick="switchTab('gear')" data-page-node-id="B5r7a55iwO5hkgRYl9YfII">
+            <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="WiqH3FCTOxqXH8AvQfY4f7">🔧</span>
+            <span data-page-node-id="It7IbDmD8QuDAzRSnkdzuE">器材管理</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="nav-label" data-page-node-id="XEPC5group">🎨 摄影创作</div>
-      <li class="nav-item" data-nav="idea" onclick="switchTab('idea')" data-page-node-id="Vevrn2WprJQVkvoRZTf8WO">
-        <span class="nav-icon" style="background:rgba(168,85,247,.12);color:#a855f7" data-page-node-id="di1KYKibD7RkpteFLkDDHV">💡</span>
-        <span data-page-node-id="PL3xnvyGbxSqmg3IyItCn6">灵感收集</span>
-      </li>
-      <li class="nav-item" data-nav="works" onclick="switchTab('works')" data-page-node-id="KzmgDthN6R97s3YOOkf3pB">
-        <span class="nav-icon" style="background:rgba(239,68,68,.12);color:#ef4444" data-page-node-id="msmNEeTHxzTHEvxj5O08Fn">📷</span>
-        <span data-page-node-id="A2PmV1lJVoRTN9Fkyahf5J">我的作品</span>
-      </li>
+      <div class="nav-group" data-g="create" data-page-node-id="XEPC5group">
+        <button type="button" class="nav-group-hd" onclick="toggleNavGroup('create')" aria-expanded="true">
+          <span class="nav-g-ico">🎨</span><span class="nav-g-lbl">摄影创作</span><span class="nav-g-cnt">2</span><span class="nav-g-arrow"></span>
+        </button>
+        <div class="nav-group-body">
+          <div class="nav-item nav-sub" data-nav="idea" onclick="switchTab('idea')" data-page-node-id="Vevrn2WprJQVkvoRZTf8WO">
+            <span class="nav-icon" style="background:rgba(168,85,247,.12);color:#a855f7" data-page-node-id="di1KYKibD7RkpteFLkDDHV">💡</span>
+            <span data-page-node-id="PL3xnvyGbxSqmg3IyItCn6">灵感收集</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="works" onclick="switchTab('works')" data-page-node-id="KzmgDthN6R97s3YOOkf3pB">
+            <span class="nav-icon" style="background:rgba(239,68,68,.12);color:#ef4444" data-page-node-id="msmNEeTHxzTHEvxj5O08Fn">📷</span>
+            <span data-page-node-id="A2PmV1lJVoRTN9Fkyahf5J">我的作品</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="nav-label" data-page-node-id="2C1Q4groupOrder">🎬 接单交付</div>
-      <li class="nav-item" data-nav="job" onclick="switchTab('job')" data-page-node-id="v592GlobalJob">
-        <span class="nav-icon" style="background:rgba(96,165,250,.14);color:var(--blue)" data-page-node-id="v592GlobalJobIcon">📋</span>
-        <span data-page-node-id="v592GlobalJobLbl">事务管理</span>
-      </li>
-      <li class="nav-item" data-nav="bookings" onclick="switchTab('bookings')" data-page-node-id="gGJbns4dGyvCfWU01X8Z4R">
-        <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff" data-page-node-id="rm9HmhaHklHZ2CxPyeTQJO">📩</span>
-        <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
-      </li>
+      <div class="nav-group" data-g="order" data-page-node-id="2C1Q4groupOrder">
+        <button type="button" class="nav-group-hd" onclick="toggleNavGroup('order')" aria-expanded="true">
+          <span class="nav-g-ico">🎬</span><span class="nav-g-lbl">接单交付</span><span class="nav-g-cnt">3</span><span class="nav-g-arrow"></span>
+        </button>
+        <div class="nav-group-body">
+          <div class="nav-item nav-sub" data-nav="job" onclick="switchTab('job')" data-page-node-id="v592GlobalJob">
+            <span class="nav-icon" style="background:rgba(96,165,250,.14);color:var(--blue)" data-page-node-id="v592GlobalJobIcon">📋</span>
+            <span data-page-node-id="v592GlobalJobLbl">事务管理</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="bookings" onclick="switchTab('bookings')" data-page-node-id="gGJbns4dGyvCfWU01X8Z4R">
+            <span class="nav-icon" style="background:rgba(79,157,255,.12);color:#4f9dff" data-page-node-id="rm9HmhaHklHZ2CxPyeTQJO">📩</span>
+            <span data-page-node-id="58rEcXtYBY8HP7D8EIrLiA">客户预约</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="shoot" onclick="switchTab('shoot')" data-page-node-id="v635ShootNav">
+            <span class="nav-icon" style="background:rgba(212,165,116,.14);color:var(--gold)" data-page-node-id="v635ShootNavIco">🎬</span>
+            <span data-page-node-id="v635ShootNavLbl">出片策划</span>
+          </div>
+        </div>
+      </div>
 
-      <li class="nav-item" data-nav="shoot" onclick="switchTab('shoot')" data-page-node-id="v635ShootNav">
-        <span class="nav-icon" style="background:rgba(212,165,116,.14);color:var(--gold)" data-page-node-id="v635ShootNavIco">🎬</span>
-        <span data-page-node-id="v635ShootNavLbl">出片策划</span>
-      </li>
+      <div class="nav-group" data-g="grow" data-page-node-id="XEPCsx5cOk1d9MpIAMD29Q">
+        <button type="button" class="nav-group-hd" onclick="toggleNavGroup('grow')" aria-expanded="true">
+          <span class="nav-g-ico">🌱</span><span class="nav-g-lbl">个人成长</span><span class="nav-g-cnt">3</span><span class="nav-g-arrow"></span>
+        </button>
+        <div class="nav-group-body">
+          <div class="nav-item nav-sub" data-nav="okr" onclick="switchTab('okr')" data-page-node-id="L9XlV5wbcr3AepXXEjz3mD">
+            <span class="nav-icon" style="background:rgba(236,72,153,.12);color:#ec4899" data-page-node-id="fOUkXpsGcLnzHNCJAfH8C8">🎯</span>
+            <span data-page-node-id="3J8rPAxuLCYFw07xxGbBzK">目标与OKR</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="read" onclick="switchTab('read')" data-page-node-id="GQrtMYAETEhPFRnX7WY7Ul">
+            <span class="nav-icon" style="background:rgba(167,139,250,.12);color:var(--purple)" data-page-node-id="ni6NCrN9TgunBdENRYOuri">📖</span>
+            <span data-page-node-id="ZG9sAnH5lC2FwWnH1qPBDn">读书计划</span>
+          </div>
+          <div class="nav-item nav-sub" data-nav="review" onclick="switchTab('review')" data-page-node-id="VFAi3BzwRHA2RH67nnJyMa">
+            <span class="nav-icon" style="background:rgba(20,184,166,.12);color:#14b8a6" data-page-node-id="BgiDCh8bAgBvFEbrji7lRt">📝</span>
+            <span data-page-node-id="SnIXIkyg5HQli1GWHfj6Hi">复盘周记</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="nav-label" data-page-node-id="XEPCsx5cOk1d9MpIAMD29Q">🌱 个人成长</div>
-      <li class="nav-item" data-nav="okr" onclick="switchTab('okr')" data-page-node-id="L9XlV5wbcr3AepXXEjz3mD">
-        <span class="nav-icon" style="background:rgba(236,72,153,.12);color:#ec4899" data-page-node-id="fOUkXpsGcLnzHNCJAfH8C8">🎯</span>
-        <span data-page-node-id="3J8rPAxuLCYFw07xxGbBzK">目标与OKR</span>
-      </li>
-      <li class="nav-item" data-nav="read" onclick="switchTab('read')" data-page-node-id="GQrtMYAETEhPFRnX7WY7Ul">
-        <span class="nav-icon" style="background:rgba(167,139,250,.12);color:var(--purple)" data-page-node-id="ni6NCrN9TgunBdENRYOuri">📖</span>
-        <span data-page-node-id="ZG9sAnH5lC2FwWnH1qPBDn">读书计划</span>
-      </li>
-      <li class="nav-item" data-nav="review" onclick="switchTab('review')" data-page-node-id="VFAi3BzwRHA2RH67nnJyMa">
-        <span class="nav-icon" style="background:rgba(20,184,166,.12);color:#14b8a6" data-page-node-id="BgiDCh8bAgBvFEbrji7lRt">📝</span>
-        <span data-page-node-id="SnIXIkyg5HQli1GWHfj6Hi">复盘周记</span>
-      </li>
-      <li class="nav-item mobile-only" onclick="openSettings()" data-page-node-id="fRY9QSnHloflPjokfljQZo">
+      <div class="nav-item mobile-only" onclick="openSettings()" data-page-node-id="fRY9QSnHloflPjokfljQZo">
         <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="GJYpTqwp0WM2usPpzXmpQP">⚙</span>
         <span data-page-node-id="HtFGo0Rs02eiP2FNhz5vOH">设置</span>
-      </li>
-    </ul>
+      </div>
+    </div>
 
     <div class="sidebar-footer" data-page-node-id="rERjelEKUWUuFfUpxkypFY">
       <div class="sf-row" data-page-node-id="JFcsaC8aGq4O1Tvao8zEjw">
@@ -6338,7 +6403,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.42</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.43</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6844,7 +6909,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.42";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.43";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7099,9 +7164,50 @@ function closeMobileNav(){
   if(sb){sb.classList.remove("open");}if(ov){ov.classList.remove("open");}
   document.body.style.overflow="";
 }
+/* ==================== v6.43 侧栏大类目 / 子类目折叠 ==================== */
+const NAV_GROUP_KEY="wb_navgroups";
+function navGroupState(){ try{ var r=localStorage.getItem(NAV_GROUP_KEY); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
+function navGroupSave(st){ try{ localStorage.setItem(NAV_GROUP_KEY,JSON.stringify(st)); }catch(e){} }
+/* 应用本地记住的展开/收起状态 */
+function navGroupsApply(){
+  var st=navGroupState();
+  document.querySelectorAll(".nav-group").forEach(function(g){
+    var col=!!st[g.getAttribute("data-g")];
+    g.classList.toggle("collapsed",col);
+    var hd=g.querySelector(".nav-group-hd");
+    if(hd)hd.setAttribute("aria-expanded",col?"false":"true");
+  });
+}
+/* 切到某个模块时：自动展开它所在的大类，并给该大类标题上高亮 */
+function navGroupSync(nav){
+  document.querySelectorAll(".nav-group").forEach(function(g){
+    var has=!!Array.prototype.filter.call(g.querySelectorAll(".nav-item"),function(el){return el.dataset.nav===nav;}).length;
+    g.classList.toggle("has-active",has);
+    if(has&&g.classList.contains("collapsed")){
+      g.classList.remove("collapsed");
+      var hd=g.querySelector(".nav-group-hd"); if(hd)hd.setAttribute("aria-expanded","true");
+      var st=navGroupState(); st[g.getAttribute("data-g")]=false; navGroupSave(st);
+    }
+  });
+}
+/* 点大类标题：收起 / 展开，状态记本地 */
+function toggleNavGroup(k){
+  var g=document.querySelector('.nav-group[data-g="'+k+'"]'); if(!g)return;
+  var collapsed=!g.classList.contains("collapsed");
+  g.classList.toggle("collapsed",collapsed);
+  var hd=g.querySelector(".nav-group-hd"); if(hd)hd.setAttribute("aria-expanded",collapsed?"false":"true");
+  var st=navGroupState(); st[k]=collapsed; navGroupSave(st);
+}
+/* 全部展开 / 全部收起（给设置页或快捷用） */
+function navGroupsExpandAll(expand){
+  document.querySelectorAll(".nav-group").forEach(function(g){ g.classList.toggle("collapsed",!expand); });
+  var st=navGroupState(); Object.keys(st).forEach(function(k){ st[k]=!expand; }); navGroupSave(st);
+  navGroupsApply();
+}
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
+  try{ if(typeof navGroupSync==="function")navGroupSync(t); }catch(e){}
   const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
@@ -13115,7 +13221,7 @@ async function renderBookings(){
   box.innerHTML=html||'<div class="works-hint">还没有预约。点「＋ 新建预约」登记，或配置令牌同步客户小程序提交的预约。</div>';
 }
 function saveProjAlias(){var v=(document.getElementById('proj-alias').value||'').trim();localStorage.setItem('xiaoyu_proj_alias',v);applyProjAlias();}
-function applyProjAlias(){var a=localStorage.getItem('xiaoyu_proj_alias');var name=a?a:'项目运营';var lbl='💼 '+name;var e1=document.getElementById('nav-lbl-estate');if(e1)e1.textContent=lbl;var e2=document.getElementById('dash-biz-label');if(e2)e2.textContent=lbl;var e3=document.getElementById('page-subtitle');if(e3)e3.textContent=name+'策划 · 任务追踪与进度管理';var e4=document.getElementById('about-pos');if(e4)e4.textContent=name+' + 摄影师工作台';var inp=document.getElementById('proj-alias');if(inp&&!inp.value&&a)inp.value=a;}
+function applyProjAlias(){var a=localStorage.getItem('xiaoyu_proj_alias');var name=a?a:'项目运营';var lbl='💼 '+name;var e1=document.getElementById('nav-lbl-estate');if(e1)e1.textContent=name;var e2=document.getElementById('dash-biz-label');if(e2)e2.textContent=lbl;var e3=document.getElementById('page-subtitle');if(e3)e3.textContent=name+'策划 · 任务追踪与进度管理';var e4=document.getElementById('about-pos');if(e4)e4.textContent=name+' + 摄影师工作台';var inp=document.getElementById('proj-alias');if(inp&&!inp.value&&a)inp.value=a;}
 function renderHomeRecent(){var host=document.getElementById('home-recent');if(!host)return;var todayStr=localDateStr();var items=[];(DB.bookings||[]).forEach(function(b){if(b.date&&b.date>=todayStr)items.push({d:b.date,cls:'hr-bk',ic:'📩',t:(b.name||'预约')+(b.type?' · '+b.type:''),sub:'预约'});});(DB.shootPlans||[]).forEach(function(p){if(p.date&&p.date>=todayStr)items.push({d:p.date,cls:'hr-sp',ic:'🎬',t:(p.title||'策划')+(p.type?' · '+p.type:''),sub:'策划'});});(DB.events||[]).forEach(function(e){if(e.date&&e.date>=todayStr&&!e.done)items.push({d:e.date,cls:'hr-ev',ic:'📅',t:(e.title||''),sub:TAG_MAP[e.tag]||''});});items.sort(function(a,b){return a.d.localeCompare(b.d)||a.sub.localeCompare(b.sub);});items=items.slice(0,8);if(!items.length){host.innerHTML='<div class="cal-empty">未来暂无拍摄 / 预约安排。</div>';return;}host.innerHTML=items.map(function(it){return '<div class="hr-item '+it.cls+'"><span class="hr-ic">'+it.ic+'</span><div class="hr-info"><div class="hr-t">'+esc(it.t)+'</div><div class="hr-s">'+esc(it.sub)+'</div></div><span class="hr-d">'+it.d.slice(5)+'</span></div>';}).join('');}
 function savePlanTemplate(){var rows=DB.rows||[];if(!rows.length){toast('当前没有事项可存为模板','warn');return;}var name=prompt('模板名称：','本周模板');if(!name)return;DB.planTemplates=DB.planTemplates||[];DB.planTemplates.unshift({id:'pt'+Date.now(),name:name,ts:Date.now(),rows:rows.map(function(r){return {b:r.b,t:r.t,s:r.s,d:r.d,dt:r.dt,m:r.m,key:r.key||0};})});if(DB.planTemplates.length>20)DB.planTemplates.length=20;try{save();}catch(e){}renderPlanTemplatesBar();toast('已存为模板：'+name,'ok');}
 function cloneLastPlan(){var rows=DB.rows||[];if(!rows.length){toast('没有可克隆的历史事项','warn');return;}var add=rows.map(function(r){return {b:r.b,t:r.t,s:'todo',d:r.d,dt:'',m:r.m,key:r.key||0,star:0};});DB.rows=add.concat(DB.rows);try{save();}catch(e){}renderPlan();toast('已克隆上次 '+add.length+' 条（进度重置为待处理）','ok');}
@@ -14415,7 +14521,7 @@ function refreshOnVisible(){
 
 fillBanPlan();
 initPeriodBar();          /* v6.10 周期导航初始化 */
-switchTab("home");tick();setInterval(tick,1000);
+switchTab("home");navGroupsApply();navGroupSync(curTab);tick();setInterval(tick,1000);
 renderWeekBar();
 startVersionWatch();
 startStorageWatch();
