@@ -2794,6 +2794,12 @@ textarea.ops-in{resize:vertical;line-height:1.5}
 .ops-note-t{font-size:12.5px;line-height:1.6;color:var(--muted2);background:var(--bg3);border-radius:var(--r-sub);padding:8px 11px;margin-bottom:8px}
 .ops-card-act{display:flex;gap:8px;justify-content:flex-end}
 @media(max-width:560px){.ops-media{grid-template-columns:1fr}.ops-scores{grid-template-columns:repeat(2,1fr)}}
+/* ====== 策划模块子标签（v6.39：运营KPI周结并入策划） ====== */
+.plan-tabs{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.plan-tabs .ptab{border:1px solid var(--glass-border);background:var(--bg3);color:var(--muted);padding:8px 16px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;transition:.15s}
+.plan-tabs .ptab:hover{color:var(--ink2)}
+.plan-tabs .ptab.active{background:linear-gradient(135deg,var(--brand),var(--gold));color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(34,197,94,.25)}
+@media(max-width:560px){.plan-tabs .ptab{padding:7px 12px;font-size:12px}}
 </style>
 <script>
   /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
@@ -5142,11 +5148,6 @@ window.QRCode = {
         <span data-page-node-id="CbwrtwMn4B4jqW1AjXvNVo">策划工作</span>
       </li>
 
-      <li class="nav-item" data-nav="ops" onclick="switchTab('ops')" data-page-node-id="v638OpsNav">
-        <span class="nav-icon" style="background:rgba(212,165,116,.12);color:var(--gold)" data-page-node-id="v638OpsNavIco">📊</span>
-        <span data-page-node-id="v638OpsNavLbl">运营KPI周结</span>
-      </li>
-
       <div class="nav-label" data-page-node-id="2C1Q4ndWaFrqxUF2cUcBaE">📸 摄影学习</div>
       <li class="nav-item" data-nav="hot" onclick="switchTab('hot')" data-page-node-id="nID8Fkejtze1jJEHvMR4Kf">
         <span class="nav-icon" style="background:rgba(248,113,113,.12);color:var(--coral)" data-page-node-id="zGyyIPmQwvmoiSCGgZwFrY">🔥</span>
@@ -5334,6 +5335,11 @@ window.QRCode = {
 
       <!-- ==================== 策划工作 ==================== -->
       <section id="panel-plan" style="display:none" data-page-node-id="ru3ciqiCYgW1aI1kbvgFWf">
+        <div class="plan-tabs" id="plan-tabs">
+          <button class="ptab active" data-t="plan" onclick="setPlanTab('plan')">📋 策划工作</button>
+          <button class="ptab" data-t="ops" onclick="setPlanTab('ops')">📊 运营KPI周结</button>
+        </div>
+        <div id="plan-tab-plan">
         <!-- v6.10 周期导航：月/周切换 + 可点击各期 + 未完成优先 + 上期已完成自动折叠 -->
         <div class="period-box" id="period-box" data-page-node-id="v610PeriodBox">
           <div class="pb-head">
@@ -5410,6 +5416,18 @@ window.QRCode = {
         <div class="plan-mobile-list" id="plan-mobile-list" data-page-node-id="NeZ6N2keNtj6PVZ5aqIuAG"></div>
         <!-- 手机端：新增任务悬浮按钮 -->
         <button class="pm-fab mobile-only" onclick="addRowPlan()" title="新增任务" data-page-node-id="GbTKmisyFz6QkDEUqrcpAz">＋</button>
+        </div><!-- /plan-tab-plan -->
+        <div id="plan-tab-ops" style="display:none">
+          <div class="sec-head" data-page-node-id="v638OpsHead">
+            <h2 data-page-node-id="v638OpsH2">📊 运营KPI周结</h2>
+            <div class="sec-actions" data-page-node-id="v638OpsActions">
+              <button class="btn sm" onclick="addKpiWeek()" data-page-node-id="v638OpsAdd">＋ 录一周</button>
+              <button class="btn sm ghost" onclick="exportKpiCSV()" data-page-node-id="v638OpsExp">⬇ 导出周报</button>
+            </div>
+          </div>
+          <div class="ops-form" id="ops-form" data-page-node-id="v638OpsForm"></div>
+          <div class="ops-list" id="ops-list" data-page-node-id="v638OpsList"></div>
+        </div><!-- /plan-tab-ops -->
       </section>
 
       <!-- ==================== 摄影师课程 ==================== -->
@@ -5625,19 +5643,6 @@ window.QRCode = {
           </div>
         </div>
         <div class="review-list" id="review-list" data-page-node-id="UwEdhC3fdZeQA2BLmbLvWp"></div>
-      </section>
-
-      <!-- ==================== 项目运营 KPI 周结算 ==================== -->
-      <section id="panel-ops" style="display:none" data-page-node-id="v638OpsPanel">
-        <div class="sec-head" data-page-node-id="v638OpsHead">
-          <h2 data-page-node-id="v638OpsH2">📊 运营KPI周结</h2>
-          <div class="sec-actions" data-page-node-id="v638OpsActions">
-            <button class="btn sm" onclick="addKpiWeek()" data-page-node-id="v638OpsAdd">＋ 录一周</button>
-            <button class="btn sm ghost" onclick="exportKpiCSV()" data-page-node-id="v638OpsExp">⬇ 导出周报</button>
-          </div>
-        </div>
-        <div class="ops-form" id="ops-form" data-page-node-id="v638OpsForm"></div>
-        <div class="ops-list" id="ops-list" data-page-node-id="v638OpsList"></div>
       </section>
 
       <!-- ==================== 灵感收集 ==================== -->
@@ -6259,7 +6264,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.38</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.39</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6765,7 +6770,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.38";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.39";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -6990,16 +6995,16 @@ function closeMobileNav(){
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
-  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot","ops"];
+  const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot"];
   panels.forEach(p=>{const el=document.getElementById("panel-"+p);if(el)el.style.display=(p===t)?"":"none";});
   const info=TAB_TITLES[t]||TAB_TITLES.home;
   document.getElementById("page-title").innerHTML=info.title+' <span class="sparkle"></span>';
   document.getElementById("page-subtitle").textContent=info.sub;
   if(t==="home")renderOverview();
-  else if(t==="plan")renderPlan();else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
+  else if(t==="plan")setPlanTab(_planTab||"plan");else if(t==="course")renderCourse();else if(t==="hot")renderHot();else if(t==="job")renderJobs();else if(t==="read")renderRead();
   else if(t==="okr")renderOKRs();else if(t==="gear")renderGears();else if(t==="review")renderReviews();else if(t==="idea")renderIdeas();
   else if(t==="schedule")renderSchedule();
-  else if(t==="works")renderWorks();else if(t==="bookings")renderBookings();else if(t==="shoot")renderShoot();else if(t==="ops")renderOps();
+  else if(t==="works")renderWorks();else if(t==="bookings")renderBookings();else if(t==="shoot")renderShoot();
   // 手机端切换模块后关闭抽屉并回到顶部
   if(window.innerWidth<=834){closeMobileNav();window.scrollTo({top:0,behavior:"smooth"});}
 }
@@ -7041,7 +7046,7 @@ function renderOverview(){
     {nav:"plan",icon:"📋",color:"var(--brand)",title:"策划工作",
      big:DB.rows.length,sub:`进行中 ${planDoing} · 已完成 ${planDone}`,
      pct:DB.rows.length?Math.round(planDone/DB.rows.length*100):0},
-    {nav:"ops",icon:"📊",color:"var(--gold)",title:"运营KPI周结",
+    {nav:"plan",tab:"ops",icon:"📊",color:"var(--gold)",title:"运营KPI周结",
      big:(DB.kpiWeeks||[]).length,sub:"周结算记录",pct:0},
   ];
   /* v6.06 全局常驻区仅「日历行程」；「事务管理」卡片已归入 🎬 接单交付 */
@@ -7089,7 +7094,7 @@ function renderOverview(){
   const mkCard=c=>{
     const clickAction=c.action==='none'
       ?`/* 日历已在右侧栏 */`
-      :`switchTab('${c.nav}')`;
+      :(c.tab?`switchTab('${c.nav}');setPlanTab('${c.tab}')`:`switchTab('${c.nav}')`);
     return `<div class="ov-card" onclick="${clickAction}" style="--ov:${c.color}">
       <div class="ov-top"><span class="ov-icon">${c.icon}</span><span class="ov-title">${c.title}</span></div>
       <div class="ov-num-row"><span class="ov-num">${c.big}</span><span class="ov-pct">${c.pct}%</span></div>
@@ -10341,6 +10346,7 @@ function delReview(i){if(confirm("删除该周记？")){DB.reviews.splice(i,1);s
 /* ==================== 项目运营 KPI 周结算（v6.38） ==================== */
 /* 口径：综合得分 = 案场接待×0.4 + 线上留电×0.4 + 新媒体六项均分×0.2（各项录入 0-100） */
 let _opsEditIdx=-1;
+let _planTab="plan";
 const OPS_MEDIA_DEFLT=["新媒体①","新媒体②","新媒体③","新媒体④","新媒体⑤","新媒体⑥"];
 function kpiWeeks(){ if(!DB.kpiWeeks)DB.kpiWeeks=[]; return DB.kpiWeeks; }
 function opsClamp(v){ v=Number(v)||0; if(v<0)v=0; if(v>100)v=100; return v; }
@@ -10462,6 +10468,16 @@ function exportKpiCSV(){
     var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="项目运营KPI周结_"+localDateStr()+".csv"; a.click();
     toast("已导出周报 ✓","ok");
   }catch(err){ toast("导出失败："+err.message,"err"); }
+}
+function setPlanTab(t){
+  _planTab=t;
+  var p=document.getElementById("plan-tab-plan"), o=document.getElementById("plan-tab-ops");
+  if(!p||!o)return;
+  p.style.display=t==="plan"?"":"none";
+  o.style.display=t==="ops"?"":"none";
+  var btns=document.querySelectorAll("#plan-tabs .ptab");
+  for(var i=0;i<btns.length;i++){ btns[i].classList.toggle("active", btns[i].getAttribute("data-t")===t); }
+  if(t==="ops")renderOps(); else renderPlan();
 }
 
 
