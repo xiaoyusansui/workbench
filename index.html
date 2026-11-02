@@ -2490,10 +2490,14 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 .work-btn{flex:1;font-size:13px;padding:8px 0;border-radius:var(--r-xs);background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);cursor:pointer;}
 .work-btn.on{background:rgba(20,184,166,.15);color:#14b8a6;border-color:#14b8a6;}
 .work-btn.del{color:#ff9a9a;}
+/* v6.47：卡片类按钮的「删除」必须用 .danger —— 全局 .del 是表格里 26px 方形小按钮（border:none + 固定宽高），
+   放在卡片里会把两个字的文字挤到框外。这里显式解除固定宽高。 */
+.work-btn.danger{color:var(--coral);border-color:rgba(220,38,38,.35);width:auto;height:auto}
+.work-btn.danger:hover{background:rgba(220,38,38,.1)}
 /* ===== 客户预约（v6.46 重排：日期块 + 主体信息 + 右侧操作，三段式横排） ===== */
 .bk-card{display:grid;grid-template-columns:clamp(56px,6vw,68px) minmax(0,1fr) auto;gap:10px 16px;align-items:center;
   background:var(--surface);border:1px solid var(--glass-border);border-left:3px solid var(--brand);
-  border-radius:var(--r-sub);padding:12px 16px;margin-bottom:10px;box-shadow:var(--card-shadow);transition:border-color .15s,transform .15s}
+  border-radius:var(--r-sub);padding:12px 16px;margin-bottom:10px;box-shadow:var(--card-shadow);transition:border-color .15s,transform .15s;align-items:start}
 .bk-card:hover{border-color:var(--gold);border-left-color:var(--gold);transform:translateY(-1px)}
 .bk-card.is-done{border-left-color:#14b8a6}
 .bk-date{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;
@@ -2519,9 +2523,8 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 .bk-meta .bm-i.src{color:var(--muted2);font-size:11.5px}
 .bk-note{margin-top:6px;font-size:12.5px;color:var(--muted);line-height:1.55;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.bk-acts{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.bk-acts{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-self:center}
 .bk-acts .work-btn{flex:0 0 auto;padding:6px 12px;font-size:12.5px;white-space:nowrap}
-.bk-acts .work-btn.del{color:var(--coral);border-color:rgba(220,38,38,.35)}
 @media(max-width:680px){
   .bk-card{grid-template-columns:56px minmax(0,1fr);grid-template-areas:"d m" "a a";gap:10px 12px;padding:11px 13px}
   .bk-date{grid-area:d}
@@ -6440,7 +6443,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.46</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.47</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6946,7 +6949,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.46";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.47";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -13093,7 +13096,7 @@ function renderWorks(){
       <input class="work-cap" value="${esc(w.caption||"")}" placeholder="作品说明" onchange="setWorkCaption(${realIdx},this.value)"/>
       <div class="work-row">
         <button class="work-btn ${w.isKepian?'on':''}" onclick="toggleKepian(${realIdx})">${w.isKepian?'客片✓':'设为客片'}</button>
-        <button class="work-btn del" onclick="delWork(${realIdx})">删除</button>
+        <button class="work-btn danger" onclick="delWork(${realIdx})">删除</button>
       </div>
     </div>`;
   }).join("");
@@ -13341,7 +13344,7 @@ async function renderBookings(){
         linked ? {label:'查看策划('+linked+')', cls:'on', onclick:"switchTab('shoot')"}
                : {label:'生成策划', cls:'on', onclick:"bkToShoot('"+b.id+"')"},
         {label:'编辑', onclick:"editBookingLocal('"+b.id+"')"},
-        {label:'删除', cls:'del', onclick:"delBookingLocal('"+b.id+"')"}
+        {label:'删除', cls:'danger', onclick:"delBookingLocal('"+b.id+"')"}
       ]
     });
   }).join('');
