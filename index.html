@@ -2490,16 +2490,47 @@ html[data-theme="light"] .theme-toggle{background:rgba(15,23,42,.05)}
 .work-btn{flex:1;font-size:13px;padding:8px 0;border-radius:var(--r-xs);background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);cursor:pointer;}
 .work-btn.on{background:rgba(20,184,166,.15);color:#14b8a6;border-color:#14b8a6;}
 .work-btn.del{color:#ff9a9a;}
-/* ===== 客户预约 ===== */
-.bk-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-sub);padding:14px;margin-bottom:12px;}
-.bk-top{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700;color:var(--ink);}
-.bk-badge{font-size:12px;padding:2px 9px;border-radius:var(--r-ctl);}
-.bk-badge.new{background:rgba(239,68,68,.15);color:#ff9a9a;}
-.bk-badge.done{background:rgba(20,184,166,.15);color:#14b8a6;}
-.bk-line{color:var(--ink2);font-size:14px;margin-top:6px;}
-.bk-line a{color:var(--blue);}
-.bk-note{color:var(--muted);}
-.bk-time{color:var(--muted);font-size:11px;margin-top:8px;}
+/* ===== 客户预约（v6.46 重排：日期块 + 主体信息 + 右侧操作，三段式横排） ===== */
+.bk-card{display:grid;grid-template-columns:clamp(56px,6vw,68px) minmax(0,1fr) auto;gap:10px 16px;align-items:center;
+  background:var(--surface);border:1px solid var(--glass-border);border-left:3px solid var(--brand);
+  border-radius:var(--r-sub);padding:12px 16px;margin-bottom:10px;box-shadow:var(--card-shadow);transition:border-color .15s,transform .15s}
+.bk-card:hover{border-color:var(--gold);border-left-color:var(--gold);transform:translateY(-1px)}
+.bk-card.is-done{border-left-color:#14b8a6}
+.bk-date{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;
+  aspect-ratio:1/1;border-radius:var(--r-ctl);background:var(--bg3);border:1px solid var(--glass-border)}
+.bk-date .bd-d{font-size:clamp(16px,2vw,20px);font-weight:800;color:var(--ink);letter-spacing:-.4px}
+.bk-date .bd-m{font-size:10.5px;font-weight:700;color:var(--muted);margin-top:3px;white-space:nowrap}
+.bk-date .bd-y{font-size:9.5px;font-weight:600;color:var(--muted2);margin-top:2px}
+.bk-date.void{background:transparent;border-style:dashed}
+.bk-date.void .bd-d{font-size:11.5px;font-weight:700;color:var(--muted2);letter-spacing:0}
+.bk-main{min-width:0}
+.bk-hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bk-name{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.2px}
+.bk-type{font-size:11px;font-weight:800;color:var(--brand);background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.3);padding:1.5px 8px;border-radius:var(--r-pill);white-space:nowrap}
+.bk-badge{font-size:11px;font-weight:800;padding:2px 9px;border-radius:var(--r-pill);white-space:nowrap}
+.bk-badge.new{background:rgba(239,68,68,.14);color:#ef4444}
+.bk-badge.mid{background:rgba(59,130,246,.14);color:#3b82f6}
+.bk-badge.done{background:rgba(20,184,166,.16);color:#14b8a6}
+.bk-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;margin-top:7px;font-size:12.5px;color:var(--ink2)}
+.bk-meta .bm-i{display:inline-flex;align-items:center;gap:5px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bk-meta a.bm-i{color:var(--blue);text-decoration:none}
+.bk-meta a.bm-i:hover{text-decoration:underline}
+.bk-meta .bm-i.src{color:var(--muted2);font-size:11.5px}
+.bk-note{margin-top:6px;font-size:12.5px;color:var(--muted);line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bk-acts{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.bk-acts .work-btn{flex:0 0 auto;padding:6px 12px;font-size:12.5px;white-space:nowrap}
+.bk-acts .work-btn.del{color:var(--coral);border-color:rgba(220,38,38,.35)}
+@media(max-width:680px){
+  .bk-card{grid-template-columns:56px minmax(0,1fr);grid-template-areas:"d m" "a a";gap:10px 12px;padding:11px 13px}
+  .bk-date{grid-area:d}
+  .bk-main{grid-area:m}
+  .bk-acts{grid-area:a;justify-content:flex-start;border-top:1px dashed var(--glass-border);padding-top:9px;margin-top:2px}
+  .bk-acts .work-btn{flex:1;padding:8px 0;text-align:center}
+  .bk-badge{margin-left:0}
+}
+
 
 /* ====== iPad / 平板横屏优化（v5.80） ====== */
 /* 区间 835–1366px：覆盖 iPad mini/9/10.2/Air/Pro11/Pro12.9 横屏，解决桌面布局被压窄、文字换行、区域拥挤 */
@@ -6409,7 +6440,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.45</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.46</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6915,7 +6946,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.45";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.46";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7252,7 +7283,6 @@ function renderOverview(){
   const planDone=DB.rows.filter(r=>statusGroup(r.s)==="done").length;
   document.getElementById("dash-stats").innerHTML=
     `<div class="ds-item"><span class="ds-icon">📋</span><span class="ds-num">${DB.rows.length}</span><span class="ds-label">策划</span></div>`+
-    `<div class="ds-item"><span class="ds-icon">📸</span><span class="ds-num">${jobs.length}</span><span class="ds-label">摄影单</span></div>`+
     `<div class="ds-item"><span class="ds-icon">📅</span><span class="ds-num">${evts.length}</span><span class="ds-label">行程</span></div>`+
     `<div class="ds-item"><span class="ds-icon">🔥</span><span class="ds-num">${hotTotal}</span><span class="ds-label">热点</span></div>`+
     `<div class="ds-item"><span class="ds-icon">📷</span><span class="ds-num">${coursePct}%</span><span class="ds-label">课程</span></div>`+
@@ -13198,6 +13228,55 @@ function emptyState(o){
 }
 
 /* ==================== 客户预约 ==================== */
+/* v6.46 预约卡片统一渲染：日期块 ｜ 客户 + 类型 + 状态 / 电话·服务·提交时间 / 备注 ｜ 操作按钮
+   统一后网页自建（local）与客户小程序提交（cloud）长得一样，只是操作按钮不同。
+   顺手解决旧版三个毛病：① 客户名与类型相同会重复成「婚礼跟拍 · 婚礼跟拍」；
+   ② 电话字段里只有符号（如「/」）时也会渲染一行孤零零的斜杠；③ 信息全堆成竖条、右半边全空。 */
+function bkDateParts(d){
+  var m=String(d||"").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  return m?{y:m[1],mo:Number(m[2]),dd:Number(m[3])}:null;
+}
+function bkPhoneOk(p){
+  var digits=String(p||"").replace(/\D/g,"");
+  return digits.length>=5;
+}
+function bkCardHTML(b,opt){
+  b=b||{}; opt=opt||{};
+  var dp=bkDateParts(b.date);
+  var dateHTML=dp
+    ? '<div class="bk-date"><span class="bd-d">'+(dp.dd<10?"0"+dp.dd:dp.dd)+'</span><span class="bd-m">'+dp.mo+' 月</span><span class="bd-y">'+dp.y+'</span></div>'
+    : '<div class="bk-date void"><span class="bd-d">待定</span></div>';
+  var name=String(b.name||b.client||"").trim()||"未命名客户";
+  var type=String(b.type||"").trim();
+  var svc=String(b.service||"").trim();
+  var budget=String(b.budget||"").trim();
+  var note=String(b.note||"").trim();
+  var created=String(b.createdAt||"").trim();
+  var phone=String(b.phone||"").trim();
+
+  var meta=[];
+  if(bkPhoneOk(phone)) meta.push('<a class="bm-i" href="tel:'+esc(phone)+'">📞 '+esc(phone)+'</a>');
+  if(svc||budget) meta.push('<span class="bm-i">📷 '+esc(svc||"未填套系")+(budget?(' · '+esc(budget)):'')+'</span>');
+  if(created) meta.push('<span class="bm-i">🕒 '+esc(created)+' 提交</span>');
+  if(opt.src) meta.push('<span class="bm-i src">'+esc(opt.src)+'</span>');
+
+  var acts=(opt.acts||[]).map(function(a){
+    return '<button class="work-btn'+(a.cls?(' '+a.cls):'')+'" onclick="'+a.onclick+'">'+esc(a.label)+'</button>';
+  }).join('');
+
+  return '<div class="bk-card'+(opt.done?" is-done":"")+'">'
+    + dateHTML
+    + '<div class="bk-main">'
+      + '<div class="bk-hd"><span class="bk-name">'+esc(name)+'</span>'
+        + ((type&&type!==name)?('<span class="bk-type">'+esc(type)+'</span>'):'')
+        + '<span class="bk-badge '+(opt.badgeCls||"new")+'">'+esc(opt.badge||"新预约")+'</span>'
+      + '</div>'
+      + (meta.length?('<div class="bk-meta">'+meta.join('')+'</div>'):'')
+      + (note?('<div class="bk-note">💬 '+esc(note)+'</div>'):'')
+    + '</div>'
+    + (acts?('<div class="bk-acts">'+acts+'</div>'):'')
+  + '</div>';
+}
 async function loadBookingsWeb(){
   const box=document.getElementById("bookings-list");
   if(!box){ return; }
@@ -13214,15 +13293,14 @@ async function loadBookingsWeb(){
     if(!arr.length){ box.innerHTML='<div class="works-hint">暂无预约。</div>'; return; }
     /* 保留原始下标，避免排序后显示顺序与数组下标错配导致点错预约 */
     const sorted=arr.map((b,idx)=>({b,idx})).sort((x,y)=>new Date(y.b.createdAt)-new Date(x.b.createdAt));
-    box.innerHTML=sorted.map(({b,idx})=>`<div class="bk-card">
-      <div class="bk-top"><b>${esc(b.name)}</b><span class="bk-badge ${b.status==='done'?'done':'new'}">${b.status==='done'?'已联系':'新'}</span></div>
-      <div class="bk-line">📞 <a href="tel:${esc(b.phone)}">${esc(b.phone)}</a></div>
-      ${b.date?`<div class="bk-line">📅 ${esc(b.date)}</div>`:""}
-      <div class="bk-line">📷 ${esc(b.service||"")}${b.budget?(" · "+esc(b.budget)):""}</div>
-      ${b.note?`<div class="bk-line bk-note">💬 ${esc(b.note)}</div>`:""}
-      <div class="bk-time">${esc(b.createdAt||"")}</div>
-      <button class="work-btn" onclick="markBookingWeb(${idx},'${b.status==='done'?'new':'done'}')">${b.status==='done'?'标记未联系':'标记已联系'}</button>
-    </div>`).join("");
+    box.innerHTML=sorted.map(({b,idx})=>bkCardHTML(b,{
+      badge: b.status==='done'?'已联系':'新预约',
+      badgeCls: b.status==='done'?'done':'new',
+      done: b.status==='done',
+      src: '📩 客户提交',
+      acts: [{label: b.status==='done'?'标记未联系':'标记已联系', cls: b.status==='done'?'':'on',
+              onclick: "markBookingWeb("+idx+",'"+(b.status==='done'?'new':'done')+"')"}]
+    })).join("");
   }catch(e){ box.innerHTML='<div class="works-hint">读取失败：'+esc(e.message)+'</div>'; }
 }
 async function markBookingWeb(i,status){
@@ -13251,36 +13329,59 @@ function editBookingLocal(id){var b=(DB.bookings||[]).filter(function(x){return 
 function bkToShoot(id){var b=(DB.bookings||[]).filter(function(x){return x.id===id;})[0];if(!b)return;switchTab('shoot');if(document.getElementById('shoot-title'))document.getElementById('shoot-title').value=b.name||'';if(document.getElementById('shoot-date'))document.getElementById('shoot-date').value=b.date||'';if(document.getElementById('shoot-type'))document.getElementById('shoot-type').value=b.type||'婚礼跟拍';if(document.getElementById('shoot-client'))document.getElementById('shoot-client').value=b.name||'';if(document.getElementById('shoot-booking'))document.getElementById('shoot-booking').value=id;genShootPlan();toast('已带入预约信息，确认后点保存此策划','ok');}
 async function renderBookings(){
   var box=document.getElementById('bookings-list');if(!box)return;
-  var html='';
   var local=(DB.bookings||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
-  html+=local.map(function(b){
+  var localHtml=local.map(function(b){
     var linked=(DB.shootPlans||[]).filter(function(p){return p.bookingId===b.id;}).length;
-    return '<div class="bk-card bk-local"><div class="bk-top"><b>'+esc(b.name)+(b.type?(' · '+esc(b.type)):'')+'</b><span class="bk-badge '+(b.status==='done'?'done':(b.status==='contacted'?'mid':'new'))+'">'+bkStatusText(b.status)+'</span></div>'+
-      (b.phone?'<div class="bk-line">📞 <a href="tel:'+esc(b.phone)+'">'+esc(b.phone)+'</a></div>':'')+
-      (b.date?'<div class="bk-line">📅 '+esc(b.date)+'</div>':'')+
-      (b.note?'<div class="bk-line bk-note">💬 '+esc(b.note)+'</div>':'')+
-      '<div class="bk-btns">'+(linked?'<button class="work-btn" onclick="switchTab(\'shoot\')">查看策划('+linked+')</button>':'<button class="work-btn" onclick="bkToShoot(\''+b.id+'\')">生成策划</button>')+
-      '<button class="work-btn" onclick="editBookingLocal(\''+b.id+'\')">编辑</button>'+
-      '<button class="work-btn del" onclick="delBookingLocal(\''+b.id+'\')">删除</button></div></div>';
+    return bkCardHTML(b,{
+      badge: bkStatusText(b.status),
+      badgeCls: b.status==='done'?'done':(b.status==='contacted'?'mid':'new'),
+      done: b.status==='done',
+      src: '🗂 本机建档',
+      acts: [
+        linked ? {label:'查看策划('+linked+')', cls:'on', onclick:"switchTab('shoot')"}
+               : {label:'生成策划', cls:'on', onclick:"bkToShoot('"+b.id+"')"},
+        {label:'编辑', onclick:"editBookingLocal('"+b.id+"')"},
+        {label:'删除', cls:'del', onclick:"delBookingLocal('"+b.id+"')"}
+      ]
+    });
   }).join('');
-  if(!ghToken){html+='<div class="works-hint">未配置 GitHub 令牌：上方为网页自建的预约（存本机）。配置令牌后可同步客户小程序提交的预约。</div>';
-  }else{try{
+  /* v6.46：本机预约先落地渲染，云端结果到了再追加 —— 云端慢或无网时列表不会再一片空白 */
+  box.innerHTML=localHtml
+    + (ghToken?'<div class="works-hint" id="bk-cloud-msg">云端预约加载中…</div>'
+              :'<div class="works-hint">'+esc(localHtml?'未配置 GitHub 令牌：配置后可同步客户小程序提交的预约。':'还没有预约。点「＋ 新建预约」登记，或配置令牌同步客户小程序提交的预约。')+'</div>');
+  if(!ghToken) return;
+  var msg=document.getElementById('bk-cloud-msg');
+  /* 云端偶有长时间无响应：8 秒后把「加载中」换成可重试的提示，避免永远转圈 */
+  var cloudTimer=setTimeout(function(){
+    var m2=document.getElementById('bk-cloud-msg');
+    if(m2) m2.textContent='云端暂无响应（不影响本机预约），可点右上角「刷新」重试。';
+  },8000);
+  try{
     var list=await ghReq('/gists?per_page=100');var desc='🐟小鱼工作台-客户预约';
     var m=(list||[]).filter(function(g){return g.description===desc;}).sort(function(a,b){return new Date(b.updated_at)-new Date(a.updated_at);});
+    var cloudHtml='';
     if(m.length){var g=await ghReq('/gists/'+m[0].id);var fn=Object.keys(g.files)[0];var arr=fn&&g.files[fn].content?JSON.parse(g.files[fn].content):[];
       var sorted=arr.map(function(b,idx){return {b:b,idx:idx};}).sort(function(x,y){return new Date(y.b.createdAt)-new Date(x.b.createdAt);});
-      html+=sorted.map(function(o){var b=o.b,idx=o.idx;
-        return '<div class="bk-card"><div class="bk-top"><b>'+esc(b.name)+'</b><span class="bk-badge '+(b.status==='done'?'done':'new')+'">'+(b.status==='done'?'已联系':'新')+'</span></div>'+
-        '<div class="bk-line">📞 <a href="tel:'+esc(b.phone)+'">'+esc(b.phone)+'</a></div>'+
-        (b.date?'<div class="bk-line">📅 '+esc(b.date)+'</div>':'')+
-        '<div class="bk-line">📷 '+esc(b.service||'')+(b.budget?(' · '+esc(b.budget)):'')+'</div>'+
-        (b.note?'<div class="bk-line bk-note">💬 '+esc(b.note)+'</div>':'')+
-        '<div class="bk-time">'+esc(b.createdAt||'')+'</div>'+
-        '<button class="work-btn" onclick="markBookingWeb('+idx+',\''+(b.status==='done'?'new':'done')+'\')">'+(b.status==='done'?'标记未联系':'标记已联系')+'</button></div>';
+      cloudHtml=sorted.map(function(o){var b=o.b,idx=o.idx;
+        return bkCardHTML(b,{
+          badge: b.status==='done'?'已联系':'新预约',
+          badgeCls: b.status==='done'?'done':'new',
+          done: b.status==='done',
+          src: '📩 客户提交',
+          acts: [{label: b.status==='done'?'标记未联系':'标记已联系', cls: b.status==='done'?'':'on',
+                  onclick: "markBookingWeb("+idx+",'"+(b.status==='done'?'new':'done')+"')"}]
+        });
       }).join('');
-    }else{html+='<div class="works-hint">云端暂无预约。</div>';}
-  }catch(e){html+='<div class="works-hint">云端预约读取失败：'+esc(e.message)+'</div>';}}
-  box.innerHTML=html||'<div class="works-hint">还没有预约。点「＋ 新建预约」登记，或配置令牌同步客户小程序提交的预约。</div>';
+    }
+    if(msg) msg.remove();
+    clearTimeout(cloudTimer);
+    if(cloudHtml) box.insertAdjacentHTML('beforeend', cloudHtml);
+    else box.insertAdjacentHTML('beforeend','<div class="works-hint">云端暂无预约。</div>');
+  }catch(e){
+    clearTimeout(cloudTimer);
+    if(msg) msg.textContent='云端预约读取失败：'+e.message;
+    else box.insertAdjacentHTML('beforeend','<div class="works-hint">云端预约读取失败：'+esc(e.message)+'</div>');
+  }
 }
 function saveProjAlias(){var v=(document.getElementById('proj-alias').value||'').trim();localStorage.setItem('xiaoyu_proj_alias',v);applyProjAlias();}
 function applyProjAlias(){var a=localStorage.getItem('xiaoyu_proj_alias');var name=a?a:'项目运营';var lbl='💼 '+name;var e1=document.getElementById('nav-lbl-estate');if(e1)e1.textContent=name;var e2=document.getElementById('dash-biz-label');if(e2)e2.textContent=lbl;var e3=document.getElementById('page-subtitle');if(e3&&(curTab==='home'||curTab==='plan'))e3.textContent=name+'策划 · 任务追踪与进度管理';var e4=document.getElementById('about-pos');if(e4)e4.textContent=name+' + 摄影师工作台';var inp=document.getElementById('proj-alias');if(inp&&!inp.value&&a)inp.value=a;}
