@@ -456,6 +456,9 @@
   /* 模块页头（标题 + 操作按钮） */
   .sec-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
   .sec-head h2{font-size:22px;font-weight:900;color:var(--ink);letter-spacing:.3px;flex-shrink:0}
+  /* v6.48：页头 h1 已是模块名，面板内不再重复同名 h2；只有按钮的 .sec-head 右置成工具条 */
+  .sec-head.tools-only{justify-content:flex-end;margin:2px 0 8px}
+  .sec-head.tools-only .sec-actions{margin-left:auto}
   .sec-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
   .search-input{flex:1;min-width:150px;max-width:260px;border:1px solid var(--glass-border);border-radius:var(--radius-xs);
     padding:8px 13px;font-size:13px;outline:none;background:var(--bg3);color:var(--ink);transition:.15s;font-family:inherit}
@@ -5753,8 +5756,7 @@ window.QRCode = {
 
       <!-- ==================== 目标与OKR ==================== -->
       <section id="panel-okr" style="display:none" data-page-node-id="OAte3YqDPN2N2vBrTxnozp">
-        <div class="sec-head" data-page-node-id="svVIIIpzH0n3Q06mhtmO1z">
-          <h2 data-page-node-id="duyCanvcaNlcSL6FQ84gdh">🎯 目标与 OKR</h2>
+        <div class="sec-head tools-only" data-page-node-id="svVIIIpzH0n3Q06mhtmO1z">
           <div class="sec-actions" data-page-node-id="z8kXSH9u6B9VLpWQQjB4oK">
             <button class="btn sm" onclick="addOkr()" data-page-node-id="f30DcP3mlaHGZ0f0HLCiOJ">＋ 新建目标</button>
           </div>
@@ -5770,8 +5772,7 @@ window.QRCode = {
 
       <!-- ==================== 器材管理 ==================== -->
       <section id="panel-gear" style="display:none" data-page-node-id="7GtagXtVHyvEjAofPFhOLg">
-        <div class="sec-head" data-page-node-id="JsPHo6olfCA35ih4pmywas">
-          <h2 data-page-node-id="DEkF4sUWqWAMBa7ADhGH6P">🔧 器材管理</h2>
+        <div class="sec-head tools-only" data-page-node-id="JsPHo6olfCA35ih4pmywas">
           <div class="sec-actions" data-page-node-id="U66zRRqyFQI2aaNTFcDETB">
             <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()" data-page-node-id="2tt6yFLAEnHXtSwT2Uv1Bi"/>
             <button class="btn sm" onclick="openGearModal()" data-page-node-id="JpbF1yhtfFECnY7cODy5GT">＋ 新增器材</button>
@@ -5827,8 +5828,7 @@ window.QRCode = {
 
       <!-- ==================== 复盘周记 ==================== -->
       <section id="panel-review" style="display:none" data-page-node-id="p6BaLaVFiWrjbgVcc3K0EE">
-        <div class="sec-head" data-page-node-id="SV70D0Apc3MHuhM8qjb76g">
-          <h2 data-page-node-id="Sb0f3EnLjuQ5STsdUFnRoh">📝 复盘周记</h2>
+        <div class="sec-head tools-only" data-page-node-id="SV70D0Apc3MHuhM8qjb76g">
           <div class="sec-actions" data-page-node-id="yY2rCUwDshstoQEukIEkGj">
             <button class="btn sm" onclick="addReview()" data-page-node-id="Am3n7VviSqkoOblcztTxpD">＋ 写周记</button>
           </div>
@@ -5838,8 +5838,7 @@ window.QRCode = {
 
       <!-- ==================== 灵感收集 ==================== -->
       <section id="panel-idea" style="display:none" data-page-node-id="l4lqRu6CZgpq9RQ1rhHA7f">
-        <div class="sec-head" data-page-node-id="pdBBsx2IGVym9miytFDQ8d">
-          <h2 data-page-node-id="UjC9wmvDp4vlsk5AfzxrG2">💡 灵感收集</h2>
+        <div class="sec-head tools-only" data-page-node-id="pdBBsx2IGVym9miytFDQ8d">
           <div class="sec-actions" data-page-node-id="mDFMj1dhhKSOoE2BaDTTQQ">
             <input class="search-input" id="idea-search" placeholder="🔍 搜索灵感..." oninput="renderIdeas()" data-page-node-id="4sTZ6df53vxCotS6XNJHNa"/>
             <select id="idea-tag-filter" onchange="renderIdeas()" style="background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700" data-page-node-id="JI9DUsE4naawSLJ7hJFiPf">
@@ -6011,8 +6010,7 @@ window.QRCode = {
 
       <!-- ==================== 日历行程 v5.26 ==================== -->
       <section id="panel-schedule" style="display:none" data-page-node-id="5Rw6rzQwGj7GF1tIpmfJ3G">
-        <div class="sec-head" data-page-node-id="DU8bKe68NUy4shjTAp73fp">
-          <h2 data-page-node-id="1lFMoPoFL8YOLRGNZN0P1q">📅 排程日历</h2>
+        <div class="sec-head tools-only" data-page-node-id="DU8bKe68NUy4shjTAp73fp">
           <div class="sec-actions" data-page-node-id="FxuhzwhbBTyleN5WVz16TK">
             <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()" data-page-node-id="4oGVd9DbfaTmfNT2FTD9sN"/>
             <div class="cal-date-picker" data-page-node-id="P3x9XETGkvtLREY3KPp9xg">
@@ -6066,8 +6064,7 @@ window.QRCode = {
 
       <!-- ==================== 我的作品 ==================== -->
       <section id="panel-works" style="display:none" data-page-node-id="fO1gehETwCJNvwzeMXE3Fu">
-        <div class="sec-head" data-page-node-id="KUJHhFU4uf5cP0XMWR1ZpJ">
-          <h2 data-page-node-id="ggZlbHwGPgmCO5nQTW5TYK">📷 我的作品</h2>
+        <div class="sec-head tools-only" data-page-node-id="KUJHhFU4uf5cP0XMWR1ZpJ">
           <div class="sec-actions" data-page-node-id="iOTQH4l77D5eyGjtN2uXDI">
             <button class="btn sm" style="background:linear-gradient(135deg,var(--coral),#ef4444)" onclick="document.getElementById('works-file').click()" data-page-node-id="H6mER2FB0wByTwo2jdA3cp">＋ 上传作品</button>
             <input type="file" id="works-file" accept="image/*" style="display:none" onchange="uploadWorksImage(this)" data-page-node-id="oVEp9Eg4DfN8BkjOp57ONu"/>
@@ -6079,8 +6076,7 @@ window.QRCode = {
 
       <!-- ==================== 客户预约 ==================== -->
       <section id="panel-bookings" style="display:none" data-page-node-id="ic37ZHDx0SQvfuGs6am6ch">
-        <div class="sec-head" data-page-node-id="BFuGVyM6AnAipUIkrA720y">
-          <h2 data-page-node-id="J568r6JkACcXnyHw2NoXYP">📩 客户预约</h2>
+        <div class="sec-head tools-only" data-page-node-id="BFuGVyM6AnAipUIkrA720y">
           <div class="sec-actions" data-page-node-id="1leeDJHilzSAvEYUeOsCTa">
             <button class="btn sm" onclick="openBookingModal()" data-page-node-id="v636NewBk">＋ 新建预约</button>
             <button class="btn sm" onclick="renderBookings()" data-page-node-id="iQNqB55CIcH1CPfWXBXIpe">刷新</button>
@@ -6443,7 +6439,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.47</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.48</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6949,7 +6945,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.47";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.48";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
