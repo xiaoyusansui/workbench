@@ -8190,8 +8190,9 @@ function piNormDate(v){
   if(m)return m[1]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[3]).padStart(2,"0");
   m=s.match(/(\d{1,2})月(\d{1,2})日/);
   if(m){const d=new Date();return d.getFullYear()+"-"+String(m[1]).padStart(2,"0")+"-"+String(m[2]).padStart(2,"0");}
-  m=s.match(/^(\d{1,2})[/.](\d{1,2})$/);
-  if(m){const d=new Date();return d.getFullYear()+"-"+String(m[1]).padStart(2,"0")+"-"+String(m[2]).padStart(2,"0");}
+  // 斜杠日期只认 "/"（"." 多为小数如单价 1.7，绝不当日期）；且月 1-12、日 1-31
+  m=s.match(/^(\d{1,2})\/(\d{1,2})$/);
+  if(m){const mo=+m[1],dy=+m[2];if(mo>=1&&mo<=12&&dy>=1&&dy<=31){const d=new Date();return d.getFullYear()+"-"+String(mo).padStart(2,"0")+"-"+String(dy).padStart(2,"0");}}
   return "";
 }
 function piDetectHeader(cells){
@@ -8222,14 +8223,22 @@ function parsePlanImport(){
     let b=h.b!=null?String(c[h.b]||"").trim():"";
     if(!b)b=lastB;if(b)lastB=b;
     let s=h.s!=null?String(c[h.s]||"").trim():"";
+    // 若 s 不是工作台认可的状态值，回落到未启动（避免脏状态污染下拉）
+    const _allS=(typeof GENERIC_STATUSES!=="undefined"?GENERIC_STATUSES:[]).concat(
+      Object.keys(STATUS_MAP).reduce(function(a,k){return a.concat(STATUS_MAP[k]);},[]));
+    if(s&&_allS.indexOf(s)<0)s="";
+    // 日期：优先专门的日期列；否则扫描全行所有单元格，抓第一个可识别日期
     let dt=piNormDate(h.dt!=null?c[h.dt]:"");
-    // 若没单独日期列，尝试从备注/重点列提取
-    if(!dt&&h.m!=null)dt=piNormDate(c[h.m]);
+    if(!dt){for(let j=0;j<c.length;j++){const d2=piNormDate(c[j]);if(d2){dt=d2;break;}}}
     const others=[];
     c.forEach(function(v,j){if(j===h.t||j===h.dt||j===h.s||j===h.b||j===h.d||j===h.key)return;const x=String(v||"").trim();if(x)others.push(x);});
     let m=h.m!=null?String(c[h.m]||"").trim():"";
     const detail=others.concat(m?[m]:[]).filter(function(x,i,a){return a.indexOf(x)===i;}).join(" | ");
-    PI_ROWS.push({b:(BANKUAI_PLAN.indexOf(b)>=0?b:(b||BANKUAI_PLAN[0])),t:t,s:s||"未启动",d:h.d!=null?String(c[h.d]||""):"",dt:dt,m:detail,key:0});
+    // 板块：只有工作台合法板块才保留，Excel 自带的「类别」等自定义分类并入备注，板块统一回落
+    let finalB=BANKUAI_PLAN[0];
+    if(b&&BANKUAI_PLAN.indexOf(b)>=0)finalB=b;
+    else if(b) /* 自定义类别已进 detail 备注 */ {}
+    PI_ROWS.push({b:finalB,t:t,s:s||"未启动",d:h.d!=null?String(c[h.d]||""):"",dt:dt,m:detail,key:0});
   }
   const dup={};PI_ROWS.forEach(function(r){dup[r.t]=(dup[r.t]||0)+1;});
   pv.innerHTML='<div style="font-size:13px;color:var(--muted2);margin-bottom:8px">解析出 <b style="color:var(--brand)">'+PI_ROWS.length+'</b> 条事项（同名 '+(Object.keys(dup).filter(function(k){return dup[k]>1;}).length)+' 组，导入时自动跳过重复）</div>'+
