@@ -5576,7 +5576,7 @@ window.QRCode = {
           <button class="btn ghost" onclick="sortByTime()" data-page-node-id="6mg0SZw7vhTq8DzgNUk39x">⏱ 排序</button>
           <div class="spacer" data-page-node-id="UfnzQgBuaTIXdJxsRhOCot"></div>
           <button class="btn voice-btn" id="voicePlanBtn" onclick="openVoicePlan()" title="按住说话，AI 自动把语音转成工作事项并录入策划工作">🎤 语音速记</button>
-          <button class="btn ghost" id="v593ImgBtn" onclick="exportPlanImage()" title="把全部工作事项导出为一张清晰的竖版长图（可直接发微信、贴进 PPT）" data-page-node-id="v593ImgBtn">🖼 导出图片</button>
+          <button class="btn ghost" id="v593ImgBtn" onclick="exportPlanImage('filtered')" title="把当前筛选出的事项导出为一张清晰的竖版长图（可在预览里切换到全部事项）" data-page-node-id="v593ImgBtn">🖼 导出图片</button>
           <button class="btn ghost" onclick="exportCSV('plan')" data-page-node-id="vEtytEF2VTpNBGsBJszEsS">⬇ 导出</button>
           <button class="btn ghost" id="v649ImportBtn" onclick="openPlanImport()" title="从 Excel 复制整块表格，一次粘贴批量导入为工作事项（自动识别表头、去重）">📥 批量导入</button>
           <button class="btn ghost" onclick="save();toast('已保存')" title="立即保存到本地并触发云端同步" data-page-node-id="tRkTG544G4v1Ua50jD2KZq">💾 保存</button>
@@ -6440,7 +6440,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.51</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.52</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6631,8 +6631,12 @@ window.QRCode = {
             <button class="img-modal-x" onclick="closePlanImage()" title="关闭" data-page-node-id="v593ImgClose">×</button>
           </div>
           <div class="img-modal-body"><img id="pim-img" alt="策划工作事项长图" data-page-node-id="v593ImgTag"/></div>
-          <div class="img-modal-actions">
-            <span class="img-modal-hint">💡 手机上长按图片即可保存到相册；电脑端点「⬇ 保存 PNG」下载。</span>
+          <div class="img-modal-actions" style="flex-wrap:wrap">
+            <span class="img-modal-hint">💡 手机上长按图片即可保存到相册；电脑端点「⬇ 保存 PNG」下载。默认只导出当前筛选结果。</span>
+            <div id="pim-scope-switch" style="display:flex;gap:6px">
+              <button class="btn sm" id="pim-scope-filter" onclick="setPlanImgScope('filtered')" title="只导出当前筛选出来的事项">当前筛选</button>
+              <button class="btn sm ghost" id="pim-scope-all" onclick="setPlanImgScope('all')" title="导出全部事项，不受筛选影响">全部事项</button>
+            </div>
             <button class="btn ghost" onclick="closePlanImage()">关闭</button>
             <button class="btn" onclick="downloadPlanImage()" data-page-node-id="v593ImgSave">⬇ 保存 PNG</button>
           </div>
@@ -6980,7 +6984,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.51";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.52";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -13756,6 +13760,7 @@ function exportCSV(){
 
 /* ==================== v5.93 策划工作：导出全部事项长图（高清 PNG，可发微信 / 贴 PPT / 打印）==================== */
 let PLAN_IMG_DATA="";
+let PLAN_IMG_SCOPE="filtered"; /* v6.52 默认导出当前筛选；可切 "all" 导出全部 */
 /* 长图固定用浅色「纸张」风格：不跟随深浅主题，发到微信/贴进 PPT/打印都清晰 */
 const PLAN_IMG_C={
   bg:"#ffffff",ink:"#1f2b25",ink2:"#40524a",mute:"#7c8b83",brand:"#123a2b",
@@ -13783,10 +13788,29 @@ function wrapCanvasText(ctx,text,maxW){
   return out.length?out:[""];
 }
 
-/* 整理长图数据：全部事项（不受筛选影响），完成态沉底 + 星数降序，与界面/CSV 顺序一致 */
-function planImageRows(){
+/* v6.52：当前筛选条件的可读说明（写进长图标题，便于日后回想这批图是什么范围） */
+function planFilterLabel(){
+  const parts=[];
+  const q=(document.getElementById("search-plan")&&document.getElementById("search-plan").value||"").trim();
+  const fb=document.getElementById("fban-plan")&&document.getElementById("fban-plan").value;
+  const fs=document.getElementById("fstat-plan")&&document.getElementById("fstat-plan").value;
+  if(fb)parts.push(fb);
+  if(fs)parts.push(fs==="done"?"已完成":(fs==="doing"?"进行中":(fs==="todo"?"待处理":fs)));
+  if(q)parts.push('搜索"'+q+'"');
+  if(typeof quickView!=="undefined"&&quickView==="key")parts.push("⭐重点");
+  if(typeof quickView!=="undefined"&&quickView==="due")parts.push("⚠逾期·本周");
+  if(typeof periodNoun==="function")parts.push(periodNoun());
+  return parts.length?parts.join(" · "):"无条件";
+}
+
+/* 整理长图数据：默认当前筛选，scope='all' 才全部；完成态沉底 + 星数降序，与界面顺序一致 */
+function planImageRows(scope){
   const t0=new Date();t0.setHours(0,0,0,0);
-  const list=DB.rows.map(r=>({...r})).sort((a,b)=>{
+  /* v6.52：默认只导出「当前筛选结果」——所见即所得；scope='all' 才导全部。
+   * currentPeriodRows() 已含周期/板块/状态/搜索/快捷视图全套筛选，直接复用，避免两套逻辑打架。 */
+  const useFilter=(typeof PLAN_IMG_SCOPE!=="undefined")?PLAN_IMG_SCOPE:"filtered";
+  const src=(useFilter==="filtered"&&scope!=="all")?currentPeriodRows():DB.rows.map((x,i)=>({...x,_i:i}));
+  const list=src.map(r=>({...r})).sort((a,b)=>{
     const da=statusGroup(a.s)==="done",db=statusGroup(b.s)==="done";
     if(da!==db)return da?1:-1;
     return keyLevel(b)-keyLevel(a);
@@ -13810,8 +13834,8 @@ function planImageRows(){
 }
 
 /* 把全部事项画进 canvas（自适应缩放，保证长图清晰且不超浏览器画布上限） */
-function buildPlanImage(){
-  const {items,stat}=planImageRows();
+function buildPlanImage(scope){
+  const {items,stat}=planImageRows(scope);
   const cv=document.createElement("canvas");
   const ctx=cv.getContext?cv.getContext("2d"):null;
   if(!ctx) throw new Error("当前环境不支持画布绘图");
@@ -13864,7 +13888,8 @@ function buildPlanImage(){
   const stamp=`${now.getFullYear()}-${p2(now.getMonth()+1)}-${p2(now.getDate())} ${p2(now.getHours())}:${p2(now.getMinutes())}`;
   setF(12.5,400);ctx.fillStyle=C.mute;ctx.textAlign="right";
   ctx.fillText("导出时间 "+stamp,TW-PAD,30);
-  ctx.fillText(`共 ${stat.total} 项 · 全部事项`,TW-PAD,50);
+  const _scopeTxt=(PLAN_IMG_SCOPE==="all")?"全部事项":("当前筛选 · "+planFilterLabel());
+  ctx.fillText(`共 ${stat.total} 项 · ${_scopeTxt}`,TW-PAD,50);
   ctx.textAlign="left";
   setF(13,700);ctx.fillStyle=C.ink2;
   ctx.fillText(`共 ${stat.total} 项　已完成 ${stat.done}　进行中 ${stat.doing}　⭐重点 ${stat.key}　⚠逾期 ${stat.over}`,PAD+14,80);
@@ -13961,26 +13986,39 @@ function buildPlanImage(){
     rowsH:measured.map(m=>m.h),rowsLines:measured.map(m=>Math.max(m.tl.length,m.dl.length,m.nl.length))};
 }
 
-/* 导出长图：生成 → 弹预览（手机可长按保存，电脑可下载 PNG） */
-function exportPlanImage(){
+/* 导出长图：生成 → 弹预览（手机可长按保存，电脑可下载 PNG）
+ * v6.52：默认只导出「当前筛选结果」——所见即所得；传 'all' 或弹窗里切到「全部事项」才全导 */
+function exportPlanImage(forceScope){
   if(!DB.rows.length){toast("还没有工作事项，先新增一条再导出","warn");return;}
+  if(forceScope==="all"||forceScope==="filtered")PLAN_IMG_SCOPE=forceScope;
   let out;
-  try{out=buildPlanImage();}
+  try{out=buildPlanImage(PLAN_IMG_SCOPE);}
   catch(e){toast("当前环境不支持生成图片，请用电脑浏览器打开后再导出","err");return;}
+  if(!out.count){toast("当前筛选下没有可导出的事项，换个筛选条件或切到「全部事项」","warn");return;}
   PLAN_IMG_DATA=out.dataUrl;
   const img=document.getElementById("pim-img");
   if(img)img.src=out.dataUrl;
   const meta=document.getElementById("pim-meta");
-  if(meta)meta.textContent=`全部 ${out.count} 项 · ${out.w}×${out.h}px · 高清 PNG`;
+  const scopeTxt=PLAN_IMG_SCOPE==="all"?"全部事项":("当前筛选 · "+planFilterLabel());
+  if(meta)meta.textContent=`${scopeTxt} · ${out.count} 项 · ${out.w}×${out.h}px · 高清 PNG`;
   const modal=document.getElementById("plan-img-modal");
   if(modal)modal.style.display="flex";
-  const filtered=(document.getElementById("search-plan").value||"")||document.getElementById("fban-plan").value||document.getElementById("fstat-plan").value||quickView!=="all";
-  toast(filtered?`已生成全部 ${out.count} 项长图 ✓（不受当前筛选影响，保证不遗漏）`:`已生成全部 ${out.count} 项长图 ✓`,"ok");
+  syncPlanScopeBtns();
+  toast(`已导出${PLAN_IMG_SCOPE==="all"?"全部":("当前筛选 ")} ${out.count} 项长图 ✓`,"ok");
+}
+/* 弹窗内的范围切换：当前筛选 / 全部事项 */
+function setPlanImgScope(scope){
+  exportPlanImage(scope);
+}
+function syncPlanScopeBtns(){
+  const f=document.getElementById("pim-scope-filter"),a=document.getElementById("pim-scope-all");
+  if(f)f.className=PLAN_IMG_SCOPE==="filtered"?"btn sm":"btn sm ghost";
+  if(a)a.className=PLAN_IMG_SCOPE==="all"?"btn sm":"btn sm ghost";
 }
 function downloadPlanImage(){
   if(!PLAN_IMG_DATA){toast("请先点「导出图片」生成长图","warn");return;}
   const a=document.createElement("a");
-  a.href=PLAN_IMG_DATA;a.download="策划工作_对接进度_"+localDateStr()+".png";
+  a.href=PLAN_IMG_DATA;a.download="策划工作_"+(PLAN_IMG_SCOPE==="all"?"全部":"筛选")+localDateStr()+".png";
   document.body.appendChild(a);a.click();a.remove();
   toast("图片已保存 ✓","ok");
 }
