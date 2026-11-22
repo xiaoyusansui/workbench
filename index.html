@@ -6441,7 +6441,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.53</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.54</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6985,7 +6985,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.53";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.54";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9990,11 +9990,16 @@ const GEAR_CATEGORIES=[
   {key:"配件",icon:"🔧",color:"#94a3b8"},
   {key:"航拍",color:"#2dd4bf",icon:"🚁"}
 ];
-/* v6.53：小鱼真实设备清单（2026-11-22 口述核对）——首次打开自动合并进 DB.gears。
-   原则：只追加、按名称去重、绝不覆盖用户已有记录；不动工作台自带的示例器材。 */
+/* v6.54：小鱼真实设备清单（2026-11-22 口述核对）——首次打开自动合并进 DB.gears。
+   原则：只追加、按名称去重、绝不覆盖用户已有记录；不动工作台自带的示例器材。
+   v6.54 仅把 seed 标记升为 _654，让已打开过 v6.53 的浏览器也能自动补进新增的适马镜头。 */
 const MY_GEARS_653=[
   {name:"Sony A7M4",category:"相机",brand:"Sony",model:"A7M4",buyDate:"",price:0,status:"active",maintNote:"主力机身，快门约4万次（2026-11 核）"},
   {name:"Sony A7M3 备机",category:"相机",brand:"Sony",model:"A7M3",buyDate:"2026-11-22",price:4400,status:"active",maintNote:"第三次购入，¥4400，成色尚可；到手自查快门数/电池原厂/发黄划痕"},
+  {name:"适马 85mm F1.4 定焦",category:"镜头",brand:"适马 SIGMA",model:"85mm F1.4",buyDate:"",price:0,status:"active",maintNote:"用户口述；DG HSM Art（单反口）或 DG DN Art（微单口）待确认，E 卡口机身须 DG DN 版"},
+  {name:"50mm F1.4 定焦",category:"镜头",brand:"待确认",model:"50mm F1.4",buyDate:"",price:0,status:"active",maintNote:"用户口述「50F1.4定焦」未说品牌；是否适马 50mm F1.4 Art 待确认"},
+  {name:"适马 70-200mm F2.8 变焦",category:"镜头",brand:"适马 SIGMA",model:"70-200 F2.8",buyDate:"",price:0,status:"active",maintNote:"用户口述；长焦变焦，婚礼/活动远摄主力"},
+  {name:"腾龙 28-70mm 二代",category:"镜头",brand:"腾龙 TAMRON",model:"28-70 二代",buyDate:"",price:0,status:"active",maintNote:"用户口述「腾龙28-70 二代」；具体光圈/卡口待确认（E 卡口机身须 FE 口）"},
   {name:"大鲸鱼 256GB V60 存储卡",category:"配件",brand:"大鲸鱼",model:"256GB V60",buyDate:"2026-11-22",price:0,status:"active",maintNote:"给 A7M3 备机，V60 满足 4K 写入"},
   {name:"志捷 Ambitful GC30R 气柱灯",category:"灯光",brand:"Ambitful 志捷",model:"GC30R",buyDate:"2026-11-22",price:0,status:"active",maintNote:"30W 黑色全彩气柱灯，2000K-10000K，16光效，CRI≥95，续航约70min，1.14kg，内置电池/磁吸/防水"},
   {name:"INIKEE GC150 补光灯 + 菲涅尔透镜套装",category:"灯光",brand:"INIKEE",model:"GC150",buyDate:"2026-11-22",price:0,status:"active",maintNote:"二代菲涅尔透镜套装（含遮叶/手提柄/灯罩/绒布袋/数据线）；不含充电器，需另配电源"},
@@ -10004,7 +10009,7 @@ const MY_GEARS_653=[
   {name:"绿联 NP-FZ100 副厂电池 ×2",category:"配件",brand:"绿联",model:"NP-FZ100",buyDate:"",price:0,status:"active",maintNote:"2块副厂，A7M4/A7M3 通用"},
   {name:"绿联 充电仓",category:"配件",brand:"绿联",model:"",buyDate:"",price:0,status:"active",maintNote:"NP-FZ100 四充充电仓"}
 ];
-const MY_GEARS_653_FLAG="xiaoyu_gears_seed_653";
+const MY_GEARS_653_FLAG="xiaoyu_gears_seed_654";
 /* 首次打开合并真实设备；force=true 时手动重跑（仍按名称去重）。返回新增条数。 */
 function seedMyGears653(force){
   if(!Array.isArray(DB.gears))DB.gears=[];
