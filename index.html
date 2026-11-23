@@ -5777,7 +5777,7 @@ window.QRCode = {
           <div class="sec-actions" data-page-node-id="U66zRRqyFQI2aaNTFcDETB">
             <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()" data-page-node-id="2tt6yFLAEnHXtSwT2Uv1Bi"/>
             <button class="btn sm" onclick="openGearModal()" data-page-node-id="JpbF1yhtfFECnY7cODy5GT">＋ 新增器材</button>
-            <button class="btn ghost sm" onclick="var n=seedMyGears653(true);toast(n?('已补齐 '+n+' 件我的设备'):'设备已是最新',n?'ok':'warn')" title="把口述核对过的真实设备补齐进清单（已存在的跳过，不覆盖）" data-page-node-id="v653SeedBtn">📥 补齐我的设备</button>
+            <button class="btn ghost sm" onclick="var n=seedMyGears653(true),r=applyGearReclass662(true);toast((n||r.add||r.moved)?('已更新 '+((n||0)+(r.add||0))+' 件设备、重归类 '+((r.moved||0))+' 件'):'设备已是最新','ok')" title="把口述核对过的真实设备补齐进清单（已存在的跳过，不覆盖），并按标准重新归类" data-page-node-id="v653SeedBtn">📥 补齐我的设备</button>
           </div>
         </div>
         <div class="gear-stats" id="gear-stats" data-page-node-id="8FxdYeHjoYVVoaDvpVBenQ">
@@ -6441,7 +6441,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.61</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.62</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6985,7 +6985,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.61";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.62";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9990,7 +9990,8 @@ const GEAR_CATEGORIES=[
   {key:"配件",icon:"🔧",color:"#94a3b8"},
   {key:"内存",icon:"💾",color:"#34d399"},
   {key:"架子",icon:"🗼",color:"#f472b6"},
-  {key:"航拍",color:"#2dd4bf",icon:"🚁"}
+  {key:"航拍",color:"#2dd4bf",icon:"🚁"},
+  {key:"后期设备",icon:"💻",color:"#f0abfc"}   /* v6.62：Mac / iPad 等后期生产力设备，不并入摄影器材诊断口径 */
 ];
 /* v6.54：小鱼真实设备清单（2026-11-22 口述核对）——首次打开自动合并进 DB.gears。
    原则：只追加、按名称去重、绝不覆盖用户已有记录；不动工作台自带的示例器材。
@@ -10014,6 +10015,55 @@ const MY_GEARS_653=[
   {name:"绿联 充电仓",category:"配件",brand:"绿联",model:"",buyDate:"",price:0,status:"active",maintNote:"NP-FZ100 四充充电仓"}
 ];
 const MY_GEARS_653_FLAG="xiaoyu_gears_seed_660";
+
+/* ==================== v6.62 重新归器材 + 后期设备 ====================
+   背景：用户工作台真实 23 件（截图核对）与代码里 16 件老种子名称不一致，
+   所以不能靠升 seed 标记补录——那会把过时型号（如「腾龙 28-70 二代」）重新加回来。
+   做法：一次性、幂等的按名称重分类，直接作用于 DB.gears 现有数据；
+   规则按优先级排列，读卡器必须先排除，否则「读卡器 CFA+SD」会被误判成存储卡。
+   只跑一次（独立标记），跑完后用户手动改的分类不再被覆盖。 */
+const GEAR_RECAT_662=[
+  {re:/读卡器|card ?reader/i,to:"配件"},
+  {re:/(cfa|cfexpress|存储卡|内存卡|sdxc|microsd|v60|v90|lexar|雷克沙|v-time|大鲸鱼.*卡)/i,skip:/读卡器/i,to:"内存"},
+  {re:/(灯架|三脚架|脚架|light ?stand|tripod|mt-05|mt05|曼富图|manfrotto.*架)/i,to:"架子"},
+  {re:/(无人机|航拍|mavic|avata|mini ?[234]|air ?[23])/i,skip:/ipad|笔记本|平板电脑|mac ?book/i,to:"航拍"},
+  {re:/(macbook|imac|mac ?book|ipad|笔记本|平板电脑|台式机|苹果电脑|mac ?电脑)/i,to:"后期设备"},
+  {re:/(稳定器|云台|gimbal|rs[345])/i,to:"配件"},
+  {re:/(电池|充电仓|充电器|拉杆箱|摄影包|np-fz100)/i,to:"配件"}
+];
+const POST_GEARS_662=[
+  {name:"Mac 13英寸 M2 (2022款)",category:"后期设备",brand:"Apple",model:"M2 / 16GB+512GB",buyDate:"",price:0,status:"active",maintNote:"后期主力：RAW 导入/选片/精修/导出/备份全压这一台，是交付单点故障，优先级最高"},
+  {name:"iPad Air 11英寸 M4",category:"后期设备",brand:"Apple",model:"M4 / 11英寸",buyDate:"",price:0,status:"active",maintNote:"辅助：现场给客户看样片、轻量修图、移动看片；不参与拍摄端诊断"}
+];
+const GEAR_RECAT_FLAG_662="xiaoyu_gears_reclass_662";
+function applyGearReclass662(force){
+  if(!Array.isArray(DB.gears))DB.gears=[];
+  var done=false;try{done=localStorage.getItem(GEAR_RECAT_FLAG_662)==="1";}catch(e){}
+  if(done&&!force)return {moved:0,add:0};
+  var moved=0;
+  DB.gears.forEach(function(g){
+    if(!g||!g.name)return;
+    var nm=String(g.name)+" "+String(g.brand||"")+" "+String(g.model||"");
+    for(var i=0;i<GEAR_RECAT_662.length;i++){
+      var r=GEAR_RECAT_662[i];
+      if(r.skip&&r.skip.test(nm))continue;
+      if(r.re.test(nm)&&g.category!==r.to){g.category=r.to;moved++;break;}
+    }
+  });
+  var have={};DB.gears.forEach(function(g){if(g&&g.name)have[String(g.name).trim()]=1;});
+  var add=0;
+  POST_GEARS_662.forEach(function(src){
+    if(!have[src.name]){
+      DB.gears.push({name:src.name,category:src.category,brand:src.brand,model:src.model,
+        buyDate:src.buyDate,price:src.price,status:src.status,maintNote:src.maintNote,srcUrl:""});
+      have[src.name]=1;add++;
+    }
+  });
+  try{localStorage.setItem(GEAR_RECAT_FLAG_662,"1");}catch(e){}
+  if(moved||add){save();try{renderGears();}catch(e){}}
+  return {moved:moved,add:add};
+}
+
 /* v6.60 分类细化：这几件真实设备从旧分类「配件」迁到更准确的「内存」「架子」。
    只对名单内、且当前仍是「配件」的项迁移——用户手动改过分类的一律不覆盖。 */
 const GEAR_CAT_FIX_660={
@@ -10125,8 +10175,10 @@ function gearLensParse(str){
 /* 统计登记器材（已退役的不算进在用配置，但仍算「登记过」） */
 function gearAuditProfile(){
   var all=DB.gears||[];
-  var live=all.filter(function(g){return (g.status||"active")!=="retired"});
-  var p={all:all.length,live:live.length,bodies:0,lights:0,drones:0,gimbals:0,
+  /* v6.62：后期设备（Mac/iPad）不并入摄影器材诊断口径，分母仍是摄影器材件数 */
+  var photo=all.filter(function(g){return g.category!=="后期设备"});
+  var live=photo.filter(function(g){return (g.status||"active")!=="retired"});
+  var p={all:photo.length,live:live.length,bodies:0,lights:0,drones:0,gimbals:0,
          triggers:0,batteries:0,cards:0,backups:0,modifiers:0,lenses:[],names:[]};
   live.forEach(function(g){
     var nm=((g.name||"")+" "+(g.brand||"")+" "+(g.model||"")).replace(/\s+/g," ").trim();
@@ -10775,6 +10827,7 @@ function guessGearCategory(t){
   var s=String(t||"").toLowerCase();
   if(/镜头|lens/.test(s)||/\d{1,3}\s?[-–—]\s?\d{1,3}\s?mm/.test(s))return "镜头";
   var keys=[
+    ["后期设备",["macbook","imac","mac book","ipad","笔记本","平板电脑","台式机","苹果电脑","mac 电脑","一体机"]],  /* v6.62 */
     ["内存",["存储卡","内存卡","sd卡","sdxc","cfexpress","tf卡","microsd","闪存卡","memory card","v30","v60","v90","大鲸鱼","lexar","雷克沙"]],
     ["架子",["灯架","三脚架","脚架","支架","三脚","架","light stand","tripod","mt-05","mt05","曼富图","manfrotto"]],
     ["航拍",["无人机","航拍","mavic","avata","air 2","air 3","mini 3","mini 4","mini 2","action 3","action 4","gopro","insta360","pocket","遥控飞机"]],
@@ -15174,6 +15227,8 @@ function refreshOnVisible(){
 
 /* v6.53：首次打开自动把小鱼真实设备合并进器材清单（只增不覆盖，按名称去重） */
 try{seedMyGears653(false);}catch(e){}
+/* v6.62：一次性按名称重分类真实器材 + 补录 Mac/iPad（按名去重、只跑一次，不覆盖后续手改） */
+try{applyGearReclass662(false);}catch(e){}
 fillBanPlan();
 initPeriodBar();          /* v6.10 周期导航初始化 */
 switchTab("home");navGroupsApply();navGroupSync(curTab);tick();setInterval(tick,1000);
