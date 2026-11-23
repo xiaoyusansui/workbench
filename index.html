@@ -6441,7 +6441,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.60</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.61</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6985,7 +6985,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.60";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.61";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -14477,6 +14477,7 @@ let cloudPushTimer=null;
 function scheduleCloudPush(){if(cloudPushTimer)clearTimeout(cloudPushTimer);cloudPushTimer=setTimeout(()=>{if(cloudMode&&ghUser&&ghToken)cloudPush();},1500);}
 function timeStr(){const d=new Date(),p=n=>String(n).padStart(2,"0");return `${p(d.getHours())}:${p(d.getMinutes())}`;}
 function setSyncStatus(kind,text){
+  window.__wbSyncKind=kind;window.__wbSyncText=text;  /* v6.61：记录真实同步结果，登录时不再无条件刷成"已同步" */
   const dot=document.getElementById("sync-dot"),t=document.getElementById("sync-text");
   if(!dot)return;dot.className="dot "+kind;t.textContent=text;
   const st=document.getElementById("sync-text-side");if(st)st.textContent=(kind==="none"?"未开启":kind==="ok"?"已同步":kind==="syncing"?"同步中…":"异常");
@@ -14838,9 +14839,13 @@ async function doLogin(email,pwd,msg){
     if(Object.keys(DB).length>1||(DB.rows&&DB.rows.length>0)){await cloudPush();}
   }
   localStorage.setItem(CLOUD_KEY_PREFIX+"user",JSON.stringify({email,pwdHash:await simpleHash(pwd),regTime:ghUser.regTime||new Date().toISOString()}));
-  updateAccountUI();hideAuthGate();setSyncStatus("ok","\u767B\u5F55\u6210\u529F\uFF01"+timeStr());
-  startCloudTimer();msg.textContent="\u767B\u5F55\u6210\u529F\uFF01";msg.style.color="var(--green)";
-  setTimeout(()=>hideAuthGate(),800);}
+  updateAccountUI();hideAuthGate();
+  /* v6.61：登录成功 ≠ 同步成功。云端读写若因令牌失效失败，状态保持红字并提示，不再假报"已同步"。 */
+  const cloudBad=window.__wbSyncKind==="err";
+  setSyncStatus(cloudBad?"err":"ok",cloudBad?"\u26A0 令牌失效，云端未同步——请重设令牌":"\u767B\u5F55\u6210\u529F\uFF01"+timeStr());
+  if(cloudBad){msg.textContent="\u767B\u5F55\u6210\u529F\uFF0C\u4F46\u4E91\u7AEF\u540C\u6B65\u5931\u8D25\uFF08\u4EE4\u724C\u65E0\u6548\uFF09\u2014\u2014\u8BF7\u5728\u8BBE\u7F6E\u91CC\u91CD\u65B0\u586B\u4EE4\u724C";msg.style.color="var(--coral)";}
+  else{msg.textContent="\u767B\u5F55\u6210\u529F\uFF01";msg.style.color="var(--green)";}
+  startCloudTimer();setTimeout(()=>hideAuthGate(),cloudBad?2500:800);}
 async function afterLogin(session,label){}
 async function simpleHash(str){
   if(!checkCrypto("密码哈希计算"))throw new Error("crypto.subtle unavailable");
@@ -15056,6 +15061,36 @@ applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
   /* 立刻抹掉地址栏里的 Key —— 不让它留在历史记录/地址栏/被别人看见 */
   try{
     ["aikey","ai_key","aibase","ai_base","aimodel","ai_model"].forEach(function(k){q.delete(k);});
+    var s=q.toString();
+    history.replaceState(null,"",location.pathname+(s?("?"+s):"")+location.hash);
+  }catch(e){}
+})();
+
+/* v6.61 云同步令牌一键注入：网址带 ?ght=ghp_xxx 时写入本机令牌并立刻抹掉地址栏参数。
+   与 aikey 同理——令牌存在每台设备各自的 localStorage，三端各点一次同一链接即可，
+   令牌本身不写进公开仓库的 HTML。 */
+(function importGhtFromUrl(){
+  var q;
+  try{q=new URLSearchParams(location.search);}catch(e){return;}
+  var tok=q.get("ght");
+  if(!tok)return;
+  tok=String(tok).trim();
+  var hint="";
+  if(!/^(ghp_|github_pat_)/.test(tok))hint="令牌格式不对（应以 ghp_ 或 github_pat_ 开头）";
+  try{
+    if(!hint){
+      localStorage.setItem(CLOUD_KEY_PREFIX+"token",tok);
+      ghToken=tok;
+      try{loadGhTokenUI();}catch(e){}
+      hint="云同步令牌已写入本机 ✓";
+    }
+  }catch(e){hint="令牌写入失败："+e.message;}
+  setTimeout(function(){
+    try{alert(hint);}catch(e){}
+    try{toast(hint,hint.indexOf("✓")>=0?"ok":"err");}catch(e){}
+  },300);
+  try{
+    q.delete("ght");
     var s=q.toString();
     history.replaceState(null,"",location.pathname+(s?("?"+s):"")+location.hash);
   }catch(e){}
