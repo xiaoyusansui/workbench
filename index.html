@@ -6441,7 +6441,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.59</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.60</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6985,7 +6985,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.59";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.60";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -9988,6 +9988,8 @@ const GEAR_CATEGORIES=[
   {key:"镜头",icon:"🔭",color:"#a78bfa"},
   {key:"灯光",icon:"💡",color:"#fbbf24"},
   {key:"配件",icon:"🔧",color:"#94a3b8"},
+  {key:"内存",icon:"💾",color:"#34d399"},
+  {key:"架子",icon:"🗼",color:"#f472b6"},
   {key:"航拍",color:"#2dd4bf",icon:"🚁"}
 ];
 /* v6.54：小鱼真实设备清单（2026-11-22 口述核对）——首次打开自动合并进 DB.gears。
@@ -10000,18 +10002,27 @@ const MY_GEARS_653=[
   {name:"50mm F1.4 定焦",category:"镜头",brand:"适马 SIGMA",model:"50mm F1.4",buyDate:"",price:0,status:"active",maintNote:"用户口述；品牌已确认适马，具体卡口/版本待确认（E 卡口机身须 DG DN 版）"},
   {name:"适马 70-200mm F2.8 变焦",category:"镜头",brand:"适马 SIGMA",model:"70-200 F2.8",buyDate:"",price:0,status:"active",maintNote:"用户口述；长焦变焦，婚礼/活动远摄主力"},
   {name:"腾龙 28-70mm 二代",category:"镜头",brand:"腾龙 TAMRON",model:"28-70 二代",buyDate:"",price:0,status:"active",maintNote:"用户口述「腾龙28-70 二代」；具体光圈/卡口待确认（E 卡口机身须 FE 口）"},
-  {name:"大鲸鱼 256GB V60 存储卡",category:"配件",brand:"大鲸鱼",model:"256GB V60",buyDate:"2026-11-22",price:0,status:"active",maintNote:"给 A7M3 备机，V60 满足 4K 写入"},
-  {name:"V-Time 128GB 存储卡",category:"配件",brand:"V-Time",model:"128GB SDXC UHS-II",buyDate:"",price:0,status:"active",maintNote:"卡面：270MB/s、U3、V60、SDXC UHS-II；适合 A7M4/A7M3 拍 4K"},
-  {name:"Lexar 800x PRO 64GB 存储卡",category:"配件",brand:"Lexar 雷克沙",model:"800x PRO 64GB",buyDate:"",price:0,status:"active",maintNote:"卡面：150MB/s、V30、U1、SDXC；容量偏小，备用/低码率用"},
+  {name:"大鲸鱼 256GB V60 存储卡",category:"内存",brand:"大鲸鱼",model:"256GB V60",buyDate:"2026-11-22",price:0,status:"active",maintNote:"给 A7M3 备机，V60 满足 4K 写入"},
+  {name:"V-Time 128GB 存储卡",category:"内存",brand:"V-Time",model:"128GB SDXC UHS-II",buyDate:"",price:0,status:"active",maintNote:"卡面：270MB/s、U3、V60、SDXC UHS-II；适合 A7M4/A7M3 拍 4K"},
+  {name:"Lexar 800x PRO 64GB 存储卡",category:"内存",brand:"Lexar 雷克沙",model:"800x PRO 64GB",buyDate:"",price:0,status:"active",maintNote:"卡面：150MB/s、V30、U1、SDXC；容量偏小，备用/低码率用"},
   {name:"志捷 Ambitful GC30R 气柱灯",category:"灯光",brand:"Ambitful 志捷",model:"GC30R",buyDate:"2026-11-22",price:0,status:"active",maintNote:"30W 黑色全彩气柱灯，2000K-10000K，16光效，CRI≥95，续航约70min，1.14kg，内置电池/磁吸/防水"},
   {name:"INIKEE GC150 补光灯 + 菲涅尔透镜套装",category:"灯光",brand:"INIKEE",model:"GC150",buyDate:"2026-11-22",price:0,status:"active",maintNote:"二代菲涅尔透镜套装（含遮叶/手提柄/灯罩/绒布袋/数据线）；不含充电器，需另配电源"},
-  {name:"MT-05SC 碳纤维灯架",category:"配件",brand:"",model:"MT-05SC",buyDate:"2026-11-22",price:0,status:"active",maintNote:"红色，展开高200cm/收纳55cm，承重1.5kg，重756g，落地弹开快速部署"},
+  {name:"MT-05SC 碳纤维灯架",category:"架子",brand:"",model:"MT-05SC",buyDate:"2026-11-22",price:0,status:"active",maintNote:"红色，展开高200cm/收纳55cm，承重1.5kg，重756g，落地弹开快速部署"},
   {name:"WD My Passport 随行版 2TB 移动硬盘",category:"配件",brand:"WD 西部数据",model:"My Passport 2TB",buyDate:"2026-11-22",price:979,status:"active",maintNote:"USB3.0/2.5英寸/红色/硬件加密，客片素材备份"},
   {name:"索尼 NP-FZ100 原厂电池 ×2",category:"配件",brand:"Sony",model:"NP-FZ100",buyDate:"",price:0,status:"active",maintNote:"2块原厂，A7M4/A7M3 通用"},
   {name:"绿联 NP-FZ100 副厂电池 ×2",category:"配件",brand:"绿联",model:"NP-FZ100",buyDate:"",price:0,status:"active",maintNote:"2块副厂，A7M4/A7M3 通用"},
   {name:"绿联 充电仓",category:"配件",brand:"绿联",model:"",buyDate:"",price:0,status:"active",maintNote:"NP-FZ100 四充充电仓"}
 ];
-const MY_GEARS_653_FLAG="xiaoyu_gears_seed_658";
+const MY_GEARS_653_FLAG="xiaoyu_gears_seed_660";
+/* v6.60 分类细化：这几件真实设备从旧分类「配件」迁到更准确的「内存」「架子」。
+   只对名单内、且当前仍是「配件」的项迁移——用户手动改过分类的一律不覆盖。 */
+const GEAR_CAT_FIX_660={
+  "大鲸鱼 256GB V60 存储卡":"内存",
+  "V-Time 128GB 存储卡":"内存",
+  "Lexar 800x PRO 64GB 存储卡":"内存",
+  "MT-05SC 碳纤维灯架":"架子",
+  "Manfrotto 碳纤维三脚架":"架子"
+};
 /* v6.56：把内置真实设备清单合并进任意 DB 对象（按名称去重、只补缺、占位字段补齐）。
    首次录入与云端拉取后共用——旧云端快照可能拍于录镜头之前，不能让它把真实设备抹掉。 */
 function mergeSeedGears(target){
@@ -10019,6 +10030,13 @@ function mergeSeedGears(target){
   const have={};
   target.gears.forEach(function(g){if(g&&g.name)have[String(g.name).trim()]=g;});
   let add=0,patch=0;
+  /* v6.60 分类迁移：对名单内、当前仍是旧分类「配件」的项改到「内存/架子」。
+     放在种子循环之外，才能覆盖内置示例器材（如 Manfrotto 三脚架）。
+     用户手动改过分类的（不再是「配件」）一律不覆盖。 */
+  Object.keys(GEAR_CAT_FIX_660).forEach(function(nm){
+    const g=have[nm];const wantCat=GEAR_CAT_FIX_660[nm];
+    if(g&&g&&g.category==="配件"&&wantCat){g.category=wantCat;patch++;}
+  });
   MY_GEARS_653.forEach(function(src){
     const ex=have[src.name];
     if(ex){
@@ -10757,10 +10775,12 @@ function guessGearCategory(t){
   var s=String(t||"").toLowerCase();
   if(/镜头|lens/.test(s)||/\d{1,3}\s?[-–—]\s?\d{1,3}\s?mm/.test(s))return "镜头";
   var keys=[
+    ["内存",["存储卡","内存卡","sd卡","sdxc","cfexpress","tf卡","microsd","闪存卡","memory card","v30","v60","v90","大鲸鱼","lexar","雷克沙"]],
+    ["架子",["灯架","三脚架","脚架","支架","三脚","架","light stand","tripod","mt-05","mt05","曼富图","manfrotto"]],
     ["航拍",["无人机","航拍","mavic","avata","air 2","air 3","mini 3","mini 4","mini 2","action 3","action 4","gopro","insta360","pocket","遥控飞机"]],
-    ["灯光",["闪光灯","补光灯","柔光箱","灯架","反光板","softbox","speedlite","ttl","hss","神牛","godox","led灯","led 灯","摄影灯","太阳灯"]],
+    ["灯光",["闪光灯","补光灯","柔光箱","反光板","softbox","speedlite","ttl","hss","神牛","godox","led灯","led 灯","摄影灯","太阳灯"]],
     ["相机",["微单","单反","机身","相机","摄影机","ilce","ilca","eos","lumix","x-t","x-h","gfx","z6","z7","z8","z9","z30","z50"]],
-    ["配件",["三脚架","云台","稳定器","背包","电池","存储卡","内存卡","滤镜","麦克风","转接环","快门线","清洁套装","充电器","读卡器"]]
+    ["配件",["云台","稳定器","背包","电池","滤镜","麦克风","转接环","快门线","清洁套装","充电器","读卡器"]]
   ];
   for(var i=0;i<keys.length;i++){var kw=keys[i][1];for(var j=0;j<kw.length;j++){if(s.indexOf(kw[j])>=0)return keys[i][0];}}
   return "";
