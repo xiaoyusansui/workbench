@@ -2109,6 +2109,31 @@
   .ga-btn:hover{background:rgba(212,165,116,.2);border-color:var(--gold)}
   .ga-ok{padding:8px 0;font-size:12px;font-weight:800;color:var(--brand2)}
   .ga-empty{padding:6px 0;font-size:12px;line-height:1.6;color:var(--muted2)}
+
+  /* ====== v6.67 · 诊断卡两块建议（建议补充 / 可考虑出掉）====== */
+  .ga-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+  .ga-col{min-width:0;background:rgba(148,163,184,.04);border:1px solid var(--line);
+    border-radius:var(--r-sub);padding:11px 12px}
+  .ga-sec-head{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;
+    color:var(--ink);padding-bottom:8px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .ga-sec-head .ga-cnt{margin-left:auto;font-size:10.5px;font-weight:800;color:var(--muted3);
+    background:var(--bg3);border-radius:var(--r-pill);padding:2px 8px}
+  .ga-col .ga-item{padding:8px 0}
+  .ga-col .ga-item:first-of-type{border-top:none}
+  .ga-sell-item{display:flex;gap:8px;padding:8px 0;border-top:1px dashed var(--line)}
+  .ga-sell-item:first-of-type{border-top:none}
+  .ga-sell-tag{flex:none;font-size:10px;font-weight:900;padding:0 7px;border-radius:5px;height:17px;
+    line-height:17px;background:rgba(212,165,116,.16);color:var(--gold2)}
+  .ga-sell-tag.t-dup{background:rgba(251,191,36,.16);color:var(--amber)}
+  .ga-sell-tag.t-ret{background:rgba(148,163,184,.18);color:var(--muted2)}
+  .ga-sell-body{flex:1;min-width:0}
+  .ga-sell-name{font-size:12px;font-weight:900;color:var(--ink)}
+  .ga-sell-why{font-size:11px;line-height:1.5;color:var(--muted2);margin-top:2px}
+  .ga-sell-keep{font-size:10.5px;line-height:1.5;color:var(--brand2);margin-top:3px;font-weight:700}
+  .ga-sell-empty{padding:8px 0;font-size:11.5px;line-height:1.6;color:var(--muted2)}
+  .ga-keep{margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);
+    font-size:10.5px;line-height:1.5;color:var(--muted3);font-weight:700}
+  @media(max-width:900px){.ga-cols{grid-template-columns:1fr;gap:10px}}
   .gc-btn-outline:hover{background:var(--surface-hover);color:var(--ink2)}
   .add-gear{background:var(--surface);border:2px dashed rgba(148,163,184,.2);border-radius:var(--radius);padding:24px;text-align:center;color:var(--muted2);font-weight:700;cursor:pointer;transition:.12s;grid-column:1/-1}
   .add-gear:hover{background:rgba(148,163,184,.04);border-color:var(--muted2)}
@@ -6535,7 +6560,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.66</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.67</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7079,7 +7104,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.66";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.67";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -10399,6 +10424,62 @@ function copyGearAuditPlan(){
   }
 }
 
+/* ==================== v6.67 出掉建议 ====================
+   只读 DB.gears 的本地规则引擎：给「可考虑出掉 / 核对」清单，绝不改数据、不虚构型号、不进评分。
+   每条都带反方提醒，卖出决定权留给用户；刚需类别在 UI 里明确标「不动」。 */
+function gearSellAdvice(){
+  var all=(DB.gears||[]).filter(function(g){return g.category!=="后期设备";});
+  var out=[],i,j,g;
+  var norm=function(s){return String(s||"").toLowerCase().replace(/[\s（）()【】\[\]·・\-_]/g,"");};
+  var push=function(name,tag,tcls,why,keep){out.push({name:name,tag:tag,tcls:tcls,why:why,keep:keep});};
+  /* R1 疑似重复录入（归一化同名） */
+  var seen={};
+  for(i=0;i<all.length;i++){g=all[i];var k=norm(g.name);if(!k)continue;
+    if(seen[k])push(g.name,"重复","t-dup","清单里有一件同名器材，可能是重复录入；核对后如确为两件，可留一、出一回血。","若确为两台都在用（如双机/双灯），留着反而更稳，别动。");
+    else seen[k]=1;}
+  /* R2 已退役 / 维修中 */
+  for(i=0;i<all.length;i++){g=all[i];var st=g.status||"active";
+    if(st==="retired")push(g.name,"退役","t-ret","已标记退役，不参与拍摄配置，可考虑转出回血。","若打算修好当备机，先算维修费再决定。");
+    else if(st==="repair")push(g.name,"维修","t-dup","维修中，先估维修费与残值——修比卖贵就该出。","备机/主力别在修好前处理。");}
+  /* R3 缺价格与购入日期的占位记录 */
+  for(i=0;i<all.length;i++){g=all[i];
+    if(!g.price&&!g.buyDate)push(g.name,"占位","t-ret","没填价格与购入日期，可能是随手建的占位记录；核对后补全，或清理掉。","若确为实物，补上价格即可，不必出掉。");}
+  /* R4 同类数量偏多：只给汇总，不点名具体器材，避免误导 */
+  var cap={"相机":3,"镜头":6,"灯光":4,"内存":5,"配件":12,"架子":3,"航拍":2},cnt={};
+  for(i=0;i<all.length;i++){var c=all[i].category||"配件";cnt[c]=(cnt[c]||0)+1;}
+  Object.keys(cap).forEach(function(c){
+    if((cnt[c]||0)>=cap[c])push(c+" · 共 "+cnt[c]+" 件","冗余","t-dup","同类器材数量偏多，逐件检查是否有长期闲置的；闲置件可考虑转出。","婚礼跟拍讲究冗余备份，别为了回血削掉业务连续性。");});
+  /* R5 焦段被完全覆盖的变焦镜头 */
+  var L=[];
+  for(i=0;i<all.length;i++){g=all[i];if(g.category!=="镜头")continue;
+    var lp=gearLensParse((g.name||"")+" "+(g.brand||"")+" "+(g.model||""));
+    if(lp.lo>0&&lp.hi>lp.lo)L.push({name:g.name,lo:lp.lo,hi:lp.hi,f:lp.f});}
+  for(i=0;i<L.length;i++)for(j=0;j<L.length;j++){
+    if(i===j)continue;
+    if(L[j].lo<=L[i].lo&&L[j].hi>=L[i].hi&&(L[j].hi-L[j].lo)>(L[i].hi-L[i].lo))
+      push(L[i].name,"重叠","t-dup","焦段被「"+L[j].name+"」完全覆盖，可考虑只留一支。","光圈、画质、体积不同就各有用途；定焦别按焦段重叠出掉。");}
+  /* 同名同标签去重，最多 6 条，避免刷屏 */
+  var uniq={},res=[];
+  for(i=0;i<out.length;i++){var key=out[i].name+"|"+out[i].tag;
+    if(uniq[key])continue;uniq[key]=1;res.push(out[i]);if(res.length>=6)break;}
+  return res;
+}
+function copyGearSellPlan(){
+  var s=gearSellAdvice();
+  if(!s.length){toast("当前没有可出掉的建议，刚需都留着","ok");return;}
+  var txt="【器材出掉建议 · "+new Date().toLocaleDateString("zh-CN")+"】\n"+
+    s.map(function(x,i){return (i+1)+". ["+x.tag+"] "+x.name+"\n   "+x.why+"\n   ※ "+x.keep;}).join("\n")+
+    "\n\n（仅依据已登记器材的本地分析，卖出前请自行确认是否在用）";
+  var done=function(){toast("出掉建议已复制","ok");};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done,function(){toast("复制失败，请长按选择文本","err");});
+  }else{
+    var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.left="-9999px";
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");done();}catch(e){toast("复制失败，请长按选择文本","err");}
+    document.body.removeChild(ta);
+  }
+}
 function renderGearAudit(){
   var box=document.getElementById("gear-audit");
   if(!box)return;
@@ -10423,6 +10504,14 @@ function renderGearAudit(){
   var more=(r.miss.length>shown.length)
     ? '<button class="ga-btn" onclick="toggleGearAudit()">展开全部 '+r.miss.length+' 项</button>'
     : (_gaOpen?'<button class="ga-btn" onclick="toggleGearAudit()">收起</button>':'');
+  /* v6.67：两块建议并列——左「建议补充」（沿用原缺口），右「可考虑出掉」（独立规则，不进评分） */
+  var sell=gearSellAdvice();
+  var sellHTML=sell.length?sell.map(function(x){
+    return '<div class="ga-sell-item"><span class="ga-sell-tag '+x.tcls+'">'+esc(x.tag)+'</span>'+
+      '<div class="ga-sell-body"><div class="ga-sell-name">'+esc(x.name)+'</div>'+
+      '<div class="ga-sell-why">'+esc(x.why)+'</div>'+
+      '<div class="ga-sell-keep">↳ '+esc(x.keep)+'</div></div></div>';
+  }).join(""):'<div class="ga-sell-empty">✅ 目前没有明显可出掉的器材：重复、退役、占位、冗余、焦段重叠都没命中。留着就对了。</div>';
   box.innerHTML=
     '<div class="ga-head"><div class="ga-title">🩺 器材配置诊断</div>'+
       '<div class="ga-sub">· 按婚礼跟拍实战需要</div>'+
@@ -10430,10 +10519,15 @@ function renderGearAudit(){
     '<div class="ga-bar"><i style="width:'+r.score+'%"></i></div>'+
     '<div class="ga-verdict">'+g.t+' · '+esc(g.d)+
       (r.p0?' <em>（P0 硬风险 '+r.p0+' 处）</em>':'')+'</div>'+
-    items+
-    '<div class="ga-foot"><span class="ga-note">依据你登记的 '+r.p.all+' 件在用器材分析，没登记的不计入；推荐型号仅供参考，价格随行情浮动。</span>'+
+    '<div class="ga-cols">'+
+      '<div class="ga-col"><div class="ga-sec-head">🔧 建议补充<span class="ga-cnt">'+r.miss.length+' 项</span></div>'+items+'</div>'+
+      '<div class="ga-col"><div class="ga-sec-head">💰 可考虑出掉<span class="ga-cnt">'+sell.length+' 项</span></div>'+sellHTML+
+        '<div class="ga-keep">🔒 刚需不动：主力机身、标准变焦、供电（电池/充电仓）、存储卡、读卡器、备份盘、灯架不参与出掉建议。</div></div>'+
+    '</div>'+
+    '<div class="ga-foot"><span class="ga-note">依据你登记的 '+r.p.all+' 件在用器材分析，没登记的不计入；推荐型号与出掉建议都仅供参考，卖出前请自行确认是否在用。</span>'+
       more+
       (r.miss.length?'<button class="ga-btn" onclick="copyGearAuditPlan()">📋 复制补充清单</button>':'')+
+      (sell.length?'<button class="ga-btn" onclick="copyGearSellPlan()">📋 复制出掉建议</button>':'')+
     '</div>';
 }
 
