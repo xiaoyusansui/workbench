@@ -6560,7 +6560,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.67</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.68</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7104,7 +7104,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.67";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.68";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -10226,16 +10226,18 @@ function mergeSeedGears(target){
     const g=have[nm];const wantCat=GEAR_CAT_FIX_660[nm];
     if(g&&g&&g.category==="配件"&&wantCat){g.category=wantCat;patch++;}
   });
+  /* v6.68：不再补录 MY_GEARS_653 老种子（保留占位字段补齐）。
+     这 16 件是 2026-11 早期口述的占位清单（「腾龙 28-70mm 二代」、¥0 价格、
+     「用户口述/待确认」备注），型号与用户已确认的 23 件真实清单不符；更糟的是
+     「按名去重、只补缺」会把用户主动删除的器材在每次云端拉取后重新补回来
+     （用户反馈「删掉好几次」）。真实清单已在云端，无需再靠老种子兜底。
+     保留 v6.55 的占位补齐（已有同名项补品牌/备注）、上面的分类迁移，
+     以及下面的 POST_GEARS_662（Mac/iPad）add-only 补录；只去掉「缺了就新增」。 */
   MY_GEARS_653.forEach(function(src){
     const ex=have[src.name];
-    if(ex){
-      if((!ex.brand||ex.brand==="待确认")&&src.brand&&src.brand!=="待确认"){ex.brand=src.brand;patch++;}
-      if(/未说品牌/.test(ex.maintNote||"")&&src.maintNote&&!/未说品牌/.test(src.maintNote)){ex.maintNote=src.maintNote;patch++;}
-      return;
-    }
-    target.gears.push({name:src.name,category:src.category,brand:src.brand,model:src.model,
-      buyDate:src.buyDate,price:src.price,status:src.status,maintNote:src.maintNote,srcUrl:""});
-    have[src.name]=1;add++;
+    if(!ex)return;   /* v6.68：不再 push 缺失的老种子条目 */
+    if((!ex.brand||ex.brand==="待确认")&&src.brand&&src.brand!=="待确认"){ex.brand=src.brand;patch++;}
+    if(/未说品牌/.test(ex.maintNote||"")&&src.maintNote&&!/未说品牌/.test(src.maintNote)){ex.maintNote=src.maintNote;patch++;}
   });
   /* v6.63：云端拉取/跨标签页替换 DB 前也补 Mac/iPad（add-only、按名去重），保证三端从旧快照
      拉取后不会丢这两台。这里刻意不做重分类——重分类只在启动时一次性执行，否则每次拉取都会
