@@ -1986,19 +1986,89 @@
   .gf-chip.gf-group.active{background:rgba(240,171,252,.14);color:#f0abfc;border-color:rgba(240,171,252,.35)}
   /* 二级 chip 略小、弱化 */
   .gf-chip.gf-sub{padding:4px 11px;font-size:11px}
-  /* 一级大类分组标题 */
-  .gear-super-label{display:flex;align-items:center;gap:8px;padding:11px 12px;margin:14px 0 4px;
-    font-size:14px;font-weight:900;letter-spacing:.02em;color:var(--ink);
-    background:linear-gradient(90deg,rgba(240,171,252,.10),transparent 70%);
-    border-left:3px solid #f0abfc;border-radius:var(--r-sub)}
-  .gsl-icon{font-size:17px}
+  /* 一级大类分组标题（v6.66 弱化：去掉紫渐变与粗色条，改克制细线） */
+  .gear-super-label{display:flex;align-items:center;gap:8px;padding:12px 2px 8px;margin:16px 0 2px;
+    font-size:13px;font-weight:900;letter-spacing:.04em;color:var(--ink);
+    background:none;border-left:none;border-bottom:1px solid var(--line-strong);border-radius:0}
+  .gear-super-label:first-child{margin-top:2px}
+  .gsl-icon{font-size:15px;color:var(--gold)}
 
-  /* 分组标签 */
-  .gear-group-label{display:flex;align-items:center;gap:8px;padding:8px 4px;font-size:13px;font-weight:900;
-    color:var(--ink2);grid-column:1/-1;border-bottom:1px solid var(--line-strong);margin-bottom:10px}
-  .ggl-icon{font-size:16px}
-  .ggl-count{font-size:11px;font-weight:700;background:var(--bg3);color:var(--muted);
+  /* 分组标签（v6.66 弱化） */
+  .gear-group-label{display:flex;align-items:center;gap:7px;padding:6px 2px;font-size:11.5px;font-weight:800;
+    color:var(--muted3);grid-column:1/-1;border-bottom:1px dashed var(--line);margin-bottom:8px}
+  .ggl-icon{font-size:13px}
+  .ggl-count{font-size:10.5px;font-weight:800;background:var(--bg3);color:var(--muted3);
     padding:2px 9px;border-radius:var(--r-pill);margin-left:auto}
+
+  /* ====== v6.66 · 器材页专属左侧竖排分类导航 ======
+     用户反馈「两行平铺 chip 太丑、毫无审美」：把分类从顶部横排改为页内左侧
+     竖排导航（视觉语言对齐全局深色侧栏），不塞进全局侧栏——全局侧栏是所有
+     模块共用的，塞进去会让看首页/日程时也挂一串「相机/镜头」。 */
+  .gear-layout{display:grid;grid-template-columns:212px minmax(0,1fr);gap:18px;align-items:start;margin-top:4px}
+  .gear-main{min-width:0}
+  .gear-sidebar{background:var(--surface);border:1px solid var(--glass-border);
+    border-radius:var(--r-card);box-shadow:var(--card-shadow);
+    padding:14px 12px;position:sticky;top:14px;overflow:hidden}
+  .gear-sidebar::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6}
+  .gsb-head{display:flex;align-items:center;gap:8px;padding:2px 4px 12px;
+    border-bottom:1px solid var(--line);margin-bottom:10px;cursor:default}
+  .gsb-head-ic{font-size:15px;filter:saturate(.8)}
+  .gsb-head-tx{font-size:12.5px;font-weight:900;letter-spacing:.06em;color:var(--ink2)}
+  .gsb-total{margin-left:auto;font-size:11px;font-weight:800;color:var(--gold2);
+    background:var(--gold-glow);border-radius:var(--r-pill);padding:2px 9px}
+  .gsb-chev{display:none;font-size:13px;color:var(--muted)}
+  .gsb-sec-label{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--muted3);
+    padding:2px 8px 7px}
+  .gsb-divider{height:1px;background:var(--line);margin:12px 4px}
+
+  /* 竖排：覆盖 v6.65 的横排 flex-wrap */
+  .gear-sidebar .gear-filter-bar{gap:0;margin-bottom:0}
+  .gear-sidebar .gf-row{flex-direction:column;align-items:stretch;gap:3px;flex-wrap:nowrap}
+  .gear-sidebar .gf-row-sub{padding-left:0}
+  /* 导航项：整行块 + 左侧激活条；件数走 ::after(data-n)，不进 textContent（回归护栏） */
+  .gear-sidebar .gf-chip{display:flex;align-items:center;gap:8px;width:100%;
+    padding:8px 10px;border-radius:var(--r-ctl);border:1px solid transparent;
+    background:transparent;color:var(--ink2);font-size:12px;font-weight:700;
+    text-align:left;white-space:normal;transition:var(--t-all)}
+  .gear-sidebar .gf-chip::before{content:"";width:3px;height:14px;border-radius:2px;
+    background:transparent;flex:none;transition:.18s}
+  .gear-sidebar .gf-chip::after{content:attr(data-n);margin-left:auto;flex:none;
+    font-size:10px;font-weight:800;color:var(--muted3);
+    background:var(--bg3);border-radius:var(--r-pill);padding:1px 7px}
+  .gear-sidebar .gf-chip:hover{background:var(--surface-hover);color:var(--ink);border-color:var(--line)}
+  .gear-sidebar .gf-chip.active{background:var(--gold-glow);color:var(--gold2);
+    border-color:rgba(212,165,116,.28)}
+  .gear-sidebar .gf-chip.active::before{background:var(--gold)}
+  .gear-sidebar .gf-chip.active::after{color:var(--gold2);background:rgba(212,165,116,.16)}
+  /* 二级项缩进，与一级形成树形层级 */
+  .gear-sidebar .gf-row-sub .gf-chip{padding-left:22px;font-size:11.5px;color:var(--muted3)}
+  .gear-sidebar .gf-row-sub .gf-chip.active{color:var(--brand2)}
+  .gear-sidebar .gf-row-sub .gf-chip.active::before{background:var(--brand)}
+  .gear-sidebar .gf-row-sub .gf-chip.active::after{color:var(--brand2);background:rgba(34,197,94,.14)}
+
+  /* 小屏：侧栏收成顶部可折叠面板，不挤压卡片 */
+  @media(max-width:900px){
+    .gear-layout{grid-template-columns:1fr;gap:12px}
+    .gear-sidebar{position:static;padding:10px 12px}
+    .gsb-head{cursor:pointer;padding-bottom:8px;margin-bottom:0;border-bottom:none}
+    .gsb-chev{display:inline-block;margin-left:2px;transition:transform .2s}
+    .gear-sidebar .gear-filter-bar{display:none}
+    .gear-sidebar.open .gear-filter-bar{display:block;margin-top:10px;
+      border-top:1px solid var(--line);padding-top:10px}
+    .gear-sidebar.open .gsb-chev{transform:rotate(180deg)}
+    .gear-sidebar .gf-row{flex-direction:row;flex-wrap:wrap;gap:6px}
+    .gear-sidebar .gf-chip{width:auto;padding:6px 11px;font-size:11.5px}
+    .gear-sidebar .gf-chip::before{display:none}
+    .gear-sidebar .gf-row-sub .gf-chip{padding-left:11px;font-size:11.5px;color:var(--ink2)}
+  }
+  @media(max-width:600px){.gear-layout{gap:10px}.gear-sidebar{padding:9px 11px}}
+  /* 亮色主题：激活态降饱和，避免浅底糊成一团 */
+  html[data-theme="light"] .gear-sidebar{background:rgba(255,255,255,.72)}
+  html[data-theme="light"] .gear-sidebar .gf-chip.active{background:rgba(176,122,46,.10);border-color:rgba(176,122,46,.22)}
+  html[data-theme="light"] .gear-sidebar .gf-chip.active::after{background:rgba(176,122,46,.12)}
+  html[data-theme="light"] .gear-sidebar .gf-row-sub .gf-chip.active{background:rgba(22,163,74,.09);border-color:rgba(22,163,74,.20)}
+  html[data-theme="light"] .gear-sidebar .gf-row-sub .gf-chip.active::after{background:rgba(22,163,74,.10)}
 
   /* 类别颜色条 */
   .gear-card[data-cat="相机"]::before{background:linear-gradient(90deg,#60a5fa,#3b82f6)}
@@ -5793,18 +5863,29 @@ window.QRCode = {
             <button class="btn ghost sm" onclick="var n=seedMyGears653(true),r=applyGearReclass662(true);toast((n||r.add||r.moved)?('已更新 '+((n||0)+(r.add||0))+' 件设备、重归类 '+((r.moved||0))+' 件'):'设备已是最新','ok')" title="把口述核对过的真实设备补齐进清单（已存在的跳过，不覆盖），并按标准重新归类" data-page-node-id="v653SeedBtn">📥 补齐我的设备</button>
           </div>
         </div>
-        <div class="gear-stats" id="gear-stats" data-page-node-id="8FxdYeHjoYVVoaDvpVBenQ">
-          <div class="gear-stat" data-page-node-id="0EJiujdauBAbppKoZC4a7u"><span class="gs-num" id="gs-total" data-page-node-id="GJRtgiVZxUm43JHogV14rb">0</span><span class="gs-lb" data-page-node-id="qgwRPwuQ4cVi9ZrURM5Gcm">总数量</span></div>
-          <div class="gear-stat" data-page-node-id="OoBjaaCSW21H58ylDsYPHC"><span class="gs-num gs-active" id="gs-active" data-page-node-id="7ZERDeYJRKkYUnUW94s94Q">0</span><span class="gs-lb" data-page-node-id="PYX1iYkZlt7j8HepZGDXI0">在用</span></div>
-          <div class="gear-stat" data-page-node-id="ODCg9A4RmDQZvwgTDkgG4k"><span class="gs-num gs-repair" id="gs-repair" data-page-node-id="nev521GNIoct7BGZjLLF8N">0</span><span class="gs-lb" data-page-node-id="uEQHkFwzI3TeqdNtIzyQvV">维修中</span></div>
-          <div class="gear-stat" data-page-node-id="IUcKBjHy0j3rUHEBbUTIk2"><span class="gs-num gs-val" id="gs-val" data-page-node-id="L59IxiB0ssYOnDJJ6tRodO">¥0</span><span class="gs-lb" data-page-node-id="vd3uC2AsTDTBYvjYDF9wYh">总价值</span></div>
+        <!-- v6.66：页内专属左侧竖排分类导航 + 右侧内容两栏（全局侧栏保持不动） -->
+        <div class="gear-layout">
+          <aside class="gear-sidebar" id="gear-sidebar">
+            <div class="gsb-head" onclick="toggleGearSidebar()">
+              <span class="gsb-head-ic">🗂</span>
+              <span class="gsb-head-tx">器材分类</span>
+              <span class="gsb-total" id="gsb-total">0</span>
+              <span class="gsb-chev">⌄</span>
+            </div>
+            <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
+          </aside>
+          <div class="gear-main">
+            <div class="gear-stats" id="gear-stats" data-page-node-id="8FxdYeHjoYVVoaDvpVBenQ">
+              <div class="gear-stat" data-page-node-id="0EJiujdauBAbppKoZC4a7u"><span class="gs-num" id="gs-total" data-page-node-id="GJRtgiVZxUm43JHogV14rb">0</span><span class="gs-lb" data-page-node-id="qgwRPwuQ4cVi9ZrURM5Gcm">总数量</span></div>
+              <div class="gear-stat" data-page-node-id="OoBjaaCSW21H58ylDsYPHC"><span class="gs-num gs-active" id="gs-active" data-page-node-id="7ZERDeYJRKkYUnUW94s94Q">0</span><span class="gs-lb" data-page-node-id="PYX1iYkZlt7j8HepZGDXI0">在用</span></div>
+              <div class="gear-stat" data-page-node-id="ODCg9A4RmDQZvwgTDkgG4k"><span class="gs-num gs-repair" id="gs-repair" data-page-node-id="nev521GNIoct7BGZjLLF8N">0</span><span class="gs-lb" data-page-node-id="uEQHkFwzI3TeqdNtIzyQvV">维修中</span></div>
+              <div class="gear-stat" data-page-node-id="IUcKBjHy0j3rUHEBbUTIk2"><span class="gs-num gs-val" id="gs-val" data-page-node-id="L59IxiB0ssYOnDJJ6tRodO">¥0</span><span class="gs-lb" data-page-node-id="vd3uC2AsTDTBYvjYDF9wYh">总价值</span></div>
+            </div>
+            <!-- v6.33 器材配置诊断（按婚礼跟拍实战需要，只读 DB.gears） -->
+            <div class="gear-audit" id="gear-audit"></div>
+            <div class="gear-grid" id="gear-grid" data-page-node-id="AMdYidqOThffeVKb0CBUUk"></div>
+          </div>
         </div>
-        <!-- v6.33 器材配置诊断（按婚礼跟拍实战需要，只读 DB.gears） -->
-        <div class="gear-audit" id="gear-audit"></div>
-
-        <!-- 分类筛选 -->
-        <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
-        <div class="gear-grid" id="gear-grid" data-page-node-id="AMdYidqOThffeVKb0CBUUk"></div>
 
         <!-- 模态表单 -->
         <div class="job-modal-overlay" id="gear-modal" style="display:none" onclick="if(event.target===this)closeGearModal()" data-page-node-id="RRFtlDUicIy5gXTv7TAmxv">
@@ -6454,7 +6535,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.65</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.66</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6998,7 +7079,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.65";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.66";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -10172,6 +10253,11 @@ function setGearFilter(el,val){
   _gearFilter=(_gearFilter===val)?"":val; /* 再点一次取消 */
   renderGears();
 }
+/* v6.66：小屏侧栏折叠切换（桌面端 CSS 常驻展开，点它只是加个无害的 class） */
+function toggleGearSidebar(){
+  var sb=document.getElementById("gear-sidebar");
+  if(sb)sb.classList.toggle("open");
+}
 
 /* ==================== v6.33 器材配置诊断（婚礼跟拍视角） ====================
    目的：按「一场婚礼跟拍要拍完」的实战需要，对照你登记的器材，算出缺口 + 补充建议。
@@ -10743,25 +10829,32 @@ function renderGears(){
   if(_gearGroup)list=list.filter(g=>gearGroupOf(g.category||"配件").key===_gearGroup);
   if(_gearFilter)list=list.filter(g=>g.category===_gearFilter);
 
-  /* v6.65：两级筛选 chips —— 第一行大类，第二行该大类下的二级类目 */
+  /* v6.66：两级筛选改为左侧竖排导航（大类块 → 类目块），语义 class 与文本内容全部保留。
+     件数走 data-n 属性 + CSS ::after，绝不写进 chip 的 textContent——回归套件按文本断言。 */
   const fbar=document.getElementById("gear-filters");
-  var cats=[...new Set((DB.gears||[]).map(g=>g.category).filter(Boolean))];
-  var g1='<span class="gf-chip gf-group'+(!_gearGroup?' active':'')+'" onclick="setGearGroup(this,\'\')">全部</span>';
+  var allGears=DB.gears||[];
+  var cats=[...new Set(allGears.map(g=>g.category).filter(Boolean))];
+  var cntOf=function(cat){return allGears.filter(function(g){return g.category===cat;}).length;};
+  var cntOfGrp=function(gr){return allGears.filter(function(g){return gearGroupOf(g.category||"配件").key===gr.key;}).length;};
+  var g1='<span class="gf-chip gf-group'+(!_gearGroup?' active':'')+'" data-n="'+allGears.length+'件" onclick="setGearGroup(this,\'\')">全部</span>';
   GEAR_GROUPS.forEach(function(gr){
     var has=gr.cats.some(function(c){return cats.indexOf(c)>=0;});
     if(!has)return;
-    g1+='<span class="gf-chip gf-group'+(_gearGroup===gr.key?' active':'')+'" onclick="setGearGroup(this,\''+gr.key+'\')">'+gr.icon+' '+gr.key+'</span>';
+    g1+='<span class="gf-chip gf-group'+(_gearGroup===gr.key?' active':'')+'" data-n="'+cntOfGrp(gr)+'件" onclick="setGearGroup(this,\''+gr.key+'\')">'+gr.icon+' '+gr.key+'</span>';
   });
-  /* 第二行：显示当前大类（或全部）下的二级类目 */
+  /* 第二块：显示当前大类（或全部）下的二级类目 */
   var curGrp=_gearGroup?GEAR_GROUPS.find(function(gr){return gr.key===_gearGroup;}):null;
   var shownCats=curGrp?(curGrp.cats||[]):GEAR_CATEGORIES.map(function(c){return c.key});
-  var g2='<span class="gf-chip gf-sub'+(!_gearFilter?' active':'')+'" onclick="setGearFilter(this,\'\')">全部'+(_gearGroup?_gearGroup:'')+'</span>';
+  var g2='<span class="gf-chip gf-sub'+(!_gearFilter?' active':'')+'" data-n="'+(curGrp?cntOfGrp(curGrp):allGears.length)+'件" onclick="setGearFilter(this,\'\')">全部'+(_gearGroup?_gearGroup:'')+'</span>';
   shownCats.forEach(function(key){
     if(cats.indexOf(key)<0)return;
     var ci=GEAR_CATEGORIES.find(function(c){return c.key===key})||{icon:"📦"};
-    g2+='<span class="gf-chip gf-sub'+(_gearFilter===key?' active':'')+'" onclick="setGearFilter(this,\''+key+'\')">'+ci.icon+' '+key+'</span>';
+    g2+='<span class="gf-chip gf-sub'+(_gearFilter===key?' active':'')+'" data-n="'+cntOf(key)+'件" onclick="setGearFilter(this,\''+key+'\')">'+ci.icon+' '+key+'</span>';
   });
-  fbar.innerHTML='<div class="gf-row gf-row-group">'+g1+'</div><div class="gf-row gf-row-sub">'+g2+'</div>';
+  fbar.innerHTML='<div class="gsb-sec"><div class="gsb-sec-label">大类</div><div class="gf-row gf-row-group">'+g1+'</div></div>'+
+    '<div class="gsb-divider"></div>'+
+    '<div class="gsb-sec"><div class="gsb-sec-label">类目</div><div class="gf-row gf-row-sub">'+g2+'</div></div>';
+  var gt=document.getElementById("gsb-total");if(gt)gt.textContent=allGears.length+" 件";
 
   /* v5.92：空数据统一引导 —— 无数据给「快捷新增」，被筛选隐藏给「清空筛选」 */
   if(!list.length){
