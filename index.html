@@ -1973,12 +1973,25 @@
   .gc-link{color:var(--brand);font-weight:700;text-decoration:none;border-bottom:1px dashed rgba(45,212,191,.5)}
   .gc-link:hover{color:var(--gold);border-bottom-color:var(--gold)}
 
-  /* 分类筛选栏 */
-  .gear-filter-bar{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  /* 分类筛选栏（v6.65 两级：大类行 + 二级行） */
+  .gear-filter-bar{display:flex;flex-direction:column;align-items:stretch;gap:7px;margin-bottom:14px}
+  .gf-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .gf-row-sub{padding-left:2px}
   .gf-chip{padding:5px 13px;border-radius:var(--r-pill);font-size:11.5px;font-weight:700;cursor:pointer;transition:.15s;
     background:var(--bg3);color:var(--muted2);border:1px solid var(--glass-border);white-space:nowrap}
   .gf-chip:hover{background:var(--surface-hover);color:var(--ink2)}
   .gf-chip.active{background:rgba(96,165,250,.12);color:var(--blue);border-color:rgba(96,165,250,.3)}
+  /* 一级大类 chip 更醒目 */
+  .gf-chip.gf-group{padding:6px 15px;font-size:12px}
+  .gf-chip.gf-group.active{background:rgba(240,171,252,.14);color:#f0abfc;border-color:rgba(240,171,252,.35)}
+  /* 二级 chip 略小、弱化 */
+  .gf-chip.gf-sub{padding:4px 11px;font-size:11px}
+  /* 一级大类分组标题 */
+  .gear-super-label{display:flex;align-items:center;gap:8px;padding:11px 12px;margin:14px 0 4px;
+    font-size:14px;font-weight:900;letter-spacing:.02em;color:var(--ink);
+    background:linear-gradient(90deg,rgba(240,171,252,.10),transparent 70%);
+    border-left:3px solid #f0abfc;border-radius:var(--r-sub)}
+  .gsl-icon{font-size:17px}
 
   /* 分组标签 */
   .gear-group-label{display:flex;align-items:center;gap:8px;padding:8px 4px;font-size:13px;font-weight:900;
@@ -6441,7 +6454,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.64</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.65</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -6985,7 +6998,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.64";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.65";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -10000,6 +10013,18 @@ const GEAR_CATEGORIES=[
   {key:"航拍",color:"#2dd4bf",icon:"🚁"},
   {key:"后期设备",icon:"💻",color:"#f0abfc"}   /* v6.62：Mac / iPad 等后期生产力设备，不并入摄影器材诊断口径 */
 ];
+/* v6.65：4 个大类（仅展示与筛选层），把 8 个二级类目归组。
+   纯映射，不改 g.category 的取值——不动数据、不动同步、不动诊断、不动统计。 */
+const GEAR_GROUPS=[
+  {key:"拍摄装备",icon:"📷",cats:["相机","镜头"]},
+  {key:"灯光支撑",icon:"💡",cats:["灯光","架子"]},
+  {key:"配件存储",icon:"🎒",cats:["配件","内存"]},
+  {key:"航拍后期",icon:"🎬",cats:["航拍","后期设备"]}
+];
+function gearGroupOf(cat){
+  for(var i=0;i<GEAR_GROUPS.length;i++){if(GEAR_GROUPS[i].cats.indexOf(cat)>=0)return GEAR_GROUPS[i];}
+  return {key:"其他",icon:"📦",cats:[]};
+}
 /* v6.54：小鱼真实设备清单（2026-11-22 口述核对）——首次打开自动合并进 DB.gears。
    原则：只追加、按名称去重、绝不覆盖用户已有记录；不动工作台自带的示例器材。
    v6.54 仅把 seed 标记升为 _654，让已打开过 v6.53 的浏览器也能自动补进新增的适马镜头。 */
@@ -10132,12 +10157,19 @@ function seedMyGears653(force){
   if(r.add||r.patch){saveSeedSilent();try{renderGears();}catch(e){}}
   return r.add;
 }
-let _gearFilter="";
+let _gearFilter="";      /* v6.65：二级类目筛选 */
+let _gearGroup="";       /* v6.65：大类筛选（""=全部大类） */
 let _gearEditIdx=-1;
 
+/* v6.65：大类筛选——切换大类时清空二级筛选，第二行 chips 随之更新 */
+function setGearGroup(el,key){
+  _gearGroup=(_gearGroup===key)?"":key;   /* 再点一次取消，回到全部 */
+  _gearFilter="";
+  renderGears();
+}
+/* 二级类目筛选 */
 function setGearFilter(el,val){
-  _gearFilter=val;
-  document.querySelectorAll("#gear-filters .gf-chip").forEach(c=>c.classList.toggle("active",c===el));
+  _gearFilter=(_gearFilter===val)?"":val; /* 再点一次取消 */
   renderGears();
 }
 
@@ -10707,39 +10739,60 @@ function renderGears(){
   let list=DB.gears||[];
   const q=(document.getElementById("gear-search")?.value||"").trim().toLowerCase();
   if(q)list=list.filter(g=>(g.name+" "+(g.category||"")+" "+(g.brand||"")+" "+(g.model||"")).toLowerCase().includes(q));
+  /* v6.65：先按大类过滤，再按二级类目过滤 */
+  if(_gearGroup)list=list.filter(g=>gearGroupOf(g.category||"配件").key===_gearGroup);
   if(_gearFilter)list=list.filter(g=>g.category===_gearFilter);
 
-  /* 筛选chips */
+  /* v6.65：两级筛选 chips —— 第一行大类，第二行该大类下的二级类目 */
   const fbar=document.getElementById("gear-filters");
   var cats=[...new Set((DB.gears||[]).map(g=>g.category).filter(Boolean))];
-  var chips='<span class="gf-chip'+(!_gearFilter?' active':'')+'" onclick="setGearFilter(this,\'\')">全部</span>';
-  GEAR_CATEGORIES.forEach(function(c){
-    if(cats.includes(c.key))chips+=`<span class="gf-chip${_gearFilter===c.key?' active':''}" onclick="setGearFilter(this,'${c.key}')">${c.icon} ${c.key}</span>`;
+  var g1='<span class="gf-chip gf-group'+(!_gearGroup?' active':'')+'" onclick="setGearGroup(this,\'\')">全部</span>';
+  GEAR_GROUPS.forEach(function(gr){
+    var has=gr.cats.some(function(c){return cats.indexOf(c)>=0;});
+    if(!has)return;
+    g1+='<span class="gf-chip gf-group'+(_gearGroup===gr.key?' active':'')+'" onclick="setGearGroup(this,\''+gr.key+'\')">'+gr.icon+' '+gr.key+'</span>';
   });
-  fbar.innerHTML=chips;
+  /* 第二行：显示当前大类（或全部）下的二级类目 */
+  var curGrp=_gearGroup?GEAR_GROUPS.find(function(gr){return gr.key===_gearGroup;}):null;
+  var shownCats=curGrp?(curGrp.cats||[]):GEAR_CATEGORIES.map(function(c){return c.key});
+  var g2='<span class="gf-chip gf-sub'+(!_gearFilter?' active':'')+'" onclick="setGearFilter(this,\'\')">全部'+(_gearGroup?_gearGroup:'')+'</span>';
+  shownCats.forEach(function(key){
+    if(cats.indexOf(key)<0)return;
+    var ci=GEAR_CATEGORIES.find(function(c){return c.key===key})||{icon:"📦"};
+    g2+='<span class="gf-chip gf-sub'+(_gearFilter===key?' active':'')+'" onclick="setGearFilter(this,\''+key+'\')">'+ci.icon+' '+key+'</span>';
+  });
+  fbar.innerHTML='<div class="gf-row gf-row-group">'+g1+'</div><div class="gf-row gf-row-sub">'+g2+'</div>';
 
   /* v5.92：空数据统一引导 —— 无数据给「快捷新增」，被筛选隐藏给「清空筛选」 */
   if(!list.length){
-    grid.innerHTML=(q||_gearFilter)
+    grid.innerHTML=(q||_gearFilter||_gearGroup)
       ? emptyState({icon:"🔧",text:"没有匹配的器材",sub:"换个关键词，或清空筛选条件再看看",btn:"清空筛选",action:"clearGearFilter()"})
       : emptyState({icon:"🔧",text:"还没有登记任何器材",sub:"把相机、镜头、灯光都录进来，可自动统计总价值与在用数量",btn:"＋ 新增器材",action:"openGearModal()"});
     updateGearStats();return;
   }
 
-  /* 按类别分组 */
-  var groups=[];
-  var order=GEAR_CATEGORIES.map(function(c){return c.key});
+  /* v6.65：两级分组 —— 大类 → 二级类目；组内顺序按 GEAR_GROUPS / GEAR_CATEGORIES 定义 */
+  var groupOrder=GEAR_GROUPS.map(function(gr){return gr.key});
+  var catOrder=GEAR_CATEGORIES.map(function(c){return c.key});
+  var superGroups=[];
   list.forEach(function(g){
     var cat=g.category||"配件";
-    var grp=groups.find(function(x){return x.cat===cat});
-    if(!grp){groups.push({cat:cat,items:[]});grp=groups[groups.length-1]}
-    grp.items.push(g);
+    var gk=gearGroupOf(cat).key;
+    var sg=superGroups.find(function(x){return x.key===gk});
+    if(!sg){superGroups.push({key:gk,subs:[]});sg=superGroups[superGroups.length-1];}
+    var sub=sg.subs.find(function(x){return x.cat===cat});
+    if(!sub){sg.subs.push({cat:cat,items:[]});sub=sg.subs[sg.subs.length-1];}
+    sub.items.push(g);
   });
-  /* 排序：按GEAR_CATEGORIES定义顺序 */
-  groups.sort(function(a,b){return order.indexOf(a.cat)-order.indexOf(b.cat)});
+  superGroups.sort(function(a,b){return groupOrder.indexOf(a.key)-groupOrder.indexOf(b.key);});
+  superGroups.forEach(function(sg){sg.subs.sort(function(a,b){return catOrder.indexOf(a.cat)-catOrder.indexOf(b.cat);});});
 
   var html="";
-  groups.forEach(function(grp){
+  superGroups.forEach(function(sg){
+    var sgi=GEAR_GROUPS.find(function(gr){return gr.key===sg.key})||{icon:"📦"};
+    var sgCount=sg.subs.reduce(function(n,s){return n+s.items.length;},0);
+    html+='<div class="gear-super-label"><span class="gsl-icon">'+sgi.icon+'</span>'+sg.key+'<span class="ggl-count">'+sgCount+'件</span></div>';
+    sg.subs.forEach(function(grp){
     var ci=GEAR_CATEGORIES.find(function(c){return c.key===grp.cat})||{icon:"📦",color:"var(--muted2)"};
     html+='<div class="gear-group-label"><span class="ggl-icon">'+ci.icon+'</span>'+grp.cat+'<span class="ggl-count">'+grp.items.length+'件</span></div>';
     grp.items.forEach(function(g){
@@ -10758,6 +10811,7 @@ function renderGears(){
         '</div>'+
         '<div class="gc-actions"><button class="gc-btn gc-btn-primary" onclick="openGearModal('+g._i+')">编辑</button><button class="gc-btn gc-btn-outline" style="color:var(--coral);background:rgba(248,113,113,.08)" onclick="delGear('+g._i+')">删除</button></div>'+
       '</div>';
+    });
     });
   });
   grid.innerHTML=html;
@@ -11105,7 +11159,7 @@ function saveGearModal(){
 function delGear(i){if(confirm("删除该器材？")){DB.gears.splice(i,1);save();renderGears();toast("已删除器材");}}
 /* v5.92：一键清空器材筛选，空状态里的「清空筛选」按钮用 */
 function clearGearFilter(){
-  _gearFilter="";
+  _gearFilter="";_gearGroup="";   /* v6.65：大类与二级筛选都清空 */
   var s=document.getElementById("gear-search");if(s)s.value="";
   var f=document.getElementById("gear-filters");if(f)f.querySelectorAll(".gf-chip").forEach(function(c){c.classList.remove("active");});
   renderGears();
