@@ -3070,7 +3070,7 @@ textarea.ops-in{resize:vertical;line-height:1.5}
 @media(max-width:900px){.kpi-sum{grid-template-columns:repeat(3,1fr)}.kpi-duty-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.kpi-sum{grid-template-columns:repeat(2,1fr)}.kpi-duty-grid{grid-template-columns:1fr}.kpi-tbl{min-width:980px}}
   /* ==========================================================================
-     v6.69 顶栏秩序 + 触控精度 + 焦点可见（纯样式增量 · 零逻辑 · 零 DOM 改动）
+     v6.70 顶栏秩序 + 触控精度 + 焦点可见（纯样式增量 · 零逻辑 · 零 DOM 改动）
      来源：真实 Edge 三端量化审计 —— 手机状态徽章掉行、主题钮 30px、
      周格 30px、键盘焦点不可见。所有规则位于样式表末尾，靠后覆盖；
      不新增 id、不动 data-page-node-id、不改任何脚本逻辑。
@@ -3108,6 +3108,51 @@ textarea.ops-in{resize:vertical;line-height:1.5}
   @media(prefers-reduced-motion:reduce){
     .topbar *,.wd,.hcd,.sct,.btn,.chip,.gf-chip{animation:none!important;transition-duration:.01ms!important}
   }
+  /* ==========================================================================
+     v6.70 器材分类进全局侧栏（视觉重排 · 零逻辑改动）
+     分类面板从内容区搬进侧栏「器材管理」项下；保留 #gear-sidebar/#gear-filters/
+     #gsb-total 与全部 .gf-* 语义 class，故筛选联动/渲染/诊断/同步逻辑一行未改。
+     覆盖层靠后生效，不改任何既有规则。
+     ========================================================================== */
+  /* 侧栏内分类容器：默认收起，gear 页自动展开；可手动折叠 */
+  .nav-gear-cats{display:none;margin:2px 4px 8px;padding:10px 8px 8px;
+    background:rgba(255,255,255,.03);border:1px solid var(--glass-border);
+    border-radius:var(--r-sub);position:static;top:auto;box-shadow:none;overflow:visible}
+  body[data-tab="gear"] .nav-gear-cats{display:block}
+  .nav-gear-cats::before{display:none}
+  .nav-gear-cats.open .gear-filter-bar{display:none}
+  .nav-gear-cats .gsb-head{cursor:pointer;padding-bottom:10px}
+  .nav-gear-cats .gsb-chev{display:block}
+  .nav-gear-cats.open .gsb-chev{transform:rotate(180deg)}
+  .nav-gear-cats .gear-filter-bar{display:block;gap:0;margin:0;padding-top:8px;border-top:1px solid var(--line)}
+  .nav-gear-cats .gf-row{flex-direction:column;align-items:stretch;gap:3px;flex-wrap:nowrap}
+  .nav-gear-cats .gf-row-sub{padding-left:0}
+  .nav-gear-cats .gf-chip{display:flex;align-items:center;gap:7px;width:100%;
+    padding:7px 8px;border-radius:var(--r-xs);border:1px solid transparent;
+    background:transparent;color:var(--ink2);font-size:11.5px;font-weight:700;
+    text-align:left;white-space:normal;transition:var(--t-all)}
+  .nav-gear-cats .gf-chip::before{content:"";width:3px;height:12px;border-radius:2px;
+    background:transparent;flex:none}
+  .nav-gear-cats .gf-chip::after{content:attr(data-n);margin-left:auto;flex:none;
+    font-size:9.5px;font-weight:800;color:var(--muted3);background:rgba(255,255,255,.05);
+    border-radius:var(--r-pill);padding:1px 6px}
+  .nav-gear-cats .gf-chip:hover{background:var(--surface-hover);color:var(--ink)}
+  .nav-gear-cats .gf-chip.active{background:var(--gold-glow);color:var(--gold2);border-color:rgba(212,165,116,.22)}
+  .nav-gear-cats .gf-chip.active::before{background:var(--gold)}
+  .nav-gear-cats .gf-chip.active::after{color:var(--gold2);background:rgba(212,165,116,.16)}
+  .nav-gear-cats .gf-row-sub .gf-chip{padding-left:16px;font-size:11px;color:var(--muted3)}
+  .nav-gear-cats .gf-row-sub .gf-chip.active{color:var(--brand2)}
+  .nav-gear-cats .gf-row-sub .gf-chip.active::before{background:var(--brand)}
+  .nav-gear-cats .gsb-sec-label{font-size:9.5px;letter-spacing:.12em;color:var(--muted3);padding:2px 6px 6px}
+  .nav-gear-cats .gsb-divider{height:1px;background:var(--line);margin:9px 4px}
+  html[data-theme="light"] .nav-gear-cats{background:rgba(15,23,42,.03)}
+  html[data-theme="light"] .nav-gear-cats .gf-chip::after{background:rgba(15,23,42,.06)}
+  html[data-theme="light"] .nav-gear-cats .gf-chip.active{background:rgba(176,122,46,.10);border-color:rgba(176,122,46,.22)}
+  html[data-theme="light"] .nav-gear-cats .gf-row-sub .gf-chip.active{background:rgba(22,163,74,.09);color:#16a34a;border-color:rgba(22,163,74,.2)}
+  /* 内容区：分类搬走后铺满，隐藏原两栏栅格痕迹 */
+  .gear-layout{display:block}
+  .gear-main{width:100%}
+  /* 手机抽屉：侧栏里同样可见（body[data-tab] 控制），抽屉宽度已足够 */
 </style>
 <script>
   /* 主题初始化：渲染前读取本地偏好，避免白屏闪烁 */
@@ -5477,6 +5522,15 @@ window.QRCode = {
             <span class="nav-icon" style="background:rgba(148,163,184,.12);color:var(--muted2)" data-page-node-id="WiqH3FCTOxqXH8AvQfY4f7">🔧</span>
             <span data-page-node-id="It7IbDmD8QuDAzRSnkdzuE">器材管理</span>
           </div>
+          <aside class="gear-sidebar nav-gear-cats" id="gear-sidebar">
+            <div class="gsb-head" onclick="toggleGearSidebar()">
+              <span class="gsb-head-ic">🗂</span>
+              <span class="gsb-head-tx">器材分类</span>
+              <span class="gsb-total" id="gsb-total">0</span>
+              <span class="gsb-chev">⌄</span>
+            </div>
+            <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
+          </aside>
         </div>
       </div>
 
@@ -5929,15 +5983,6 @@ window.QRCode = {
         </div>
         <!-- v6.66：页内专属左侧竖排分类导航 + 右侧内容两栏（全局侧栏保持不动） -->
         <div class="gear-layout">
-          <aside class="gear-sidebar" id="gear-sidebar">
-            <div class="gsb-head" onclick="toggleGearSidebar()">
-              <span class="gsb-head-ic">🗂</span>
-              <span class="gsb-head-tx">器材分类</span>
-              <span class="gsb-total" id="gsb-total">0</span>
-              <span class="gsb-chev">⌄</span>
-            </div>
-            <div class="gear-filter-bar" id="gear-filters" data-page-node-id="jG1rtAq1ggO9pyEvgivzXZ"></div>
-          </aside>
           <div class="gear-main">
             <div class="gear-stats" id="gear-stats" data-page-node-id="8FxdYeHjoYVVoaDvpVBenQ">
               <div class="gear-stat" data-page-node-id="0EJiujdauBAbppKoZC4a7u"><span class="gs-num" id="gs-total" data-page-node-id="GJRtgiVZxUm43JHogV14rb">0</span><span class="gs-lb" data-page-node-id="qgwRPwuQ4cVi9ZrURM5Gcm">总数量</span></div>
@@ -6599,7 +6644,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.69</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.70</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7143,7 +7188,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.69";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.70";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7447,6 +7492,7 @@ function navGroupsExpandAll(expand){
 }
 function switchTab(t){
   curTab=t;
+  try{document.body.setAttribute("data-tab",t);}catch(e){}
   document.querySelectorAll(".nav-item").forEach(x=>x.classList.toggle("active",x.dataset.nav===t));
   try{ if(typeof navGroupSync==="function")navGroupSync(t); }catch(e){}
   const panels=["home","plan","course","hot","job","read","okr","gear","review","idea","schedule","works","bookings","shoot"];
@@ -10265,7 +10311,7 @@ function mergeSeedGears(target){
     const g=have[nm];const wantCat=GEAR_CAT_FIX_660[nm];
     if(g&&g&&g.category==="配件"&&wantCat){g.category=wantCat;patch++;}
   });
-  /* v6.69：不再补录 MY_GEARS_653 老种子（保留占位字段补齐）。
+  /* v6.70：不再补录 MY_GEARS_653 老种子（保留占位字段补齐）。
      这 16 件是 2026-11 早期口述的占位清单（「腾龙 28-70mm 二代」、¥0 价格、
      「用户口述/待确认」备注），型号与用户已确认的 23 件真实清单不符；更糟的是
      「按名去重、只补缺」会把用户主动删除的器材在每次云端拉取后重新补回来
@@ -10274,7 +10320,7 @@ function mergeSeedGears(target){
      以及下面的 POST_GEARS_662（Mac/iPad）add-only 补录；只去掉「缺了就新增」。 */
   MY_GEARS_653.forEach(function(src){
     const ex=have[src.name];
-    if(!ex)return;   /* v6.69：不再 push 缺失的老种子条目 */
+    if(!ex)return;   /* v6.70：不再 push 缺失的老种子条目 */
     if((!ex.brand||ex.brand==="待确认")&&src.brand&&src.brand!=="待确认"){ex.brand=src.brand;patch++;}
     if(/未说品牌/.test(ex.maintNote||"")&&src.maintNote&&!/未说品牌/.test(src.maintNote)){ex.maintNote=src.maintNote;patch++;}
   });
@@ -10321,7 +10367,7 @@ function setGearFilter(el,val){
 }
 /* v6.66：小屏侧栏折叠切换（桌面端 CSS 常驻展开，点它只是加个无害的 class） */
 function toggleGearSidebar(){
-  var sb=document.getElementById("gear-sidebar");
+  var sb=document.getElementById("gear-sidebar")||document.getElementById("nav-gear-cats");
   if(sb)sb.classList.toggle("open");
 }
 
