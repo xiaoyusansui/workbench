@@ -291,6 +291,25 @@
   .pb-focus{margin-top:2px}
   .pb-focus .pf-title{font-size:12px;font-weight:800;color:var(--muted);margin:2px 0 4px;display:flex;align-items:center;gap:6px}
   .pb-focus .pf-title i{font-style:normal;color:var(--amber)}
+  /* v6.77 重点区默认收起：标题可点，箭头指示；列表默认隐藏 */
+  .pb-focus .pf-title{cursor:pointer;user-select:none}
+  .pb-focus .pf-title:hover{color:var(--brand)}
+  .pb-focus .pf-caret{display:inline-block;transition:transform .18s;font-size:11px}
+  .pb-focus .pf-title.open .pf-caret{transform:rotate(90deg)}
+  .pb-focus .pf-items{display:none}
+  .pb-focus .pf-items.open{display:block}
+  /* v6.77 进度复选下拉 */
+  .fstat-wrap{position:relative}
+  .fstat-btn{cursor:pointer;user-select:none}
+  .fstat-btn::after{content:" ▾";font-size:10px;color:var(--muted2)}
+  .fstat-pop{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:60;
+    background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius-xs);
+    box-shadow:var(--sh-3);padding:6px;min-width:132px}
+  .fstat-pop.open{display:block}
+  .fstat-pop label{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--r-xs);
+    font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;white-space:nowrap}
+  .fstat-pop label:hover{background:var(--surface-hover)}
+  .fstat-pop input{accent-color:var(--gold);cursor:pointer;width:15px;height:15px;margin:0}
 
   /* v6.10 已完成折叠区 */
   #done-fold{padding:10px 16px}
@@ -5784,11 +5803,16 @@ window.QRCode = {
         <div class="toolbar" data-page-node-id="C14TdY9FuTdUePh6Zp1l2s">
           <input type="text" id="search-plan" placeholder="🔍 搜索事项…" oninput="renderPlan()" data-page-node-id="4vsInOzby2XOB9zrBFKNmv"/>
           <select id="fban-plan" onchange="renderPlan()" data-page-node-id="iMfF55XZ034ukBctcG42JU"><option value="" data-page-node-id="Y25Kwk9q6bVOtm14CpVCoL">全部板块</option></select>
-          <select id="fstat-plan" onchange="renderPlan()" data-page-node-id="bgz0R6hyhKgFTrfAVHCkA4">
-            <option value="" data-page-node-id="WilQJVhC5nrJBcpCRuI2kr">全部进度</option><option value="done" data-page-node-id="2GaGaHZmBgPnIyPHNYQR0P">已完成</option>
-            <option value="doing" data-page-node-id="wf8ti6NgM5HdsSVOpXOgcZ">进行中</option><option value="flow" data-page-node-id="9VDMMndSyNx27ytd7PsQxS">等待中</option>
-            <option value="todo" data-page-node-id="oEBbUYU1cHdgm2XC3Dgs2K">待处理</option>
-          </select>
+          <div class="fstat-wrap" id="fstat-wrap">
+            <button type="button" id="fstat-btn" class="fstat-btn" onclick="toggleFstatPop()" data-page-node-id="bgz0R6hyhKgFTrfAVHCkA4">全部进度</button>
+            <div class="fstat-pop" id="fstat-pop">
+              <label><input type="checkbox" value="done" onchange="onFstatChange()"/> 已完成</label>
+              <label><input type="checkbox" value="doing" onchange="onFstatChange()"/> 进行中</label>
+              <label><input type="checkbox" value="flow" onchange="onFstatChange()"/> 等待中</label>
+              <label><input type="checkbox" value="todo" onchange="onFstatChange()"/> 待处理</label>
+            </div>
+            <select id="fstat-plan" style="display:none"><option value="">全部进度</option><option value="done">已完成</option><option value="doing">进行中</option><option value="flow">等待中</option><option value="todo">待处理</option></select>
+          </div>
           <div class="qview" data-page-node-id="WyvxI9RsGQmcERBLG5xcT3">
             <button data-v="all" class="active" onclick="setQuickView('all',this)" data-page-node-id="xbJSdHtW022M14pGXSQ5Me">全部</button>
             <button data-v="key" onclick="setQuickView('key',this)" data-page-node-id="BRbXreSiXmqQlGLZ4cNyAU">⭐重点</button>
@@ -6664,7 +6688,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.76</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.77</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7009,6 +7033,50 @@ function statusGroup(s){
   return "todo";
 }
 
+/* ===== v6.77 进度多选 + 重点区折叠语义 ===== */
+/* v6.77 进度多选 + 重点区折叠（纯函数，可 node 单测 / 注入 HTML 复用） */
+const STATUS_GROUPS_677 = [
+  { value: 'done',  label: '已完成' },
+  { value: 'doing', label: '进行中' },
+  { value: 'flow',  label: '等待中' },
+  { value: 'todo',  label: '待处理' }
+];
+const KEY_FOLD_KEY_677 = 'wb_keyfold_open';
+/* 多选值 → 显示文案 */
+function fstatLabel677(values) {
+  const arr = Array.isArray(values) ? values : [];
+  if (!arr.length) return '全部进度';
+  if (arr.length === 1) {
+    const hit = STATUS_GROUPS_677.find(x => x.value === arr[0]);
+    return hit ? hit.label : arr[0];
+  }
+  if (arr.length === STATUS_GROUPS_677.length) return '全部进度';
+  return arr.map(v => { const hit = STATUS_GROUPS_677.find(x => x.value === v); return hit ? hit.label : v; }).join('+');
+}
+/* 多选筛选判定：空=全部；否则命中任一选中组 */
+function fstatMatch677(values, group) {
+  const arr = Array.isArray(values) ? values : [];
+  return arr.length === 0 || arr.indexOf(group) >= 0;
+}
+/* 是否展开已完成：选中含 done */
+function fstatShowDone677(values) {
+  return Array.isArray(values) && values.indexOf('done') >= 0;
+}
+/* 导出图片筛选标签：拼接多值 */
+function fstatFilterText677(values) {
+  const arr = Array.isArray(values) ? values : [];
+  return arr.map(v => { const hit = STATUS_GROUPS_677.find(x => x.value === v); return hit ? hit.label : v; }).join('/');
+}
+/* 切换复选项（去重、保序） */
+function toggleFstatValue677(values, v) {
+  const arr = Array.isArray(values) ? values.slice() : [];
+  const i = arr.indexOf(v);
+  if (i >= 0) arr.splice(i, 1); else arr.push(v);
+  return arr;
+}
+/* 重点区折叠：默认收起；非法值归一为 false */
+function keyFoldNormalize677(v) { return v === true || v === '1' || v === 1; }
+function keyFoldToggle677(v) { return !keyFoldNormalize677(v); }
 /* v6.13：新增「付款会签」板块（付款/请款/审批/会签类事项的独立归口） */
 const BANKUAI_PLAN=["策划方案","包装物料","推广传播","活动执行","工程协同","采购综合","付款会签"];
 /* 板块归属判定顺序：从「更专属」到「更泛化」，避免泛化关键词抢走专属事项 */
@@ -7208,7 +7276,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.76";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.77";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7641,6 +7709,8 @@ function renderOverview(){
 let PERIOD_MODE='week';          /* day | week | month | year | all */
 let PERIOD_ANCHOR=null;          /* 当前选定期的锚点日期（YYYY-MM-DD） */
 let PERIOD_EXPAND_DONE=false;    /* 已完成折叠区是否展开 */
+/* v6.77：重点区折叠态，默认收起 */
+try{window.__wbKeyFoldOpen=keyFoldNormalize677(localStorage.getItem(KEY_FOLD_KEY_677));}catch(e){window.__wbKeyFoldOpen=false;}
 
 function parseYmd(s){
   if(!s) return null;
@@ -7858,14 +7928,14 @@ function currentPeriodRows(){
   const r=periodRange(PERIOD_ANCHOR);
   const q=(document.getElementById("search-plan").value||"").toLowerCase();
   const fb=document.getElementById("fban-plan").value;
-  const fs=document.getElementById("fstat-plan").value;
+  const fs=fstatValues().join(",");
   const lvMain=quickView;
   let rows=DB.rows.map((x,i)=>({...x,_i:i}));
   /* ① 周期过滤：默认只看本期；「全部进度=全部」且未显式切期时才放开非当前期 */
   rows=rows.filter(x=>{
     if(!isInPeriod(x,r)) return false;
     if(fb && x.b!==fb) return false;
-    if(fs && statusGroup(x.s)!==fs) return false;
+    if(fs && !fs.split(",").some(v=>v===statusGroup(x.s))) return false;
     if(q && !((x.t||"")+(x.m||"")+(x.d||"").replace(/ - /g,"")+(x.b||"")).toLowerCase().includes(q)) return false;
     if(lvMain==="key" && !keyLevel(x)) return false;
     if(lvMain==="due"){
@@ -7925,7 +7995,7 @@ function renderPlan(){
   const today=new Date();today.setHours(0,0,0,0);
   const periodR=periodRange(PERIOD_ANCHOR);
   /* v6.10：主表默认只显示「本期未完成」；已完成进折叠区，不占主表视线 */
-  const showDone=(document.getElementById("fstat-plan").value==="done"&&quickView==="all")||PERIOD_EXPAND_DONE;
+  const showDone=(fstatShowDone677(fstatValues())&&quickView==="all")||PERIOD_EXPAND_DONE;
   const rowsAll=currentPeriodRows();
   const rows=rowsAll.filter(r=>statusGroup(r.s)!=="done"||showDone);
   renderPeriodBar();
@@ -8292,6 +8362,33 @@ function focusPlanRow(i){
     }
   });
 }
+/* v6.77 进度多选：读取选中值、浮层开关、勾选变更 */
+function fstatValues(){
+  const sel=document.getElementById("fstat-plan");
+  const pop=document.getElementById("fstat-pop");
+  const checked=pop?[...pop.querySelectorAll("input[type=checkbox]:checked")].map(x=>x.value):[];
+  /* v6.77 兼容：历史脚本/外部 API 直接设 select.value（不经过 onFstatChange）时，
+     若与 checkbox 集合不一致，以 select.value 为准——保证旧测试与旧调用继续生效。 */
+  if(sel && sel.value && checked.indexOf(sel.value)<0) return [sel.value];
+  return checked;
+}
+function toggleFstatPop(force){
+  const pop=document.getElementById("fstat-pop");if(!pop)return;
+  const open=force===undefined?!pop.classList.contains("open"):force;
+  pop.classList.toggle("open",open);
+}
+function onFstatChange(){
+  const vals=fstatValues();
+  const btn=document.getElementById("fstat-btn");if(btn)btn.textContent=fstatLabel677(vals);
+  /* 同步隐藏 select 的 data-values，兼容历史读取（导出标签等已单独改函数） */
+  const sel=document.getElementById("fstat-plan");if(sel){sel.dataset.values=vals.join(",");sel.value=vals.length===1?vals[0]:"";}
+  renderPlan();
+}
+/* 点浮层外收起 */
+document.addEventListener("click",function(e){
+  const wrap=document.getElementById("fstat-wrap");
+  if(wrap&&!wrap.contains(e.target))toggleFstatPop(false);
+});
 function setQuickView(v,el){
   quickView=v;
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===v));
@@ -8313,15 +8410,21 @@ function filterPlanBy(v){
   if(fban) fban.value="";
   if(search) search.value="";
   document.querySelectorAll(".ps-card").forEach(c=>c.classList.toggle("active",c.dataset.filter===v));
+  const setFstat=function(vals){
+    const pop=document.getElementById("fstat-pop");
+    if(pop)pop.querySelectorAll("input[type=checkbox]").forEach(cb=>{cb.checked=vals.indexOf(cb.value)>=0;});
+    const btn=document.getElementById("fstat-btn");if(btn)btn.textContent=fstatLabel677(vals);
+    if(fstat){fstat.dataset.values=vals.join(",");fstat.value=vals.length===1?vals[0]:"";}
+  };
   if(v==="all"){
-    if(fstat) fstat.value="";
+    setFstat([]);
     quickView="all";
   }else if(v==="done"||v==="doing"){
-    if(fstat) fstat.value=v;
+    setFstat([v]);
     quickView="all";
     if(v==="done") ensureDoneVisible();     /* v6.10：已完成卡 → 自动展开折叠区 */
   }else if(v==="due"){
-    if(fstat) fstat.value="";
+    setFstat([]);
     quickView="due";
   }
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===quickView));
@@ -9126,6 +9229,16 @@ function toggleKey(i){
   if(!DB.rows[i])return;
   setKeyLevel(i,keyLevel(DB.rows[i])>0?0:1);
 }
+/* v6.77 重点区折叠：默认收起，点标题切换；状态存内存+localStorage */
+function toggleKeyFold(){
+  const next=keyFoldToggle677(window.__wbKeyFoldOpen);
+  window.__wbKeyFoldOpen=next;
+  try{localStorage.setItem(KEY_FOLD_KEY_677,next?"1":"0");}catch(e){}
+  const title=document.querySelector(".pb-focus .pf-title");
+  const items=document.querySelector(".pb-focus .pf-items");
+  if(title)title.classList.toggle("open",next);
+  if(items)items.classList.toggle("open",next);
+}
 function renderKeyItems(){
   /* v6.10：重点区只列「本期未完成」的重点，已完成的重点自动落到下方折叠区 */
   const box=document.getElementById("key-items");if(!box)return;
@@ -9134,13 +9247,15 @@ function renderKeyItems(){
   const items=inP.filter(x=>keyLevel(x)>0&&statusGroup(x.s)!=="done").sort((a,b)=>keyLevel(b)-keyLevel(a));
   const openUndone=inP.filter(x=>statusGroup(x.s)!=="done"&&keyLevel(x)===0);
   const periodTxt=periodNoun();
-  let head='<div class="pf-title">⭐ '+periodTxt+'重点未完成 <i>'+items.length+'</i> 项'
+  const foldOpen=keyFoldNormalize677(window.__wbKeyFoldOpen);
+  let head='<div class="pf-title'+(foldOpen?' open':'')+'" onclick="toggleKeyFold()">'
+    +'<span class="pf-caret">▸</span> ⭐ '+periodTxt+'重点未完成 <i>'+items.length+'</i> 项'
     +(openUndone.length?('　·　其余未完成 '+openUndone.length+' 项见下表'):'')
     +'</div>';
   if(items.length===0){
-    box.innerHTML=head+'<div class="empty-k">'+periodTxt+'暂无重点未完成 · 给下表的星标点 1~5 颗即加入重点</div>';
+    box.innerHTML=head+'<div class="pf-items'+(foldOpen?' open':'')+'"><div class="empty-k">'+periodTxt+'暂无重点未完成 · 给下表的星标点 1~5 颗即加入重点</div></div>';
   }else{
-    box.innerHTML=head+items.map(x=>{
+    box.innerHTML=head+'<div class="pf-items'+(foldOpen?' open':'')+'">'+items.map(x=>{
       const idx=DB.rows.indexOf(x),c=bkColor(x.b),lv=keyLevel(x);
       return '<div class="ki">'
         +'<span style="color:#f1c40f;font-size:14px;letter-spacing:1px">'+("★".repeat(lv))+'</span>'
@@ -9149,7 +9264,7 @@ function renderKeyItems(){
         +'<span class="ki-date">'+(fmtDateShort(x.dt)||"未排期")+'</span>'
         +'<span class="st '+statusClass(x.s)+'">'+esc(x.s)+'</span>'
         +'<button class="del" title="取消标记" onclick="toggleKey('+idx+')">×</button></div>';
-    }).join("");
+    }).join("")+"</div>";
   }
   renderDoneFold();
 }
@@ -14326,9 +14441,9 @@ function planFilterLabel(){
   const parts=[];
   const q=(document.getElementById("search-plan")&&document.getElementById("search-plan").value||"").trim();
   const fb=document.getElementById("fban-plan")&&document.getElementById("fban-plan").value;
-  const fs=document.getElementById("fstat-plan")&&document.getElementById("fstat-plan").value;
+  const fs=typeof fstatValues==="function"?fstatFilterText677(fstatValues()):"";
   if(fb)parts.push(fb);
-  if(fs)parts.push(fs==="done"?"已完成":(fs==="doing"?"进行中":(fs==="todo"?"待处理":fs)));
+  if(fs)parts.push(fs);
   if(q)parts.push('搜索"'+q+'"');
   if(typeof quickView!=="undefined"&&quickView==="key")parts.push("⭐重点");
   if(typeof quickView!=="undefined"&&quickView==="due")parts.push("⚠逾期·本周");
