@@ -6663,7 +6663,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.71</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.72</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7207,7 +7207,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.71";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.72";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -14891,6 +14891,129 @@ function renderHomeUpcoming(){
   </div>`).join("");
 }
 
+
+/* ===== v6.72 三方合并引擎：base/local/cloud 逐集合字段级合并 + 冲突保留 ===== */
+/* v6.72 三方合并引擎（纯函数，可 node 单测 / 注入 HTML 复用） */
+/* 设计：base 为上次共识快照，local/cloud 为当前两端。逐集合按业务键配对，
+   逐字段三方判定；双方都改且不同→保留本地+记录冲突（不静默丢）；删除优先但记冲突。 */
+const MERGE_KEYS_672 = {
+  rows: r => String(r.dt || r.date || '') + '|' + String(r.b || '') + '|' + String(r.t || ''),
+  gears: r => String(r.name || ''),
+  courses: r => String(r.name || ''),
+  hots: r => String(r.title || ''),
+  jobs: r => String(r.date || '') + '|' + String(r.client || '') + '|' + String(r.type || ''),
+  books: r => String(r.title || ''),
+  okrs: r => String(r.title || ''),
+  reviews: r => String(r.week || ''),
+  ideas: r => String(r.title || ''),
+  events: r => String(r.title || '') + '|' + String(r.date || ''),
+  kpiWeeks: r => String(r.week || ''),
+  bookings: r => String(r.id || ''),
+  planTemplates: r => String(r.name || ''),
+  shootPlans: r => String(r.title || ''),
+  works: r => String(r.title || '')
+};
+function h672(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  return ('00000000' + h.toString(16)).slice(-8);
+}
+function eq672(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function stableKey672(coll, r, idx) {
+  const f = MERGE_KEYS_672[coll];
+  if (f && typeof r === 'object' && r) {
+    const k = f(r);
+    if (k && k.replace(/\|/g, '').trim()) return coll + '#' + k;
+  }
+  return coll + '@' + idx + '#' + h672(JSON.stringify(r));
+}
+function mergeFields672(base, local, cloud, conflicts, path) {
+  const out = {};
+  const keys = new Set([...Object.keys(base || {}), ...Object.keys(local || {}), ...Object.keys(cloud || {})]);
+  keys.forEach(k => {
+    const b = (base || {})[k], l = local[k], c = cloud[k];
+    const lb = eq672(l, b), cb = eq672(c, b);
+    if (lb && cb) out[k] = l;
+    else if (!lb && cb) out[k] = l;
+    else if (lb && !cb) out[k] = c;
+    else if (eq672(l, c)) out[k] = l;
+    else { conflicts.push({ path: path + '.' + k, type: 'field', local: l, cloud: c }); out[k] = l; }
+  });
+  return out;
+}
+function mergeArray672(coll, base, local, cloud, conflicts) {
+  const bm = {}, lm = {}, cm = {}, order = [];
+  (base || []).forEach((r, i) => { const k = stableKey672(coll, r, i); bm[k] = r; order.push(k); });
+  (local || []).forEach((r, i) => { const k = stableKey672(coll, r, i); lm[k] = r; if (order.indexOf(k) < 0) order.push(k); });
+  (cloud || []).forEach((r, i) => { const k = stableKey672(coll, r, i); cm[k] = r; if (order.indexOf(k) < 0) order.push(k); });
+  const out = [];
+  order.forEach(k => {
+    const b = bm[k], l = lm[k], c = cm[k];
+    if (b && l && c) {
+      const lb = eq672(l, b), cb = eq672(c, b);
+      if (lb && cb) out.push(l);
+      else if (!lb && cb) out.push(l);
+      else if (lb && !cb) out.push(c);
+      else if (eq672(l, c)) out.push(l);
+      else out.push(mergeFields672(b, l, c, conflicts, k));
+    } else if (b && !l && c) {
+      if (!eq672(c, b)) { conflicts.push({ path: k, type: 'delete_vs_edit', local: null, cloud: c }); out.push(c); }
+    } else if (b && l && !c) {
+      if (!eq672(l, b)) { conflicts.push({ path: k, type: 'edit_vs_delete', local: l, cloud: null }); out.push(l); }
+    } else if (!b && l && c) {
+      if (eq672(l, c)) out.push(l);
+      else { const dup = JSON.parse(JSON.stringify(c)); dup._mergeDup = 1; conflicts.push({ path: k, type: 'both_add', local: l, cloud: c }); out.push(l); out.push(dup); }
+    } else if (!b && l && !c) out.push(l);
+    else if (!b && !l && c) out.push(c);
+  });
+  return out;
+}
+function makeSnapshot672(db) {
+  const s = { _ts: Number(db._ts) || 0 };
+  Object.keys(MERGE_KEYS_672).forEach(coll => { s[coll] = JSON.parse(JSON.stringify(db[coll] || [])); });
+  Object.keys(db).forEach(k => {
+    if (MERGE_KEYS_672[k] || k === '_ts' || k === '_mb' || k === '_conflicts' || k === '_mergeDup') return;
+    try { s[k] = JSON.parse(JSON.stringify(db[k])); } catch (e) {}
+  });
+  return s;
+}
+function pickBase672(local, cloud) {
+  const a = local && typeof local === 'object' ? local : null;
+  const b = cloud && typeof cloud === 'object' ? cloud : null;
+  if (!a) return b;
+  if (!b) return a;
+  return (Number(a._ts) || 0) >= (Number(b._ts) || 0) ? a : b;
+}
+function threeWayMerge672(base, local, cloud) {
+  const conflicts = [];
+  const b = base && typeof base === 'object' ? base : {};
+  const out = {};
+  Object.keys(MERGE_KEYS_672).forEach(coll => {
+    out[coll] = mergeArray672(coll, b[coll] || [], local[coll] || [], cloud[coll] || [], conflicts);
+  });
+  const scalars = {};
+  const keys = new Set([...Object.keys(b), ...Object.keys(local), ...Object.keys(cloud)]);
+  keys.forEach(k => {
+    if (MERGE_KEYS_672[k] || k === '_ts' || k === '_mb' || k === '_conflicts') return;
+    const bv = b[k], lv = local[k], cv = cloud[k];
+    if (Array.isArray(lv) || Array.isArray(cv) || Array.isArray(bv)) return;
+    const lb = eq672(lv, bv), cb = eq672(cv, bv);
+    if (lb && cb) scalars[k] = lv;
+    else if (!lb && cb) scalars[k] = lv;
+    else if (lb && !cb) scalars[k] = cv;
+    else if (eq672(lv, cv)) scalars[k] = lv;
+    else { conflicts.push({ path: k, type: 'field', local: lv, cloud: cv }); scalars[k] = lv; }
+  });
+  Object.keys(scalars).forEach(k => { out[k] = scalars[k]; });
+  Object.keys(local).forEach(k => {
+    if (Array.isArray(local[k]) && !MERGE_KEYS_672[k]) out[k] = JSON.parse(JSON.stringify(local[k]));
+  });
+  out._ts = Math.max(Number(local._ts) || 0, Number(cloud._ts) || 0);
+  out._conflicts = conflicts;
+  out._mb = makeSnapshot672(out);
+  return out;
+}
+
 /* ==================== 跨设备同步 ==================== */
 let pushTimer=null;
 function schedulePush(){clearTimeout(pushTimer);pushTimer=setTimeout(syncPush,800);}
@@ -15244,13 +15367,29 @@ async function cloudPull(){
          改成与 jsonbinPull/giteePull 一致的时间戳仲裁：保留云端真实 ts，谁新听谁的。 */
       const cloud=morphDB(data);mergeSeedGears(cloud);
       const cloudTs=Number(cloud._ts)||0,localTs=Number(DB._ts)||0;
-      if(localTs>cloudTs){
-        /* 本地较新：手机刚改过，不覆盖，反向推送把本地改动送上云端 */
-        setSyncStatus("syncing","本地改动较新，正在上传 "+timeStr());
-        cloudPush();return false;
+      /* v6.72：无基线时先退化为时间戳仲裁并建立基线，保证老数据平滑迁移；
+         有基线时走三方合并——时间戳相等、离线改动、多端同改都不再静默覆盖。 */
+      const base=pickBase672(DB._mb,cloud._mb);
+      if(!base||!base._ts){
+        if(localTs>cloudTs){setSyncStatus("syncing","本地改动较新，正在上传 "+timeStr());cloudPush();return false;}
+        DB=cloud;DB._mb=makeSnapshot672(DB);localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
+        setSyncStatus("ok","云端已同步 "+timeStr());return true;
       }
-      DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
-      setSyncStatus("ok","云端已同步 "+timeStr());return true;}
+      const merged=threeWayMerge672(base,DB,cloud);
+      merged._ts=Math.max(localTs,cloudTs);
+      merged._mb=makeSnapshot672(merged);
+      /* 合并是否改变了本地：决定要不要把合并结果推回云端 */
+      const changedLocal=!eq672(JSON.parse(JSON.stringify(DB)),JSON.parse(JSON.stringify(merged)));
+      DB=merged;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
+      const cf=(DB._conflicts||[]).length;
+      if(cf){
+        setSyncStatus("err","已合并 "+cf+" 处冲突（保留本地）"+timeStr());
+        try{toast("检测到 "+cf+" 处同步冲突，已保留本地版本",'err');}catch(e){}
+      }
+      /* 本地有改动或合并产生了新内容→推回云端，让另一端也收敛 */
+      if(changedLocal||localTs>cloudTs){cloudPush();return false;}
+      if(!cf)setSyncStatus("ok","云端已同步 "+timeStr());
+      return true;}
   }catch(e){setSyncStatus("err","云端读取失败："+e.message);}return false;}
 async function cloudPush(){
   if(!ghUser||!ghToken)return;
@@ -15271,6 +15410,7 @@ async function cloudPush(){
         const g=await ghReq("/gists",{method:"POST",body:JSON.stringify({description:gistDesc,public:false,files:{"workbench.json":{content}}})});
         saveGistId(g.id);}
     }
+    if(!DB._mb)DB._mb=makeSnapshot672(DB);
     setSyncStatus("ok","\u5DF2\u4FDD\u5B58\u5230\u4E91\u7AEF "+timeStr());
   }catch(e){setSyncStatus("err","\u4E91\u7AEF\u4FDD\u5B58\u5931\u8D25："+e.message);}}
 
