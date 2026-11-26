@@ -5496,6 +5496,7 @@ window.QRCode = {
 </script>
 </head>
 <body data-page-node-id="n2d1RjvdBwhRWvd9jCLaYo">
+<datalist id="wb-search-hist"></datalist> <!-- v6.78 搜索历史，随账号同步 -->
 
 <div class="app-layout" data-page-node-id="wLbULnFRuLbSHjnfee7c3j">
 
@@ -5801,7 +5802,7 @@ window.QRCode = {
         </div>
 
         <div class="toolbar" data-page-node-id="C14TdY9FuTdUePh6Zp1l2s">
-          <input type="text" id="search-plan" placeholder="🔍 搜索事项…" oninput="renderPlan()" data-page-node-id="4vsInOzby2XOB9zrBFKNmv"/>
+          <input type="text" id="search-plan" placeholder="🔍 搜索事项…" oninput="renderPlan()" onchange="recordSearch678('plan')" list="wb-search-hist" data-page-node-id="4vsInOzby2XOB9zrBFKNmv"/>
           <select id="fban-plan" onchange="renderPlan()" data-page-node-id="iMfF55XZ034ukBctcG42JU"><option value="" data-page-node-id="Y25Kwk9q6bVOtm14CpVCoL">全部板块</option></select>
           <div class="fstat-wrap" id="fstat-wrap">
             <button type="button" id="fstat-btn" class="fstat-btn" onclick="toggleFstatPop()" data-page-node-id="bgz0R6hyhKgFTrfAVHCkA4">全部进度</button>
@@ -5912,7 +5913,7 @@ window.QRCode = {
 
         <!-- 搜索 + 导出 -->
         <div class="job-toolbar" data-page-node-id="oNDZ7HhpaxRkmpNfZ2iovD">
-          <input type="text" id="search-job" placeholder="🔍 搜索客户…" oninput="renderJobs()" list="client-datalist" data-page-node-id="1PFxEcoDD9F7XozkAUiSBP"/>
+          <input type="text" id="search-job" placeholder="🔍 搜索客户…" oninput="renderJobs()" onchange="recordSearch678('job')" list="client-datalist" data-page-node-id="1PFxEcoDD9F7XozkAUiSBP"/>
           <div class="jt-right" data-page-node-id="Bia4riW2GGNrLGIIxxBUUL">
             <span class="kbd-hint" title="快捷键：N=新建" data-page-node-id="CzCzaRqXrBML03fiMWm61k">⌨N</span>
             <button class="btn ghost sm" onclick="exportJobsCSV()" data-page-node-id="5GvmZv5Qbx4xfEaNOSaPCA">⬇导出</button>
@@ -6020,7 +6021,7 @@ window.QRCode = {
       <section id="panel-gear" style="display:none" data-page-node-id="7GtagXtVHyvEjAofPFhOLg">
         <div class="sec-head tools-only" data-page-node-id="JsPHo6olfCA35ih4pmywas">
           <div class="sec-actions" data-page-node-id="U66zRRqyFQI2aaNTFcDETB">
-            <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()" data-page-node-id="2tt6yFLAEnHXtSwT2Uv1Bi"/>
+            <input class="search-input" id="gear-search" placeholder="🔍 搜索器材..." oninput="renderGears()" onchange="recordSearch678('gear')" list="wb-search-hist" data-page-node-id="2tt6yFLAEnHXtSwT2Uv1Bi"/>
             <button class="btn sm" onclick="openGearModal()" data-page-node-id="JpbF1yhtfFECnY7cODy5GT">＋ 新增器材</button>
             <button class="btn ghost sm" onclick="var n=seedMyGears653(true),r=applyGearReclass662(true);toast((n||r.add||r.moved)?('已更新 '+((n||0)+(r.add||0))+' 件设备、重归类 '+((r.moved||0))+' 件'):'设备已是最新','ok')" title="把口述核对过的真实设备补齐进清单（已存在的跳过，不覆盖），并按标准重新归类" data-page-node-id="v653SeedBtn">📥 补齐我的设备</button>
           </div>
@@ -6089,7 +6090,7 @@ window.QRCode = {
       <section id="panel-idea" style="display:none" data-page-node-id="l4lqRu6CZgpq9RQ1rhHA7f">
         <div class="sec-head tools-only" data-page-node-id="pdBBsx2IGVym9miytFDQ8d">
           <div class="sec-actions" data-page-node-id="mDFMj1dhhKSOoE2BaDTTQQ">
-            <input class="search-input" id="idea-search" placeholder="🔍 搜索灵感..." oninput="renderIdeas()" data-page-node-id="4sTZ6df53vxCotS6XNJHNa"/>
+            <input class="search-input" id="idea-search" placeholder="🔍 搜索灵感..." oninput="renderIdeas()" onchange="recordSearch678('idea')" list="wb-search-hist" data-page-node-id="4sTZ6df53vxCotS6XNJHNa"/>
             <select id="idea-tag-filter" onchange="renderIdeas()" style="background:var(--bg3);color:var(--ink2);border:1px solid var(--glass-border);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700" data-page-node-id="JI9DUsE4naawSLJ7hJFiPf">
               <option value="" data-page-node-id="kNDIW01RwEDHMZCSaEu9LG">全部标签</option>
             </select>
@@ -6261,7 +6262,7 @@ window.QRCode = {
       <section id="panel-schedule" style="display:none" data-page-node-id="5Rw6rzQwGj7GF1tIpmfJ3G">
         <div class="sec-head tools-only" data-page-node-id="DU8bKe68NUy4shjTAp73fp">
           <div class="sec-actions" data-page-node-id="FxuhzwhbBTyleN5WVz16TK">
-            <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()" data-page-node-id="4oGVd9DbfaTmfNT2FTD9sN"/>
+            <input class="search-input" id="evt-search" placeholder="🔍 搜索行程..." oninput="renderSchedule()" onchange="recordSearch678('evt')" list="wb-search-hist" data-page-node-id="4oGVd9DbfaTmfNT2FTD9sN"/>
             <div class="cal-date-picker" data-page-node-id="P3x9XETGkvtLREY3KPp9xg">
               <input type="number" id="cal-year" min="2020" max="2030" onchange="jumpToDate()" data-page-node-id="Wzr4iMSBQOfIKYVatuUqRR"/>
               <span class="dp-sep" data-page-node-id="Olfkonk8oNcp1QEBAt87S5">/</span>
@@ -6688,7 +6689,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.77</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.78</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7276,7 +7277,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.77";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.78";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -7287,6 +7288,158 @@ function loadSyncCfg(){
 }
 function saveSyncCfg(){localStorage.setItem(SYNC_KEY,JSON.stringify(syncCfg));}
 
+/* ===== v6.78 个人配置入库：白名单规范化 + 字段级合并 + 搜索历史 ===== */
+/* v6.78 个人配置入库（纯函数，可 node 单测 / 注入 HTML 复用）
+   权威源：DB._prefs=[{k,v,ts}]（按 k 业务键走三方合并）、DB._searchHist=[{scope,q,ts}]。
+   localStorage 里的 wb_theme / wb_navgroups / wb_keyfold_open 降级为本地镜像，只兼容旧入口。
+   明确排除：GitHub 令牌、AI Key、配图 Key、账号密码哈希——这些是凭据，不进同步载荷。 */
+const PREFS_KEYS_678 = ['theme', 'navGroups', 'keyFold', 'planFilter', 'sortDir'];
+const PREFS_LEGACY_KEYS_678 = ['wb_theme', 'wb_navgroups', 'wb_keyfold_open'];
+const PREFS_MAX_SEARCH_678 = 30;
+const SEARCH_SCOPES_678 = ['plan', 'job', 'gear', 'idea', 'evt'];
+
+function prefsNormKey678(k) {
+  const s = String(k == null ? '' : k).trim();
+  return PREFS_KEYS_678.indexOf(s) >= 0 ? s : '';
+}
+function prefsNormTheme678(v) { return v === 'light' ? 'light' : 'dark'; }
+function prefsNormBool678(v) { return v === true || v === 1 || v === '1' || v === 'true'; }
+function prefsNormNavGroups678(v) {
+  const out = {};
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return out;
+  Object.keys(v).forEach(k => {
+    const kk = String(k).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 32);
+    if (!kk || kk === '__proto__' || kk === 'constructor' || kk === 'prototype') return;
+    out[kk] = prefsNormBool678(v[k]);
+  });
+  return out;
+}
+function prefsNormPlanFilter678(v) {
+  const o = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  const allowed = ['done', 'doing', 'flow', 'todo'];
+  let fstat = '';
+  if (Array.isArray(o.fstat)) fstat = o.fstat.map(x => String(x).trim()).filter(x => allowed.indexOf(x) >= 0).join(',');
+  else if (typeof o.fstat === 'string') fstat = o.fstat.split(',').map(x => x.trim()).filter(x => allowed.indexOf(x) >= 0).join(',');
+  const qv = ['all', 'due', 'key'].indexOf(o.quickView) >= 0 ? o.quickView : 'all';
+  return { fstat, quickView: qv };
+}
+function prefsNormValue678(k, v) {
+  const kk = prefsNormKey678(k);
+  if (kk === 'theme') return prefsNormTheme678(v);
+  if (kk === 'keyFold') return prefsNormBool678(v);
+  if (kk === 'navGroups') return prefsNormNavGroups678(v);
+  if (kk === 'planFilter') return prefsNormPlanFilter678(v);
+  if (kk === 'sortDir') return Number(v) === -1 ? -1 : 1;
+  return null;
+}
+/* 规范化配置行：白名单过滤 + 按 k 去重（取 ts 最新），绝不修改入参 */
+function prefsNormalize678(rows) {
+  if (!Array.isArray(rows)) rows = [];
+  const out = [], idx = {};
+  rows.forEach(r => {
+    if (!r || typeof r !== 'object') return;
+    const k = prefsNormKey678(r.k);
+    if (!k) return;
+    const v = prefsNormValue678(k, r.v);
+    if (v === null) return;
+    const ts = Number(r.ts) || 0, i = idx[k];
+    if (i === undefined) { idx[k] = out.length; out.push({ k, v, ts }); }
+    else if (ts >= out[i].ts) out[i] = { k, v, ts };
+  });
+  return out;
+}
+function prefsGet678(rows, k, fallback) {
+  const kk = prefsNormKey678(k);
+  const row = (Array.isArray(rows) ? rows : []).filter(r => r && r.k === kk)[0];
+  if (!row) return fallback;
+  const v = prefsNormValue678(kk, row.v);
+  return v === null ? fallback : v;
+}
+function prefsSet678(rows, k, v, ts) {
+  const kk = prefsNormKey678(k), nv = prefsNormValue678(kk, v);
+  if (!kk || nv === null) return prefsNormalize678(rows);
+  const t = Number(ts) || Date.now();
+  const out = (Array.isArray(rows) ? rows : []).filter(r => r && r.k !== kk).map(r => Object.assign({}, r));
+  out.push({ k: kk, v: nv, ts: t });
+  return out;
+}
+/* 字段级三方合并：按 k 配对；一方改采纳、双方改同值采纳、双方改不同值保留本地并记冲突 */
+function prefsMerge678(base, local, cloud) {
+  const b = prefsNormalize678(base), l = prefsNormalize678(local), c = prefsNormalize678(cloud);
+  const map = arr => { const m = {}; arr.forEach(r => { m[r.k] = r; }); return m; };
+  const bm = map(b), lm = map(l), cm = map(c);
+  const keys = [];
+  [bm, lm, cm].forEach(m => Object.keys(m).forEach(k => { if (keys.indexOf(k) < 0) keys.push(k); }));
+  const out = [], conflicts = [];
+  const eq = (a, d) => JSON.stringify(a) === JSON.stringify(d);
+  keys.forEach(k => {
+    const br = bm[k], lr = lm[k], cr = cm[k];
+    const bv = br ? br.v : undefined, lv = lr ? lr.v : undefined, cv = cr ? cr.v : undefined;
+    const lb = eq(lv, bv), cb = eq(cv, bv);
+    let pick = null, conflict = false;
+    if (lb && cb) pick = lr || cr;
+    else if (!lb && cb) pick = lr;
+    else if (lb && !cb) pick = cr;
+    else if (eq(lv, cv)) pick = lr;
+    else { pick = lr || cr; conflict = true; }
+    if (pick) out.push({ k, v: pick.v, ts: Math.max(Number(pick.ts) || 0, Number(lr && lr.ts) || 0, Number(cr && cr.ts) || 0) });
+    if (conflict) conflicts.push({ path: '_prefs#' + k, type: 'field', local: lv, cloud: cv });
+  });
+  return { rows: out, conflicts };
+}
+/* 从旧 localStorage 镜像迁移（值是字符串，navGroups 是 JSON 串） */
+function prefsFromLegacy678(legacy) {
+  const src = legacy && typeof legacy === 'object' ? legacy : {};
+  const raw = k => { const v = src[k]; return v == null ? '' : String(v); };
+  let rows = [];
+  const theme = raw('wb_theme');
+  if (theme === 'light' || theme === 'dark') rows = prefsSet678(rows, 'theme', theme, 0);
+  const nav = raw('wb_navgroups');
+  if (nav) { try { const o = JSON.parse(nav); if (o && typeof o === 'object' && !Array.isArray(o)) rows = prefsSet678(rows, 'navGroups', o, 0); } catch (e) {} }
+  const fold = raw('wb_keyfold_open');
+  if (fold !== '') rows = prefsSet678(rows, 'keyFold', fold === '1' || fold === 'true', 0);
+  return rows;
+}
+/* 写回本地镜像：只处理有历史入口的三个键 */
+function prefsMirror678(k, v) {
+  const kk = prefsNormKey678(k);
+  if (kk === 'theme') return { key: 'wb_theme', value: prefsNormTheme678(v) };
+  if (kk === 'navGroups') return { key: 'wb_navgroups', value: JSON.stringify(prefsNormNavGroups678(v)) };
+  if (kk === 'keyFold') return { key: 'wb_keyfold_open', value: prefsNormBool678(v) ? '1' : '0' };
+  return null;
+}
+/* 搜索历史：按 scope|q 去重、限长 30、ts 倒序；三方合并天然取并集 */
+function searchNormScope678(s) { const x = String(s == null ? '' : s).trim(); return SEARCH_SCOPES_678.indexOf(x) >= 0 ? x : 'plan'; }
+function searchNormQ678(q) { return String(q == null ? '' : q).replace(/\s+/g, ' ').trim().slice(0, 60); }
+function searchNormRows678(rows) {
+  if (!Array.isArray(rows)) rows = [];
+  const m = {};
+  rows.forEach(r => {
+    if (!r || typeof r !== 'object') return;
+    const scope = searchNormScope678(r.scope), q = searchNormQ678(r.q);
+    if (!q) return;
+    const key = scope + '|' + q, ts = Number(r.ts) || 0;
+    if (!m[key] || ts > m[key].ts) m[key] = { scope, q, ts };
+  });
+  return Object.keys(m).map(k => m[k]).sort((a, b) => b.ts - a.ts).slice(0, PREFS_MAX_SEARCH_678);
+}
+function searchPush678(rows, scope, q, ts) {
+  const sc = searchNormScope678(scope), qq = searchNormQ678(q);
+  if (!qq) return searchNormRows678(rows);
+  const out = searchNormRows678(rows).filter(r => !(r.scope === sc && r.q === qq));
+  out.unshift({ scope: sc, q: qq, ts: Number(ts) || Date.now() });
+  return out.slice(0, PREFS_MAX_SEARCH_678);
+}
+function searchTerms678(rows, scope) {
+  const sc = scope ? searchNormScope678(scope) : '';
+  const seen = {}, out = [];
+  searchNormRows678(rows).forEach(r => {
+    if (sc && r.scope !== sc) return;
+    if (seen[r.q]) return;
+    seen[r.q] = 1; out.push(r.q);
+  });
+  return out;
+}
 /* 统一数据整形：兼容旧版嵌套结构、板块重映射、补全缺失字段 */
 function morphDB(d){
   if(!d||typeof d!=="object")return null;
@@ -7302,6 +7455,9 @@ function morphDB(d){
   if(!d.ideas)d.ideas=JSON.parse(JSON.stringify(SEED.ideas));
   if(!d.events)d.events=JSON.parse(JSON.stringify(SEED.events));
   if(!Array.isArray(d._gearDeleted))d._gearDeleted=[];   /* v6.74：老数据升级出墓碑字段 */
+  /* v6.78：个人配置随载荷同步；规范化拒绝非法键/污染值，老数据平滑升级 */
+  d._prefs=prefsNormalize678(d._prefs);
+  d._searchHist=searchNormRows678(d._searchHist);
   if(!d.bookings)d.bookings=[];
   if(!d.planTemplates)d.planTemplates=[];
   if(!d.kpiWeeks)d.kpiWeeks=[];
@@ -7363,6 +7519,16 @@ const KPI_SEED_WEEKS=[{
 }];
 
 let DB=load();
+/* v6.78：把旧 localStorage 偏好收敛为 DB._prefs；静默写盘，绝不伪造用户编辑时间 */
+try{
+  if(!Array.isArray(DB._prefs)||!DB._prefs.length){
+    var _lg={};
+    try{PREFS_LEGACY_KEYS_678.forEach(function(k){var v=localStorage.getItem(k);if(v!=null)_lg[k]=v;});}catch(e){}
+    var _sd=prefsFromLegacy678(_lg);
+    if(_sd.length){DB._prefs=_sd;saveSeedSilent();}
+  }
+  if(!Array.isArray(DB._searchHist))DB._searchHist=[];
+}catch(e){}
 function load(){
   try{
     const r=localStorage.getItem(KEY);
@@ -7542,7 +7708,8 @@ function closeMobileNav(){
 /* ==================== v6.43 侧栏大类目 / 子类目折叠 ==================== */
 const NAV_GROUP_KEY="wb_navgroups";
 function navGroupState(){ try{ var r=localStorage.getItem(NAV_GROUP_KEY); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
-function navGroupSave(st){ try{ localStorage.setItem(NAV_GROUP_KEY,JSON.stringify(st)); }catch(e){} }
+function navGroupSave(st){ try{ localStorage.setItem(NAV_GROUP_KEY,JSON.stringify(st)); }catch(e){}
+  try{prefsSetUser678('navGroups',st);}catch(e){} }
 /* 应用本地记住的展开/收起状态 */
 function navGroupsApply(){
   var st=navGroupState();
@@ -8383,6 +8550,7 @@ function onFstatChange(){
   /* 同步隐藏 select 的 data-values，兼容历史读取（导出标签等已单独改函数） */
   const sel=document.getElementById("fstat-plan");if(sel){sel.dataset.values=vals.join(",");sel.value=vals.length===1?vals[0]:"";}
   renderPlan();
+  try{prefsSavePlanFilter678();}catch(e){}
 }
 /* 点浮层外收起 */
 document.addEventListener("click",function(e){
@@ -8394,6 +8562,7 @@ function setQuickView(v,el){
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===v));
   document.querySelectorAll(".ps-card").forEach(c=>c.classList.remove("active"));
   renderPlan();
+  try{prefsSavePlanFilter678();}catch(e){}
 }
 /* v6.10：点统计卡「已完成」时自动展开已完成折叠区，便于核对 */
 function ensureDoneVisible(){
@@ -8429,6 +8598,7 @@ function filterPlanBy(v){
   }
   document.querySelectorAll(".qview button").forEach(b=>b.classList.toggle("active",b.dataset.v===quickView));
   renderPlan();
+  try{prefsSavePlanFilter678();}catch(e){}
 }
 function onBoardChange(i,b){
   DB.rows[i].b=b; lastBoard=b;
@@ -9234,6 +9404,7 @@ function toggleKeyFold(){
   const next=keyFoldToggle677(window.__wbKeyFoldOpen);
   window.__wbKeyFoldOpen=next;
   try{localStorage.setItem(KEY_FOLD_KEY_677,next?"1":"0");}catch(e){}
+  try{prefsSetUser678('keyFold',next);}catch(e){}
   const title=document.querySelector(".pb-focus .pf-title");
   const items=document.querySelector(".pb-focus .pf-items");
   if(title)title.classList.toggle("open",next);
@@ -9307,6 +9478,7 @@ function sortByTime(){
     return (da-db)*sortDir;
   });
   sortDir*=-1;save();renderPlan();
+  try{prefsSetUser678("sortDir",sortDir);}catch(e){}
 }
 
 /* ==================== 课程 ==================== */
@@ -15065,7 +15237,9 @@ const MERGE_KEYS_672 = {
   planTemplates: r => String(r.name || ''),
   shootPlans: r => String(r.title || ''),
   works: r => String(r.title || ''),
-  _gearDeleted: GEAR_DEL_KEYS_674._gearDeleted
+  _gearDeleted: GEAR_DEL_KEYS_674._gearDeleted,
+  _prefs: r => String((r && r.k) || ''),
+  _searchHist: r => String((r && r.scope) || '') + '|' + String((r && r.q) || '')
 };
 function h672(s) {
   let h = 2166136261 >>> 0;
@@ -15231,7 +15405,7 @@ async function jsonbinPull(){
     const data=await res.json();const rec=data.record;
     if(rec&&rec.db){
       const cloud=morphDB(rec.db);cloud._ts=rec.ts||cloud._ts;
-      if(!DB._ts||cloud._ts>DB._ts){mergeSeedGears(cloud);DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();setSyncStatus("ok","已同步 "+timeStr());}
+      if(!DB._ts||cloud._ts>DB._ts){mergeSeedGears(cloud);DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();prefsAfterRemote678();setSyncStatus("ok","已同步 "+timeStr());}
       else if(cloud._ts<DB._ts){syncPush();}
       else setSyncStatus("ok","已是最新");
     }else setSyncStatus("ok","云端无数据");
@@ -15267,7 +15441,7 @@ async function giteePull(){
     const rec=JSON.parse(b64decodeUtf8(data.content));
     if(rec&&rec.db){
       const cloud=morphDB(rec.db);cloud._ts=rec.ts||cloud._ts;
-      if(!DB._ts||cloud._ts>DB._ts){mergeSeedGears(cloud);DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();setSyncStatus("ok","已同步 "+timeStr());}
+      if(!DB._ts||cloud._ts>DB._ts){mergeSeedGears(cloud);DB=cloud;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();prefsAfterRemote678();setSyncStatus("ok","已同步 "+timeStr());}
       else if(cloud._ts<DB._ts){giteePush();}
       else setSyncStatus("ok","已是最新");
     }else setSyncStatus("ok","云端无数据");
@@ -15549,7 +15723,7 @@ async function cloudPull(){
       const base=pickBase672(DB._mb,cloud._mb);
       if(!base||!base._ts){
         if(localTs>cloudTs){setSyncStatus("syncing","本地改动较新，正在上传 "+timeStr());cloudPush();return false;}
-        DB=cloud;DB._mb=makeSnapshot672(DB);localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
+        DB=cloud;DB._mb=makeSnapshot672(DB);localStorage.setItem(KEY,JSON.stringify(DB));renderAll();prefsAfterRemote678();
         setSyncStatus("ok","云端已同步 "+timeStr());return true;
       }
       const merged=threeWayMerge672(base,DB,cloud);
@@ -15557,7 +15731,7 @@ async function cloudPull(){
       merged._mb=makeSnapshot672(merged);
       /* 合并是否改变了本地：决定要不要把合并结果推回云端 */
       const changedLocal=!eq672(JSON.parse(JSON.stringify(DB)),JSON.parse(JSON.stringify(merged)));
-      DB=merged;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();
+      DB=merged;localStorage.setItem(KEY,JSON.stringify(DB));renderAll();prefsAfterRemote678();
       const cf=(DB._conflicts||[]).length;
       if(cf){
         setSyncStatus("err","已合并 "+cf+" 处冲突（保留本地）"+timeStr());
@@ -15845,9 +16019,97 @@ function applyTheme(t){
 }
 function toggleTheme(){
   var cur=document.documentElement.getAttribute("data-theme")==="light"?"light":"dark";
-  applyTheme(cur==="light"?"dark":"light");
+  var next=cur==="light"?"dark":"light";
+  applyTheme(next);
+  try{prefsSetUser678('theme',next);}catch(e){}
 }
 applyTheme(document.documentElement.getAttribute("data-theme")||"dark");
+/* ===== v6.78 个人配置：权威源 DB._prefs / DB._searchHist，localStorage 仅本地镜像 ===== */
+function prefsWriteMirror678(k,v){
+  var m=prefsMirror678(k,v);if(!m)return;
+  try{localStorage.setItem(m.key,m.value);}catch(e){}
+}
+/* 用户主动改配置：写权威源+镜像、刷 _ts、写盘、触发两路推送。值没变则幂等返回。 */
+function prefsSetUser678(k,v){
+  var nv=prefsNormValue678(k,v);
+  if(nv===null)return;
+  if(!Array.isArray(DB._prefs))DB._prefs=[];
+  var old=prefsGet678(DB._prefs,k,null);
+  if(JSON.stringify(old)===JSON.stringify(nv))return;
+  DB._prefs=prefsSet678(DB._prefs,k,v,Date.now());
+  prefsWriteMirror678(k,nv);
+  DB._ts=Date.now();
+  try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}
+  try{if(syncCfg&&syncCfg.enabled)schedulePush();}catch(e){}
+  if(typeof cloudMode!=="undefined"&&cloudMode&&ghUser&&ghToken)scheduleCloudPush();
+}
+function prefsSavePlanFilter678(){
+  var vals=fstatValues();
+  var nf={fstat:vals.join(","),quickView:quickView};
+  prefsSetUser678("planFilter",nf);
+}
+function renderSearchHist678(){
+  try{
+    var dl=document.getElementById("wb-search-hist");if(!dl)return;
+    dl.innerHTML="";
+    searchTerms678(DB._searchHist,"").slice(0,PREFS_MAX_SEARCH_678).forEach(function(q){
+      var o=document.createElement("option");o.setAttribute("value",q);dl.appendChild(o);
+    });
+  }catch(e){}
+}
+function recordSearch678(scope){
+  try{
+    var sc=searchNormScope678(scope);
+    /* 五个搜索框 id 不统一：plan/job 是 search-*，gear/idea/evt 是 *-search */
+    var ids={plan:"search-plan",job:"search-job",gear:"gear-search",idea:"idea-search",evt:"evt-search"};
+    var inp=document.getElementById(ids[sc]||("search-"+sc));
+    var q=inp&&inp.value||"";
+    if(!searchNormQ678(q))return;
+    if(!Array.isArray(DB._searchHist))DB._searchHist=[];
+    var before=JSON.stringify(DB._searchHist);
+    DB._searchHist=searchPush678(DB._searchHist,sc,q,Date.now());
+    if(JSON.stringify(DB._searchHist)===before)return;
+    DB._ts=Date.now();
+    try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}
+    renderSearchHist678();
+    try{if(syncCfg&&syncCfg.enabled)schedulePush();}catch(e){}
+    if(typeof cloudMode!=="undefined"&&cloudMode&&ghUser&&ghToken)scheduleCloudPush();
+  }catch(e){}
+}
+/* 把权威配置应用到 UI 与兼容镜像；不写 DB、不刷 _ts、不推云 */
+function prefsApplyAll678(){
+  try{
+    applyTheme(prefsGet678(DB._prefs,"theme","dark"));
+    var ng=prefsGet678(DB._prefs,"navGroups",null);
+    if(ng){prefsWriteMirror678("navGroups",ng);if(typeof navGroupsApply==="function")navGroupsApply();}
+    var kf=prefsGet678(DB._prefs,"keyFold",false);
+    window.__wbKeyFoldOpen=!!kf;prefsWriteMirror678("keyFold",kf);
+    var pf=prefsGet678(DB._prefs,"planFilter",null);
+    if(pf){
+      var vals=(pf.fstat||"").split(",").filter(Boolean);
+      var pop=document.getElementById("fstat-pop");
+      if(pop)pop.querySelectorAll("input[type=checkbox]").forEach(function(cb){cb.checked=vals.indexOf(cb.value)>=0;});
+      var sel=document.getElementById("fstat-plan");
+      if(sel){sel.dataset.values=vals.join(",");sel.value=vals.length===1?vals[0]:"";}
+      var btn=document.getElementById("fstat-btn");
+      if(btn&&typeof fstatLabel677==="function")btn.textContent=fstatLabel677(vals);
+      quickView=pf.quickView||"all";
+      document.querySelectorAll(".qview button").forEach(function(b){b.classList.toggle("active",b.dataset.v===quickView);});
+    }
+    var sd=prefsGet678(DB._prefs,"sortDir",1);
+    sortDir=(Number(sd)===-1)?-1:1;
+    renderSearchHist678();
+  }catch(e){}
+}
+/* 云端/其它标签页数据落地后：规范化 + 应用配置（应用本身不污染 _ts/_mb） */
+function prefsAfterRemote678(){
+  try{
+    DB._prefs=prefsNormalize678(DB._prefs);
+    DB._searchHist=searchNormRows678(DB._searchHist);
+    prefsApplyAll678();
+  }catch(e){}
+}
+
 
 /* v6.24 一次性配置导入：网址里带 ?aikey=xxx 时自动写入本机 AI 配置，写完立刻把参数
    从地址栏抹掉。用途是让「在手机上填一个 32 位 Key」变成点一下链接 —— Key 存在各设备
@@ -15978,6 +16240,7 @@ function startStorageWatch(){
           DB=mOld;
           localStorage.setItem(KEY,JSON.stringify(DB));
           renderAll();
+          prefsAfterRemote678();
         }catch(err){}
         return;
       }
@@ -15995,6 +16258,7 @@ function startStorageWatch(){
       /* 无论种子有无变化都写回：保证内存与磁盘是同一份，杜绝后续 save 用旧内存冲掉新内容 */
       try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(err){}
       renderAll();
+      prefsAfterRemote678();
       setSyncStatus&&setSyncStatus("ok","已同步其它标签页的改动 "+timeStr());
     }catch(err){}
   });
@@ -16014,6 +16278,7 @@ try{applyGearReclass662(false);}catch(e){}
 fillBanPlan();
 initPeriodBar();          /* v6.10 周期导航初始化 */
 switchTab("home");navGroupsApply();navGroupSync(curTab);tick();setInterval(tick,1000);
+try{prefsApplyAll678();}catch(e){}
 renderWeekBar();
 startVersionWatch();
 startStorageWatch();
