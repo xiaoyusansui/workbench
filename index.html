@@ -1072,6 +1072,7 @@
   .sync-status .dot.ok{background:var(--brand);box-shadow:0 0 7px rgba(34,197,94,.5)}
   .sync-status .dot.syncing{background:var(--gold);animation:pulse 1s infinite}
   .sync-status .dot.err{background:var(--coral)}
+  .sync-status .dot.pending{background:var(--amber)}   /* v6.75：编辑中跳过拉取，待同步 */
   .sync-prov{display:flex;flex-direction:column;gap:6px;margin:4px 0 12px;padding:10px;background:var(--bg3);border-radius:var(--r-xs)}
   .sp-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink2);cursor:pointer}
   .sp-item input{accent-color:var(--gold)}
@@ -6663,7 +6664,7 @@ window.QRCode = {
             <div class="sett-sect" data-page-node-id="ZS4qTGinelIAtNqUdcUYaq">
               <h4 data-page-node-id="fgWBTv611lG0oG5eqo98Ba"><span class="sect-icon" data-page-node-id="88fFHVaEOnv3GtClanmVA9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.15em;height:1.15em" data-page-node-id="wpm12NNEqtUkAIhHAOzfkd"><circle cx="12" cy="12" r="9" data-page-node-id="esEgjpukXApdInKxSTFDNR"/><path d="M12 11v5" data-page-node-id="ZYTcsuCvzBhaDXxpWWGgDw"/><path d="M12 8h.01" data-page-node-id="nQ23RDwdNZyVpfotIilJdg"/></svg></span> 关于</h4>
               <div class="about-info" data-page-node-id="RemlXLr0SPC7uy8ItexyRs">
-                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.74</span></div>
+                <div class="about-row" data-page-node-id="6ng4mIQ0AksEYo5VxgncQO"><span class="alabel" data-page-node-id="cyxaw33YDN9gCUdIyIih1c">版本</span><span class="avalue" data-page-node-id="IXlFwR2tkX6VBvOVYdaHsY"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:1.2em;height:1.2em;vertical-align:-0.2em" data-page-node-id="nky21wqjqAC38GBxfeRXgC"><path d="M3 12c4-4 9-4 13 0-4 4-9 4-13 0z" data-page-node-id="aj9FXmp4F0jtmM0NEwXBSq"/><path d="M21 12l-3-3v6l3-3z" data-page-node-id="8kIGAKrrCEr07pWxPFIKyA"/><circle cx="8" cy="11" r=".7" fill="currentColor" stroke="none" data-page-node-id="jWRiQAoZRGlw4M8NzOgCNn"/></svg> v6.75</span></div>
                 <div class="about-row" data-page-node-id="RneTfJdB1oNpaV1Xb4j05k"><span class="alabel" data-page-node-id="V4OcNgcBydEMoB6RtoCBEB">定位</span><span class="avalue" id="about-pos" data-page-node-id="0KDWSEtrP7EK8OKJjpal6A">项目运营 + 摄影师工作台</span></div>
                 <div class="about-row" data-page-node-id="ue6yTvppOeN2ksMmZ2ceUF"><span class="alabel" data-page-node-id="yAcAqlZTYb62NS0b4n7MFM">特性</span><span class="avalue" data-page-node-id="ulzxN1QcqZImSWlCrBp9SP">GitHub 云端同步 · 端到端加密</span></div>
                 <div class="about-row" data-page-node-id="guz7W8uGv08OVpiarN9M7h"><span class="alabel" data-page-node-id="5e30tfa119M5SHBpX4q2Vh">存储</span><span class="avalue" id="about-storage-mode" data-page-node-id="DreUN5D8J1kTqrpdbl77Oa">未登录时存于本机（离线可用）</span></div>
@@ -7207,7 +7208,7 @@ const BANKUAI_REMAP={
 };
 
 const KEY="xiaoyu_workbench_v5";
-const APP_VER="6.74";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
+const APP_VER="6.75";  /* 与「关于」面板版本号保持一致；部署脚本据此写 version.json */
 const SYNC_KEY="xiaoyu_sync_cfg";
 let syncCfg=loadSyncCfg();
 
@@ -15056,13 +15057,36 @@ function schedulePush(){clearTimeout(pushTimer);pushTimer=setTimeout(syncPush,80
 let cloudPushTimer=null;
 function scheduleCloudPush(){if(cloudPushTimer)clearTimeout(cloudPushTimer);cloudPushTimer=setTimeout(()=>{if(cloudMode&&ghUser&&ghToken)cloudPush();},1500);}
 function timeStr(){const d=new Date(),p=n=>String(n).padStart(2,"0");return `${p(d.getHours())}:${p(d.getMinutes())}`;}
+/* ===== v6.75 同步状态语义：pending=编辑窗口期跳过拉取，不误报已同步 ===== */
+/* v6.75 同步状态语义（纯函数，可 node 单测 / 注入 HTML 复用）
+   问题：编辑窗口期/弹窗打开时 cloudPull 被跳过，但状态被刷成 ok「已同步」——
+   明明没拉取，却告诉用户已同步。本模块定义独立的 pending 状态，
+   让"跳过"与"真的同步成功"在文案、短标签、圆点颜色上都可区分。 */
+const SYNC_KINDS_675 = { NONE: 'none', OK: 'ok', SYNCING: 'syncing', PENDING: 'pending', ERR: 'err' };
+const SYNC_SKIP_TEXT_675 = '编辑中，暂未同步';
+function syncShortLabel675(kind) {
+  if (kind === 'none') return '未开启';
+  if (kind === 'ok') return '已同步';
+  if (kind === 'syncing') return '同步中…';
+  if (kind === 'pending') return '待同步';
+  return '异常';
+}
+function syncSideDotColor675(kind) {
+  if (kind === 'ok') return 'var(--brand)';
+  if (kind === 'err') return 'var(--coral)';
+  if (kind === 'syncing') return 'var(--gold)';
+  if (kind === 'pending') return 'var(--amber)';       /* 琥珀=等待/未确认，区别于绿色已同步、金色同步中 */
+  return 'var(--muted2)';
+}
+function skipPullStatus675() { return { kind: SYNC_KINDS_675.PENDING, text: SYNC_SKIP_TEXT_675 }; }
+function isPending675(kind) { return kind === SYNC_KINDS_675.PENDING; }
 function setSyncStatus(kind,text){
   window.__wbSyncKind=kind;window.__wbSyncText=text;  /* v6.61：记录真实同步结果，登录时不再无条件刷成"已同步" */
   const dot=document.getElementById("sync-dot"),t=document.getElementById("sync-text");
   if(!dot)return;dot.className="dot "+kind;t.textContent=text;
-  const st=document.getElementById("sync-text-side");if(st)st.textContent=(kind==="none"?"未开启":kind==="ok"?"已同步":kind==="syncing"?"同步中…":"异常");
-  const sTop=document.getElementById("sync-text-top");if(sTop)sTop.textContent=(kind==="none"?"未开启":kind==="ok"?"已同步":kind==="syncing"?"同步中…":"异常");
-  const sd=document.getElementById("sf-dot");if(sd)sd.style.background=(kind==="ok"?"var(--brand)":kind==="err"?"var(--coral)":kind==="syncing"?"var(--gold)":"var(--muted2)");
+  const st=document.getElementById("sync-text-side");if(st)st.textContent=syncShortLabel675(kind);
+  const sTop=document.getElementById("sync-text-top");if(sTop)sTop.textContent=syncShortLabel675(kind);
+  const sd=document.getElementById("sf-dot");if(sd)sd.style.background=syncSideDotColor675(kind);
 }
 
 /* UTF-8 安全的 base64（Gitee 文件内容用）*/
@@ -15382,7 +15406,7 @@ function resetSyncBackend(){_syncBackend=null;_syncFileSha=null;}
 
 async function cloudPull(){
   if(!ghUser||!ghToken)return false;
-  if(shouldSkipCloudPull()){setSyncStatus("ok","编辑中，跳过自动拉取");return false;}
+  if(shouldSkipCloudPull()){setSyncStatus("pending","编辑中，暂未同步");return false;}
   try{
     const backend=await getSyncBackend();
     let raw;
@@ -15514,7 +15538,8 @@ async function doLogin(email,pwd,msg){
   updateAccountUI();hideAuthGate();
   /* v6.61：登录成功 ≠ 同步成功。云端读写若因令牌失效失败，状态保持红字并提示，不再假报"已同步"。 */
   const cloudBad=window.__wbSyncKind==="err";
-  setSyncStatus(cloudBad?"err":"ok",cloudBad?"\u26A0 令牌失效，云端未同步——请重设令牌":"\u767B\u5F55\u6210\u529F\uFF01"+timeStr());
+  const pullSkipped=window.__wbSyncKind==="pending";
+  setSyncStatus(cloudBad?"err":pullSkipped?"pending":"ok",cloudBad?"\u26A0 令牌失效，云端未同步——请重设令牌":pullSkipped?"\u767B\u5F55\u6210\u529F\uFF0C\u6682\u672A\u540C\u6B65":"\u767B\u5F55\u6210\u529F\uFF01"+timeStr());
   if(cloudBad){msg.textContent="\u767B\u5F55\u6210\u529F\uFF0C\u4F46\u4E91\u7AEF\u540C\u6B65\u5931\u8D25\uFF08\u4EE4\u724C\u65E0\u6548\uFF09\u2014\u2014\u8BF7\u5728\u8BBE\u7F6E\u91CC\u91CD\u65B0\u586B\u4EE4\u724C";msg.style.color="var(--coral)";}
   else{msg.textContent="\u767B\u5F55\u6210\u529F\uFF01";msg.style.color="var(--green)";}
   startCloudTimer();setTimeout(()=>hideAuthGate(),cloudBad?2500:800);}
@@ -15562,7 +15587,7 @@ function restartCloudTimer(){
   const ms=getCloudSyncInterval();
   if(ms>0)window.__cloudTimer=setInterval(async()=>{
     if(cloudMode&&ghUser&&ghToken){
-      if(shouldSkipCloudPull())return;
+      if(shouldSkipCloudPull()){setSyncStatus("pending","编辑中，暂未同步");return;}
       await cloudPull();
     }
   },ms);
